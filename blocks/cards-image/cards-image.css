@@ -13,7 +13,7 @@
 
 /* ── Media column ─────────────────────────────────────── */
 .split-banner-media {
-  flex: 1 1 51%;
+  flex: 1 1 50%;
   max-width: 50%;
   border-radius: 4px;
   overflow: hidden;
@@ -66,10 +66,10 @@
   display: inline-block;
   align-self: flex-start;
   padding: 14px 28px;
-  border: 2px solid #1a1a1a;
+  border: 1px #1a1a1a;
   border-radius: 999px;
   background: transparent;
-  color: #1a1a1a;
+  color: #c58888;
   font-weight: 700;
   font-size: 15px;
   text-decoration: none;
