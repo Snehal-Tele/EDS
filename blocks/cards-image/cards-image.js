@@ -1,24 +1,98 @@
+
 export default function decorate(block) {
-    /* change to ul, li */
-    const ul = document.createElement('ul');
-    [...block.children].forEach((row) => {
-      const li = document.createElement('li');
-      while (row.firstElementChild) li.append(row.firstElementChild);
-      [...li.children].forEach((div) => {
-        if (div.children.length === 1 && div.querySelector('picture')) {
-          div.className = 'cards-card-image';
-        } else {
-          div.className = 'cards-card-body';
+    const rows = [...block.children];
+   
+    let sectionHeading = null;
+    const cardRows = [];
+   
+    rows.forEach((row) => {
+      const cells = [...row.children];
+      const firstCell = cells[0];
+      const hasPicture = firstCell && !!firstCell.querySelector('picture');
+   
+      if (!hasPicture) {
+        // No image → this is the section heading row
+        const text = row.textContent.trim();
+        if (text) {
+          sectionHeading = document.createElement('h2');
+          sectionHeading.className = 'cards-image-heading';
+          sectionHeading.textContent = text;
         }
+      } else {
+        // Has image → card row
+        cardRows.push(row);
+      }
+    });
+   
+    // ── Build grid ────────────────────────────────────────────────
+    const grid = document.createElement('ul');
+    grid.className = 'cards-image-grid';
+   
+    cardRows.forEach((row) => {
+      const cells = [...row.children];
+      const [imageCell, contentCell] = cells;
+   
+      const li = document.createElement('li');
+      li.className = 'cards-image-item';
+   
+      // Image
+      const picture = imageCell.querySelector('picture');
+      if (picture) {
+        const imgWrap = document.createElement('div');
+        imgWrap.className = 'cards-image-media';
+        const img = picture.querySelector('img');
+        if (img) {
+          img.setAttribute('loading', 'lazy');
+          img.removeAttribute('width');
+          img.removeAttribute('height');
+        }
+        imgWrap.append(picture);
+        li.append(imgWrap);
+      }
+   
+      // Content
+      const content = document.createElement('div');
+      content.className = 'cards-image-content';
+   
+      const lines = [...contentCell.children].filter(
+        (el) => el.textContent.trim() || el.querySelector('a')
+      );
+   
+      lines.forEach((el, index) => {
+        const link = el.querySelector('a');
+   
+        if (index === 0) {
+          // First line → card title
+          const title = document.createElement('h3');
+          title.className = 'cards-image-title';
+          title.textContent = el.textContent.trim();
+          content.append(title);
+          return;
+        }
+   
+        if (link) {
+          // Line with link → CTA
+          const cta = document.createElement('a');
+          cta.className = 'cards-image-cta';
+          cta.href = link.href;
+          cta.textContent = link.textContent.trim();
+          content.append(cta);
+          return;
+        }
+   
+        // Middle lines → description
+        const desc = document.createElement('p');
+        desc.className = 'cards-image-description';
+        desc.textContent = el.textContent.trim();
+        content.append(desc);
       });
-      ul.append(li);
+   
+      li.append(content);
+      grid.append(li);
     });
-  
-    ul.querySelectorAll('picture > img').forEach((img) => {
-      const optimizedPic = img.closest('picture');
-      optimizedPic.replaceWith(optimizedPic.cloneNode(true));
-    });
-  
+   
+    // ── Rebuild block ─────────────────────────────────────────────
     block.textContent = '';
-    block.append(ul);
+    if (sectionHeading) block.append(sectionHeading);
+    block.append(grid);
   }
