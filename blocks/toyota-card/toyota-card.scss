@@ -1,0 +1,110 @@
+/* ============================================================
+   Text Image block
+   ============================================================ */
+
+   .text-image {
+    background: #fff;
+    padding: 48px 32px;
+  }
+  
+  .text-image-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 48px;
+  }
+  
+  /* ── Text column (~40%) ──────────────────────────────────── */
+  
+  .text-image-text {
+    flex: 0 0 38%;
+    max-width: 38%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Heading */
+  .text-image-heading {
+    margin: 0 0 16px;
+    font-size: 32px;
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.15;
+  }
+  
+  /* Gray horizontal line under heading */
+  .text-image-heading::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #c8c8c8;
+    margin-top: 16px;
+  }
+  
+  /* Description — large readable text */
+  .text-image-description {
+    margin: 24px 0 0;
+    font-size: 20px;
+    line-height: 1.6;
+    color: #1a1a1a;
+  }
+  
+  /* Optional CTA link */
+  .text-image-cta {
+    display: inline-block;
+    margin-top: 24px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #cc0000;
+    text-decoration: none;
+  }
+  
+  .text-image-cta:hover {
+    text-decoration: underline;
+  }
+  
+  /* ── Image column (~60%) ─────────────────────────────────── */
+  
+  .text-image-media {
+    flex: 1;
+    overflow: hidden;
+  }
+  
+  .text-image-media picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .text-image-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* ── Responsive ──────────────────────────────────────────── */
+  
+  @media (max-width: 768px) {
+    .text-image-inner {
+      flex-direction: column;
+      gap: 28px;
+    }
+  
+    .text-image-text {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  
+    .text-image-heading {
+      font-size: 26px;
+    }
+  
+    .text-image-description {
+      font-size: 17px;
+    }
+  }
