@@ -93,12 +93,17 @@
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: #cc0000;
-    text-decoration: none;
+    color: #cc0000 !important; /* override any inherited/default link color */
+    text-decoration: none !important;
+  }
+  
+  .cards-image-cta::after {
+    content: ' >';
   }
   
   .cards-image-cta:hover {
-    text-decoration: underline;
+    text-decoration: underline !important;
+    color: #aa0000 !important;
   }
   
   /* ── Responsive ──────────────────────────────────────────── */
