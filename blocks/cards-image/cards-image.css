@@ -1,117 +1,109 @@
 @charset "UTF-8";
-.split-banner {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 40px 24px;
+/* ============================================================
+   Info Cards block
+   ============================================================ */
+.info-cards {
+  background-color: #d6e4f0; /* light blue background from design */
+  padding: 48px 32px 64px;
 }
 
-.split-banner-inner {
+/* ── Section heading ─────────────────────────────────────── */
+.info-cards-heading {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 32px;
+  line-height: 1.3;
+}
+
+/* ── Card grid ───────────────────────────────────────────── */
+.info-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Individual card ─────────────────────────────────────── */
+.info-cards-item {
   display: flex;
-  align-items: center;
-  gap: 48px;
+  flex-direction: column;
+  background: transparent; /* cards sit on the blue bg, no card bg */
 }
 
-/* ── Media column ─────────────────────────────────────── */
-.split-banner-media {
-  flex: 1 1 50%;
-  max-width: 50%;
-  border-radius: 4px;
+/* ── Image ───────────────────────────────────────────────── */
+.info-cards-image {
+  width: 100%;
+  aspect-ratio: 4/3;
   overflow: hidden;
-  line-height: 0; /* removes inline gap under picture */
+  border-radius: 2px;
+  margin-bottom: 20px;
 }
 
-.split-banner-media picture,
-.split-banner-media img {
+.info-cards-image picture,
+.info-cards-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-/* ── Text column ──────────────────────────────────────── */
-.split-banner-text {
-  flex: 1 1 50%;
-  max-width: 50%;
+/* ── Content ─────────────────────────────────────────────── */
+.info-cards-content {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
+  flex: 1;
 }
 
-.split-banner-eyebrow {
+.info-cards-title {
   margin: 0;
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #555;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.3;
 }
 
-.split-banner-heading {
+.info-cards-description {
   margin: 0;
-  font-size: 40px;
-  font-weight: 800;
-  line-height: 1.1;
+  font-size: 15px;
+  line-height: 1.6;
   color: #1a1a1a;
 }
 
-.split-banner-description {
-  margin: 0;
-  font-size: 17px;
-  line-height: 1.6;
-  color: #333;
-  max-width: 520px;
-}
-
-.split-banner-cta {
+/* Red uppercase CTA link with ">" arrow */
+.info-cards-cta {
   display: inline-block;
-  align-self: flex-start;
-  padding: 14px 28px;
-  border: 1px #1a1a1a;
-  border-radius: 999px;
-  background: transparent;
-  color: #c58888;
+  margin-top: auto;
+  font-size: 13px;
   font-weight: 700;
-  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #cc0000;
   text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease;
 }
 
-.split-banner-cta:hover {
-  background: #1a1a1a;
-  color: #fff;
+.info-cards-cta:hover {
+  text-decoration: underline;
 }
 
-/* ============================================================
-   Layout variants — image position
-   ============================================================ */
-/* IMAGE RIGHT: text on left, image on right (default) */
-.split-banner.image-right .split-banner-inner {
-  flex-direction: row;
-}
-
-/* IMAGE LEFT: image on left, text on right */
-.split-banner.image-left .split-banner-inner {
-  flex-direction: row-reverse;
-}
-
-/* ============================================================
-   Responsive
-   ============================================================ */
-@media (max-width: 768px) {
-  .split-banner-inner {
-    flex-direction: column !important; /* stack on mobile regardless of variant */
-    gap: 28px;
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .info-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  .split-banner-media,
-  .split-banner-text {
-    flex: 1 1 100%;
-    max-width: 100%;
+}
+@media (max-width: 640px) {
+  .info-cards {
+    padding: 32px 20px 48px;
   }
-  .split-banner-heading {
-    font-size: 28px;
+  .info-cards-grid {
+    grid-template-columns: 1fr;
   }
-  .split-banner-description {
-    font-size: 16px;
+  .info-cards-heading {
+    font-size: 20px;
   }
 }
 /*# sourceMappingURL=cards-image.css.map */
