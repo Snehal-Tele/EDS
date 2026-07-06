@@ -4,8 +4,9 @@
    ============================================================ */
 .cards-image {
   background-color: #c7e3f9; /* light blue section background */
-  padding: 80px 32px 80px;
+  padding: 80px 0px 80px;
   font-family: "Open Sans", Arial, sans-serif;
+  width: 100%;
 }
 
 /* ── Section heading ─────────────────────────────────────── */
