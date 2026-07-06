@@ -8,7 +8,7 @@
 }
 
 .cards > ul > li {
-  border: 1px solid #a715e0;
+  border: 1px solid #f81818;
   background-color: var(--background-color);
 }
 
@@ -22,6 +22,7 @@
 
 .cards > ul > li img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4/3;
   object-fit: cover;
 }
+/*# sourceMappingURL=cards.css.map */

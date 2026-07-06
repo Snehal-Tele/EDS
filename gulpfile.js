@@ -39,4 +39,3 @@ exports.styles = styles;
 exports.serve = series(styles, serve);
 exports.watch = exports.serve;
 exports.default = exports.serve;
-
