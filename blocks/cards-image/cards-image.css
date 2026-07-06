@@ -99,11 +99,6 @@
   content: " >";
 }
 
-.cards-image-cta:hover {
-  text-decoration: underline !important;
-  color: #aa0000 !important;
-}
-
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .cards-image-grid {
