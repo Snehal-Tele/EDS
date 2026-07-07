@@ -1,123 +1,189 @@
-@charset "UTF-8";
 /* ============================================================
    Toyota Card block
    ============================================================ */
-.toyota-card {
-  background: #ffffff;
-  padding: 40px 0;
-  /* Full-width horizontal rule above the block content */
-  border-top: 1px solid #c8c8c8;
-}
 
-.toyota-card-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 32px;
-  display: flex;
-  align-items: flex-start;
-  gap: 48px;
-}
-
-/* ── Text column (~38%) ──────────────────────────────────── */
-.toyota-card-text {
-  flex: 0 0 38%;
-  max-width: 38%;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Heading */
-.toyota-card-heading {
-  margin: 0 0 16px;
-  font-size: 32px;
-  font-weight: 800;
-  color: #1a1a1a;
-  line-height: 1.15;
-}
-
-/* Full-page-width gray line — sits between heading and description.
-   Uses a pseudo-element that breaks out of the container to span
-   the full viewport width */
-.toyota-card-heading::after {
-  content: "";
-  display: block;
-  position: relative;
-  left: calc(-50vw + 50%); /* pull to left edge of viewport */
-  width: 100vw; /* stretch to full viewport width */
-  height: 1px;
-  background-color: #c8c8c8;
-  margin-top: 16px;
-}
-
-/* Description paragraphs — all appended one after another */
-.toyota-card-description {
-  margin: 20px 0 0;
-  font-size: 18px;
-  line-height: 1.65;
-  color: #1a1a1a;
-}
-
-/* Optional CTA link */
-.toyota-card-cta {
-  display: inline-block;
-  margin-top: 16px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: #cc0000 !important;
-  text-decoration: none !important;
-}
-
-.toyota-card-cta::after {
-  content: " >";
-}
-
-.toyota-card-cta:hover {
-  text-decoration: underline !important;
-}
-
-/* ── Image column (~62%) ─────────────────────────────────── */
-.toyota-card-media {
-  flex: 1;
-  /* aspect-ratio keeps image same proportional size on zoom in/out */
-  aspect-ratio: 16/10;
-  overflow: hidden;
-  position: relative;
-}
-
-.toyota-card-media picture {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.toyota-card-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* ── Responsive ──────────────────────────────────────────── */
-@media (max-width: 768px) {
+   .toyota-card {
+    background: #ffffff;
+    padding: 40px 0;
+  }
+  
   .toyota-card-inner {
-    flex-direction: column;
-    gap: 28px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    align-items: flex-start;
+    gap: 48px;
   }
+  
+  /* ── Text column (~38%) ──────────────────────────────────── */
+  
   .toyota-card-text {
-    flex: 1 1 100%;
-    max-width: 100%;
+    flex: 0 0 38%;
+    max-width: 38%;
+    display: flex;
+    flex-direction: column;
   }
-  .toyota-card-media {
-    width: 100%;
-    aspect-ratio: 16/9;
-  }
+  
+  /* Heading */
   .toyota-card-heading {
-    font-size: 26px;
+    margin: 0 0 16px;
+    font-size: 32px;
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.15;
   }
+  
+  /* Full-page-width gray line — sits between heading and description.
+     Uses a pseudo-element that breaks out of the container to span
+     the full viewport width */
+  .toyota-card-heading::after {
+    content: '';
+    display: block;
+    position: relative;
+    left: calc(-50vw + 50%);   /* pull to left edge of viewport */
+    width: 100vw;              /* stretch to full viewport width */
+    height: 1px;
+    background-color: #c8c8c8;
+    margin-top: 16px;
+  }
+  
+  /* Description paragraphs — all appended one after another */
   .toyota-card-description {
-    font-size: 16px;
+    margin: 20px 0 0;
+    font-size: 18px;
+    line-height: 1.65;
+    color: #1a1a1a;
   }
-}
-/*# sourceMappingURL=toyota-card.css.map */
+  
+  /* Optional CTA link */
+  .toyota-card-cta {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #cc0000 !important;
+    text-decoration: none !important;
+  }
+  
+  .toyota-card-cta::after {
+    content: ' >';
+  }
+  
+  .toyota-card-cta:hover {
+    text-decoration: underline !important;
+  }
+  
+  /* ── Image column (~62%) ─────────────────────────────────── */
+  
+  .toyota-card-media {
+    flex: 1;
+    /* aspect-ratio keeps image same proportional size on zoom in/out */
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .toyota-card-media picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .toyota-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* ── Responsive ──────────────────────────────────────────── */
+  
+  @media (max-width: 768px) {
+    .toyota-card-inner {
+      flex-direction: column;
+      gap: 28px;
+    }
+  
+    .toyota-card-text {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  
+    .toyota-card-media {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+    }
+  
+    .toyota-card-heading {
+      font-size: 26px;
+    }
+  
+    .toyota-card-description {
+      font-size: 16px;
+    }
+  }
+  
+  /* ── Additional responsive breakpoints ───────────────────── */
+  
+  @media (max-width: 1024px) {
+    .toyota-card-inner {
+      gap: 32px;
+    }
+  
+    .toyota-card-text {
+      flex: 0 0 42%;
+      max-width: 42%;
+    }
+  
+    .toyota-card-heading {
+      font-size: 28px;
+    }
+  
+    .toyota-card-description {
+      font-size: 16px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .toyota-card {
+      padding: 32px 0;
+    }
+  
+    .toyota-card-inner {
+      flex-direction: column;
+      gap: 24px;
+      padding: 0 20px;
+    }
+  
+    .toyota-card-text {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  
+    .toyota-card-media {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+    }
+  
+    .toyota-card-heading {
+      font-size: 24px;
+    }
+  
+    .toyota-card-description {
+      font-size: 15px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .toyota-card-heading {
+      font-size: 20px;
+    }
+  
+    .toyota-card-description {
+      font-size: 14px;
+      line-height: 1.55;
+    }
+  }
