@@ -34,13 +34,13 @@
   }
   
   /* Gray horizontal line under heading */
-  .text-image-heading::after {
-    content: '';
+  .text-image-divider {
     display: block;
     width: 100%;
     height: 1px;
     background-color: #c8c8c8;
-    margin-top: 16px;
+    border: none;
+    margin: 0 0 8px;
   }
   
   /* Description — large readable text */

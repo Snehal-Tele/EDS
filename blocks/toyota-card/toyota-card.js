@@ -16,6 +16,11 @@ export default function decorate(block) {
         heading.className = 'text-image-heading';
         heading.textContent = el.textContent.trim();
         textWrap.append(heading);
+   
+        // Gray divider line directly after heading
+        const divider = document.createElement('hr');
+        divider.className = 'text-image-divider';
+        textWrap.append(divider);
         return;
       }
    
