@@ -7,47 +7,46 @@ export default function decorate(block) {
    
     // ── Text side ──────────────────────────────────────────────
     const textWrap = document.createElement('div');
-    textWrap.className = 'toyota-card-text';
+    textWrap.className = 'text-image-text';
    
-    const lines = [...textCell.children].filter((el) => el.textContent.trim());
-   
-    lines.forEach((el, index) => {
-      const link = el.querySelector('a');
-   
-      // First line → heading
-      if (index === 0 && !link) {
+    [...textCell.children].forEach((el) => {
+      // Heading
+      if (/^H[1-6]$/.test(el.tagName)) {
         const heading = document.createElement('h2');
-        heading.className = 'toyota-card-heading';
+        heading.className = 'text-image-heading';
         heading.textContent = el.textContent.trim();
         textWrap.append(heading);
    
-        // Gray divider line below heading
+        // Gray divider line directly after heading
         const divider = document.createElement('hr');
-        divider.className = 'toyota-card-divider';
+        divider.className = 'text-image-divider';
         textWrap.append(divider);
         return;
       }
    
       // Link → CTA (optional)
+      const link = el.querySelector('a');
       if (link) {
         const cta = document.createElement('a');
-        cta.className = 'toyota-card-cta';
+        cta.className = 'text-image-cta';
         cta.href = link.href;
         cta.textContent = link.textContent.trim();
         textWrap.append(cta);
         return;
       }
    
-      // Everything else → description
-      const desc = document.createElement('p');
-      desc.className = 'toyota-card-description';
-      desc.textContent = el.textContent.trim();
-      textWrap.append(desc);
+      // Paragraph → description
+      if (el.textContent.trim()) {
+        const desc = document.createElement('p');
+        desc.className = 'text-image-description';
+        desc.textContent = el.textContent.trim();
+        textWrap.append(desc);
+      }
     });
    
     // ── Image side ─────────────────────────────────────────────
     const mediaWrap = document.createElement('div');
-    mediaWrap.className = 'toyota-card-media';
+    mediaWrap.className = 'text-image-media';
    
     const picture = imageCell?.querySelector('picture');
     if (picture) {
@@ -62,10 +61,9 @@ export default function decorate(block) {
    
     // ── Rebuild block ───────────────────────────────────────────
     const inner = document.createElement('div');
-    inner.className = 'toyota-card-inner';
+    inner.className = 'text-image-inner';
     inner.append(textWrap, mediaWrap);
    
     block.textContent = '';
     block.append(inner);
   }
-   
