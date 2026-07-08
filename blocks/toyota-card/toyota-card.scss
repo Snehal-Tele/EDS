@@ -1,3 +1,6 @@
+// ============================================================
+// Toyota Card block
+// ============================================================
 
 // ── Variables ─────────────────────────────────────────────
 $color-bg:        #ffffff;
@@ -23,13 +26,34 @@ $bp-small:   480px;
   }
 }
 
+// ============================================================
+// Block
+// ============================================================
 
 .toyota-card {
   background: $color-bg;
   padding: 40px 0;
+  position: relative; // required — divider is absolute inside this
 
   @include respond($bp-mobile) {
     padding: 32px 0;
+  }
+
+  // ── Full-width divider ───────────────────────────────────
+  // Absolutely positioned on .toyota-card so it passes through
+  // the image column all the way to the right screen edge
+  &-divider {
+    position: absolute;
+    left: 0;          // starts at left edge of page
+    width: 100%;      // stretches to right edge of page
+    height: 1px;
+    background-color: $color-divider;
+    pointer-events: none;
+    z-index: 0;       // sits behind text and image (z-index: 1)
+
+    @include respond($bp-mobile) {
+      display: none;  // hidden on mobile — stacked layout doesn't need it
+    }
   }
 
   // ── Inner wrapper ────────────────────────────────────────
@@ -40,6 +64,8 @@ $bp-small:   480px;
     display: flex;
     align-items: flex-start;
     gap: $gap-desktop;
+    position: relative;
+    z-index: 1; // sits above the divider
 
     @include respond($bp-tablet) {
       gap: $gap-tablet;
@@ -58,6 +84,8 @@ $bp-small:   480px;
     max-width: $text-col;
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 1;
 
     @include respond($bp-tablet) {
       flex: 0 0 $text-col-tablet;
@@ -71,28 +99,19 @@ $bp-small:   480px;
   }
 
   // ── Heading ──────────────────────────────────────────────
+  // NOTE: No ::after here — the gray line is handled by
+  // .toyota-card-divider which is absolutely positioned at
+  // the block level for true full-width coverage
   &-heading {
-    margin: 0 0 16px;
+    margin: 0 0 40px; // extra bottom margin gives space below heading before descriptions
     font-size: 32px;
     font-weight: 800;
     color: $color-text;
     line-height: 1.15;
 
-    // Full-page-width gray line below heading
-    &::after {
-      content: '';
-      display: block;
-      position: relative;
-      left: calc(-50vw + 50%); // pull to left viewport edge
-      width: 100vw;            // span full viewport width
-      height: 1px;
-      background-color: $color-divider;
-      margin-top: 16px;
-    }
-
     @include respond($bp-tablet) { font-size: 28px; }
-    @include respond($bp-mobile)  { font-size: 24px; }
-    @include respond($bp-small)   { font-size: 20px; }
+    @include respond($bp-mobile) { font-size: 24px; margin-bottom: 20px; }
+    @include respond($bp-small)  { font-size: 20px; }
   }
 
   // ── Description ──────────────────────────────────────────
@@ -111,12 +130,28 @@ $bp-small:   480px;
     }
   }
 
+  // ── Optional CTA ─────────────────────────────────────────
+  &-cta {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #cc0000 !important;
+    text-decoration: none !important;
+
+    &::after { content: ' >'; }
+    &:hover  { text-decoration: underline !important; }
+  }
+
   // ── Image column (~62%) ──────────────────────────────────
   &-media {
     flex: 1;
     aspect-ratio: 16 / 10;
     overflow: hidden;
     position: relative;
+    z-index: 1;
 
     @include respond($bp-mobile) {
       width: 100%;
