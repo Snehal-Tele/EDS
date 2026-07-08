@@ -1,54 +1,56 @@
+/* ============================================================
+   Columns block — Toyota Card Layout
+   ============================================================ */
 
-
-.columns {
+   .columns {
     background: #ffffff;
     padding: 40px 0;
     font-family: 'ToyotaType-Regular', 'HelveticaNeueMedium', 'Helvetica Neue Medium', 'Open Sans', Arial, sans-serif;
   }
-   
-  /* ── Row — mobile default: column stacking ───────────────── */
-   
+  
+  /* ── Row wrapper ─────────────────────────────────────────── */
+  
   .columns > div {
-    display: flex;
-    flex-direction: column;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 32px;
+    display: flex;
+    flex-direction: column; /* mobile: stacked */
   }
-   
-  /* ── Mobile: image on TOP, text BELOW ────────────────────── */
-   
+  
+  /* ── Mobile order: image TOP, text BOTTOM ────────────────── */
+  
   .columns > div > div {
-    order: 1; /* text below by default */
+    order: 1; /* text below */
   }
-   
+  
   .columns > div > .columns-img-col {
-    order: 0; /* image on top on mobile */
+    order: 0; /* image on top */
+    width: 100%;
   }
-   
-  /* ── Image column ────────────────────────────────────────── */
-   
+  
+  /* ── Image ───────────────────────────────────────────────── */
+  
   .columns img {
     width: 100%;
     display: block;
   }
-   
+  
   .columns-img-col img {
     width: 100%;
-    height: 100%;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
     display: block;
-    aspect-ratio: 16 / 9;
   }
-   
+  
   /* ── Text column ─────────────────────────────────────────── */
-   
+  
   .columns-text-col {
     display: flex;
     flex-direction: column;
-    padding-top: 20px;
+    padding-top: 24px;
   }
-   
+  
   /* Heading */
   .columns-heading {
     margin: 0 0 16px;
@@ -57,103 +59,113 @@
     color: #1a1a1a;
     line-height: 1.15;
   }
-   
-  /* Full-width gray divider below heading */
+  
+  /* Full-width gray divider — spans entire viewport */
   .columns-divider {
-    width: 100vw;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
+    width: 100vw;
     height: 1px;
     background-color: #c8c8c8;
-    margin: 0 0 20px;
+    margin: 0 0 24px;
   }
-   
+  
   /* Description */
   .columns-description {
     margin: 16px 0 0;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.65;
     color: #1a1a1a;
   }
-   
+  
   /* ============================================================
      Desktop layout (≥900px)
+     text LEFT ~38% | image RIGHT ~62%
      ============================================================ */
-   
+  
   @media (width >= 900px) {
     .columns > div {
-      align-items: flex-start;
       flex-direction: row; /* side by side */
+      align-items: flex-start;
       gap: 48px;
       padding: 0 32px;
     }
-   
-    /* Reset mobile order — both sit in natural DOM order */
+  
+    /* Reset mobile order */
     .columns > div > div {
       order: unset;
     }
-   
-    /* Text column: fixed ~38% width */
+  
+    /* Text column — fixed 38% */
     .columns-text-col {
       flex: 0 0 38%;
       max-width: 38%;
       padding-top: 0;
     }
-   
-    /* Image column: takes remaining ~62% */
+  
+    /* Image column — takes remaining space */
     .columns-img-col {
       flex: 1;
+      min-width: 0;
     }
-   
-    /* On desktop the divider should span full viewport width
-       even though it sits inside a constrained text column */
-    .columns-divider {
-      width: 100vw;
-      position: relative;
-      left: calc(-50vw + 50%);
-      transform: none;
+  
+    /* Image — desktop aspect ratio */
+    .columns-img-col img {
+      aspect-ratio: 16 / 10;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-   
-    /* Larger fonts on desktop */
+  
+    /* Heading */
     .columns-heading {
       font-size: 32px;
     }
-   
+  
+    /* Description */
     .columns-description {
       font-size: 18px;
     }
-   
-    /* Image: maintain aspect ratio on desktop */
-    .columns-img-col img {
-      aspect-ratio: 16 / 10;
+  
+    /* Full-width divider on desktop —
+       breaks out of the 38% text column to span full screen */
+    .columns-divider {
+      position: relative;
+      left: calc(-50vw + 50%);
+      transform: none;
+      width: 100vw;
     }
   }
-   
+  
   /* ── Tablet (900px–1024px) ───────────────────────────────── */
-   
+  
   @media (width >= 900px) and (width <= 1024px) {
     .columns-text-col {
       flex: 0 0 42%;
       max-width: 42%;
     }
-   
+  
     .columns-heading {
       font-size: 28px;
     }
-   
+  
     .columns-description {
       font-size: 16px;
     }
   }
-   
+  
   /* ── Small mobile (<480px) ───────────────────────────────── */
-   
+  
   @media (max-width: 480px) {
+    .columns > div {
+      padding: 0 16px;
+    }
+  
     .columns-heading {
       font-size: 20px;
     }
-   
+  
     .columns-description {
       font-size: 14px;
       line-height: 1.55;
