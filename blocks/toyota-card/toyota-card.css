@@ -15,6 +15,9 @@
     display: flex;
     align-items: flex-start;
     gap: 48px;
+  
+    /* KEY: image is first in DOM but we visually flip to text-left, image-right */
+    flex-direction: row-reverse;
   }
   
   /* ── Text column (~38%) ──────────────────────────────────── */
@@ -35,33 +38,30 @@
     line-height: 1.15;
   }
   
-  /* Full-page-width gray line — sits between heading and description.
-     Uses a pseudo-element that breaks out of the container to span
-     the full viewport width */
+  /* Full-page-width gray line below heading */
   .toyota-card-heading::after {
     content: '';
     display: block;
     position: relative;
-    left: calc(-50vw + 50%);   /* pull to left edge of viewport */
-    width: 100vw;              /* stretch to full viewport width */
+    left: calc(-50vw + 50%);
+    width: 100vw;
     height: 1px;
     background-color: #c8c8c8;
     margin-top: 16px;
   }
   
-  /* Description paragraphs — all appended one after another */
+  /* Description paragraphs */
   .toyota-card-description {
     margin: 20px 0 0;
     font-size: 18px;
     line-height: 1.65;
     color: #1a1a1a;
   }
-  
+
   /* ── Image column (~62%) ─────────────────────────────────── */
   
   .toyota-card-media {
     flex: 1;
-    /* aspect-ratio keeps image same proportional size on zoom in/out */
     aspect-ratio: 16 / 10;
     overflow: hidden;
     position: relative;
@@ -81,33 +81,6 @@
   }
   
   /* ── Responsive ──────────────────────────────────────────── */
-  
-  @media (max-width: 768px) {
-    .toyota-card-inner {
-      flex-direction: column;
-      gap: 28px;
-    }
-  
-    .toyota-card-text {
-      flex: 1 1 100%;
-      max-width: 100%;
-    }
-  
-    .toyota-card-media {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-    }
-  
-    .toyota-card-heading {
-      font-size: 26px;
-    }
-  
-    .toyota-card-description {
-      font-size: 16px;
-    }
-  }
-  
-  /* ── Additional responsive breakpoints ───────────────────── */
   
   @media (max-width: 1024px) {
     .toyota-card-inner {
@@ -134,6 +107,7 @@
     }
   
     .toyota-card-inner {
+      /* Mobile: natural DOM order = image TOP, text BOTTOM */
       flex-direction: column;
       gap: 24px;
       padding: 0 20px;
