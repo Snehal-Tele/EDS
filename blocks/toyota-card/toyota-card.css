@@ -107,8 +107,6 @@
     }
   }
   
-  /* ── Additional responsive breakpoints ───────────────────── */
-  
   @media (max-width: 1024px) {
     .toyota-card-inner {
       gap: 32px;

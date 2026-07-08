@@ -1,0 +1,161 @@
+
+
+.columns {
+    background: #ffffff;
+    padding: 40px 0;
+    font-family: 'ToyotaType-Regular', 'HelveticaNeueMedium', 'Helvetica Neue Medium', 'Open Sans', Arial, sans-serif;
+  }
+   
+  /* ── Row — mobile default: column stacking ───────────────── */
+   
+  .columns > div {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+   
+  /* ── Mobile: image on TOP, text BELOW ────────────────────── */
+   
+  .columns > div > div {
+    order: 1; /* text below by default */
+  }
+   
+  .columns > div > .columns-img-col {
+    order: 0; /* image on top on mobile */
+  }
+   
+  /* ── Image column ────────────────────────────────────────── */
+   
+  .columns img {
+    width: 100%;
+    display: block;
+  }
+   
+  .columns-img-col img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 16 / 9;
+  }
+   
+  /* ── Text column ─────────────────────────────────────────── */
+   
+  .columns-text-col {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+  }
+   
+  /* Heading */
+  .columns-heading {
+    margin: 0 0 16px;
+    font-size: 24px;
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.15;
+  }
+   
+  /* Full-width gray divider below heading */
+  .columns-divider {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 1px;
+    background-color: #c8c8c8;
+    margin: 0 0 20px;
+  }
+   
+  /* Description */
+  .columns-description {
+    margin: 16px 0 0;
+    font-size: 15px;
+    line-height: 1.65;
+    color: #1a1a1a;
+  }
+   
+  /* ============================================================
+     Desktop layout (≥900px)
+     ============================================================ */
+   
+  @media (width >= 900px) {
+    .columns > div {
+      align-items: flex-start;
+      flex-direction: row; /* side by side */
+      gap: 48px;
+      padding: 0 32px;
+    }
+   
+    /* Reset mobile order — both sit in natural DOM order */
+    .columns > div > div {
+      order: unset;
+    }
+   
+    /* Text column: fixed ~38% width */
+    .columns-text-col {
+      flex: 0 0 38%;
+      max-width: 38%;
+      padding-top: 0;
+    }
+   
+    /* Image column: takes remaining ~62% */
+    .columns-img-col {
+      flex: 1;
+    }
+   
+    /* On desktop the divider should span full viewport width
+       even though it sits inside a constrained text column */
+    .columns-divider {
+      width: 100vw;
+      position: relative;
+      left: calc(-50vw + 50%);
+      transform: none;
+    }
+   
+    /* Larger fonts on desktop */
+    .columns-heading {
+      font-size: 32px;
+    }
+   
+    .columns-description {
+      font-size: 18px;
+    }
+   
+    /* Image: maintain aspect ratio on desktop */
+    .columns-img-col img {
+      aspect-ratio: 16 / 10;
+    }
+  }
+   
+  /* ── Tablet (900px–1024px) ───────────────────────────────── */
+   
+  @media (width >= 900px) and (width <= 1024px) {
+    .columns-text-col {
+      flex: 0 0 42%;
+      max-width: 42%;
+    }
+   
+    .columns-heading {
+      font-size: 28px;
+    }
+   
+    .columns-description {
+      font-size: 16px;
+    }
+  }
+   
+  /* ── Small mobile (<480px) ───────────────────────────────── */
+   
+  @media (max-width: 480px) {
+    .columns-heading {
+      font-size: 20px;
+    }
+   
+    .columns-description {
+      font-size: 14px;
+      line-height: 1.55;
+    }
+  }
