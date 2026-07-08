@@ -5,6 +5,7 @@
    .toyota-card {
     background: #ffffff;
     padding: 40px 0;
+    font-family: 'ToyotaType-Regular', 'HelveticaNeueMedium', 'Helvetica Neue Medium', 'Open Sans', Arial, sans-serif;
   }
   
   .toyota-card-inner {
@@ -63,6 +64,8 @@
     /* aspect-ratio keeps image same proportional size on zoom in/out */
     aspect-ratio: 16 / 10;
     overflow: hidden;
+    width:830px;
+    height: 468px ;
     position: relative;
   }
   
