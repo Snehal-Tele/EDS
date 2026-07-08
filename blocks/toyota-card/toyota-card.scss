@@ -20,40 +20,34 @@ $bp-mobile:  768px;
 $bp-small:   480px;
 
 // ── Mixin ─────────────────────────────────────────────────
-@mixin respond($breakpoint) {
-  @media (max-width: $breakpoint) {
-    @content;
-  }
+@mixin respond($bp) {
+  @media (max-width: $bp) { @content; }
 }
 
 // ============================================================
-// Block
-// ============================================================
-
 .toyota-card {
   background: $color-bg;
   padding: 40px 0;
-  position: relative; // required — divider is absolute inside this
+  position: relative;
+  overflow: visible;
 
-  @include respond($bp-mobile) {
-    padding: 32px 0;
-  }
+  @include respond($bp-mobile) { padding: 32px 0; }
 
-  // ── Full-width divider ───────────────────────────────────
-  // Absolutely positioned on .toyota-card so it passes through
-  // the image column all the way to the right screen edge
+  // ── Full-viewport-width divider ──────────────────────────
+  // left:50% + translateX(-50%) + width:100vw = always spans
+  // the full screen left-to-right, regardless of parent width.
+  // z-index:0 keeps it BEHIND text + image (z-index:1).
   &-divider {
     position: absolute;
-    left: 0;          // starts at left edge of page
-    width: 100%;      // stretches to right edge of page
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
     height: 1px;
     background-color: $color-divider;
     pointer-events: none;
-    z-index: 0;       // sits behind text and image (z-index: 1)
+    z-index: 0;
 
-    @include respond($bp-mobile) {
-      display: none;  // hidden on mobile — stacked layout doesn't need it
-    }
+    @include respond($bp-mobile) { display: none; }
   }
 
   // ── Inner wrapper ────────────────────────────────────────
@@ -65,11 +59,9 @@ $bp-small:   480px;
     align-items: flex-start;
     gap: $gap-desktop;
     position: relative;
-    z-index: 1; // sits above the divider
+    z-index: 1;
 
-    @include respond($bp-tablet) {
-      gap: $gap-tablet;
-    }
+    @include respond($bp-tablet) { gap: $gap-tablet; }
 
     @include respond($bp-mobile) {
       flex-direction: column;
@@ -78,7 +70,7 @@ $bp-small:   480px;
     }
   }
 
-  // ── Text column (~38%) ───────────────────────────────────
+  // ── Text column ──────────────────────────────────────────
   &-text {
     flex: 0 0 $text-col;
     max-width: $text-col;
@@ -87,23 +79,13 @@ $bp-small:   480px;
     position: relative;
     z-index: 1;
 
-    @include respond($bp-tablet) {
-      flex: 0 0 $text-col-tablet;
-      max-width: $text-col-tablet;
-    }
-
-    @include respond($bp-mobile) {
-      flex: 1 1 100%;
-      max-width: 100%;
-    }
+    @include respond($bp-tablet) { flex: 0 0 $text-col-tablet; max-width: $text-col-tablet; }
+    @include respond($bp-mobile) { flex: 1 1 100%; max-width: 100%; }
   }
 
   // ── Heading ──────────────────────────────────────────────
-  // NOTE: No ::after here — the gray line is handled by
-  // .toyota-card-divider which is absolutely positioned at
-  // the block level for true full-width coverage
   &-heading {
-    margin: 0 0 40px; // extra bottom margin gives space below heading before descriptions
+    margin: 0 0 32px;
     font-size: 32px;
     font-weight: 800;
     color: $color-text;
@@ -123,14 +105,10 @@ $bp-small:   480px;
 
     @include respond($bp-tablet) { font-size: 16px; }
     @include respond($bp-mobile) { font-size: 15px; }
-
-    @include respond($bp-small) {
-      font-size: 14px;
-      line-height: 1.55;
-    }
+    @include respond($bp-small)  { font-size: 14px; line-height: 1.55; }
   }
 
-  // ── Optional CTA ─────────────────────────────────────────
+  // ── CTA ──────────────────────────────────────────────────
   &-cta {
     display: inline-block;
     margin-top: 16px;
@@ -145,7 +123,7 @@ $bp-small:   480px;
     &:hover  { text-decoration: underline !important; }
   }
 
-  // ── Image column (~62%) ──────────────────────────────────
+  // ── Image column ─────────────────────────────────────────
   &-media {
     flex: 1;
     aspect-ratio: 16 / 10;
@@ -153,16 +131,9 @@ $bp-small:   480px;
     position: relative;
     z-index: 1;
 
-    @include respond($bp-mobile) {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-    }
+    @include respond($bp-mobile) { width: 100%; aspect-ratio: 16 / 9; }
 
-    picture {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
+    picture { display: block; width: 100%; height: 100%; }
 
     img {
       width: 100%;

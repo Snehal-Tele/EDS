@@ -2,6 +2,7 @@
   background: #ffffff;
   padding: 40px 0;
   position: relative;
+  overflow: visible;
 }
 @media (max-width: 768px) {
   .toyota-card {
@@ -10,8 +11,9 @@
 }
 .toyota-card-divider {
   position: absolute;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
   height: 1px;
   background-color: #c8c8c8;
   pointer-events: none;
@@ -65,7 +67,7 @@
   }
 }
 .toyota-card-heading {
-  margin: 0 0 40px;
+  margin: 0 0 32px;
   font-size: 32px;
   font-weight: 800;
   color: #1a1a1a;
