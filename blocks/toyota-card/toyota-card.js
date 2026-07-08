@@ -24,15 +24,6 @@ export default function decorate(block) {
       return;
     }
 
-    if (link) {
-      const cta = document.createElement('a');
-      cta.className = 'toyota-card-cta';
-      cta.href = link.href;
-      cta.textContent = link.textContent.trim();
-      textWrap.append(cta);
-      return;
-    }
-
     const desc = document.createElement('p');
     desc.className = 'toyota-card-description';
     desc.textContent = el.textContent.trim();

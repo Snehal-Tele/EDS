@@ -111,22 +111,6 @@
     line-height: 1.55;
   }
 }
-.toyota-card-cta {
-  display: inline-block;
-  margin-top: 16px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: #cc0000 !important;
-  text-decoration: none !important;
-}
-.toyota-card-cta::after {
-  content: " >";
-}
-.toyota-card-cta:hover {
-  text-decoration: underline !important;
-}
 .toyota-card-media {
   flex: 1;
   aspect-ratio: 16/10;

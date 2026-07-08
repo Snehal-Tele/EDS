@@ -107,22 +107,6 @@ $bp-small:   480px;
     @include respond($bp-mobile) { font-size: 15px; }
     @include respond($bp-small)  { font-size: 14px; line-height: 1.55; }
   }
-
-  // ── CTA ──────────────────────────────────────────────────
-  &-cta {
-    display: inline-block;
-    margin-top: 16px;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: #cc0000 !important;
-    text-decoration: none !important;
-
-    &::after { content: ' >'; }
-    &:hover  { text-decoration: underline !important; }
-  }
-
   // ── Image column ─────────────────────────────────────────
   &-media {
     flex: 1;
