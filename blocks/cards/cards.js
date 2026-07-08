@@ -6,7 +6,7 @@ export default function decorate(block) {
   const cells = [...row.children];
   const [textCell, imageCell] = cells;
  
-  // ── Image side ─────────────────────────────────────────────
+  // ── Image side  ─────────────────────────────────────────────
   const mediaWrap = document.createElement('div');
   mediaWrap.className = 'toyota-card-media';
  
