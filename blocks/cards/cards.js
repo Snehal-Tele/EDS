@@ -1,4 +1,4 @@
-
+ 
 export default function decorate(block) {
   const row = block.querySelector(':scope > div');
   if (!row) return;
@@ -6,9 +6,9 @@ export default function decorate(block) {
   const cells = [...row.children];
   const [textCell, imageCell] = cells;
  
-  // ── Image side  ─────────────────────────────────────────────
+  // ── Image side ─────────────────────────────────────────────
   const mediaWrap = document.createElement('div');
-  mediaWrap.className = 'toyota-card-media';
+  mediaWrap.className = 'cards-media';
  
   const picture = imageCell?.querySelector('picture');
   if (picture) {
@@ -23,7 +23,7 @@ export default function decorate(block) {
  
   // ── Text side ──────────────────────────────────────────────
   const textWrap = document.createElement('div');
-  textWrap.className = 'toyota-card-text';
+  textWrap.className = 'cards-text';
  
   let headingEl = null;
   const lines = [...textCell.children].filter((el) => el.textContent.trim());
@@ -33,33 +33,42 @@ export default function decorate(block) {
  
     if (index === 0 && !link) {
       const heading = document.createElement('h2');
-      heading.className = 'toyota-card-heading';
+      heading.className = 'cards-heading';
       heading.textContent = el.textContent.trim();
       textWrap.append(heading);
       headingEl = heading;
  
       // Mobile inline divider — visible only on mobile via CSS
       const mobileDivider = document.createElement('div');
-      mobileDivider.className = 'toyota-card-divider-mobile';
+      mobileDivider.className = 'cards-divider-mobile';
       textWrap.append(mobileDivider);
       return;
     }
-
+ 
+    if (link) {
+      const cta = document.createElement('a');
+      cta.className = 'cards-cta';
+      cta.href = link.href;
+      cta.textContent = link.textContent.trim();
+      textWrap.append(cta);
+      return;
+    }
+ 
     const desc = document.createElement('p');
-    desc.className = 'toyota-card-description';
+    desc.className = 'cards-description';
     desc.textContent = el.textContent.trim();
     textWrap.append(desc);
   });
  
   // ── Desktop full-width divider (block level) ───────────────
   const desktopDivider = document.createElement('div');
-  desktopDivider.className = 'toyota-card-divider';
+  desktopDivider.className = 'cards-divider';
  
   // ── Rebuild — image FIRST in DOM ───────────────────────────
   // Mobile  (flex-direction: column)      → image top, text bottom
   // Desktop (flex-direction: row-reverse) → text left, image right
   const inner = document.createElement('div');
-  inner.className = 'toyota-card-inner';
+  inner.className = 'cards-inner';
   inner.append(mediaWrap, textWrap); // image first
  
   block.textContent = '';
