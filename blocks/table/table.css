@@ -1,6 +1,8 @@
 .table {
     width: 100%;
     overflow-x: auto;
+    padding-left: 24px;
+    padding-right: 24px;
   }
   
   .table table {
