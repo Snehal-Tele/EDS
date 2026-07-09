@@ -1,0 +1,94 @@
+
+.table {
+    display: block;
+    width: 100%;
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x: auto;
+    /*-webkit-overflow-scrolling: touch; */ /* smooth momentum scroll on iOS */
+  
+    &::-webkit-scrollbar {
+      display: none; // Chrome, Safari, Opera
+    }
+  
+    table {
+      width: 100%;
+      max-width: 100%;
+      min-width: 600px;
+      table-layout: fixed;
+      border-collapse: collapse;
+      font-size: var(--body-font-size-xs);
+  
+      @media (width >= 600px) {
+        font-size: var(--body-font-size-s);
+      }
+  
+      @media (width >= 900px) {
+        font-size: var(--body-font-size-m);
+      }
+  
+      thead tr {
+        border-top: 1px solid #000000;
+        border-bottom: 1px solid #000000;
+      }
+  
+      tbody tr {
+        border-bottom: 1px solid #000000;
+      }
+  
+      th {
+        font-weight: 400;
+      }
+  
+      th,
+      td {
+        padding: 0.5em;
+        text-align: left;
+        vertical-align: top;
+        overflow-wrap: break-word;
+        word-break: break-word;
+  
+        p {
+          margin: 0;
+  
+          + p {
+            margin-top: 0.25em;
+          }
+        }
+  
+        // links inside table cells should inherit text color, not default blue
+        a {
+          &,
+          &:visited {
+            color: inherit;
+            font-weight: 700;
+            text-decoration: none;
+          }
+  
+          &:hover {
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+          }
+        }
+      }
+    }
+  
+    // no header variant
+    &.no-header table tbody tr {
+      border-top: 1px solid #000000;
+    }
+  
+    // striped variant
+    &.striped tbody tr:nth-child(odd) {
+      background-color: var(--light-color);
+    }
+  
+    // bordered variant
+    &.bordered table {
+      th,
+      td {
+        border: 1px solid #000000;
+      }
+    }
+  }
