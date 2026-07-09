@@ -70,12 +70,13 @@
   .table table td a:visited,
   .table table th a:visited {
     color: inherit;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
+    font-weight: 700;
+    text-decoration: none;
   }
   
   .table table td a:hover,
   .table table th a:hover {
+    text-decoration: underline;
     text-decoration-thickness: 2px;
   }
   
