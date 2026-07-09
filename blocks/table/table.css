@@ -1,7 +1,7 @@
 .table {
     width: 100%;
     overflow-x: auto;
-    background-color: antiquewhite;
+    background-color: rgb(214, 136, 34);
   }
   
   .table::-webkit-scrollbar {
