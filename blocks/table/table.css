@@ -1,6 +1,8 @@
 .table {
     width: 100%;
     overflow-x: auto;
+    margin-left: 24px;
+    margin-right: 24px;
   }
   
   .table::-webkit-scrollbar {
