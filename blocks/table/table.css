@@ -54,6 +54,14 @@
     margin-top: 0.25em;
   }
   
+  /* links inside table cells should inherit text color, not default blue */
+  .table table td a,
+  .table table th a,
+  .table table td a:visited,
+  .table table th a:visited {
+    color: inherit;
+  }
+  
   /* no header variant */
   .table.no-header table tbody tr {
     border-top: 1px solid #dadada;
@@ -67,5 +75,5 @@
   /* bordered variant */
   .table.bordered table th,
   .table.bordered table td {
-    border: 1px solid #dadada;
+    border: 1px solid #070606;
   }
