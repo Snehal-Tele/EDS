@@ -1,7 +1,3 @@
-// ============================================================
-// Cards block
-// ============================================================
-
 // ── Variables ─────────────────────────────────────────────
 $color-bg:        #ffffff;
 $color-text:      #1a1a1a;
@@ -32,10 +28,6 @@ $bp-small:   480px;
 
   @include respond($bp-mobile) { padding: 24px 0; }
 
-  // ── Inner wrapper ────────────────────────────────────────
-  // DOM: image first → text second
-  // row-reverse = text LEFT | image RIGHT on desktop
-  // column      = image TOP | text BOTTOM on mobile
   &-inner {
     max-width: $max-width;
     margin: 0 auto;
