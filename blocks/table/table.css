@@ -4,7 +4,12 @@
     max-width: 980px;
     margin-left: auto;
     margin-right: auto;
-    /* no overflow-x here anymore — let it overflow into the page */
+    overflow-x: auto;
+    /*-webkit-overflow-scrolling: touch; *//* smooth momentum scroll on iOS */
+  }
+  
+  .table::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
   }
   
   .table table {
