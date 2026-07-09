@@ -1,7 +1,13 @@
 .table {
     width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
     overflow-x: auto;
-    background-color: rgb(214, 136, 34);
+    border: 1px solid #0a0a0a;
+    padding-left: 24px;
+    padding-right: 24px;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
   }
   
   .table::-webkit-scrollbar {
@@ -30,12 +36,12 @@
   }
   
   .table table thead tr {
-    border-top: 1px solid #000000;
-    border-bottom: 1px solid #000000;
+    border-top: 1px solid #0a0a0a;
+    border-bottom: 1px solid #0f0f0f;
   }
   
   .table table tbody tr {
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid #0c0c0c;
   }
   
   .table table th {
@@ -70,7 +76,7 @@
   
   /* no header variant */
   .table.no-header table tbody tr {
-    border-top: 1px solid #000000;
+    border-top: 1px solid #0e0d0d;
   }
   
   /* striped variant */
@@ -81,5 +87,5 @@
   /* bordered variant */
   .table.bordered table th,
   .table.bordered table td {
-    border: 1px solid #000000;
+    border: 1px solid #050505;
   }
