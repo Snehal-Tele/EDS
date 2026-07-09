@@ -6,6 +6,7 @@
   .table table {
     width: 100%;
     max-width: 100%;
+    min-width: 600px;
     table-layout: fixed;
     border-collapse: collapse;
     font-size: var(--body-font-size-xs);
@@ -75,5 +76,5 @@
   /* bordered variant */
   .table.bordered table th,
   .table.bordered table td {
-    border: 1px solid #070606;
+    border: 1px solid #dadada;
   }
