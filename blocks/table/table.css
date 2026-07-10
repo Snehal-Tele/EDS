@@ -29,11 +29,11 @@
   }
 }
 .table table thead tr {
-  border-top: 1px solid #000000;
-  border-bottom: 1px solid #000000;
+  border-top: 1px solid var(--color-black);
+  border-bottom: 1px solid var(--color-black);
 }
 .table table tbody tr {
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid var(--color-black);
 }
 .table table th {
   font-weight: 400;
@@ -67,13 +67,14 @@
   text-decoration-thickness: 2px;
 }
 .table.no-header table tbody tr {
-  border-top: 1px solid #000000;
+  border-top: 1px solid var(--color-black);
 }
 .table.striped tbody tr:nth-child(odd) {
   background-color: var(--light-color);
 }
 .table.bordered table th,
 .table.bordered table td {
-  border: 1px solid #000000;
+  border: 1px solid;
+  border-color: var(--color-black);
 }
 /*# sourceMappingURL=table.css.map */
