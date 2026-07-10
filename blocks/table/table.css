@@ -5,6 +5,7 @@
   margin-left: auto;
   margin-right: auto;
   overflow-x: auto;
+  font-weight: var(--body-font-size-xs);
   /*-webkit-overflow-scrolling: touch; */ /* smooth momentum scroll on iOS */
 }
 .table::-webkit-scrollbar {
