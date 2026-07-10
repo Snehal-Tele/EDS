@@ -29,12 +29,12 @@
       }
   
       thead tr {
-        border-top: 1px solid #000000;
-        border-bottom: 1px solid #000000;
+        border-top: 1px solid var(--color-black);
+        border-bottom: 1px solid var(--color-black);
       }
   
       tbody tr {
-        border-bottom: 1px solid #000000;
+        border-bottom: 1px solid var(--color-black);
       }
   
       th {
@@ -76,7 +76,7 @@
   
     // no header variant
     &.no-header table tbody tr {
-      border-top: 1px solid #000000;
+      border-top: 1px solid var(--color-black);
     }
   
     // striped variant
@@ -88,7 +88,7 @@
     &.bordered table {
       th,
       td {
-        border: 1px solid #000000;
+        border: 1px solid var(--color-black);
       }
     }
   }
