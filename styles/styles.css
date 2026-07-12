@@ -377,3 +377,58 @@ main .section.narrow > div {
   max-width: var(--max-width-narrow);
 }
 /*# sourceMappingURL=styles.css.map */
+
+.hero-container .hero-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+ 
+.hero {
+  position: relative;
+  padding: 40px 24px;
+  min-height: 300px;
+}
+ 
+.hero h1 {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--background-color);
+}
+ 
+.hero picture {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  object-fit: cover;
+  box-sizing: border-box;
+}
+ 
+.hero img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+ 
+@media (width >= 900px) {
+  .hero {
+    padding: 40px 32px;
+  }
+}
+
+.card-text-right .card-content {
+  margin-left: auto; /* push content to right */
+}
+ 
+.card-text-left .card-content {
+  margin-right: auto; /* keep content on left (default) */
+}
+ 
+/* On mobile both variants stack to full width */
+@media (max-width: 768px) {
+  .card-text-right .card-content,
+  .card-text-left .card-content {
+    width: 100%;
+    margin: 0;
+  }
+}
