@@ -378,3 +378,22 @@ main .section.narrow > div {
 }
 /*# sourceMappingURL=styles.css.map */
 
+.link-yellow .cardv2-pdf-link,
+.link-yellow .cardv2-link {
+  color: #c9a84c !important; /* Lexus-style gold */
+}
+
+.link-yellow .cardv2-pdf-link:hover,
+.link-yellow .cardv2-link:hover {
+  color: #a8863a !important;
+}
+
+.link-red .cardv2-pdf-link,
+.link-red .cardv2-link {
+  color: #cc0000 !important;
+}
+ 
+.link-red .cardv2-pdf-link:hover,
+.link-red .cardv2-link:hover {
+  color: #aa0000 !important;
+}
