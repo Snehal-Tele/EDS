@@ -379,7 +379,7 @@ main .section.narrow > div {
 /*# sourceMappingURL=styles.css.map */
 
 .hero-container .hero-wrapper {
-  max-width: 945px;
+  max-width: unset;
   padding: 0;
 }
  
