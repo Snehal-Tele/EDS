@@ -1,16 +1,23 @@
 
-
 export default function decorate(block) {
     const row = block.firstElementChild;
     if (!row) return;
    
-    const [imageCell, contentCell] = [...row.children];
+    const [colA, colB] = [...row.children];
+   
+    // Auto-detect which column holds the image
+    const colAHasImage = !!colA.querySelector('picture');
+    const imageCol   = colAHasImage ? colA : colB;
+    const contentCol = colAHasImage ? colB : colA;
+   
+    // Add modifier so CSS knows text side
+    block.classList.add(colAHasImage ? 'cardv2--text-right' : 'cardv2--text-left');
    
     // ── Background image ─────────────────────────────────────
     const bgWrap = document.createElement('div');
-    bgWrap.className = 'card-bg';
+    bgWrap.className = 'cardv2-bg';
    
-    const picture = imageCell?.querySelector('picture');
+    const picture = imageCol.querySelector('picture');
     if (picture) {
       const img = picture.querySelector('img');
       if (img) {
@@ -23,35 +30,35 @@ export default function decorate(block) {
    
     // ── Content overlay ───────────────────────────────────────
     const content = document.createElement('div');
-    content.className = 'card-content';
+    content.className = 'cardv2-content';
    
-    [...contentCell.children].forEach((el) => {
-      // Headings → card heading
+    [...contentCol.children].forEach((el) => {
+      // Heading tags
       if (/^H[1-6]$/.test(el.tagName)) {
         const heading = document.createElement(el.tagName.toLowerCase());
-        heading.className = 'card-heading';
+        heading.className = 'cardv2-heading';
         heading.innerHTML = el.innerHTML;
         content.append(heading);
         return;
       }
    
-      // Paragraphs containing a link → CTA / PDF link
+      // Element containing a link → CTA or PDF
       const anchor = el.querySelector('a');
       if (anchor) {
         const isPdf = anchor.href?.toLowerCase().includes('.pdf');
         const a = document.createElement('a');
         a.href = anchor.href;
-        a.textContent = anchor.textContent.trim();
-        a.className = isPdf ? 'card-link card-pdf-link' : 'card-link';
+        a.className = isPdf ? 'cardv2-link cardv2-pdf-link' : 'cardv2-link';
+        a.innerHTML = anchor.innerHTML || anchor.textContent.trim();
         if (anchor.target) a.target = anchor.target;
         content.append(a);
         return;
       }
    
-      // Everything else → paragraph
+      // Plain paragraph
       if (el.textContent.trim()) {
         const p = document.createElement('p');
-        p.className = 'card-text';
+        p.className = 'cardv2-text';
         p.textContent = el.textContent.trim();
         content.append(p);
       }
@@ -61,4 +68,3 @@ export default function decorate(block) {
     block.textContent = '';
     block.append(bgWrap, content);
   }
-   
