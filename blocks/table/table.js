@@ -1,5 +1,3 @@
-
-
 function buildCell(rowIndex) {
     const cell = rowIndex ? document.createElement('td') : document.createElement('th');
     if (!rowIndex) cell.setAttribute('scope', 'col');
