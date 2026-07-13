@@ -49,13 +49,14 @@
   .footer-pref-nav-link {
     font-size: 13px;
     font-weight: 700;
-    color: #1a1a1a;
+    color: #000000;
     text-decoration: none;
     line-height: 1.4;
   }
   
   .footer-pref-nav-link:hover {
-    text-decoration: underline;
+    color: #cc0000;
+    text-decoration: none;
   }
   
   /* Pipe separator */
