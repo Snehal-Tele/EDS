@@ -1,4 +1,4 @@
-.table {
+.table-p {
   display: block;
   width: 100%;
   max-width: 980px;
@@ -8,10 +8,10 @@
   font-weight: var(--body-font-size-xs);
   /*-webkit-overflow-scrolling: touch; */ /* smooth momentum scroll on iOS */
 }
-.table::-webkit-scrollbar {
+.table-p::-webkit-scrollbar {
   display: none;
 }
-.table table {
+.table-p table {
   width: 100%;
   max-width: 100%;
   min-width: 600px;
@@ -20,73 +20,73 @@
   font-size: var(--body-font-size-xs);
 }
 @media (width >= 600px) {
-  .table table {
+  .table-p table {
     font-size: var(--body-font-size-s);
   }
 }
 @media (width >= 900px) {
-  .table table {
+  .table-p table {
     font-size: var(--body-font-size-m);
   }
 }
-.table table thead tr {
+.table-p table thead tr {
   border-top: 1px solid var(--color-black);
   border-bottom: 1px solid var(--color-black);
 }
-.table table tbody tr {
+.table-p table tbody tr {
   border-bottom: 1px solid var(--color-black);
 }
-.table table th {
+.table-p table th {
   font-weight: 400;
 }
-.table table th,
-.table table td {
+.table-p table th,
+.table-p table td {
   padding: 0.5em;
   text-align: left;
   vertical-align: top;
   overflow-wrap: break-word;
   word-break: break-word;
 }
-.table table th p,
-.table table td p {
+.table-p table th p,
+.table-p table td p {
   margin: 0;
 }
-.table table th p + p,
-.table table td p + p {
+.table-p table th p + p,
+.table-p table td p + p {
   margin-top: 0.25em;
 }
-.table table th ul,
-.table table th ol,
-.table table td ul,
-.table table td ol {
+.table-p table th ul,
+.table-p table th ol,
+.table-p table td ul,
+.table-p table td ol {
   margin: 0;
   padding-left: 1.2em;
 }
-.table table th li,
-.table table td li {
+.table-p table th li,
+.table-p table td li {
   margin: 0;
   padding: 0;
 }
-.table table th a, .table table th a:visited,
-.table table td a,
-.table table td a:visited {
+.table-p table th a, .table table th a:visited,
+.table-p table td a,
+.table-p table td a:visited {
   color: inherit;
   font-weight: 700;
   text-decoration: none;
 }
-.table table th a:hover,
-.table table td a:hover {
+.table-p table th a:hover,
+.table-p table td a:hover {
   text-decoration: underline;
   text-decoration-thickness: 2px;
 }
-.table.no-header table tbody tr {
+.table-p.no-header table tbody tr {
   border-top: 1px solid var(--color-black);
 }
-.table.striped tbody tr:nth-child(odd) {
+.table-p.striped tbody tr:nth-child(odd) {
   background-color: var(--light-color);
 }
-.table.bordered table th,
-.table.bordered table td {
+.table-p.bordered table th,
+.table-p.bordered table td {
   border: 1px solid;
   border-color: var(--color-black);
 }
