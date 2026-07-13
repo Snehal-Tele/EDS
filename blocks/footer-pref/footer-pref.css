@@ -1,150 +1,144 @@
-
 /* ============================================================
-   Footer — toyota.com/preferences style
+   Footer Pref block
+   Matches toyota.com/preferences footer design exactly
+   Place at: /blocks/footer-pref/footer-pref.css
    ============================================================ */
 
-   footer {
-    background-color: #ffffff;
+/* ── Block wrapper ───────────────────────────────────────── */
+
+.footer-pref {
+    background-color: #fff;
     border-top: 1px solid #e5e5e5;
-    font-family: var(--body-font-family, 'Toyota Type', Arial, sans-serif);
+    padding: 24px 40px;
+    width: 100%;
+    box-sizing: border-box;
   }
   
-  /* ── Outer wrapper (from EDS boilerplate) ────────────────── */
-  
-  footer .footer > div {
-    margin: auto;
-    max-width: 1200px;
-    padding: 20px 24px;
-  }
-  
-  @media (width >= 900px) {
-    footer .footer > div {
-      padding: 20px 32px;
+  @media (max-width: 768px) {
+    .footer-pref {
+      padding: 20px 16px;
     }
   }
   
-  /* ── Inner layout ────────────────────────────────────────── */
+  /* ── Links bar (top row) ─────────────────────────────────── */
   
-  .footer-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  
-  /* ── Links bar ───────────────────────────────────────────── */
-  
-  .footer-bar {
+  .footer-pref-bar {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 16px;
+    margin-bottom: 20px;
   }
   
   /* Left — Privacy Notice | Legal Terms */
-  .footer-bar-left {
+  .footer-pref-bar-left {
     display: flex;
     align-items: center;
     gap: 8px;
     flex-wrap: wrap;
   }
   
-  .footer-nav-link {
+  .footer-pref-nav-link {
     font-size: 13px;
     font-weight: 700;
     color: #1a1a1a;
     text-decoration: none;
+    line-height: 1.4;
   }
   
-  .footer-nav-link:hover {
+  .footer-pref-nav-link:hover {
     text-decoration: underline;
   }
   
-  .footer-nav-sep {
+  /* Pipe separator */
+  .footer-pref-sep {
     font-size: 13px;
+    font-weight: 400;
     color: #999;
     user-select: none;
+    line-height: 1.4;
   }
   
   /* Right — stacked privacy links */
-  .footer-bar-right {
+  .footer-pref-bar-right {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 2px;
+    gap: 4px;
   }
   
   /* "Your Privacy Choices" — red + blue/white toggle icon */
-  .footer-privacy-link {
+  .footer-pref-privacy-link {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     color: #cc0000;
     text-decoration: none;
+    line-height: 1.4;
   }
   
-  .footer-privacy-link:hover {
+  .footer-pref-privacy-link:hover {
     text-decoration: underline;
   }
   
-  /* Blue/white toggle icon (matches real toyota.com design) */
-  .footer-privacy-icon {
+  /* Blue ✓ / Gray ✕ toggle icon — matches real toyota.com design */
+  .footer-pref-privacy-link::after {
+    content: '';
     display: inline-block;
-    width: 28px;
-    height: 16px;
+    width: 32px;
+    height: 18px;
     flex-shrink: 0;
-    vertical-align: middle;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 16'%3E%3Crect width='14' height='16' rx='2' fill='%231a73e8'/%3E%3Ctext x='7' y='12' font-size='10' fill='white' text-anchor='middle' font-family='Arial'%3E✓%3C/text%3E%3Crect x='14' width='14' height='16' rx='2' fill='%23e0e0e0'/%3E%3Ctext x='21' y='12' font-size='10' fill='%23333' text-anchor='middle' font-family='Arial'%3E✕%3C/text%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 18'%3E%3Crect x='0' y='0' width='16' height='18' rx='3' fill='%231a73e8'/%3E%3Ctext x='8' y='13.5' font-size='11' fill='white' text-anchor='middle' font-family='Arial' font-weight='bold'%3E✓%3C/text%3E%3Crect x='16' y='0' width='16' height='18' rx='3' fill='%23d0d0d0'/%3E%3Ctext x='24' y='13.5' font-size='11' fill='%23555' text-anchor='middle' font-family='Arial'%3E✕%3C/text%3E%3C/svg%3E");
     background-size: contain;
     background-repeat: no-repeat;
+    vertical-align: middle;
   }
   
-  /* "Cookie Consent Options" */
-  .footer-cookie-link {
-    font-size: 13px;
+  /* "Cookie Consent Options" — small gray link */
+  .footer-pref-cookie-link {
+    font-size: 12px;
     font-weight: 400;
     color: #555;
     text-decoration: none;
+    line-height: 1.4;
   }
   
-  .footer-cookie-link:hover {
+  .footer-pref-cookie-link:hover {
     text-decoration: underline;
   }
   
-  /* ── Copyright ───────────────────────────────────────────── */
+  /* ── Copyright section ───────────────────────────────────── */
   
-  .footer-copyright {
+  .footer-pref-copyright {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 4px;
   }
   
-  .footer-copyright-line {
+  .footer-pref-copy-line {
     margin: 0;
-    font-size: 11px;
-    line-height: 1.5;
-    color: #555;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #444;
   }
   
-  /* ── Responsive ──────────────────────────────────────────── */
+  /* ── Mobile ──────────────────────────────────────────────── */
   
   @media (max-width: 768px) {
-    footer .footer > div {
-      padding: 16px 16px;
-    }
-  
-    .footer-bar {
+    .footer-pref-bar {
       flex-direction: column;
-      gap: 16px;
+      gap: 12px;
+      margin-bottom: 16px;
     }
   
-    .footer-bar-right {
+    .footer-pref-bar-right {
       align-items: flex-start;
     }
   
-    .footer-copyright-line {
-      font-size: 10px;
+    .footer-pref-copy-line {
+      font-size: 11px;
     }
   }
