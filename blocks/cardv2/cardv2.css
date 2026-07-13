@@ -46,7 +46,7 @@
     flex-direction: column;
     gap: 14px;
     background: transparent; /* text sits directly over the image */
-    color: #ffffff;
+    color: var(--color-white);
   }
    
   /* ── TEXT RIGHT — image in col1, content pushed to right ─── */
@@ -67,7 +67,7 @@
     margin: 0;
     font-size: 26px;
     font-weight: 800;
-    color: #ffffff;
+    color: var(--color-white);
     line-height: 1.2;
   }
    
@@ -77,13 +77,13 @@
     margin: 0;
     font-size: 14px;
     line-height: 1.65;
-    color: #ffffff;
+    color: var(--color-white);
   }
    
   /* Second and later paragraphs slightly smaller — fine print style */
   .cardv2-text + .cardv2-text {
     font-size: 12px;
-    color: #e0e0e0;
+    color: var(--color-white);
   }
    
   /* ── Regular link ────────────────────────────────────────── */
@@ -92,12 +92,12 @@
     display: inline-block;
     font-size: 14px;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--color-white);
     text-decoration: underline;
   }
    
   .cardv2-link:hover {
-    color: #e0e0e0;
+    color: var(--color-white);
   }
    
   /* ── PDF link — red text + PDF icon ─────────────────────── */
