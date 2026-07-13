@@ -2,6 +2,7 @@
   max-width: 900px;
   margin: 0 auto;
   padding: 0 24px;
+  max-height: 560px;
 }
 
 .cardv2 {
@@ -31,7 +32,7 @@
 .cardv2-content {
   position: relative;
   z-index: 1;
-  width: 42%;
+  width: 35%;
   padding: 40px 36px;
   display: flex;
   flex-direction: column;
