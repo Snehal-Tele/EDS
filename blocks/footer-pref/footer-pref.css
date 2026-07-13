@@ -12,6 +12,13 @@
     padding: 24px 40px;
     width: 100%;
     box-sizing: border-box;
+  
+    /* ✅ Stick to bottom of page */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
   }
   
   @media (max-width: 768px) {
@@ -140,5 +147,18 @@
   
     .footer-pref-copy-line {
       font-size: 11px;
+    }
+  }
+  
+  /* ── Prevent page content from hiding behind sticky footer ── */
+  /* Add this to your styles/styles.css or the page's section   */
+  /* Adjust the value to match the footer's actual height       */
+  body {
+    padding-bottom: 120px;
+  }
+  
+  @media (max-width: 768px) {
+    body {
+      padding-bottom: 160px; /* taller on mobile due to stacked layout */
     }
   }
