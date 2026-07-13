@@ -55,7 +55,7 @@
   }
   
   .footer-pref-nav-link:hover {
-    color: #cc0000;
+    color: #cc0000 !important;
     text-decoration: none;
   }
   
@@ -83,14 +83,14 @@
     gap: 6px;
     font-size: 13px;
     font-weight: 700;
-    color: #0a0a0a !important;
+    color: #f80707 !important;
     text-decoration: none;
     line-height: 1.4;
   }
   
   .footer-pref-privacy-link:hover {
     text-decoration: underline;
-    color: #fc0202;
+    color: #690404;
   }
   
   /* Blue ✓ / Gray ✕ toggle icon — matches real toyota.com design */
