@@ -31,19 +31,19 @@
 .cardv2-content {
   position: relative;
   z-index: 1;
-  width: 42%; /* ~40% of card width */
+  width: 42%;
   padding: 40px 36px;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  background: transparent; /* text sits directly over the image */
+  background: transparent;
   color: var(--color-white);
 }
 .cardv2--text-right .cardv2-content {
-  margin-left: auto; /* push to right side */
+  margin-left: auto;
 }
 .cardv2--text-left .cardv2-content {
-  margin-right: auto; /* stay on left side */
+  margin-right: auto;
 }
 .cardv2-heading {
   margin: 0;
@@ -94,16 +94,14 @@
 .cardv2-pdf-link:hover {
   color: var(--link-hover-color) !important;
 }
-@media (max-width: 768px) {
-  .cardv2 {
-    flex-direction: column;
-    min-height: unset;
-  }
-}
 
 @media (max-width: 768px) {
   .cardv2-wrapper {
     padding: 0;
+  }
+  .cardv2 {
+    flex-direction: column;
+    min-height: unset;
   }
   .cardv2-bg {
     position: relative;
@@ -113,8 +111,8 @@
   .cardv2-content {
     width: 100%;
     padding: 24px 20px;
-    background: var(--color-black); /* dark bg on mobile for readability */
-    margin: 0 !important; /* override left/right auto margins */
+    background: var(--color-black);
+    margin: 0 !important;
   }
   .cardv2-heading {
     font-size: 20px;
