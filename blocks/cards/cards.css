@@ -2,13 +2,17 @@
   background: #ffffff;
   padding: 40px 0;
   position: relative;
-  overflow: visible;
+
+  /* ✅ FIX: clip the 100vw divider so it never causes horizontal scroll */
+  overflow-x: clip;
 }
+
 @media (max-width: 768px) {
   .cards {
     padding: 24px 0;
   }
 }
+
 .cards-inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -20,11 +24,13 @@
   position: relative;
   z-index: 1;
 }
+
 @media (max-width: 1024px) {
   .cards-inner {
     gap: 32px;
   }
 }
+
 @media (max-width: 768px) {
   .cards-inner {
     flex-direction: column;
@@ -32,6 +38,7 @@
     padding: 0 16px;
   }
 }
+
 .cards-media {
   flex: 1;
   aspect-ratio: 16/10;
@@ -39,23 +46,27 @@
   position: relative;
   z-index: 1;
 }
+
 @media (max-width: 768px) {
   .cards-media {
     width: 100%;
     aspect-ratio: 16/9;
   }
 }
+
 .cards-media picture {
   display: block;
   width: 100%;
   height: 100%;
 }
+
 .cards-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
+
 .cards-text {
   flex: 0 0 38%;
   max-width: 38%;
@@ -64,12 +75,14 @@
   position: relative;
   z-index: 1;
 }
+
 @media (max-width: 1024px) {
   .cards-text {
     flex: 0 0 42%;
     max-width: 42%;
   }
 }
+
 @media (max-width: 768px) {
   .cards-text {
     flex: 1 1 100%;
@@ -77,6 +90,7 @@
     padding-top: 20px;
   }
 }
+
 .cards-heading {
   margin: 0 0 16px;
   font-size: 32px;
@@ -84,24 +98,23 @@
   color: #1a1a1a;
   line-height: 1.15;
 }
+
 @media (max-width: 1024px) {
-  .cards-heading {
-    font-size: 28px;
-  }
+  .cards-heading { font-size: 28px; }
 }
+
 @media (max-width: 768px) {
-  .cards-heading {
-    font-size: 24px;
-  }
+  .cards-heading { font-size: 24px; }
 }
+
 @media (max-width: 480px) {
-  .cards-heading {
-    font-size: 20px;
-  }
+  .cards-heading { font-size: 20px; }
 }
+
 .cards-divider-mobile {
   display: none;
 }
+
 @media (max-width: 768px) {
   .cards-divider-mobile {
     display: block;
@@ -111,6 +124,8 @@
     margin: 0 0 20px;
   }
 }
+
+/* Full-width desktop divider */
 .cards-divider {
   position: absolute;
   left: 50%;
@@ -120,32 +135,34 @@
   background-color: #c8c8c8;
   pointer-events: none;
   z-index: 0;
+  /* overflow-x: clip on .cards above clips this without
+     breaking position:absolute like overflow:hidden would */
 }
+
 @media (max-width: 768px) {
   .cards-divider {
     display: none;
   }
 }
+
 .cards-description {
   margin: 20px 0 0;
   font-size: 18px;
   line-height: 1.65;
   color: #1a1a1a;
 }
+
 @media (max-width: 1024px) {
-  .cards-description {
-    font-size: 16px;
-  }
+  .cards-description { font-size: 16px; }
 }
+
 @media (max-width: 768px) {
-  .cards-description {
-    font-size: 15px;
-  }
+  .cards-description { font-size: 15px; }
 }
+
 @media (max-width: 480px) {
   .cards-description {
     font-size: 14px;
     line-height: 1.55;
   }
 }
-/*# sourceMappingURL=cards.css.map */
