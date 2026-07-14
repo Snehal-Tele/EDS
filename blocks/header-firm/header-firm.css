@@ -1,89 +1,87 @@
-.header-firm {
-    background-color: var(--color-white);
-    }
+/* ==========================================
+   Header Firm Block
+   ========================================== */
 
-.header-firm-link {
+   .header-firm {
+    background-color: var(--color-white);
+    width: 100%;
+  }
+  
+  /* ==========================================
+     Link Wrapper
+     ========================================== */
+  
+  .header-firm-link {
     display: flex;
-    align-items: center; /* Vertically center all content */
-    justify-content: space-between; /* Space between logo and other content */
+    align-items: center;
+    justify-content: flex-start;
     gap: 20px;
+  
     padding: 14px 24px;
     text-decoration: none;
-    max-width: 1440px;
-    margin: 0 auto;
-    height: 100px; 
-}
-
-.header-firm-link picture {
+  
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+  }
+  
+  /* ==========================================
+     Logo
+     ========================================== */
+  
+  .header-firm-link picture {
     display: flex;
-    align-items: center; /* Vertically center the image */
-    justify-content: center; /* Horizontally center the image if needed */
-}
-
-.header-firm-link img {
+    align-items: center;
+    flex-shrink: 0;
+  }
+  
+  .header-firm-link img {
     width: 54px;
     height: 54px;
     object-fit: contain;
     display: block;
-}
-
-.header-firm-title {
-    color: var(--color-black) !important;
+  }
+  
+  /* ==========================================
+     Title
+     ========================================== */
+  
+  .header-firm-title {
+    color: var(--color-black);
     font-size: 2rem;
     font-weight: 700;
     line-height: 1.2;
-    margin-left: 16px; /* Add spacing between logo and title */
-}
-
-.header-firm-nav {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.header-firm-nav a {
-    color: var(--color-black);
+  }
+  
+  /* ==========================================
+     States
+     ========================================== */
+  
+  .header-firm-link:hover {
     text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-}
-
-.header-firm-nav a:hover {
-    background-color: var(--color-gray-light);
-}
-
-.header-firm-link:hover {
-    text-decoration: none;
-}
-
-.header-firm-link:visited {
+  }
+  
+  .header-firm-link:visited {
     color: inherit;
-}
-
-@media (max-width: 768px) {
+  }
+  
+  /* ==========================================
+     Mobile
+     ========================================== */
+  
+  @media (max-width: 768px) {
     .header-firm-link {
-        padding: 12px 16px;
-        gap: 12px;
+      gap: 12px;
+      padding: 12px 16px;
+      height: 72px;
     }
-
+  
     .header-firm-link img {
-        width: 40px;
-        height: 40px;
+      width: 40px;
+      height: 40px;
     }
-
+  
     .header-firm-title {
-        font-size: 1.5rem;
+      font-size: 1.5rem;
     }
-
-    .header-firm-nav {
-        gap: 8px;
-    }
-
-    .header-firm-nav a {
-        font-size: 0.875rem;
-        padding: 6px 10px;
-    }
-}
+  }
