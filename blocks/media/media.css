@@ -1,91 +1,105 @@
-
-/* Container layout styling */
-.media-block .media-block-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    align-items: center;
+/* Base block layout & resetting default EDS table wrappers */
+.media.block {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem 1rem;
   }
   
-  .media-block-image,
-  .media-block-content {
-    width: 100%;
+  /* Target the direct child wrapper div created by EDS */
+  .media.block > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
   }
   
-  .media-block-image img {
+  /* Responsive side-by-side row layout for tablet/desktop */
+  @media (min-width: 768px) {
+    .media.block > div {
+      flex-direction: row;
+      gap: 4.5rem;
+      padding: 4rem 2rem;
+    }
+  
+    /* Force equal width halves */
+    .media.block > div > div {
+      flex: 1;
+      width: 50%;
+    }
+  }
+  
+  /* Image Column styling */
+  .media.block > div > div:first-child img {
     width: 100%;
     height: auto;
     display: block;
     object-fit: cover;
+    border-radius: 4px; /* Optional slight rounding if desired */
   }
   
-  /* Text & Typography Styling */
-  .media-block-content {
+  /* Content Column styling */
+  .media.block > div > div:last-child {
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: left;
   }
   
-  .media-block-eyebrow {
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #333333;
-    margin-bottom: 0.75rem;
-    font-weight: 500;
-  }
+  /* --- Typography Formatting --- */
   
-  .media-block-content h1,
-  .media-block-content h2 {
-    font-size: 2.25rem;
-    line-height: 1.2;
-    font-weight: 700;
-    color: #000000;
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-  }
-  
-  .media-block-content p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #4a4a4a;
-    margin-bottom: 2rem;
-  }
-  
-  /* Pill Button Styling */
-  .media-block-content .pill-button {
-    display: inline-block;
-    align-self: flex-start;
-    padding: 0.75rem 2rem;
-    border: 1px solid #000000;
-    border-radius: 50px;
-    background-color: transparent;
-    color: #000000;
-    text-decoration: none;
+  /* 1. Eyebrow Text (WHO WE ARE) */
+  .media.block > div > div:last-child p:first-child {
+    font-family: sans-serif;
     font-size: 0.875rem;
     font-weight: 600;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #1a1a1a;
+    margin: 0 0 1rem 0;
   }
   
-  .media-block-content .pill-button:hover {
-    background-color: #000000;
+  /* 2. Headline (We are people powered) */
+  /* Targets the second paragraph which acts as your title */
+  .media.block > div > div:last-child p:nth-child(2) {
+    font-family: sans-serif;
+    font-size: 2.25rem;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #111111;
+    margin: 0 0 1.5rem 0;
+  }
+  
+  /* 3. Description Body text */
+  .media.block > div > div:last-child p:nth-child(3) {
+    font-family: sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #4a4a4a;
+    margin: 0 0 2.5rem 0;
+  }
+  
+  /* --- Button Styling --- */
+  .media.block .button-container {
+    margin: 0;
+  }
+  
+  /* Style the anchor link to override default global buttons */
+  .media.block a.button {
+    display: inline-block;
+    padding: 0.85rem 2.25rem;
+    border: 1px solid #111111;
+    border-radius: 50px; /* Pill shape */
+    background-color: transparent;
+    color: #111111;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+  
+  .media.block a.button:hover {
+    background-color: #111111;
     color: #ffffff;
-  }
-  
-  /* Desktop Responsiveness */
-  @media (min-width: 768px) {
-    .media-block .media-block-wrapper {
-      flex-direction: row;
-      gap: 4rem;
-      padding: 4rem 2rem;
-    }
-  
-    .media-block-image,
-    .media-block-content {
-      width: 50%;
-    }
+    border-color: #111111;
   }
