@@ -1,5 +1,4 @@
 
-
 export default function decorate(block) {
     const row = block.firstElementChild;
     if (!row) return;
