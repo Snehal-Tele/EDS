@@ -1,0 +1,91 @@
+
+/* Container layout styling */
+.media-block .media-block-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  .media-block-image,
+  .media-block-content {
+    width: 100%;
+  }
+  
+  .media-block-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+  
+  /* Text & Typography Styling */
+  .media-block-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+  }
+  
+  .media-block-eyebrow {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #333333;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+  }
+  
+  .media-block-content h1,
+  .media-block-content h2 {
+    font-size: 2.25rem;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #000000;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+  
+  .media-block-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4a4a4a;
+    margin-bottom: 2rem;
+  }
+  
+  /* Pill Button Styling */
+  .media-block-content .pill-button {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 0.75rem 2rem;
+    border: 1px solid #000000;
+    border-radius: 50px;
+    background-color: transparent;
+    color: #000000;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .media-block-content .pill-button:hover {
+    background-color: #000000;
+    color: #ffffff;
+  }
+  
+  /* Desktop Responsiveness */
+  @media (min-width: 768px) {
+    .media-block .media-block-wrapper {
+      flex-direction: row;
+      gap: 4rem;
+      padding: 4rem 2rem;
+    }
+  
+    .media-block-image,
+    .media-block-content {
+      width: 50%;
+    }
+  }
