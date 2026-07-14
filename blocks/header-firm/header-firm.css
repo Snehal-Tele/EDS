@@ -40,7 +40,7 @@
    
   /* reset default browser/anchor styling (blue + underline) */
   .header-firm-title a {
-    color: var(--text-color, #1a1a1a);
+    color: var(--color-black);
     text-decoration: none;
   }
    
