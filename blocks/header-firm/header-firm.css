@@ -4,18 +4,20 @@
 
 .header-firm-link {
     display: flex;
-    align-items: center;
+    align-items: center; /* Vertically center all content */
     justify-content: space-between; /* Space between logo and other content */
     gap: 20px;
     padding: 14px 24px;
     text-decoration: none;
     max-width: 1440px;
     margin: 0 auto;
+    height: 100px; 
 }
 
 .header-firm-link picture {
     display: flex;
-    align-items: center;
+    align-items: center; /* Vertically center the image */
+    justify-content: center; /* Horizontally center the image if needed */
 }
 
 .header-firm-link img {
