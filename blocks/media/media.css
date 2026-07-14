@@ -99,7 +99,7 @@
   }
   
   .media.block a.button:hover {
-    background-color: #111111;
+    border-width: 2px;
     color: #ffffff;
     border-color: #111111;
   }
