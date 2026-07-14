@@ -26,7 +26,7 @@
   }
   
   .header-firm-title {
-    color: #000;
+    color: #000 !important;
     font-size: 2rem;
     font-weight: 700;
     line-height: 1.2;
