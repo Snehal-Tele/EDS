@@ -1,29 +1,29 @@
+
 export default function decorate(block) {
-    const picture = block.querySelector('picture');
-    const link = block.querySelector('a');
-    const fallbackParagraph = block.querySelector('p:not(:has(picture))');
-   
-    const wrapper = document.createElement('div');
-    wrapper.className = 'header-firm-inner';
-   
-    const iconWrapper = document.createElement('div');
-    iconWrapper.className = 'header-firm-icon';
+    const rows = [...block.children];
+  
+    if (rows.length < 2) return;
+  
+    const logoRow = rows[0];
+    const titleRow = rows[1];
+  
+    const picture = logoRow.querySelector('picture');
+    const title = titleRow.textContent.trim();
+  
+    const link = document.createElement('a');
+    link.href = '/';
+    link.classList.add('header-firm-link');
+  
     if (picture) {
-      const img = picture.querySelector('img');
-      if (img) img.setAttribute('loading', 'eager');
-      iconWrapper.append(picture);
+      link.append(picture);
     }
-   
-    const titleWrapper = document.createElement('div');
-    titleWrapper.className = 'header-firm-title';
-    if (link) {
-      // keep it as a real link (for a11y / actual navigation) but let CSS
-      // handle the visual styling instead of default browser link styles
-      titleWrapper.append(link);
-    } else if (fallbackParagraph) {
-      titleWrapper.append(fallbackParagraph);
-    }
-   
-    wrapper.append(iconWrapper, titleWrapper);
-    block.replaceChildren(wrapper);
+  
+    const titleEl = document.createElement('span');
+    titleEl.classList.add('header-firm-title');
+    titleEl.textContent = title;
+  
+    link.append(titleEl);
+  
+    block.textContent = '';
+    block.append(link);
   }
