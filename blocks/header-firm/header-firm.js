@@ -1,34 +1,29 @@
+
 export default function decorate(block) {
-    const link = block.querySelector('a');
-    const picture = block.querySelector('picture');
-   
-    if (!link) return;
-   
-    // preserve original text and href before rebuilding
-    const linkText = link.textContent.trim();
-    const linkHref = link.getAttribute('href');
-   
-    // build new anchor structure
-    const newLink = document.createElement('a');
-    newLink.className = 'header-firm-link';
-    newLink.setAttribute('href', linkHref);
-   
+    const rows = [...block.children];
+  
+    if (rows.length < 2) return;
+  
+    const logoRow = rows[0];
+    const titleRow = rows[1];
+  
+    const picture = logoRow.querySelector('picture');
+    const title = titleRow.textContent.trim();
+  
+    const link = document.createElement('a');
+    link.href = '/';
+    link.classList.add('header-firm-link');
+  
     if (picture) {
-      const iconWrapper = document.createElement('span');
-      iconWrapper.className = 'header-firm-icon';
-      iconWrapper.append(picture);
-      newLink.append(iconWrapper);
+      link.append(picture);
     }
-   
-    const title = document.createElement('span');
-    title.className = 'header-firm-title';
-    title.textContent = linkText;
-    newLink.append(title);
-   
-    // clear block and insert new markup
+  
+    const titleEl = document.createElement('span');
+    titleEl.classList.add('header-firm-title');
+    titleEl.textContent = title;
+  
+    link.append(titleEl);
+  
     block.textContent = '';
-    const wrapper = document.createElement('div');
-    wrapper.className = 'header-firm-wrapper';
-    wrapper.append(newLink);
-    block.append(wrapper);
+    block.append(link);
   }
