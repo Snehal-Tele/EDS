@@ -123,10 +123,11 @@
     color: #555;
     text-decoration: none;
     margin: 0;
+    padding-right: 10px;
   }
    
   .footer-pref-cookie-link:hover {
-    text-decoration: underline;
+    
   }
    
   /* ── Copyright section ───────────────────────────────────── */
