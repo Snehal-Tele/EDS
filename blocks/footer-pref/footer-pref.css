@@ -16,7 +16,7 @@
      (not just sitting at the bottom of page content), uncomment below
      AND keep the body padding-bottom rules further down.
   */
-  /*
+  
   .footer-pref {
     position: fixed;
     bottom: 0;
@@ -24,7 +24,7 @@
     right: 0;
     z-index: 100;
   }
-  */
+  
    
   @media (max-width: 768px) {
     .footer-pref {
