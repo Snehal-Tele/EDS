@@ -15,6 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    flex-wrap: nowrap;
     gap: 20px;
    
     padding: 14px 24px;
@@ -23,6 +24,17 @@
     width: 100%;
     height: 100px;
     box-sizing: border-box;
+   
+    /* let the row scroll horizontally instead of wrapping the title */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin; /* Firefox: slim scrollbar as a scroll hint */
+  }
+   
+  /* optional: hide the scrollbar entirely on WebKit while keeping swipe/scroll
+     working (comment this out if you'd rather show the scrollbar as a hint) */
+  .header-firm-link::-webkit-scrollbar {
+    height: 3px;
   }
    
   /* ==========================================
@@ -51,6 +63,8 @@
     font-size: 2rem;
     font-weight: 700;
     line-height: 1.2;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
    
   /* ==========================================
