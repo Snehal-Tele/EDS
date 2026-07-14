@@ -1,10 +1,8 @@
-
- 
 export default function decorate(block) {
     const rows = [...block.children];
     if (!rows.length) return;
    
-    const barLeft  = document.createElement('div');
+    const barLeft = document.createElement('div');
     barLeft.className = 'footer-pref-bar-left';
    
     const barRight = document.createElement('div');
@@ -13,7 +11,7 @@ export default function decorate(block) {
     const copyright = document.createElement('div');
     copyright.className = 'footer-pref-copyright';
    
-    const leftLinksAll  = [];
+    const leftLinksAll = [];
     const rightItemsAll = []; // stores { text, href } — href is null for plain text
    
     rows.forEach((row) => {
@@ -26,18 +24,22 @@ export default function decorate(block) {
         // Collect left links
         colA.querySelectorAll('a').forEach((a) => leftLinksAll.push(a));
    
-        // Collect right items — link OR plain text
+        // Collect right items — walk each line in the cell individually so a
+        // link line AND a plain-text line in the SAME cell both get captured
+        // (previously only the link was kept and the plain text was dropped)
         if (colB) {
-          const rightLink = colB.querySelector('a');
-          const rightText = colB.textContent.trim();
+          const lines = colB.querySelectorAll('p');
+          const items = lines.length ? [...lines] : [colB];
    
-          if (rightLink) {
-            // It's a link
-            rightItemsAll.push({ text: rightLink.textContent.trim(), href: rightLink.href });
-          } else if (rightText) {
-            // It's plain text (no href)
-            rightItemsAll.push({ text: rightText, href: null });
-          }
+          items.forEach((el) => {
+            const link = el.tagName === 'A' ? el : el.querySelector('a');
+            if (link) {
+              rightItemsAll.push({ text: link.textContent.trim(), href: link.href });
+            } else {
+              const text = el.textContent.trim();
+              if (text) rightItemsAll.push({ text, href: null });
+            }
+          });
         }
       } else {
         // ── Copyright row ──────────────────────────────────
@@ -103,4 +105,3 @@ export default function decorate(block) {
     block.textContent = '';
     block.append(bar, copyright);
   }
-   

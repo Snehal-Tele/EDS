@@ -1,34 +1,39 @@
 /* ============================================================
    Footer Pref block
-   Matches toyota.com/preferences footer design exactly
    Place at: /blocks/footer-pref/footer-pref.css
    ============================================================ */
-
+ 
 /* ── Block wrapper ───────────────────────────────────────── */
-
+ 
 .footer-pref {
-    
     border-top: 1px solid #e5e5e5;
     padding: 24px 40px;
     width: 100%;
     box-sizing: border-box;
-  
-    /* ✅ Stick to bottom of page */
+  }
+   
+  /* If you actually want this pinned to the viewport at all times
+     (not just sitting at the bottom of page content), uncomment below
+     AND keep the body padding-bottom rules further down.
+  */
+  /*
+  .footer-pref {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 100;
   }
-  
+  */
+   
   @media (max-width: 768px) {
     .footer-pref {
       padding: 20px 16px;
     }
   }
-  
+   
   /* ── Links bar (top row) ─────────────────────────────────── */
-  
+   
   .footer-pref-bar {
     display: flex;
     align-items: flex-start;
@@ -37,7 +42,7 @@
     gap: 16px;
     margin-bottom: 20px;
   }
-  
+   
   /* Left — Privacy Notice | Legal Terms */
   .footer-pref-bar-left {
     display: flex;
@@ -45,7 +50,7 @@
     gap: 8px;
     flex-wrap: wrap;
   }
-  
+   
   .footer-pref-nav-link {
     font-size: 13px;
     font-weight: 700;
@@ -53,12 +58,12 @@
     text-decoration: none;
     line-height: 1.4;
   }
-  
+   
   .footer-pref-nav-link:hover {
     color: #cc0000 !important;
     text-decoration: none;
   }
-  
+   
   /* Pipe separator */
   .footer-pref-sep {
     font-size: 13px;
@@ -67,7 +72,7 @@
     user-select: none;
     line-height: 1.4;
   }
-  
+   
   /* Right — stacked privacy links */
   .footer-pref-bar-right {
     display: flex;
@@ -75,7 +80,7 @@
     align-items: flex-end;
     gap: 4px;
   }
-  
+   
   /* "Your Privacy Choices" — red + blue/white toggle icon */
   .footer-pref-privacy-link {
     display: inline-flex;
@@ -87,79 +92,72 @@
     text-decoration: none;
     line-height: 1.4;
   }
-  
+   
   .footer-pref-privacy-link:hover {
     text-decoration: underline;
     color: #690404;
   }
-  
-  /* Blue ✓ / Gray ✕ toggle icon — matches real toyota.com design */
+   
+  /* Toggle icon — replace the background-image url() below with your
+     actual icon asset. Until then this shows a visible placeholder box
+     so you can confirm layout/spacing is correct. */
   .footer-pref-privacy-link::after {
     content: '';
     display: inline-block;
     width: 32px;
     height: 18px;
     flex-shrink: 0;
+    background-color: #e5e5e5; /* remove once background-image is set */
+    border-radius: 9px;
+    background-image: none; /* e.g. url('/icons/privacy-choices-toggle.svg'); */
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
     vertical-align: middle;
   }
-  
-  /* "Cookie Consent Options" — small gray link */
+   
+  /* "Cookie Consent Options" — small gray link/text */
   .footer-pref-cookie-link {
     font-size: 12px;
     font-weight: 400;
     color: #555;
     text-decoration: none;
-    line-height: 1.4;
+    margin: 0;
   }
-  
+   
   .footer-pref-cookie-link:hover {
     text-decoration: underline;
   }
-  
+   
   /* ── Copyright section ───────────────────────────────────── */
-  
+   
   .footer-pref-copyright {
     display: flex;
     flex-direction: column;
     gap: 4px;
   }
-  
+   
   .footer-pref-copy-line {
     margin: 0;
     font-size: 12px;
     line-height: 1.6;
     color: #444;
   }
-  
+   
   /* ── Mobile ──────────────────────────────────────────────── */
-  
+   
   @media (max-width: 768px) {
     .footer-pref-bar {
       flex-direction: column;
       gap: 12px;
       margin-bottom: 16px;
     }
-  
+   
     .footer-pref-bar-right {
       align-items: flex-start;
     }
-  
+   
     .footer-pref-copy-line {
       font-size: 11px;
-    }
-  }
-  
-  /* ── Prevent page content from hiding behind sticky footer ── */
-  /* Add this to your styles/styles.css or the page's section   */
-  /* Adjust the value to match the footer's actual height       */
-  body {
-    padding-bottom: 120px;
-  }
-  
-  @media (max-width: 768px) {
-    body {
-      padding-bottom: 160px; /* taller on mobile due to stacked layout */
     }
   }
