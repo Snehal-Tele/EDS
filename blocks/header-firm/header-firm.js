@@ -6,23 +6,29 @@ export default function decorate(block) {
     const logoRow = rows[0];
     const titleRow = rows[1];
   
+    const logoLink = logoRow.querySelector('a');
+    const titleLink = titleRow.querySelector('a');
+  
     const picture = logoRow.querySelector('picture');
-    const title = titleRow.textContent.trim();
+  
+    // Use authored URL
+    const href = logoLink?.href || titleLink?.href || '#';
   
     const link = document.createElement('a');
-    link.href = '/';
-    link.classList.add('header-firm-link');
+    link.href = href;
+    link.className = 'header-firm-link';
   
     if (picture) {
       link.append(picture);
     }
   
     const titleEl = document.createElement('span');
-    titleEl.classList.add('header-firm-title');
-    titleEl.textContent = title;
+    titleEl.className = 'header-firm-title';
+    titleEl.textContent = titleLink
+      ? titleLink.textContent.trim()
+      : titleRow.textContent.trim();
   
     link.append(titleEl);
   
-    block.textContent = '';
-    block.append(link);
+    block.replaceChildren(link);
   }
