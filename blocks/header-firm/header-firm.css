@@ -33,13 +33,12 @@
     /* let the row scroll horizontally instead of wrapping the title */
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin; /* Firefox: slim scrollbar as a scroll hint */
+    scrollbar-width: none; /* Firefox: hide scrollbar */
+    -ms-overflow-style: none; /* old Edge/IE: hide scrollbar */
   }
    
-  /* optional: hide the scrollbar entirely on WebKit while keeping swipe/scroll
-     working (comment this out if you'd rather show the scrollbar as a hint) */
   .header-firm-link::-webkit-scrollbar {
-    height: 3px;
+    display: none; /* Chrome/Safari: hide scrollbar */
   }
    
   /* ==========================================
@@ -90,13 +89,13 @@
    
   @media (max-width: 768px) {
     .header-firm-link {
-      gap: 15px;
+      gap: 12px;
       padding: 12px 16px;
       height: 72px;
     }
    
     .header-firm-link img {
-      width: 100%;
+      width: 40px;
       height: 40px;
     }
    
