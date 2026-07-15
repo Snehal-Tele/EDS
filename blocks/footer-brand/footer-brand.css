@@ -80,7 +80,7 @@
   }
    
   .footer-brand-link:hover {
-    color: #000;
+   color: var(--color-gray-medium) !important;
     text-decoration: none;
   }
    
