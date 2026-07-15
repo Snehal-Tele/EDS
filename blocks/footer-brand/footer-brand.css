@@ -1,7 +1,7 @@
 .footer-brand {
     width: 100%;
     box-sizing: border-box;
-    padding: 40px 24px;
+    
     background: var(--color-white, #fff);
   }
    
