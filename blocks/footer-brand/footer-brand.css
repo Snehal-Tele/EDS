@@ -98,10 +98,15 @@
     .footer-brand-icon img {
       width: 180px;
       height: 48px;
+      align-self: left;
     }
    
     .footer-brand-wordmark {
       font-size: 28px;
+    }
+    .footer-brand-disclaimer,
+    .footer-brand-copyright{
+       align-self:left;
     }
    
     .footer-brand-disclaimer,
