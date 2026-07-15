@@ -73,13 +73,13 @@
    
   .footer-brand-link {
     font-size: 13px;
-    color: #767676;
+    color: var(--color-black) !important;
     text-decoration: none;
   }
    
   .footer-brand-link:hover {
     color: #000;
-    text-decoration: underline;
+    text-decoration: none;
   }
    
   .footer-brand-sep {
@@ -96,7 +96,7 @@
     }
    
     .footer-brand-icon img {
-      width: 48px;
+      width: 180px;
       height: 48px;
     }
    
