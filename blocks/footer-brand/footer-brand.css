@@ -56,6 +56,7 @@
     line-height: 1.6;
     color: var(--color-black);
     width:100%;
+    opacity: .6;
   }
    
   .footer-brand-copyright {
@@ -63,6 +64,7 @@
     font-size: 10px;
     color: var(--color-black);
     width: 100%;
+    opacity: .6;
   }
    
   /* ── Links row ────────────────────────────────────────────── */
@@ -75,6 +77,7 @@
    
   .footer-brand-link {
     font-size: 10px;
+    opacity: .6;
     color: var(--color-black) !important;
     text-decoration: none;
   }
@@ -86,6 +89,7 @@
    
   .footer-brand-sep {
     font-size: 10px;
+    opacity: .6;
     color: #ccc;
     user-select: none;
   }
@@ -116,6 +120,7 @@
    
     .footer-brand-wordmark {
       font-size: 28px;
+      opacity: .6;
     }
    
     .footer-brand-disclaimer,
@@ -123,5 +128,6 @@
     .footer-brand-link,
     .footer-brand-sep {
       font-size: 12px;
+      opacity: .6;
     }
   }
