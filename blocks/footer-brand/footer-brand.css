@@ -1,102 +1,109 @@
 .footer-brand {
-    background: #f3f3f3;
-    padding: 60px 32px 80px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 40px 24px;
+    background: var(--color-white, #fff);
   }
-  
-  .footer-brand-wrapper {
-    max-width: 1800px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  /* ------------------------------- */
-  /* Logo */
-  /* ------------------------------- */
-  
-  .footer-brand-logo {
-    margin-bottom: 48px;
-  }
-  
-  .footer-brand-logo picture {
-    display: inline-block;
-  }
-  
-  .footer-brand-logo img {
-    width: 270px;
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
-  
-  /* ------------------------------- */
-  /* Disclaimer */
-  /* ------------------------------- */
-  
-  .footer-brand-disclaimer {
-    max-width: 1800px;
-    margin: 0 auto 42px;
-  
-    color: #777;
-    font-size: 16px;
-    line-height: 1.7;
-    font-weight: 400;
-  }
-  
-  /* ------------------------------- */
-  /* Copyright */
-  /* ------------------------------- */
-  
-  .footer-brand-copyright {
-    margin: 0 0 32px;
-  
-    color: #777;
-    font-size: 16px;
-    font-weight: 400;
-  }
-  
-  /* ------------------------------- */
-  /* Footer links */
-  /* ------------------------------- */
-  
-  .footer-brand-links {
+   
+  .footer-brand-content {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: 22px;
+    text-align: center;
+    gap: 20px;
+    max-width: 960px;
+    margin: 0 auto;
   }
-  
-  .footer-brand-link {
-    color: #777;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 400;
+   
+  /* ── Logo + wordmark row ─────────────────────────────────── */
+   
+  .footer-brand-logo-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
   }
-  
-  .footer-brand-link:hover {
+   
+  .footer-brand-icon img {
+    display: block;
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    border-radius: 6px;
+  }
+   
+  .footer-brand-wordmark {
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    line-height: 1;
     color: #000;
   }
-  
-  .footer-brand-separator {
-    color: #777;
-    font-size: 20px;
+   
+  .footer-brand-wordmark p {
+    margin: 0;
   }
-  
-  /* ------------------------------- */
-  /* Mobile */
-  /* ------------------------------- */
-  
+   
+  /* ── Disclaimer + copyright ──────────────────────────────── */
+   
+  .footer-brand-disclaimer {
+    margin: 0;
+    max-width: 780px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #767676;
+  }
+   
+  .footer-brand-copyright {
+    margin: 0;
+    font-size: 13px;
+    color: #767676;
+  }
+   
+  /* ── Links row ────────────────────────────────────────────── */
+   
+  .footer-brand-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+   
+  .footer-brand-link {
+    font-size: 13px;
+    color: #767676;
+    text-decoration: none;
+  }
+   
+  .footer-brand-link:hover {
+    color: #000;
+    text-decoration: underline;
+  }
+   
+  .footer-brand-sep {
+    font-size: 13px;
+    color: #ccc;
+    user-select: none;
+  }
+   
+  /* ── Mobile ──────────────────────────────────────────────── */
+   
   @media (max-width: 768px) {
     .footer-brand {
-      padding: 40px 20px 60px;
+      padding: 32px 16px;
     }
-  
-    .footer-brand-logo img {
-      width: 180px;
+   
+    .footer-brand-icon img {
+      width: 48px;
+      height: 48px;
     }
-  
+   
+    .footer-brand-wordmark {
+      font-size: 28px;
+    }
+   
     .footer-brand-disclaimer,
     .footer-brand-copyright,
-    .footer-brand-link {
-      font-size: 14px;
+    .footer-brand-link,
+    .footer-brand-sep {
+      font-size: 12px;
     }
   }

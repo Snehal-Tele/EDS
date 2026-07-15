@@ -1,73 +1,70 @@
+
 export default function decorate(block) {
-    const rows = [...block.children];
-  
-    if (rows.length < 5) return;
-  
-    const logoRow = rows[0];
-    const disclaimerRow = rows[1];
-    const copyrightRow = rows[2];
-    const privacyRow = rows[3];
-    const legalRow = rows[4];
-  
-    block.innerHTML = '';
-  
     const wrapper = document.createElement('div');
-    wrapper.className = 'footer-brand-wrapper';
-  
-    /* Logo */
-  
-    const logoContainer = document.createElement('div');
-    logoContainer.className = 'footer-brand-logo';
-  
-    const picture = logoRow.querySelector('picture');
-  
-    if (picture) {
-      logoContainer.append(picture);
-    }
-  
-    /* Disclaimer */
-  
-    const disclaimer = document.createElement('p');
-    disclaimer.className = 'footer-brand-disclaimer';
-    disclaimer.textContent = disclaimerRow.textContent.trim();
-  
-    /* Copyright */
-  
-    const copy = document.createElement('p');
-    copy.className = 'footer-brand-copyright';
-    copy.textContent = copyrightRow.textContent.trim();
-  
-    /* Links */
-  
-    const links = document.createElement('div');
-    links.className = 'footer-brand-links';
-  
-    const privacyLink = privacyRow.querySelector('a');
-    const legalLink = legalRow.querySelector('a');
-  
-    if (privacyLink) {
-      privacyLink.classList.add('footer-brand-link');
-      links.append(privacyLink);
-    }
-  
-    if (privacyLink && legalLink) {
-      const separator = document.createElement('span');
-      separator.className = 'footer-brand-separator';
-      separator.textContent = '|';
-      links.append(separator);
-    }
-  
-    if (legalLink) {
-      legalLink.classList.add('footer-brand-link');
-      links.append(legalLink);
-    }
-  
-    wrapper.append(
-      logoContainer,
-      disclaimer,
-      copy,
-      links,
-    );
-  
-    block.append(wrapper);
+    wrapper.className = 'footer-brand-content';
+   
+    [...block.children].forEach((row) => {
+      const cells = [...row.children];
+      const picture = row.querySelector('picture');
+      const links = [...row.querySelectorAll('a')];
+      const text = row.textContent.trim();
+   
+      // ── Logo + wordmark row ──────────────────────────────
+      if (picture) {
+        const logoRow = document.createElement('div');
+        logoRow.className = 'footer-brand-logo-row';
+   
+        const iconCell = cells.find((c) => c.querySelector('picture'));
+        const wordmarkCell = cells.find((c) => c !== iconCell);
+   
+        if (iconCell) {
+          iconCell.classList.add('footer-brand-icon');
+          logoRow.append(iconCell);
+        }
+        if (wordmarkCell) {
+          wordmarkCell.classList.add('footer-brand-wordmark');
+          logoRow.append(wordmarkCell);
+        }
+        wrapper.append(logoRow);
+        return;
+      }
+   
+      // ── Links row (Privacy Notice | Legal Terms) ─────────
+      if (links.length) {
+        const linksRow = document.createElement('div');
+        linksRow.className = 'footer-brand-links';
+        links.forEach((a, i) => {
+          a.classList.add('footer-brand-link');
+          linksRow.append(a);
+          if (i < links.length - 1) {
+            const sep = document.createElement('span');
+            sep.className = 'footer-brand-sep';
+            sep.setAttribute('aria-hidden', 'true');
+            sep.textContent = '|';
+            linksRow.append(sep);
+          }
+        });
+        wrapper.append(linksRow);
+        return;
+      }
+   
+      // ── Copyright row (contains ©) ────────────────────────
+      if (text.includes('©')) {
+        const p = document.createElement('p');
+        p.className = 'footer-brand-copyright';
+        p.textContent = text;
+        wrapper.append(p);
+        return;
+      }
+   
+      // ── Disclaimer row (anything else with text) ──────────
+      if (text) {
+        const p = document.createElement('p');
+        p.className = 'footer-brand-disclaimer';
+        p.textContent = text;
+        wrapper.append(p);
+      }
+    });
+   
+    block.replaceChildren(wrapper);
   }
