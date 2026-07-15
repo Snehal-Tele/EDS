@@ -1,0 +1,149 @@
+
+// Variables
+$color-border: #e5e5e5;
+$color-text-main: #000000;
+$color-text-muted: #999999;
+$color-text-dark-gray: #444444;
+$color-text-cookie: #555555;
+$color-red-primary: #cc0000;
+$color-red-bright: #f80707;
+$color-red-dark: #690404;
+
+
+$breakpoint-md: 768px;
+
+.footer-pref {
+  border-top: 1px solid $color-border;
+  padding: 24px 40px;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  @media (max-width: $breakpoint-md) {
+    padding: 20px 16px;
+  }
+
+  /* ── Links bar (top row) ─────────────────────────────────── */
+  
+  &-bar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 20px;
+
+    @media (max-width: $breakpoint-md) {
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    // Left — Privacy Notice | Legal Terms
+    &-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    // Right — stacked privacy links
+    &-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+
+      @media (max-width: $breakpoint-md) {
+        align-items: flex-start;
+      }
+    }
+  }
+
+  &-nav-link {
+    font-size: 13px;
+    font-weight: 700;
+    color: $color-text-main !important;
+    text-decoration: none;
+    line-height: 1.4;
+
+    &:hover {
+      color: $color-red-primary !important;
+      text-decoration: none;
+    }
+  }
+
+  /* Pipe separator */
+  &-sep {
+    font-size: 13px;
+    font-weight: 400;
+    color: $color-text-muted;
+    user-select: none;
+    line-height: 1.4;
+  }
+
+  /* "Your Privacy Choices" — red + blue/white toggle icon */
+  &-privacy-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: $color-red-bright !important;
+    text-decoration: none;
+    line-height: 1.4;
+
+    &:hover {
+      text-decoration: underline;
+      color: $color-red-dark !important;
+    }
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 18px;
+      flex-shrink: 0;
+      background-color: $color-border; /* remove once background-image is set */
+      border-radius: 9px;
+      background-image: none; /* e.g. url('/icons/privacy-choices-toggle.svg'); */
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      vertical-align: middle;
+    }
+  }
+
+  /* "Cookie Consent Options" — small gray link/text */
+  &-cookie-link {
+    font-size: 12px;
+    font-weight: 400;
+    color: $color-text-cookie;
+    text-decoration: none;
+    margin: 0;
+    padding-right: 30px;
+  }
+
+  /* ── Copyright section ───────────────────────────────────── */
+  
+  &-copyright {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &-copy-line {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.6;
+    color: $color-text-dark-gray;
+
+    @media (max-width: $breakpoint-md) {
+      font-size: 11px;
+    }
+  }
+}
