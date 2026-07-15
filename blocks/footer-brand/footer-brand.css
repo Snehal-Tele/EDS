@@ -95,18 +95,25 @@
       padding: 32px 16px;
     }
    
+    /* left-align logo/wordmark, disclaimer, and copyright on mobile,
+       matching the accordion section headings above this block */
+    .footer-brand-content {
+      align-items: flex-start;
+      text-align: left;
+    }
+   
+    /* ...but keep the Privacy Notice / Legal Terms row centered */
+    .footer-brand-links {
+      align-self: center;
+    }
+   
     .footer-brand-icon img {
-      width: 180px;
+      width: 48px;
       height: 48px;
-      align-self: left;
     }
    
     .footer-brand-wordmark {
       font-size: 28px;
-    }
-    .footer-brand-disclaimer,
-    .footer-brand-copyright{
-       align-self:left;
     }
    
     .footer-brand-disclaimer,
