@@ -4,8 +4,8 @@
     background: var(--color-white);
     position: fixed;
     bottom: 40px;
-    left: 0;
-    right: 0;
+    left: 27px;
+    right: 27px;
     z-index: 100;
   }
    
