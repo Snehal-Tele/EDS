@@ -28,7 +28,6 @@
     width: 240px;
     height: 68px;
     object-fit: contain;
-    border-radius: 6px;
   }
    
   .footer-brand-wordmark {
@@ -48,10 +47,10 @@
    
   .footer-brand-disclaimer {
     margin: 0;
-    max-width: 780px;
     font-size: 13px;
     line-height: 1.6;
     color: #767676;
+    width:100%;
   }
    
   .footer-brand-copyright {
