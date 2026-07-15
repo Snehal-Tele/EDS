@@ -1,19 +1,8 @@
-
-// Variables
-$color-border: #e5e5e5;
-$color-text-main: #000000;
-$color-text-muted: #999999;
-$color-text-dark-gray: #444444;
-$color-text-cookie: #555555;
-$color-red-primary: #cc0000;
-$color-red-bright: #f80707;
-$color-red-dark: #690404;
-
-
-$breakpoint-md: 768px;
+// --- Variables ---
+$screen-md: 768px;
 
 .footer-pref {
-  border-top: 1px solid $color-border;
+  border-top: 1px solid var(--color-white);
   padding: 24px 40px;
   width: 100%;
   box-sizing: border-box;
@@ -23,12 +12,11 @@ $breakpoint-md: 768px;
   right: 0;
   z-index: 100;
 
-  @media (max-width: $breakpoint-md) {
+  @media (max-width: $screen-md) {
     padding: 20px 16px;
   }
 
-  /* ── Links bar (top row) ─────────────────────────────────── */
-  
+  // Bar container split
   &-bar {
     display: flex;
     align-items: flex-start;
@@ -37,13 +25,13 @@ $breakpoint-md: 768px;
     gap: 16px;
     margin-bottom: 20px;
 
-    @media (max-width: $breakpoint-md) {
+    @media (max-width: $screen-md) {
       flex-direction: column;
       gap: 12px;
       margin-bottom: 16px;
     }
 
-    // Left — Privacy Notice | Legal Terms
+    // Left menu links
     &-left {
       display: flex;
       align-items: center;
@@ -51,55 +39,56 @@ $breakpoint-md: 768px;
       flex-wrap: wrap;
     }
 
-    // Right — stacked privacy links
+    // Right privacy container
     &-right {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
       gap: 4px;
 
-      @media (max-width: $breakpoint-md) {
+      @media (max-width: $screen-md) {
         align-items: flex-start;
       }
     }
   }
 
+  // Navigation Links
   &-nav-link {
     font-size: 13px;
     font-weight: 700;
-    color: $color-text-main !important;
+    color: var(--color-black) !important;
     text-decoration: none;
     line-height: 1.4;
 
     &:hover {
-      color: $color-red-primary !important;
+      color: var(--color-red-primary) !important;
       text-decoration: none;
     }
   }
 
-  /* Pipe separator */
+  // Pipe separator
   &-sep {
     font-size: 13px;
     font-weight: 400;
-    color: $color-text-muted;
+    color: var(--color-gray-dark);
     user-select: none;
     line-height: 1.4;
   }
 
-  /* "Your Privacy Choices" — red + blue/white toggle icon */
+  // Privacy link & Toggle icon
   &-privacy-link {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     font-size: 13px;
     font-weight: 700;
-    color: $color-red-bright !important;
+    color: var(--color-red-primary) !important;
     text-decoration: none;
     line-height: 1.4;
 
     &:hover {
       text-decoration: underline;
-      color: $color-red-dark !important;
+      color: var(--color-red-dark);
     }
 
     &::after {
@@ -108,9 +97,9 @@ $breakpoint-md: 768px;
       width: 32px;
       height: 18px;
       flex-shrink: 0;
-      background-color: $color-border; /* remove once background-image is set */
+      background-color: var(--color-white); 
       border-radius: 9px;
-      background-image: none; /* e.g. url('/icons/privacy-choices-toggle.svg'); */
+      background-image: none; // e.g. url('/icons/privacy-choices-toggle.svg');
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
@@ -118,18 +107,17 @@ $breakpoint-md: 768px;
     }
   }
 
-  /* "Cookie Consent Options" — small gray link/text */
+  // Cookie Consent Options link
   &-cookie-link {
     font-size: 12px;
     font-weight: 400;
-    color: $color-text-cookie;
+    color: var(--color-gray-dark);
     text-decoration: none;
     margin: 0;
     padding-right: 30px;
   }
 
-  /* ── Copyright section ───────────────────────────────────── */
-  
+  // Copyright Section
   &-copyright {
     display: flex;
     flex-direction: column;
@@ -140,9 +128,9 @@ $breakpoint-md: 768px;
     margin: 0;
     font-size: 12px;
     line-height: 1.6;
-    color: $color-text-dark-gray;
+    color: var(--color-gray-dark);
 
-    @media (max-width: $breakpoint-md) {
+    @media (max-width: $screen-md) {
       font-size: 11px;
     }
   }
