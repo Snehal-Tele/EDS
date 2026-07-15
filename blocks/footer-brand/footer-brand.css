@@ -1,17 +1,17 @@
 .footer-brand {
-    background: #f5f5f5;
-    padding: 48px 24px 60px;
+    background: #f3f3f3;
+    padding: 60px 32px 80px;
   }
   
   .footer-brand-wrapper {
-    max-width: 1280px;
+    max-width: 1800px;
     margin: 0 auto;
     text-align: center;
   }
   
-  /* -------------------------------- */
+  /* ------------------------------- */
   /* Logo */
-  /* -------------------------------- */
+  /* ------------------------------- */
   
   .footer-brand-logo {
     margin-bottom: 48px;
@@ -22,46 +22,47 @@
   }
   
   .footer-brand-logo img {
-    width: 280px;
+    width: 270px;
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 0 auto;
   }
   
-  /* -------------------------------- */
+  /* ------------------------------- */
   /* Disclaimer */
-  /* -------------------------------- */
+  /* ------------------------------- */
   
   .footer-brand-disclaimer {
-    margin: 0 auto 32px;
     max-width: 1800px;
+    margin: 0 auto 42px;
   
+    color: #777;
     font-size: 16px;
     line-height: 1.7;
-    color: #666;
+    font-weight: 400;
   }
   
-  /* -------------------------------- */
+  /* ------------------------------- */
   /* Copyright */
-  /* -------------------------------- */
+  /* ------------------------------- */
   
   .footer-brand-copyright {
-    margin: 0 0 28px;
+    margin: 0 0 32px;
   
-    font-size: 16px;
     color: #777;
+    font-size: 16px;
+    font-weight: 400;
   }
   
-  /* -------------------------------- */
-  /* Links */
-  /* -------------------------------- */
+  /* ------------------------------- */
+  /* Footer links */
+  /* ------------------------------- */
   
   .footer-brand-links {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 24px;
+    gap: 22px;
   }
   
   .footer-brand-link {
@@ -80,31 +81,21 @@
     font-size: 20px;
   }
   
-  /* -------------------------------- */
+  /* ------------------------------- */
   /* Mobile */
-  /* -------------------------------- */
+  /* ------------------------------- */
   
   @media (max-width: 768px) {
     .footer-brand {
-      padding: 40px 20px;
-    }
-  
-    .footer-brand-logo {
-      margin-bottom: 32px;
+      padding: 40px 20px 60px;
     }
   
     .footer-brand-logo img {
-      width: 200px;
+      width: 180px;
     }
   
-    .footer-brand-disclaimer {
-      font-size: 14px;
-    }
-  
-    .footer-brand-copyright {
-      font-size: 14px;
-    }
-  
+    .footer-brand-disclaimer,
+    .footer-brand-copyright,
     .footer-brand-link {
       font-size: 14px;
     }

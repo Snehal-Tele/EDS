@@ -9,6 +9,8 @@ export default function decorate(block) {
     const privacyRow = rows[3];
     const legalRow = rows[4];
   
+    block.innerHTML = '';
+  
     const wrapper = document.createElement('div');
     wrapper.className = 'footer-brand-wrapper';
   
@@ -31,9 +33,9 @@ export default function decorate(block) {
   
     /* Copyright */
   
-    const copyright = document.createElement('p');
-    copyright.className = 'footer-brand-copyright';
-    copyright.textContent = copyrightRow.textContent.trim();
+    const copy = document.createElement('p');
+    copy.className = 'footer-brand-copyright';
+    copy.textContent = copyrightRow.textContent.trim();
   
     /* Links */
   
@@ -63,10 +65,9 @@ export default function decorate(block) {
     wrapper.append(
       logoContainer,
       disclaimer,
-      copyright,
+      copy,
       links,
     );
   
-    block.innerHTML = '';
     block.append(wrapper);
   }
