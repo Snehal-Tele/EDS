@@ -110,6 +110,7 @@
     inset: unset;
   }
   .cardv2-content {
+    box-sizing: border-box;
     width: 100%;
     padding: 24px 20px;
     background: var(--color-black);
