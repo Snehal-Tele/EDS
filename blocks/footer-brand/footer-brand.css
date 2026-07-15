@@ -3,7 +3,7 @@
     box-sizing: border-box;
     background: var(--color-white, #fff);
     position: fixed;
-    bottom: 0;
+    bottom: 40px;
     left: 0;
     right: 0;
     z-index: 100;
