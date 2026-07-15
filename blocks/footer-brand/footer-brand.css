@@ -4,8 +4,8 @@
     background: var(--color-white);
     position: fixed;
     bottom: 40px;
-    left: 27px;
-    right: 27px;
+    left: 0;
+    right: 0;
     z-index: 100;
   }
    
@@ -16,6 +16,8 @@
     text-align: center;
     gap: 20px;
     width:100%;
+    margin-left: 24px;
+    margin-right: 24px;
   }
    
   /* ── Logo + wordmark row ─────────────────────────────────── */
