@@ -1,7 +1,7 @@
 
 .footer-pref {
     border-top: 1px solid var(--color-white);
-    padding: 24px 40px;
+    padding: 38px 64px;
     width: 100%;
     box-sizing: border-box;
   }
@@ -41,7 +41,6 @@
    
   .footer-pref-nav-link {
     font-size: 13px;
-    font-weight: 700;
     color: var(--color-black) !important;
     text-decoration: none;
     line-height: 1.4;
@@ -75,7 +74,6 @@
     align-items: center;
     gap: 6px;
     font-size: 13px;
-    font-weight: 700;
     color: var(--color-red-primary) !important;
     text-decoration: none;
     line-height: 1.4;
