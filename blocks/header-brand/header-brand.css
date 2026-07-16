@@ -246,6 +246,65 @@
     color: #fff;
   }
    
+  .header-brand-account-wrap {
+    position: relative;
+  }
+   
+  .header-brand-account-panel {
+    display: none;
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    min-width: 220px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    box-shadow: 0 12px 24px rgb(0 0 0 / 12%);
+    padding: 16px;
+    z-index: 90;
+  }
+   
+  .header-brand-account-wrap.is-open .header-brand-account-panel {
+    display: block;
+  }
+   
+  .header-brand-account-welcome {
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+  }
+   
+  .header-brand-account-link {
+    display: block;
+    padding: 6px 0;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+  }
+   
+  .header-brand-account-link:hover {
+    color: #cc0000;
+    text-decoration: underline;
+  }
+   
+  .header-brand-account-logout {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 6px 0;
+    margin-top: 6px;
+    border-top: 1px solid #e5e5e5;
+    background: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    font-size: 14px;
+    font-family: inherit;
+    color: #cc0000;
+    cursor: pointer;
+  }
+   
   /* ── Mobile-only triggers (hidden above 768px) ───────────── */
    
   .header-brand-mobile-actions {

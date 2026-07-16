@@ -1,4 +1,3 @@
-
 export default function decorate(block) {
     const rows = [...block.children];
     const [logoRow, ...navRows] = rows;
@@ -111,12 +110,17 @@ export default function decorate(block) {
    
     navItems.forEach((item) => {
       if (item.type === 'link') {
-        const a = document.createElement('a');
-        a.href = item.href || '#';
-        a.className = 'header-brand-nav-link';
-        a.textContent = item.label;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'header-brand-nav-link';
+        btn.textContent = item.label;
+        if (item.href) {
+          btn.addEventListener('click', () => {
+            window.location.href = item.href;
+          });
+        }
         // Downloads goes with the primary links; Search/Log In are buttons (below)
-        linksWrap.append(a);
+        linksWrap.append(btn);
         return;
       }
    
@@ -138,16 +142,50 @@ export default function decorate(block) {
    
       // button type: Search / Log In / etc.
       const lower = item.label.toLowerCase();
-      const btn = document.createElement('button');
-      btn.type = 'button';
    
       if (lower.includes('search')) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
         btn.className = 'header-brand-search-btn';
         btn.innerHTML = `<span class="header-brand-search-icon" aria-hidden="true"></span><span>${item.label}</span>`;
-      } else {
-        btn.className = 'header-brand-login-btn';
-        btn.textContent = item.label;
+        actionsWrap.append(btn);
+        return;
       }
+   
+      if (lower.includes('log in') || lower.includes('login')) {
+        const wrap = document.createElement('div');
+        wrap.className = 'header-brand-account-wrap';
+   
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'header-brand-login-btn';
+        btn.setAttribute('aria-expanded', 'false');
+        btn.textContent = item.label;
+   
+        const panel = document.createElement('div');
+        panel.className = 'header-brand-account-panel';
+        panel.innerHTML = `
+  <p class="header-brand-account-welcome">Welcome back</p>
+  <a class="header-brand-account-link" href="/downloads#myDownloads">Go To My Downloads</a>
+  <a class="header-brand-account-link" href="/account">My Account</a>
+  <button type="button" class="header-brand-account-logout">Log Out</button>
+        `;
+   
+        btn.addEventListener('click', () => {
+          const isOpen = wrap.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', String(isOpen));
+        });
+   
+        wrap.append(btn, panel);
+        actionsWrap.append(wrap);
+        return;
+      }
+   
+      // fallback for any other unrecognized action row
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'header-brand-login-btn';
+      btn.textContent = item.label;
       actionsWrap.append(btn);
     });
    
@@ -246,11 +284,16 @@ export default function decorate(block) {
       row.className = 'header-brand-mobile-item';
    
       if (item.type === 'link') {
-        const a = document.createElement('a');
-        a.href = item.href || '#';
-        a.className = 'header-brand-mobile-link';
-        a.textContent = item.label;
-        row.append(a);
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'header-brand-mobile-link';
+        btn.textContent = item.label;
+        if (item.href) {
+          btn.addEventListener('click', () => {
+            window.location.href = item.href;
+          });
+        }
+        row.append(btn);
       } else if (item.type === 'trigger') {
         const btn = document.createElement('button');
         btn.type = 'button';
@@ -335,13 +378,18 @@ export default function decorate(block) {
       });
     });
    
-    // close mega-menu when clicking outside
+    // close mega-menu / account panel when clicking outside
     document.addEventListener('click', (e) => {
       if (!block.contains(e.target)) {
         [...desktopNav.querySelectorAll('.header-brand-trigger-wrap.is-open')].forEach((wrap) => {
           wrap.classList.remove('is-open');
           wrap.querySelector('.header-brand-nav-trigger').setAttribute('aria-expanded', 'false');
         });
+        const accountWrap = desktopNav.querySelector('.header-brand-account-wrap.is-open');
+        if (accountWrap) {
+          accountWrap.classList.remove('is-open');
+          accountWrap.querySelector('.header-brand-login-btn').setAttribute('aria-expanded', 'false');
+        }
       }
     });
    
