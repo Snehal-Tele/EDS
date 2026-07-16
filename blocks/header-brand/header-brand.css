@@ -1,7 +1,6 @@
 .header-brand-wrapper {
     --nav-red: #eb0a1e;
     --nav-black: #1a1a1a;
-    --nav-height: 72px;
     position: sticky;
     top: 0;
     z-index: 200;
@@ -19,7 +18,7 @@
   .nav-brand {
     display: flex;
     align-items: center;
-    height: var(--nav-height);
+    min-height: 72px;
     gap: 32px;
     font-family: 'Helvetica Neue', Arial, sans-serif;
   }
@@ -68,11 +67,13 @@
   }
    
   .nav-section {
-    position: relative;
+    /* intentionally not positioned — the mega menu anchors to
+       .header-brand-wrapper instead, see below, so it always sits
+       directly below the real header regardless of its rendered height */
   }
    
-  .nav-link,
-  .nav-dropdown-trigger {
+  .header-brand-wrapper .nav-link,
+  .header-brand-wrapper .nav-dropdown-trigger {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -80,8 +81,8 @@
     border-radius: 999px;
     font-size: 15px;
     font-weight: 600;
-    color: var(--nav-black);
-    text-decoration: none;
+    color: var(--nav-black) !important;
+    text-decoration: none !important;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -89,9 +90,15 @@
     transition: background-color 0.15s ease, color 0.15s ease;
   }
    
-  .nav-link:hover,
-  .nav-dropdown-trigger:hover {
+  .header-brand-wrapper .nav-link:visited,
+  .header-brand-wrapper .nav-dropdown-trigger:visited {
+    color: var(--nav-black) !important;
+  }
+   
+  .header-brand-wrapper .nav-link:hover,
+  .header-brand-wrapper .nav-dropdown-trigger:hover {
     background: #f2f2f2;
+    color: var(--nav-black) !important;
   }
    
   .nav-caret {
@@ -112,10 +119,11 @@
   /* ---------- Mega menu ---------- */
   .nav-mega {
     display: none;
-    position: fixed;
+    position: absolute;
     left: 0;
-    right: 0;
-    top: var(--nav-height);
+    top: 100%; /* 100% of .header-brand-wrapper's own box, so it's always
+                  exactly below the header, however tall it renders */
+    width: 100%;
     background: #fff;
     border-top: 1px solid #ececec;
     box-shadow: 0 16px 32px rgb(0 0 0 / 8%);
@@ -141,9 +149,13 @@
     gap: 6px;
     font-size: 17px;
     font-weight: 700;
-    color: var(--nav-black);
-    text-decoration: none;
+    color: var(--nav-black) !important;
+    text-decoration: none !important;
     margin: 0 0 16px;
+  }
+   
+  .nav-mega-col-title:visited {
+    color: var(--nav-black) !important;
   }
    
   .nav-mega-col-title-link {
@@ -164,15 +176,16 @@
     gap: 12px;
   }
    
-  .nav-mega-col-list li a {
-    color: #444;
-    text-decoration: none;
+  .nav-mega-col-list li a,
+  .nav-mega-col-list li a:visited {
+    color: #444 !important;
+    text-decoration: none !important;
     font-size: 15px;
   }
    
   .nav-mega-col-list li a:hover {
-    color: var(--nav-red);
-    text-decoration: underline;
+    color: var(--nav-red) !important;
+    text-decoration: underline !important;
   }
    
   .nav-mega-col-subhead {
@@ -232,7 +245,8 @@
     padding: 6px 4px;
   }
    
-  .nav-login {
+  .nav-login,
+  .nav-login:visited {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -241,14 +255,14 @@
     border-radius: 999px;
     font-size: 15px;
     font-weight: 600;
-    color: var(--nav-black);
-    text-decoration: none;
+    color: var(--nav-black) !important;
+    text-decoration: none !important;
     transition: background-color 0.15s ease, color 0.15s ease;
   }
    
   .nav-login:hover {
     background: var(--nav-black);
-    color: #fff;
+    color: #fff !important;
   }
    
   /* ---------- Hamburger (mobile) ---------- */
