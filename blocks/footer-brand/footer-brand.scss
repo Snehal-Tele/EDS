@@ -1,6 +1,6 @@
 // --- Variables ---
 @use '../../styles/tokens' as *;
-$screen-md: 768px;
+
 
 .footer-brand {
   width: 100%;
@@ -14,7 +14,7 @@ $screen-md: 768px;
   padding-right: 24px;
   z-index: 100;
 
-  @media (max-width: $screen-md) {
+  @media (max-width: $bp-sm) {
     padding: 32px 16px;
   }
 
@@ -27,7 +27,7 @@ $screen-md: 768px;
     gap: 20px;
     width: 100%;
 
-    @media (max-width: $screen-md) {
+    @media (max-width: $bp-sm) {
       align-items: flex-start;
       text-align: left;
     }
@@ -48,7 +48,7 @@ $screen-md: 768px;
       height: 48px;
       object-fit: contain;
 
-      @media (max-width: $screen-md) {
+      @media (max-width: $bp-sm) {
         width: 180px;
         height: 48px;
       }
@@ -68,7 +68,7 @@ $screen-md: 768px;
       margin: 0;
     }
 
-    @media (max-width: $screen-md) {
+    @media (max-width: $bp-sm) {
       font-size: 28px;
       opacity: .6;
     }
@@ -83,7 +83,7 @@ $screen-md: 768px;
     width: 100%;
     opacity: .6;
 
-    @media (max-width: $screen-md) {
+    @media (max-width: $bp-sm) {
       font-size: 12px;
       opacity: .6;
     }
@@ -97,7 +97,7 @@ $screen-md: 768px;
     width: 100%;
     opacity: .6;
 
-    @media (max-width: $screen-md) {
+    @media (max-width: $bp-sm) {
       font-size: 12px;
       opacity: .6;
     }
@@ -109,7 +109,7 @@ $screen-md: 768px;
     align-items: center;
     gap: 10px;
 
-    @media (max-width: $screen-md) {
+    @media (max-width: $bp-sm) {
       align-self: center;
     }
   }
@@ -126,7 +126,7 @@ $screen-md: 768px;
       text-decoration: none;
     }
 
-    @media (max-width: $screen-md) {
+    @media (max-width: $bp-sm) {
       font-size: 12px;
       opacity: .6;
     }
@@ -139,7 +139,7 @@ $screen-md: 768px;
     color: #ccc;
     user-select: none;
 
-    @media (max-width: $screen-md) {
+    @media (max-width: $bp-sm) {
       font-size: 12px;
       opacity: .6;
     }
