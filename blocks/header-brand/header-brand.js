@@ -2,20 +2,38 @@ function isDecorativeRow(cellText) {
     return cellText === '';
   }
    
+  /**
+  * Find the label text and href for an <li>, ignoring any nested <ul>
+  * (a column's sub-list) and any whitespace-only text nodes that Word/Docs
+  * often leaves between elements. Works whether the label is a bare text
+  * node, wrapped in <p>/<strong>/<div>, or an <a>.
+  */
+  function getLabelAndHref(li) {
+    const directLink = li.querySelector(':scope > a, :scope > p > a, :scope > strong > a, :scope > div > a');
+    if (directLink) {
+      return { label: directLink.textContent.trim(), href: directLink.href };
+    }
+    for (const node of li.childNodes) {
+      if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'UL') continue;
+      const text = node.textContent?.trim();
+      if (text) return { label: text, href: '#' };
+    }
+    return { label: '', href: '#' };
+  }
+   
   /** Build one column of the Guidelines mega-menu from a top-level <li> */
   function buildMegaColumn(li) {
     const col = document.createElement('div');
     col.className = 'nav-mega-col';
    
-    const directLink = li.querySelector(':scope > a');
     const nestedList = li.querySelector(':scope > ul');
-    const label = directLink ? directLink.textContent.trim() : li.firstChild?.textContent?.trim();
+    const { label, href } = getLabelAndHref(li);
    
     if (!nestedList) {
       // Simple single-link column (e.g. "Overview")
       const a = document.createElement('a');
       a.className = 'nav-mega-col-title nav-mega-col-title-link';
-      a.href = directLink ? directLink.href : '#';
+      a.href = href;
       a.innerHTML = `${label} <span class="nav-chevron" aria-hidden="true">&#8250;</span>`;
       col.append(a);
       return col;
@@ -24,7 +42,7 @@ function isDecorativeRow(cellText) {
     // Column with a heading + list of links
     const heading = document.createElement('a');
     heading.className = 'nav-mega-col-title';
-    heading.href = directLink ? directLink.href : '#';
+    heading.href = href;
     heading.innerHTML = `${label} <span class="nav-chevron" aria-hidden="true">&#8250;</span>`;
     col.append(heading);
    
@@ -32,9 +50,8 @@ function isDecorativeRow(cellText) {
     list.className = 'nav-mega-col-list';
    
     [...nestedList.children].forEach((item) => {
-      const itemLink = item.querySelector(':scope > a');
       const subList = item.querySelector(':scope > ul');
-      const itemLabel = itemLink ? itemLink.textContent.trim() : item.firstChild?.textContent?.trim();
+      const { label: itemLabel, href: itemHref } = getLabelAndHref(item);
    
       if (subList) {
         // Bold sub-heading (e.g. "Sonic") followed by its own links
@@ -44,18 +61,18 @@ function isDecorativeRow(cellText) {
         list.append(subHeading);
    
         [...subList.children].forEach((subItem) => {
-          const subA = subItem.querySelector('a') || subItem;
+          const { label: subLabel, href: subHref } = getLabelAndHref(subItem);
           const li2 = document.createElement('li');
           const a2 = document.createElement('a');
-          a2.href = subA.href || '#';
-          a2.textContent = subA.textContent.trim();
+          a2.href = subHref;
+          a2.textContent = subLabel;
           li2.append(a2);
           list.append(li2);
         });
       } else {
         const li2 = document.createElement('li');
         const a2 = document.createElement('a');
-        a2.href = itemLink ? itemLink.href : '#';
+        a2.href = itemHref;
         a2.textContent = itemLabel;
         li2.append(a2);
         list.append(li2);
@@ -96,11 +113,11 @@ function isDecorativeRow(cellText) {
     btn.setAttribute('aria-expanded', 'false');
     btn.setAttribute('aria-label', 'Search');
     btn.innerHTML = `
-      <svg class="nav-search-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
-        <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
-        <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      <span>Search</span>`;
+  <svg class="nav-search-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+  <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+  <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  <span>Search</span>`;
    
     const input = document.createElement('input');
     input.type = 'search';

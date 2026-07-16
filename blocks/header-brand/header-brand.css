@@ -45,7 +45,6 @@
     width: 104px;
     height: 44px;
     object-fit: contain;
-    filter: brightness(0) invert(1);
   }
    
   .nav-logo-text {
@@ -83,10 +82,10 @@
     color: var(--nav-black) !important;
     text-decoration: none !important;
     background: transparent;
-    border: none;
+    border: 1px solid transparent;
     cursor: pointer;
     white-space: nowrap;
-    transition: background-color 0.15s ease, color 0.15s ease;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
   }
    
   .header-brand-wrapper .nav-link:visited,
@@ -98,6 +97,7 @@
   .header-brand-wrapper .nav-dropdown-trigger:hover {
     background: #f2f2f2;
     color: var(--nav-black) !important;
+    border-color: var(--nav-black);
   }
    
   .nav-caret {
@@ -108,7 +108,8 @@
    
   .nav-dropdown-trigger[aria-expanded='true'] {
     background: var(--nav-black);
-    color: #fff;
+    color: #fff !important;
+    border-color: var(--nav-black);
   }
    
   .nav-dropdown-trigger[aria-expanded='true'] .nav-caret {
@@ -119,12 +120,17 @@
   .nav-mega {
     display: none;
     position: absolute;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     top: 100%; /* 100% of .header-brand-wrapper's own box, so it's always
                   exactly below the header, however tall it renders */
-    width: 100%;
+    width: max-content;
+    min-width: 640px;
+    max-width: 960px;
     background: #fff;
-    border-top: 1px solid #ececec;
+    border: 1px solid #ececec;
+    border-radius: 12px;
+    margin-top: 8px;
     box-shadow: 0 16px 32px rgb(0 0 0 / 8%);
     z-index: 190;
   }
@@ -134,23 +140,26 @@
   }
    
   .nav-mega-inner {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 40px 32px;
+    padding: 32px;
     display: grid;
-    grid-template-columns: repeat(4, minmax(180px, 1fr));
-    gap: 32px;
+    grid-template-columns: repeat(4, minmax(140px, 1fr));
+    gap: 24px;
+  }
+   
+  .nav-mega-col {
+    min-width: 0;
   }
    
   .nav-mega-col-title {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 700;
     color: var(--nav-black) !important;
     text-decoration: none !important;
-    margin: 0 0 16px;
+    margin: 0 0 14px;
+    white-space: nowrap;
   }
    
   .nav-mega-col-title:visited {
@@ -212,12 +221,18 @@
     align-items: center;
     gap: 6px;
     background: none;
-    border: none;
+    border: 1px solid transparent;
+    border-radius: 999px;
     font-size: 15px;
     font-weight: 600;
     color: var(--nav-black);
     cursor: pointer;
     padding: 8px;
+    transition: border-color 0.15s ease;
+  }
+   
+  .nav-search-toggle:hover {
+    border-color: var(--nav-black);
   }
    
   .nav-search-icon {
@@ -316,7 +331,7 @@
       align-items: flex-start;
       width: 100%;
       position: fixed;
-      top: var(--nav-height);
+      top: 72px;
       left: 0;
       background: #fff;
       padding: 16px 24px;
@@ -324,7 +339,7 @@
     }
    
     .nav-open .nav-actions {
-      top: calc(var(--nav-height) + 320px);
+      top: calc(72px + 320px);
     }
    
     .nav-mega-inner {
@@ -334,7 +349,14 @@
    
     .nav-mega {
       position: static;
+      transform: none;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+      border-radius: 0;
+      border: none;
       box-shadow: none;
-      border-top: none;
+      border-top: 1px solid #ececec;
+      margin-top: 0;
     }
   }
