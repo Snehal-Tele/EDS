@@ -64,12 +64,6 @@
     flex: 1;
   }
    
-  .nav-section {
-    /* intentionally not positioned — the mega menu anchors to
-       .header-brand-wrapper instead, see below, so it always sits
-       directly below the real header regardless of its rendered height */
-  }
-   
   .header-brand-wrapper .nav-link,
   .header-brand-wrapper .nav-dropdown-trigger {
     display: inline-flex;
@@ -77,7 +71,7 @@
     gap: 6px;
     padding: 10px 18px;
     border-radius: 999px;
-    margin-left: 20px;
+    margin-left: 30px;
     font-size: 15px;
     font-weight: 600;
     color: var(--nav-black) !important;
