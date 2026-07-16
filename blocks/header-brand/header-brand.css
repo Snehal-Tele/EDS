@@ -75,8 +75,9 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 20px 18px;
+    padding: 10px 18px;
     border-radius: 999px;
+    margin-left: 20px;
     font-size: 15px;
     font-weight: 600;
     color: var(--nav-black) !important;
