@@ -35,16 +35,15 @@
    
   .nav-logo picture {
     display: flex;
-    background: var(--nav-red);
-    width: 44px;
+    width: 104px;
     height: 44px;
     align-items: center;
     justify-content: center;
   }
    
   .nav-logo picture img {
-    width: 32px;
-    height: 32px;
+    width: 104px;
+    height: 44px;
     object-fit: contain;
     filter: brightness(0) invert(1);
   }
