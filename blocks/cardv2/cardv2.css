@@ -4,6 +4,11 @@
   padding: 0 24px;
   max-height: 560px;
 }
+@media (max-width: 768px) {
+  .cardv2-wrapper {
+    padding: 0;
+  }
+}
 
 .cardv2 {
   position: relative;
@@ -13,10 +18,23 @@
   display: flex;
   align-items: stretch;
 }
+@media (max-width: 768px) {
+  .cardv2 {
+    flex-direction: column;
+    min-height: unset;
+  }
+}
 .cardv2-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
+}
+@media (max-width: 768px) {
+  .cardv2-bg {
+    position: relative;
+    height: 240px;
+    inset: unset;
+  }
 }
 .cardv2-bg picture {
   display: block;
@@ -40,6 +58,15 @@
   background: transparent;
   color: var(--color-white);
 }
+@media (max-width: 768px) {
+  .cardv2-content {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 24px 20px;
+    background: var(--color-black);
+    margin: 0 !important;
+  }
+}
 .cardv2--text-right .cardv2-content {
   margin-left: auto;
 }
@@ -53,11 +80,26 @@
   color: var(--color-white);
   line-height: 1.2;
 }
+@media (max-width: 768px) {
+  .cardv2-heading {
+    font-size: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .cardv2-heading {
+    font-size: 18px;
+  }
+}
 .cardv2-text {
   margin: 0;
   font-size: 14px;
   line-height: 1.65;
   color: var(--color-white);
+}
+@media (max-width: 768px) {
+  .cardv2-text {
+    font-size: 13px;
+  }
 }
 .cardv2-text + .cardv2-text {
   font-size: 12px;
@@ -94,38 +136,5 @@
 }
 .cardv2-pdf-link:hover {
   color: var(--link-hover-color) !important;
-}
-
-@media (max-width: 768px) {
-  .cardv2-wrapper {
-    padding: 0;
-  }
-  .cardv2 {
-    flex-direction: column;
-    min-height: unset;
-  }
-  .cardv2-bg {
-    position: relative;
-    height: 240px;
-    inset: unset;
-  }
-  .cardv2-content {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 24px 20px;
-    background: var(--color-black);
-    margin: 0 !important;
-  }
-  .cardv2-heading {
-    font-size: 20px;
-  }
-  .cardv2-text {
-    font-size: 13px;
-  }
-}
-@media (max-width: 480px) {
-  .cardv2-heading {
-    font-size: 18px;
-  }
 }
 /*# sourceMappingURL=cardv2.css.map */

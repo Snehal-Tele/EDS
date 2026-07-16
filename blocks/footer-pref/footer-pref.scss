@@ -3,7 +3,7 @@ $screen-md: 768px;
 
 .footer-pref {
   border-top: 1px solid var(--color-white);
-  padding: 24px 40px;
+  padding: 38px 64px;
   width: 100%;
   box-sizing: border-box;
   position: fixed;
@@ -16,7 +16,7 @@ $screen-md: 768px;
     padding: 20px 16px;
   }
 
-  // Bar container split
+  // Layout bar mapping
   &-bar {
     display: flex;
     align-items: flex-start;
@@ -31,7 +31,6 @@ $screen-md: 768px;
       margin-bottom: 16px;
     }
 
-    // Left menu links
     &-left {
       display: flex;
       align-items: center;
@@ -39,7 +38,6 @@ $screen-md: 768px;
       flex-wrap: wrap;
     }
 
-    // Right privacy container
     &-right {
       display: flex;
       flex-direction: column;
@@ -52,10 +50,9 @@ $screen-md: 768px;
     }
   }
 
-  // Navigation Links
+  // Standard Links
   &-nav-link {
     font-size: 13px;
-    font-weight: 700;
     color: var(--color-black) !important;
     text-decoration: none;
     line-height: 1.4;
@@ -66,7 +63,7 @@ $screen-md: 768px;
     }
   }
 
-  // Pipe separator
+  // Pipe separator formatting
   &-sep {
     font-size: 13px;
     font-weight: 400;
@@ -75,19 +72,18 @@ $screen-md: 768px;
     line-height: 1.4;
   }
 
-  // Privacy link & Toggle icon
+  // Privacy Actions & Toggle Indicator
   &-privacy-link {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     font-size: 13px;
-    font-weight: 700;
     color: var(--color-red-primary) !important;
     text-decoration: none;
     line-height: 1.4;
 
     &:hover {
-      text-decoration: underline;
+      text-decoration: none;
       color: var(--color-red-dark);
     }
 
@@ -97,7 +93,7 @@ $screen-md: 768px;
       width: 32px;
       height: 18px;
       flex-shrink: 0;
-      background-color: var(--color-white); 
+      background-color: var(--color-white);
       border-radius: 9px;
       background-image: none; // e.g. url('/icons/privacy-choices-toggle.svg');
       background-size: contain;
@@ -107,7 +103,7 @@ $screen-md: 768px;
     }
   }
 
-  // Cookie Consent Options link
+  // Cookie settings link
   &-cookie-link {
     font-size: 12px;
     font-weight: 400;
@@ -117,7 +113,7 @@ $screen-md: 768px;
     padding-right: 30px;
   }
 
-  // Copyright Section
+  // Copyright Copy lines
   &-copyright {
     display: flex;
     flex-direction: column;
