@@ -91,7 +91,7 @@
   .header-brand-wrapper .nav-link:hover,
   .header-brand-wrapper .nav-dropdown-trigger:hover {
     
-    color: #fdfafaf2 !important;
+    color: var(--nav-black) !important;
     border-color: var(--nav-black);
   }
    
@@ -117,8 +117,7 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 100%; /* 100% of .header-brand-wrapper's own box, so it's always
-                  exactly below the header, however tall it renders */
+    top: 100%; 
     width: max-content;
     min-width: 640px;
     max-width: 960px;
