@@ -1,423 +1,244 @@
-export default function decorate(block) {
-    const rows = [...block.children];
-    const [logoRow, ...navRows] = rows;
-   
-    const brandLink = buildBrandLink(logoRow);
-    const navItems = navRows.map(parseNavRow);
-   
-    const bar = document.createElement('div');
-    bar.className = 'header-brand-bar';
-   
-    const desktopNav = buildDesktopNav(navItems);
-    const mobileTriggers = buildMobileTriggers();
-    const mobileMenu = buildMobileMenu(brandLink.cloneNode(true), navItems);
-   
-    bar.append(brandLink, desktopNav, mobileTriggers);
-   
-    block.replaceChildren(bar, mobileMenu);
-   
-    wireInteractions(block, desktopNav, mobileTriggers, mobileMenu);
+function isDecorativeRow(cellText) {
+    return cellText === '';
   }
    
-  // ── Parsing helpers ───────────────────────────────────────────
+  /** Build one column of the Guidelines mega-menu from a top-level <li> */
+  function buildMegaColumn(li) {
+    const col = document.createElement('div');
+    col.className = 'nav-mega-col';
    
-  function buildBrandLink(logoRow) {
-    const cells = logoRow ? [...logoRow.children] : [];
-    const iconCell = cells.find((c) => c.querySelector('picture'));
-    const wordmarkCell = cells.find((c) => c !== iconCell);
+    const directLink = li.querySelector(':scope > a');
+    const nestedList = li.querySelector(':scope > ul');
+    const label = directLink ? directLink.textContent.trim() : li.firstChild?.textContent?.trim();
    
-    const link = document.createElement('a');
-    link.href = '/';
-    link.className = 'header-brand-logo-row';
-    link.setAttribute('aria-label', 'Toyota home');
-   
-    if (iconCell) {
-      iconCell.classList.add('header-brand-icon');
-      link.append(iconCell);
+    if (!nestedList) {
+      // Simple single-link column (e.g. "Overview")
+      const a = document.createElement('a');
+      a.className = 'nav-mega-col-title nav-mega-col-title-link';
+      a.href = directLink ? directLink.href : '#';
+      a.innerHTML = `${label} <span class="nav-chevron" aria-hidden="true">&#8250;</span>`;
+      col.append(a);
+      return col;
     }
-    if (wordmarkCell) {
-      wordmarkCell.classList.add('header-brand-wordmark');
-      link.append(wordmarkCell);
-    }
-    return link;
+   
+    // Column with a heading + list of links
+    const heading = document.createElement('a');
+    heading.className = 'nav-mega-col-title';
+    heading.href = directLink ? directLink.href : '#';
+    heading.innerHTML = `${label} <span class="nav-chevron" aria-hidden="true">&#8250;</span>`;
+    col.append(heading);
+   
+    const list = document.createElement('ul');
+    list.className = 'nav-mega-col-list';
+   
+    [...nestedList.children].forEach((item) => {
+      const itemLink = item.querySelector(':scope > a');
+      const subList = item.querySelector(':scope > ul');
+      const itemLabel = itemLink ? itemLink.textContent.trim() : item.firstChild?.textContent?.trim();
+   
+      if (subList) {
+        // Bold sub-heading (e.g. "Sonic") followed by its own links
+        const subHeading = document.createElement('li');
+        subHeading.className = 'nav-mega-col-subhead';
+        subHeading.textContent = itemLabel;
+        list.append(subHeading);
+   
+        [...subList.children].forEach((subItem) => {
+          const subA = subItem.querySelector('a') || subItem;
+          const li2 = document.createElement('li');
+          const a2 = document.createElement('a');
+          a2.href = subA.href || '#';
+          a2.textContent = subA.textContent.trim();
+          li2.append(a2);
+          list.append(li2);
+        });
+      } else {
+        const li2 = document.createElement('li');
+        const a2 = document.createElement('a');
+        a2.href = itemLink ? itemLink.href : '#';
+        a2.textContent = itemLabel;
+        li2.append(a2);
+        list.append(li2);
+      }
+    });
+   
+    col.append(list);
+    return col;
   }
    
-  function firstLineText(row) {
-    const clone = row.cloneNode(true);
-    const ul = clone.querySelector('ul');
-    if (ul) ul.remove();
-    return clone.textContent.trim();
+  function buildMegaMenu(sourceList) {
+    const mega = document.createElement('div');
+    mega.className = 'nav-mega';
+    const inner = document.createElement('div');
+    inner.className = 'nav-mega-inner';
+   
+    [...sourceList.children].forEach((topLi) => {
+      inner.append(buildMegaColumn(topLi));
+    });
+   
+    mega.append(inner);
+    return mega;
   }
    
-  function parseChildList(ul) {
-    return [...ul.children].map((li) => {
-      const link = li.querySelector(':scope > a');
-      const childUl = li.querySelector(':scope > ul');
-      const clone = li.cloneNode(true);
-      const nestedUl = clone.querySelector('ul');
-      if (nestedUl) nestedUl.remove();
-      const label = link ? link.textContent.trim() : clone.textContent.trim();
-      const href = link ? link.getAttribute('href') : '#';
-      return {
-        label,
-        href,
-        children: childUl ? parseChildList(childUl) : [],
-      };
+  function closeAllDropdowns(nav) {
+    nav.querySelectorAll('.nav-dropdown-trigger[aria-expanded="true"]').forEach((btn) => {
+      btn.setAttribute('aria-expanded', 'false');
     });
   }
    
-  function parseNavRow(row) {
-    const nestedList = row.querySelector('ul');
-    const text = row.textContent.trim();
+  function buildSearch() {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'nav-search';
    
-    if (nestedList) {
-      const columns = [...nestedList.children].map((li) => {
-        const link = li.querySelector(':scope > a');
-        const childUl = li.querySelector(':scope > ul');
-        const clone = li.cloneNode(true);
-        const nestedUl = clone.querySelector('ul');
-        if (nestedUl) nestedUl.remove();
-        const label = link ? link.textContent.trim() : clone.textContent.trim();
-        const href = link ? link.getAttribute('href') : '#';
-        return {
-          label,
-          href,
-          items: childUl ? parseChildList(childUl) : [],
-        };
-      });
-      return { type: 'trigger', label: firstLineText(row), columns };
-    }
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'nav-search-toggle';
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'Search');
+    btn.innerHTML = `
+      <svg class="nav-search-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span>Search</span>`;
    
-    const directLink = row.querySelector('a');
-    if (directLink) {
-      return { type: 'link', label: directLink.textContent.trim(), href: directLink.getAttribute('href') };
-    }
+    const input = document.createElement('input');
+    input.type = 'search';
+    input.className = 'nav-search-input';
+    input.placeholder = 'Search brand.toyota.com';
    
-    return { type: 'button', label: text };
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      wrapper.classList.toggle('nav-search-open', !expanded);
+      if (!expanded) input.focus();
+    });
+   
+    wrapper.append(btn, input);
+    return wrapper;
   }
    
-  // ── Desktop nav + mega-menu ────────────────────────────────────
-   
-  function buildDesktopNav(navItems) {
+  export default async function decorate(block) {
+    const rows = [...block.children];
     const nav = document.createElement('nav');
-    nav.className = 'header-brand-nav';
+    nav.className = 'nav-brand';
+    nav.setAttribute('aria-label', 'Brand site header');
    
-    const linksWrap = document.createElement('div');
-    linksWrap.className = 'header-brand-nav-links';
+    // --- Row 0: brand / logo ---
+    const brandRow = rows[0];
+    if (brandRow) {
+      const brandWrap = document.createElement('a');
+      brandWrap.className = 'nav-logo';
+      brandWrap.href = '/';
+      brandWrap.setAttribute('aria-label', 'Toyota home');
    
-    const actionsWrap = document.createElement('div');
-    actionsWrap.className = 'header-brand-actions';
+      const picture = brandRow.querySelector('picture');
+      if (picture) brandWrap.append(picture.cloneNode(true));
    
-    navItems.forEach((item) => {
-      if (item.type === 'link') {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'header-brand-nav-link';
-        btn.textContent = item.label;
-        if (item.href) {
-          btn.addEventListener('click', () => {
-            window.location.href = item.href;
-          });
-        }
-        // Downloads goes with the primary links; Search/Log In are buttons (below)
-        linksWrap.append(btn);
-        return;
+      const brandText = [...brandRow.querySelectorAll('div')]
+        .map((d) => d.textContent.trim())
+        .find((t) => t && !picture?.closest('div')?.textContent.includes(t));
+      if (brandText) {
+        const span = document.createElement('span');
+        span.className = 'nav-logo-text';
+        span.textContent = brandText;
+        brandWrap.append(span);
+      }
+      nav.append(brandWrap);
+    }
+   
+    // --- Middle: nav sections list ---
+    const sections = document.createElement('ul');
+    sections.className = 'nav-sections';
+   
+    for (let i = 1; i < rows.length; i += 1) {
+      const row = rows[i];
+      const cells = [...row.children];
+      const firstCellText = cells[0]?.textContent.trim() ?? '';
+      if (isDecorativeRow(firstCellText)) continue;
+   
+      const label = firstCellText.toLowerCase();
+   
+      if (label === 'search') {
+        // handled after the list, appended to nav directly
+        continue;
       }
    
-      if (item.type === 'trigger') {
-        const wrap = document.createElement('div');
-        wrap.className = 'header-brand-trigger-wrap';
-   
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'header-brand-nav-trigger';
-        btn.setAttribute('aria-expanded', 'false');
-        btn.innerHTML = `<span>${item.label}</span><span class="header-brand-chevron" aria-hidden="true"></span>`;
-   
-        const megaMenu = buildMegaMenu(item.columns);
-        wrap.append(btn, megaMenu);
-        linksWrap.append(wrap);
-        return;
+      if (label === 'log in') {
+        continue;
       }
    
-      // button type: Search / Log In / etc.
-      const lower = item.label.toLowerCase();
+      const li = document.createElement('li');
+      li.className = 'nav-section';
    
-      if (lower.includes('search')) {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'header-brand-search-btn';
-        btn.innerHTML = `<span class="header-brand-search-icon" aria-hidden="true"></span><span>${item.label}</span>`;
-        actionsWrap.append(btn);
-        return;
-      }
+      const nestedList = cells[1]?.querySelector('ul');
+      const firstLink = cells[0].querySelector('a');
    
-      if (lower.includes('log in') || lower.includes('login')) {
-        const wrap = document.createElement('div');
-        wrap.className = 'header-brand-account-wrap';
+      if (nestedList) {
+        // Dropdown / mega-menu item (e.g. "Guidelines")
+        const trigger = document.createElement('button');
+        trigger.type = 'button';
+        trigger.className = 'nav-dropdown-trigger';
+        trigger.setAttribute('aria-expanded', 'false');
+        trigger.innerHTML = `${firstCellText} <span class="nav-caret" aria-hidden="true">&#94;</span>`;
    
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'header-brand-login-btn';
-        btn.setAttribute('aria-expanded', 'false');
-        btn.textContent = item.label;
-   
-        const panel = document.createElement('div');
-        panel.className = 'header-brand-account-panel';
-        panel.innerHTML = `
-  <p class="header-brand-account-welcome">Welcome back</p>
-  <a class="header-brand-account-link" href="/downloads#myDownloads">Go To My Downloads</a>
-  <a class="header-brand-account-link" href="/account">My Account</a>
-  <button type="button" class="header-brand-account-logout">Log Out</button>
-        `;
-   
-        btn.addEventListener('click', () => {
-          const isOpen = wrap.classList.toggle('is-open');
-          btn.setAttribute('aria-expanded', String(isOpen));
+        trigger.addEventListener('click', () => {
+          const expanded = trigger.getAttribute('aria-expanded') === 'true';
+          closeAllDropdowns(nav);
+          trigger.setAttribute('aria-expanded', String(!expanded));
         });
    
-        wrap.append(btn, panel);
-        actionsWrap.append(wrap);
-        return;
+        li.append(trigger, buildMegaMenu(nestedList));
+        li.classList.add('nav-section-has-mega');
+      } else {
+        const a = document.createElement('a');
+        a.className = 'nav-link';
+        a.href = firstLink ? firstLink.href : '#';
+        a.textContent = firstCellText;
+        li.append(a);
       }
    
-      // fallback for any other unrecognized action row
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'header-brand-login-btn';
-      btn.textContent = item.label;
-      actionsWrap.append(btn);
-    });
+      sections.append(li);
+    }
+    nav.append(sections);
    
-    nav.append(linksWrap, actionsWrap);
-    return nav;
-  }
+    // --- Search + Log In (right side actions) ---
+    const actions = document.createElement('div');
+    actions.className = 'nav-actions';
+    actions.append(buildSearch());
    
-  function buildMegaMenu(columns) {
-    const menu = document.createElement('div');
-    menu.className = 'header-brand-megamenu';
+    const loginRow = rows.find((r) => r.children[0]?.textContent.trim().toLowerCase() === 'log in');
+    const loginLink = loginRow?.querySelector('a');
+    const loginBtn = document.createElement('a');
+    loginBtn.className = 'nav-login';
+    loginBtn.href = loginLink ? loginLink.href : '#';
+    loginBtn.textContent = 'Log In';
+    actions.append(loginBtn);
    
-    const grid = document.createElement('div');
-    grid.className = 'header-brand-megamenu-grid';
+    nav.append(actions);
    
-    columns.forEach((col) => {
-      const colEl = document.createElement('div');
-      colEl.className = 'header-brand-megamenu-column';
-   
-      const heading = document.createElement('a');
-      heading.href = col.href || '#';
-      heading.className = 'header-brand-megamenu-heading';
-      heading.innerHTML = `<span>${col.label}</span>${col.items.length ? '<span class="header-brand-chevron-right" aria-hidden="true"></span>' : ''}`;
-      colEl.append(heading);
-   
-      col.items.forEach((subItem) => {
-        if (subItem.children.length) {
-          const subHeading = document.createElement('p');
-          subHeading.className = 'header-brand-megamenu-subheading';
-          subHeading.textContent = subItem.label;
-          colEl.append(subHeading);
-          subItem.children.forEach((child) => colEl.append(buildMegaMenuLink(child)));
-        } else {
-          colEl.append(buildMegaMenuLink(subItem));
-        }
-      });
-   
-      grid.append(colEl);
-    });
-   
-    menu.append(grid);
-    return menu;
-  }
-   
-  function buildMegaMenuLink(item) {
-    const a = document.createElement('a');
-    a.href = item.href || '#';
-    a.className = 'header-brand-megamenu-link';
-    a.textContent = item.label;
-    return a;
-  }
-   
-  // ── Mobile: hamburger + search triggers, and overlay menu ─────
-   
-  function buildMobileTriggers() {
-    const wrap = document.createElement('div');
-    wrap.className = 'header-brand-mobile-actions';
-   
-    const searchBtn = document.createElement('button');
-    searchBtn.type = 'button';
-    searchBtn.className = 'header-brand-mobile-search-btn';
-    searchBtn.setAttribute('aria-label', 'Search');
-    searchBtn.innerHTML = '<span class="header-brand-search-icon" aria-hidden="true"></span>';
-   
+    // Mobile hamburger toggle
     const hamburger = document.createElement('button');
     hamburger.type = 'button';
-    hamburger.className = 'header-brand-hamburger';
-    hamburger.setAttribute('aria-label', 'Open menu');
+    hamburger.className = 'nav-hamburger';
+    hamburger.setAttribute('aria-label', 'Menu');
     hamburger.setAttribute('aria-expanded', 'false');
     hamburger.innerHTML = '<span></span><span></span><span></span>';
-   
-    wrap.append(searchBtn, hamburger);
-    return wrap;
-  }
-   
-  function buildMobileMenu(brandLinkClone, navItems) {
-    const overlay = document.createElement('div');
-    overlay.className = 'header-brand-mobile-menu';
-    overlay.hidden = true;
-   
-    const header = document.createElement('div');
-    header.className = 'header-brand-mobile-menu-header';
-   
-    const closeBtn = document.createElement('button');
-    closeBtn.type = 'button';
-    closeBtn.className = 'header-brand-mobile-close';
-    closeBtn.setAttribute('aria-label', 'Close menu');
-    closeBtn.innerHTML = '<span></span><span></span>';
-   
-    header.append(brandLinkClone, closeBtn);
-   
-    const list = document.createElement('div');
-    list.className = 'header-brand-mobile-list';
-   
-    navItems.forEach((item) => {
-      const row = document.createElement('div');
-      row.className = 'header-brand-mobile-item';
-   
-      if (item.type === 'link') {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'header-brand-mobile-link';
-        btn.textContent = item.label;
-        if (item.href) {
-          btn.addEventListener('click', () => {
-            window.location.href = item.href;
-          });
-        }
-        row.append(btn);
-      } else if (item.type === 'trigger') {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'header-brand-mobile-trigger';
-        btn.setAttribute('aria-expanded', 'false');
-        btn.innerHTML = `<span>${item.label}</span><span class="header-brand-chevron-right" aria-hidden="true"></span>`;
-   
-        const submenu = document.createElement('div');
-        submenu.className = 'header-brand-mobile-submenu';
-        submenu.hidden = true;
-   
-        item.columns.forEach((col) => {
-          const colHeading = document.createElement('a');
-          colHeading.href = col.href || '#';
-          colHeading.className = 'header-brand-mobile-submenu-heading';
-          colHeading.textContent = col.label;
-          submenu.append(colHeading);
-   
-          col.items.forEach((subItem) => {
-            if (subItem.children.length) {
-              const subHeading = document.createElement('p');
-              subHeading.className = 'header-brand-mobile-submenu-subheading';
-              subHeading.textContent = subItem.label;
-              submenu.append(subHeading);
-              subItem.children.forEach((child) => submenu.append(buildMobileSubLink(child)));
-            } else {
-              submenu.append(buildMobileSubLink(subItem));
-            }
-          });
-        });
-   
-        btn.addEventListener('click', () => {
-          const isOpen = submenu.hidden;
-          submenu.hidden = !isOpen;
-          btn.setAttribute('aria-expanded', String(isOpen));
-          row.classList.toggle('is-open', isOpen);
-        });
-   
-        row.append(btn, submenu);
-      } else {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'header-brand-mobile-button';
-        btn.textContent = item.label;
-        row.append(btn);
-      }
-   
-      list.append(row);
+    hamburger.addEventListener('click', () => {
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', String(!expanded));
+      nav.classList.toggle('nav-open', !expanded);
     });
+    nav.append(hamburger);
    
-    overlay.append(header, list);
-    return overlay;
-  }
-   
-  function buildMobileSubLink(item) {
-    const a = document.createElement('a');
-    a.href = item.href || '#';
-    a.className = 'header-brand-mobile-submenu-link';
-    a.textContent = item.label;
-    return a;
-  }
-   
-  // ── Wire up open/close interactions ───────────────────────────
-   
-  function wireInteractions(block, desktopNav, mobileTriggers, mobileMenu) {
-    // desktop mega-menu triggers
-    [...desktopNav.querySelectorAll('.header-brand-nav-trigger')].forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const wrap = btn.closest('.header-brand-trigger-wrap');
-        const isOpen = wrap.classList.contains('is-open');
-   
-        // close any other open triggers first
-        [...desktopNav.querySelectorAll('.header-brand-trigger-wrap.is-open')].forEach((openWrap) => {
-          openWrap.classList.remove('is-open');
-          openWrap.querySelector('.header-brand-nav-trigger').setAttribute('aria-expanded', 'false');
-        });
-   
-        if (!isOpen) {
-          wrap.classList.add('is-open');
-          btn.setAttribute('aria-expanded', 'true');
-        }
-      });
-    });
-   
-    // close mega-menu / account panel when clicking outside
+    // Close dropdowns on outside click / escape
     document.addEventListener('click', (e) => {
-      if (!block.contains(e.target)) {
-        [...desktopNav.querySelectorAll('.header-brand-trigger-wrap.is-open')].forEach((wrap) => {
-          wrap.classList.remove('is-open');
-          wrap.querySelector('.header-brand-nav-trigger').setAttribute('aria-expanded', 'false');
-        });
-        const accountWrap = desktopNav.querySelector('.header-brand-account-wrap.is-open');
-        if (accountWrap) {
-          accountWrap.classList.remove('is-open');
-          accountWrap.querySelector('.header-brand-login-btn').setAttribute('aria-expanded', 'false');
-        }
-      }
+      if (!nav.contains(e.target)) closeAllDropdowns(nav);
     });
-   
-    // mobile hamburger open/close
-    const hamburger = mobileTriggers.querySelector('.header-brand-hamburger');
-    const closeBtn = mobileMenu.querySelector('.header-brand-mobile-close');
-   
-    const openMobileMenu = () => {
-      mobileMenu.hidden = false;
-      hamburger.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-    };
-    const closeMobileMenu = () => {
-      mobileMenu.hidden = true;
-      hamburger.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    };
-   
-    hamburger.addEventListener('click', openMobileMenu);
-    closeBtn.addEventListener('click', closeMobileMenu);
-   
-    // Escape key closes whichever is open
     document.addEventListener('keydown', (e) => {
-      if (e.key !== 'Escape') return;
-      if (!mobileMenu.hidden) closeMobileMenu();
-      [...desktopNav.querySelectorAll('.header-brand-trigger-wrap.is-open')].forEach((wrap) => {
-        wrap.classList.remove('is-open');
-        wrap.querySelector('.header-brand-nav-trigger').setAttribute('aria-expanded', 'false');
-      });
+      if (e.key === 'Escape') closeAllDropdowns(nav);
     });
+   
+    block.textContent = '';
+    block.append(nav);
   }
