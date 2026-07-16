@@ -91,7 +91,7 @@
   .header-brand-wrapper .nav-link:hover,
   .header-brand-wrapper .nav-dropdown-trigger:hover {
     
-    color: var(--nav-black) !important;
+    color: #fdfafaf2 !important;
     border-color: var(--nav-black);
   }
    
