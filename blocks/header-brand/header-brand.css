@@ -78,6 +78,7 @@
   padding: 10px 18px;
   border-radius: 999px;
   font-size: 15px;
+  margin-left: 35px;
   font-weight: 600;
   color: var(--nav-black) !important;
   text-decoration: none !important;
@@ -95,7 +96,6 @@
  
 .header-brand-wrapper .nav-link:hover,
 .header-brand-wrapper .nav-dropdown-trigger:hover {
-  background: #f2f2f2;
   color: var(--nav-black) !important;
   border-color: var(--nav-black);
 }
@@ -122,8 +122,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 100%; /* 100% of .header-brand-wrapper's own box, so it's always
-                exactly below the header, however tall it renders */
+  top: 100%; 
   width: max-content;
   min-width: 640px;
   max-width: 960px;
