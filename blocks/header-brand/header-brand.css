@@ -107,8 +107,8 @@
 }
  
 .nav-dropdown-trigger[aria-expanded='true'] {
-  background: var(--nav-black);
-  color: #fff !important;
+  background: #f7f4f4;
+  color: #ffffff !important;
   border-color: var(--nav-black);
 }
  
