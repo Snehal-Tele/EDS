@@ -1,16 +1,16 @@
 /* Block Container Theme */
-.tab-v2-container {
+.tabs-v2-container {
     background-color: #000000;
     padding: 20px 16px;
   }
   
-  .tab-v2 {
+  .tabs-v2 {
     max-width: 1400px;
     margin: 0 auto;
   }
   
   /* Navigation Layout Bar */
-  .tab-v2 .tab-v2-nav {
+  .tabs-v2 .tabs-v2-nav {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -19,13 +19,13 @@
   }
   
   /* Individual Item Wrapper */
-  .tab-v2 .tab-v2-item {
+  .tabs-v2 .tabs-v2-item {
     display: inline-flex;
     align-items: center;
   }
   
   /* Base Link & Pill Styling */
-  .tab-v2 .tab-v2-link {
+  .tabs-v2 .tabs-v2-link {
     color: #ffffff;
     text-decoration: none;
     font-family: Arial, sans-serif;
@@ -42,25 +42,25 @@
   }
   
   /* Hover State for Pill Buttons */
-  .tab-v2 .tab-v2-item:not(.select-vehicle) .tab-v2-link:hover {
+  .tabs-v2 .tabs-v2-item:not(.select-vehicle) .tabs-v2-link:hover {
     background-color: rgba(255, 255, 255, 0.15);
   }
   
   /* Active State Design (Solid Gray Fill) */
-  .tab-v2 .tab-v2-link.active {
+  .tabs-v2 .tabs-v2-link.active {
     background-color: #4a4a4a;
     border-color: #ffffff;
   }
   
   /* Chevron Spacer Adjustment */
-  .tab-v2 .icon-chevron {
+  .tabs-v2 .icon-chevron {
     margin-left: 8px;
     font-size: 14px;
     font-weight: normal;
   }
   
   /* Unstyled "Select A Vehicle" Text Action Layout */
-  .tab-v2 .select-vehicle .tab-v2-link {
+  .tabs-v2 .select-vehicle .tabs-v2-link {
     border: none;
     padding-left: 0;
     padding-right: 8px;
@@ -68,7 +68,7 @@
   }
   
   /* Round Border Around the Plus Icon */
-  .tab-v2 .select-vehicle .icon-plus {
+  .tabs-v2 .select-vehicle .icon-plus {
     border: 1.5px solid #ffffff;
     border-radius: 50%;
     width: 22px;
@@ -83,12 +83,12 @@
   
   /* Responsive Handling for Mobile Viewports */
   @media (max-width: 768px) {
-    .tab-v2 .tab-v2-nav {
+    .tabs-v2 .tabs-v2-nav {
       justify-content: center;
       gap: 12px;
     }
   
-    .tab-v2 .tab-v2-link {
+    .tabs-v2 .tabs-v2-link {
       font-size: 14px;
       padding: 8px 18px;
     }
