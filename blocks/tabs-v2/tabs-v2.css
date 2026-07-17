@@ -1,30 +1,28 @@
-/* Block Container Theme */
+/* Block Container Style */
 .tabs-v2-container {
     background-color: #000000;
-    padding: 20px 16px;
+    padding: 24px 32px;
   }
   
   .tabs-v2 {
-    max-width: 1400px;
+    max-width: 1440px;
     margin: 0 auto;
   }
   
-  /* Navigation Layout Bar */
+  /* Flex Navigation Layout */
   .tabs-v2 .tabs-v2-nav {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
+    width: 100%;
     gap: 16px;
-    justify-content: flex-start;
   }
   
-  /* Individual Item Wrapper */
-  .tabs-v2 .tabs-v2-item {
-    display: inline-flex;
-    align-items: center;
+  /* Push the four right-side buttons over to the right side */
+  .tabs-v2 .tabs-v2-item.tabs-right-group-start {
+    margin-left: auto;
   }
   
-  /* Base Link & Pill Styling */
+  /* Base button properties */
   .tabs-v2 .tabs-v2-link {
     color: #ffffff;
     text-decoration: none;
@@ -37,37 +35,45 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease, padding 0.2s ease;
     cursor: pointer;
+    white-space: nowrap;
   }
   
-  /* Hover State for Pill Buttons */
-  .tabs-v2 .tabs-v2-item:not(.select-vehicle) .tabs-v2-link:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-  }
-  
-  /* Active State Design (Solid Gray Fill) */
-  .tabs-v2 .tabs-v2-link.active {
-    background-color: #4a4a4a;
-    border-color: #ffffff;
-  }
-  
-  /* Chevron Spacer Adjustment */
-  .tabs-v2 .icon-chevron {
-    margin-left: 8px;
-    font-size: 14px;
+  /* Hidden arrow setup for non-hover states */
+  .tabs-v2 .tabs-v2-link .hover-arrow {
+    display: inline-block;
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: width 0.2s ease, opacity 0.2s ease, margin-left 0.2s ease;
+    margin-left: 0;
     font-weight: normal;
   }
   
-  /* Unstyled "Select A Vehicle" Text Action Layout */
+  /* --- HOVER EFFECT FOR ALL TABS (fills background and slides out active arrow) --- */
+  .tabs-v2 .tabs-v2-item:not(.select-vehicle) .tabs-v2-link:hover {
+    background-color: #4a4a4a; /* Solid gray fill */
+    border-color: #ffffff;
+  }
+  
+  .tabs-v2 .tabs-v2-item:not(.select-vehicle) .tabs-v2-link:hover .hover-arrow {
+    width: 12px;
+    opacity: 1;
+    margin-left: 8px;
+  }
+  
+  /* --- LEFT SIDE: "Select A Vehicle" Styling (Static styling, no border) --- */
   .tabs-v2 .select-vehicle .tabs-v2-link {
     border: none;
-    padding-left: 0;
-    padding-right: 8px;
+    background: transparent;
+    padding: 0;
+  }
+  
+  .tabs-v2 .select-vehicle .tabs-v2-link:hover {
     background: transparent;
   }
   
-  /* Round Border Around the Plus Icon */
   .tabs-v2 .select-vehicle .icon-plus {
     border: 1.5px solid #ffffff;
     border-radius: 50%;
@@ -81,15 +87,15 @@
     font-weight: bold;
   }
   
-  /* Responsive Handling for Mobile Viewports */
-  @media (max-width: 768px) {
+  /* Responsive Handling */
+  @media (max-width: 1024px) {
     .tabs-v2 .tabs-v2-nav {
-      justify-content: center;
-      gap: 12px;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
     }
-  
-    .tabs-v2 .tabs-v2-link {
-      font-size: 14px;
-      padding: 8px 18px;
+    
+    .tabs-v2 .tabs-v2-item.tabs-right-group-start {
+      margin-left: 0;
     }
   }
