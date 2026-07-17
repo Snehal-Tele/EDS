@@ -1,12 +1,3 @@
-
-// Layout and Color Tokens
-$nav-red: var(--color-red-primary);
-$nav-black: var(--color-black);
-$color-white: var(--color-white);
-$color-black-shadow: var(--color-black);
-$color-gray-dark: var(--color-gray-dark);
-$font-stack: 'Helvetica Neue', Arial, sans-serif;
-
 // Breakpoints
 $breakpoint-nav: 900px;
 
@@ -61,7 +52,7 @@ $breakpoint-nav: 900px;
   align-items: center;
   min-height: 72px;
   gap: 32px;
-  font-family: $font-stack;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
 /* ---------- Logo ---------- */
@@ -104,7 +95,7 @@ $breakpoint-nav: 900px;
   padding: 0;
   flex: 1;
 
-  @media (width <= $breakpoint-nav) {
+  @media (width <= 900) {
     display: none;
 
     .nav-open & {
@@ -163,7 +154,7 @@ $breakpoint-nav: 900px;
   box-shadow: 0 16px 32px $color-black-shadow;
   z-index: 190;
 
-  @media (width <= $breakpoint-nav) {
+  @media (width <=900px) {
     position: static;
     transform: none;
     width: 100%;
@@ -182,7 +173,7 @@ $breakpoint-nav: 900px;
     grid-template-columns: repeat(4, minmax(140px, 1fr));
     gap: 24px;
 
-    @media (width <= $breakpoint-nav) {
+    @media (width <= 900px) {
       grid-template-columns: 1fr;
       padding: 24px;
     }
@@ -243,7 +234,7 @@ $breakpoint-nav: 900px;
 
 .nav-chevron {
   font-size: 15px;
-  color: #999;
+  color: var(--color-gray-medium);
 }
 
 /* ---------- Actions Interface Area ---------- */
@@ -253,7 +244,7 @@ $breakpoint-nav: 900px;
   gap: 16px;
   flex-shrink: 0;
 
-  @media (width <= $breakpoint-nav) {
+  @media (width <= 900px) {
     display: none;
 
     .nav-open & {
@@ -355,7 +346,7 @@ $breakpoint-nav: 900px;
   cursor: pointer;
   margin-left: auto;
 
-  @media (width <= $breakpoint-nav) {
+  @media (width <= 900px) {
     display: flex;
   }
 
