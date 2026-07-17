@@ -1,13 +1,12 @@
-/* Block Container Style */
+/* Block Container Style - Tightened up padding to reduce height */
 .tabs-v2-container {
     background-color: #000000;
-    padding: 24px 32px;
+    padding: 12px 32px; /* Reduced vertical padding from 24px to 12px */
   }
   
   .tabs-v2 {
     max-width: 1440px;
     margin: 0 auto;
-    max-height: 276px;
   }
   
   /* Flex Navigation Layout */
@@ -23,8 +22,9 @@
     margin-left: auto;
   }
   
-  /* Base button properties */
+  /* Base button properties - Shrunk height via padding */
   .tabs-v2 .tabs-v2-link {
+    position: relative; /* Setup anchor context for absolute arrow positioning */
     color: #ffffff;
     text-decoration: none;
     font-family: Arial, sans-serif;
@@ -32,35 +32,33 @@
     font-weight: 700;
     border: 1px solid #ffffff;
     border-radius: 50px;
-    padding: 10px 24px;
+    padding: 8px 36px 8px 24px; /* Shrunk height; padding-right reserved for arrow space */
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.2s ease, border-color 0.2s ease, padding 0.2s ease;
+    transition: background-color 0.2s ease-in-out;
     cursor: pointer;
     white-space: nowrap;
   }
   
-  /* Hidden arrow setup for non-hover states */
+  /* Base style for arrow - hidden and offset slightly right */
   .tabs-v2 .tabs-v2-link .hover-arrow {
-    display: inline-block;
-    width: 0;
+    position: absolute;
+    right: 16px;
     opacity: 0;
-    overflow: hidden;
-    margin-left: 0;
+    transform: translateX(4px);
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
     font-weight: normal;
   }
   
-  /* --- HOVER EFFECT FOR ALL TABS (fills background and slides out active arrow) --- */
+  /* --- HOVER EFFECT (Adds arrow and changes background without changing size) --- */
   .tabs-v2 .tabs-v2-item:not(.select-vehicle) .tabs-v2-link:hover {
     background-color: #4a4a4a; /* Solid gray fill */
-    border-color: #ffffff;
   }
   
   .tabs-v2 .tabs-v2-item:not(.select-vehicle) .tabs-v2-link:hover .hover-arrow {
-    width: 12px;
     opacity: 1;
-    margin-left: 8px;
+    transform: translateX(0); /* Clean fade and slide-in locally */
   }
   
   /* --- LEFT SIDE: "Select A Vehicle" Styling (Static styling, no border) --- */

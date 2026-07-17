@@ -1,5 +1,4 @@
 export default function decorate(block) {
-    // Create navigation container
     const tabNav = document.createElement('div');
     tabNav.classList.add('tabs-v2-nav');
   
@@ -19,7 +18,6 @@ export default function decorate(block) {
           if (!linkCell.querySelector('a')) anchor.textContent = linkCell.textContent.trim();
           anchor.classList.add('tabs-v2-link');
   
-          // Add the "+" icon
           const plusIcon = document.createElement('span');
           plusIcon.classList.add('icon-plus');
           plusIcon.textContent = iconCell ? iconCell.textContent.trim() : '+';
@@ -37,7 +35,6 @@ export default function decorate(block) {
         const tabItem = document.createElement('div');
         tabItem.classList.add('tabs-v2-item');
         
-        // Separate the right-side tabs group from the left side
         if (index === 1) {
           tabItem.classList.add('tabs-right-group-start');
         }
@@ -49,10 +46,17 @@ export default function decorate(block) {
         }
         anchor.classList.add('tabs-v2-link');
   
-        // Append hover right-arrow spacer dynamically
+        // Wrap raw text to keep dimensions stable
+        const textSpan = document.createElement('span');
+        textSpan.classList.add('tabs-text');
+        textSpan.textContent = anchor.textContent;
+        anchor.textContent = ''; // Clear text
+        anchor.appendChild(textSpan);
+  
+        // Append the absolute-positioned hover arrow
         const arrowSpan = document.createElement('span');
         arrowSpan.classList.add('hover-arrow');
-        arrowSpan.innerHTML = ' &gt;';
+        arrowSpan.innerHTML = '&gt;';
         anchor.appendChild(arrowSpan);
   
         tabItem.appendChild(anchor);
@@ -60,7 +64,6 @@ export default function decorate(block) {
       }
     });
   
-    // Clear original authored table structure and render the navigation bar
     block.textContent = '';
     block.appendChild(tabNav);
   }
