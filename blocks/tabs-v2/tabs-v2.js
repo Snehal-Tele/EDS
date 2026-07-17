@@ -2,10 +2,14 @@ export default function decorate(block) {
     const tabNav = document.createElement('div');
     tabNav.classList.add('tabs-v2-nav');
   
+    // Create a sub-container specifically for the scrollable right-side tabs
+    const scrollGroup = document.createElement('div');
+    scrollGroup.classList.add('tabs-v2-scroll-group');
+  
     const rows = [...block.children];
   
     rows.forEach((row, index) => {
-      // Handle the first row (Select A Vehicle)
+      // Handle the first row (Select A Vehicle) - stays separate
       if (index === 0) {
         const linkCell = row.children[0];
         const iconCell = row.children[1];
@@ -29,15 +33,11 @@ export default function decorate(block) {
         return;
       }
   
-      // Handle all subsequent rows (Tabs)
+      // Handle subsequent rows (Tabs) - pushed into the scroll group
       const tabCell = row.children[0];
       if (tabCell) {
         const tabItem = document.createElement('div');
         tabItem.classList.add('tabs-v2-item');
-        
-        if (index === 1) {
-          tabItem.classList.add('tabs-right-group-start');
-        }
   
         const anchor = tabCell.querySelector('a') || document.createElement('a');
         if (!tabCell.querySelector('a')) {
@@ -46,24 +46,25 @@ export default function decorate(block) {
         }
         anchor.classList.add('tabs-v2-link');
   
-        // Wrap raw text to keep dimensions stable
+        // Wrap text
         const textSpan = document.createElement('span');
         textSpan.classList.add('tabs-text');
         textSpan.textContent = anchor.textContent;
-        anchor.textContent = ''; // Clear text
+        anchor.textContent = '';
         anchor.appendChild(textSpan);
   
-        // Append the absolute-positioned hover arrow
+        // Append hover arrow
         const arrowSpan = document.createElement('span');
         arrowSpan.classList.add('hover-arrow');
         arrowSpan.innerHTML = '&gt;';
         anchor.appendChild(arrowSpan);
   
         tabItem.appendChild(anchor);
-        tabNav.appendChild(tabItem);
+        scrollGroup.appendChild(tabItem);
       }
     });
   
+    tabNav.appendChild(scrollGroup);
     block.textContent = '';
     block.appendChild(tabNav);
   }

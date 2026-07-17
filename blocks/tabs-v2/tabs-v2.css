@@ -1,7 +1,7 @@
-/* Block Container Style - Tightened up padding to reduce height */
+/* Block Container Style */
 .tabs-v2-container {
     background-color: #000000;
-    padding: 12px 32px; /* Reduced vertical padding from 24px to 12px */
+    padding: 12px 32px;
   }
   
   .tabs-v2 {
@@ -13,27 +13,37 @@
   .tabs-v2 .tabs-v2-nav {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
     gap: 16px;
   }
   
-  /* Push the four right-side buttons over to the right side */
-  .tabs-v2 .tabs-v2-item.tabs-right-group-start {
-    margin-left: auto;
+  /* Scrollable Container for the Tabs */
+  .tabs-v2 .tabs-v2-scroll-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-left: auto; /* Pushes to the far-right on desktop */
   }
   
-  /* Base button properties - Shrunk height via padding */
+  /* Individual Item Wrapper */
+  .tabs-v2 .tabs-v2-item {
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  /* Base button properties */
   .tabs-v2 .tabs-v2-link {
-    position: relative; /* Setup anchor context for absolute arrow positioning */
+    position: relative;
     color: #ffffff;
     text-decoration: none;
     font-family: Arial, sans-serif;
     font-size: 15px;
-    margin-left: 10px;
     font-weight: 700;
+    margin-left: 10px;
     border: 1px solid #ffffff;
     border-radius: 50px;
-    padding: 8px 36px 8px 24px; /* Shrunk height; padding-right reserved for arrow space */
+    padding: 8px 36px 8px 24px; /* Space reserved for absolute arrow placement */
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -42,7 +52,7 @@
     white-space: nowrap;
   }
   
-  /* Base style for arrow - hidden and offset slightly right */
+  /* Base style for hover arrow */
   .tabs-v2 .tabs-v2-link .hover-arrow {
     position: absolute;
     right: 16px;
@@ -52,17 +62,21 @@
     font-weight: normal;
   }
   
-  /* --- HOVER EFFECT (Adds arrow and changes background without changing size) --- */
+  /* --- HOVER EFFECT --- */
   .tabs-v2 .tabs-v2-item:not(.select-vehicle) .tabs-v2-link:hover {
-    background-color: #4a4a4a; /* Solid gray fill */
+    background-color: #4a4a4a;
   }
   
   .tabs-v2 .tabs-v2-item:not(.select-vehicle) .tabs-v2-link:hover .hover-arrow {
     opacity: 1;
-    transform: translateX(0); /* Clean fade and slide-in locally */
+    transform: translateX(0);
   }
   
-  /* --- LEFT SIDE: "Select A Vehicle" Styling (Static styling, no border) --- */
+  /* --- LEFT SIDE: "Select A Vehicle" Styling --- */
+  .tabs-v2 .select-vehicle {
+    flex-shrink: 0; /* Prevents text from wrapping on mobile */
+  }
+  
   .tabs-v2 .select-vehicle .tabs-v2-link {
     border: none;
     background: transparent;
@@ -86,15 +100,38 @@
     font-weight: bold;
   }
   
-  /* Responsive Handling */
+  /* --- MOBILE HORIZONTAL SCROLL HANDLING --- */
   @media (max-width: 1024px) {
-    .tabs-v2 .tabs-v2-nav {
-      flex-direction: column;
-      gap: 16px;
-      align-items: center;
+    .tabs-v2-container {
+      padding: 12px 16px; /* Slightly snugger padding on mobile screen edges */
     }
-    
-    .tabs-v2 .tabs-v2-item.tabs-right-group-start {
+  
+    .tabs-v2 .tabs-v2-nav {
+      flex-direction: row; /* Keep elements side-by-side */
+      justify-content: flex-start;
+      overflow: hidden; /* Prevent parent blowout */
+    }
+  
+    .tabs-v2 .tabs-v2-scroll-group {
+      overflow-x: auto; /* Enable touch scrolling */
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch; /* Butter-smooth iOS inertia scrolling */
+      padding-bottom: 4px; /* Small buffer to prevent browser clipping */
       margin-left: 0;
+      flex-grow: 1;
+    }
+  
+    /* Hide scrollbars across browsers to look seamless */
+    .tabs-v2 .tabs-v2-scroll-group::-webkit-scrollbar {
+      display: none;
+    }
+    .tabs-v2 .tabs-v2-scroll-group {
+      -ms-overflow-style: none;  /* IE/Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+  
+    .tabs-v2 .tabs-v2-link {
+      font-size: 14px;
+      padding: 8px 32px 8px 20px; /* Snugger layout metrics */
     }
   }
