@@ -1,3 +1,4 @@
+/* ---------- Variables & Base Wrapper ---------- */
 .header-brand-wrapper {
   position: sticky;
   top: 0;
@@ -96,7 +97,7 @@
   padding: 0;
   flex: 1;
 }
-@media (width <= 768px) {
+@media (width <= 900px) {
   .nav-sections {
     display: none;
   }
@@ -110,7 +111,7 @@
     left: 0;
     background: var(--color-white);
     padding: 16px 24px;
-    box-shadow: 0 5px 5px var(--color-black);
+    box-shadow: 0 16px 32px var(--color-black);
   }
 }
 
@@ -138,7 +139,7 @@
   box-shadow: 0 16px 32px var(--color-black);
   z-index: 190;
 }
-@media (width <= 768px) {
+@media (width <= 900px) {
   .nav-mega {
     position: static;
     transform: none;
@@ -158,7 +159,7 @@
   grid-template-columns: repeat(4, minmax(140px, 1fr));
   gap: 24px;
 }
-@media (width <= 768px) {
+@media (width <= 900px) {
   .nav-mega-inner {
     grid-template-columns: 1fr;
     padding: 24px;
@@ -209,7 +210,7 @@
 
 .nav-chevron {
   font-size: 15px;
-  color: var(--color-gray-medium);
+  color: #999;
 }
 
 /* ---------- Actions Interface Area ---------- */
@@ -219,7 +220,7 @@
   gap: 16px;
   flex-shrink: 0;
 }
-@media (width <= 768px) {
+@media (width <= 900px) {
   .nav-actions {
     display: none;
   }
@@ -312,7 +313,7 @@
   cursor: pointer;
   margin-left: auto;
 }
-@media (width <= 768px) {
+@media (width <= 900px) {
   .nav-hamburger {
     display: flex;
   }
