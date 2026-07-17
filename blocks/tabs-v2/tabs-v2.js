@@ -1,78 +1,74 @@
 export default function decorate(block) {
-  // Create navigation container
-    const tabNav = document.createElement('div');
-    tabNav.classList.add('tab-v2-nav');
-  
     const rows = [...block.children];
   
+    if (!rows.length) return;
+  
+    const wrapper = document.createElement('div');
+    wrapper.className = 'tab-v2-wrapper';
+  
+    /* Vehicle CTA */
+    const firstRow = rows.shift();
+  
+    const vehicleCta = document.createElement('button');
+    vehicleCta.className = 'vehicle-selector';
+  
+    vehicleCta.innerHTML = `
+        <span>${firstRow.children[0]?.textContent.trim()}</span>
+        <span class="icon">${firstRow.children[1]?.textContent.trim()}</span>
+    `;
+  
+    wrapper.append(vehicleCta);
+  
+    /* Tabs */
+    const tabList = document.createElement('div');
+    tabList.className = 'tab-v2-list';
+  
     rows.forEach((row, index) => {
-      // Handle the first row uniquely (Select A Vehicle + Plus icon)
-      if (index === 0) {
-        const linkCell = row.children[0];
-        const iconCell = row.children[1];
-        
-        if (linkCell) {
-          const vehicleBtn = document.createElement('div');
-          vehicleBtn.classList.add('tab-v2-item', 'select-vehicle');
-          
-          // Grab the authored anchor link if present, or just text
-          const anchor = linkCell.querySelector('a') || document.createElement('span');
-          if (!linkCell.querySelector('a')) anchor.textContent = linkCell.textContent.trim();
-          anchor.classList.add('tab-v2-link');
+      const label = row.children[0]?.textContent.trim();
+      const target = row.children[1]?.textContent.trim();
   
-          // Add the "+" icon span
-          const plusIcon = document.createElement('span');
-          plusIcon.classList.add('icon-plus');
-          plusIcon.textContent = iconCell ? iconCell.textContent.trim() : '+';
+      const tab = document.createElement('button');
   
-          anchor.appendChild(plusIcon);
-          vehicleBtn.appendChild(anchor);
-          tabNav.appendChild(vehicleBtn);
+      tab.className = `tab-v2-item ${index === 0 ? 'active' : ''}`;
+  
+      tab.dataset.target = target;
+  
+      tab.innerHTML = `
+        <span>${label}</span>
+        ${index === 0 ? '<span class="arrow">›</span>' : ''}
+      `;
+  
+      tab.addEventListener('click', () => {
+        tabList.querySelectorAll('.tab-v2-item').forEach((item) => {
+          item.classList.remove('active');
+          const arrow = item.querySelector('.arrow');
+          if (arrow) arrow.remove();
+        });
+  
+        tab.classList.add('active');
+  
+        const arrow = document.createElement('span');
+        arrow.className = 'arrow';
+        arrow.textContent = '›';
+  
+        tab.appendChild(arrow);
+  
+        // Optional scroll target
+        const section = document.getElementById(target);
+  
+        if (section) {
+          section.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
         }
-        return;
-      }
-  
-      // Handle all subsequent rows (Tabs)
-      const tabCell = row.children[0];
-      if (tabCell) {
-        const tabItem = document.createElement('div');
-        tabItem.classList.add('tab-v2-item');
-  
-        const anchor = tabCell.querySelector('a') || document.createElement('a');
-        if (!tabCell.querySelector('a')) {
-          anchor.textContent = tabCell.textContent.trim();
-          anchor.href = '#'; // Fallback if not authored as a link
-        }
-        anchor.classList.add('tab-v2-link');
-  
-        // Set the first actual tab ("Connected Services") as active by default
-        if (index === 1) {
-          anchor.classList.add('active');
-          // Optional: Add the subtle white right chevron logic seen in the image
-          const chevron = document.createElement('span');
-          chevron.classList.add('icon-chevron');
-          chevron.innerHTML = ' &gt;';
-          anchor.appendChild(chevron);
-        }
-  
-        tabItem.appendChild(anchor);
-        tabNav.appendChild(tabItem);
-      }
-    });
-  
-    // Replace original table DOM structure with refined navigation bar
-    block.textContent = '';
-    block.appendChild(tabNav);
-  
-    // Simple active state switching for the tab anchors
-    tabNav.querySelectorAll('.tab-v2-item:not(.select-vehicle) .tab-v2-link').forEach((link) => {
-      link.addEventListener('click', (e) => {
-        // If they are local anchor switches, prevent default behavior
-        if (link.getAttribute('href').startsWith('#')) {
-          e.preventDefault();
-        }
-        tabNav.querySelectorAll('.tab-v2-link').forEach((l) => l.classList.remove('active'));
-        link.classList.add('active');
       });
+  
+      tabList.append(tab);
     });
+  
+    wrapper.append(tabList);
+  
+    block.textContent = '';
+    block.append(wrapper);
   }
