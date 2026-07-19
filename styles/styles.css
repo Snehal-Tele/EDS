@@ -14,13 +14,13 @@
   /* brand colors (exact Toyota production values) */
   --color-red-primary: #e10a1d;
   --color-red-medium: #b00716;
-  --color-red-dark: #890713;
   --color-red-darker: #d81e25;
+  --color-red-dark: #890713;
   --color-blue-primary: #007aff;
   --color-ash: #2b303b;
   /* neutrals */
-  --color-black: #000;
-  --color-white: #fff;
+  --color-black: #000000;
+  --color-white: #ffffff;
   --color-gray-dark: #58595b;
   --color-gray-medium: #767676;
   --color-gray-light: #d8d8d8;
@@ -29,10 +29,10 @@
   --color-brand-primary: #e10a1d;
   --color-brand-primary-dark: #b00716;
   /* semantic colors (consumed by blocks) */
-  --background-color: #fff;
+  --background-color: #ffffff;
   --light-color: #f6f6f6;
   --dark-color: #58595b;
-  --text-color: #000;
+  --text-color: #000000;
   --link-color: #e10a1d;
   --link-hover-color: #b00716;
   /* fonts */
@@ -47,12 +47,12 @@
   --body-font-size-s: 19px;
   --body-font-size-xs: 17px;
   /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  --heading-font-size-xxl: 45px;
+  --heading-font-size-xl: 36px;
+  --heading-font-size-l: 28px;
+  --heading-font-size-m: 22px;
+  --heading-font-size-s: 20px;
+  --heading-font-size-xs: 18px;
   /* layout — max widths */
   --max-width-content: 1350px;
   --max-width-inner: 1126px;
@@ -90,12 +90,12 @@
     --body-font-size-s: 16px;
     --body-font-size-xs: 14px;
     /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
+    --heading-font-size-xxl: 55px;
+    --heading-font-size-xl: 44px;
+    --heading-font-size-l: 34px;
+    --heading-font-size-m: 27px;
+    --heading-font-size-s: 24px;
+    --heading-font-size-xs: 22px;
   }
 }
 body {
@@ -199,6 +199,11 @@ button {
 }
 
 /* links */
+a:-moz-any-link {
+  color: var(--link-color);
+  text-decoration: none;
+  overflow-wrap: break-word;
+}
 a:any-link {
   color: var(--link-color);
   text-decoration: none;
@@ -213,6 +218,26 @@ a:hover {
 /* buttons */
 p.button-wrapper {
   margin: 12px 0;
+}
+
+a.button:-moz-any-link {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  margin: 0;
+  border: 2px solid transparent;
+  border-radius: 2.4em;
+  padding: 0.5em 1.2em;
+  font: inherit;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.25;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 a.button:any-link,
@@ -375,25 +400,4 @@ main .section.full-width > div {
 
 main .section.narrow > div {
   max-width: var(--max-width-narrow);
-}
-/*# sourceMappingURL=styles.css.map */
-
-.link-yellow .cardv2-pdf-link,
-.link-yellow .cardv2-link {
-  color: #c9a84c !important; /* Lexus-style gold */
-}
-
-.link-yellow .cardv2-pdf-link:hover,
-.link-yellow .cardv2-link:hover {
-  color: #a8863a !important;
-}
-
-.link-red .cardv2-pdf-link,
-.link-red .cardv2-link {
-  color: #cc0000 !important;
-}
- 
-.link-red .cardv2-pdf-link:hover,
-.link-red .cardv2-link:hover {
-  color: #aa0000 !important;
-}
+}/*# sourceMappingURL=styles.css.map */
