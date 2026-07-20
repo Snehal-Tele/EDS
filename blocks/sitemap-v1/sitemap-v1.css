@@ -1,9 +1,9 @@
 .sitemap-v1 {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 24px;
+    padding: 0px 24px;
     font-family: Arial, sans-serif;
-    border-top: 1px solid #e5e5e5; /* Adds the horizontal line above the block */
+    border-top: 2px solid #6f6666; /* Adds the horizontal line above the block */
   }
   
   .sitemap-v1 .sitemap-v1-title {
