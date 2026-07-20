@@ -2,6 +2,7 @@
   background-color: var(--color-black);
   padding: 12px 32px;
 }
+
 @media (max-width: 1024px) {
   .tabs-v2-container {
     padding: 12px 16px;
@@ -12,6 +13,7 @@
   max-width: 1440px;
   margin: 0 auto;
 }
+
 .tabs-v2 .tabs-v2-nav {
   display: flex;
   align-items: center;
@@ -19,46 +21,59 @@
   width: 100%;
   gap: 16px;
 }
+
 @media (max-width: 1024px) {
   .tabs-v2 .tabs-v2-nav {
     justify-content: flex-start;
   }
 }
+
 .tabs-v2 .tabs-v2-scroll-group {
   display: flex;
   align-items: center;
   gap: 16px;
   margin-left: auto;
 }
+
 @media (max-width: 1024px) {
   .tabs-v2 .tabs-v2-scroll-group {
     display: none;
   }
 }
+
 .tabs-v2 .tabs-v2-item {
   display: inline-flex;
   align-items: center;
 }
+
 .tabs-v2 .tabs-v2-item:not(.select-vehicle) .tabs-v2-link:hover {
   background-color: var(--color-gray-dark);
 }
-.tabs-v2 .tabs-v2-item:not(.select-vehicle) .tabs-v2-link:hover .hover-arrow {
+
+.tabs-v2
+  .tabs-v2-item:not(.select-vehicle)
+  .tabs-v2-link:hover
+  .hover-arrow {
   opacity: 1;
   transform: translateX(0);
 }
+
 .tabs-v2 .tabs-v2-item.select-vehicle {
   flex-shrink: 0;
   width: 100%;
 }
+
 .tabs-v2 .tabs-v2-item.select-vehicle .tabs-v2-link {
   border: none;
   background: transparent;
   padding: 0;
   margin-left: 0;
 }
+
 .tabs-v2 .tabs-v2-item.select-vehicle .tabs-v2-link:hover {
   background: transparent;
 }
+
 .tabs-v2 .tabs-v2-item.select-vehicle .icon-plus {
   border: 1.5px solid var(--color-white);
   border-radius: 50%;
@@ -71,6 +86,7 @@
   font-size: 14px;
   font-weight: bold;
 }
+
 .tabs-v2 .tabs-v2-link {
   position: relative;
   color: var(--color-white);
@@ -89,16 +105,20 @@
   cursor: pointer;
   white-space: nowrap;
 }
+
 @media (max-width: 1024px) {
   .tabs-v2 .tabs-v2-link {
     font-size: 14px;
   }
 }
+
 .tabs-v2 .tabs-v2-link .hover-arrow {
   position: absolute;
   right: 16px;
   opacity: 0;
   transform: translateX(4px);
-  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  transition:
+    opacity 0.2s ease-in-out,
+    transform 0.2s ease-in-out;
   font-weight: normal;
-}/*# sourceMappingURL=tabs-v2.css.map */
+}
