@@ -1,0 +1,64 @@
+
+.sitemap-v1 {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .sitemap-v1 .sitemap-v1-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 32px;
+  }
+  
+  .sitemap-v1 .sitemap-v1-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  
+  .sitemap-v1 .sitemap-v1-column {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sitemap-v1 .sitemap-v1-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .sitemap-v1 .sitemap-v1-list li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .sitemap-v1 .sitemap-v1-list li a {
+    font-size: 16px;
+    color: #000000;
+    text-decoration: underline;
+    font-weight: 400;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .sitemap-v1 .sitemap-v1-list li a:hover {
+    color: #333333;
+    text-decoration: none;
+  }
+  
+  /* Mobile responsive breakpoints */
+  @media (max-width: 768px) {
+    .sitemap-v1 .sitemap-v1-columns {
+      grid-template-columns: 1fr;
+      gap: 0px;
+    }
+    
+    .sitemap-v1 .sitemap-v1-list {
+      margin-bottom: 20px;
+    }
+  }
