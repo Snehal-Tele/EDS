@@ -1,9 +1,9 @@
-/* Block Container Style */
+@use '../../styles/tokens' as *;
 .tabs-v2-container {
   background-color: var(--color-black);
   padding: 12px 32px;
 
-  @media (max-width: 1024px) {
+  @media (max-width: $bp-md) {
     padding: 12px 16px; /* Slightly snugger padding on mobile screen edges */
   }
 }
@@ -20,7 +20,7 @@
     width: 100%;
     gap: 16px;
 
-    @media (max-width: 1024px) {
+    @media (max-width: $bp-md) {
       flex-direction: row; /* Keep elements side-by-side */
       justify-content: flex-start;
       overflow: hidden; /* Prevent parent blowout */
@@ -34,7 +34,7 @@
     gap: 16px;
     margin-left: auto; /* Pushes to the far-right on desktop */
 
-    @media (max-width: 1024px) {
+    @media (max-width: $bp-md) {
       overflow-x: auto; /* Enable touch scrolling */
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch; /* Butter-smooth iOS inertia scrolling */
@@ -115,7 +115,7 @@
     cursor: pointer;
     white-space: nowrap;
 
-    @media (max-width: 1024px) {
+    @media (max-width: $bp-md) {
       font-size: 14px;
       padding: 8px 32px 8px 20px; /* Snugger layout metrics */
     }
