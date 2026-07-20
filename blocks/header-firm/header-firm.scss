@@ -1,6 +1,4 @@
-// --- Variables ---
 @use '../../styles/tokens' as *;
-$screen-md: 768px;
 
 .header-firm {
   background-color: var(--color-white);
@@ -50,13 +48,13 @@ $screen-md: 768px;
       object-fit: contain;
       display: block;
 
-      @media (max-width: $screen-md) {
+      @media (max-width: $bp-sm) {
         width: 40px;
         height: 40px;
       }
     }
 
-    @media (max-width: $screen-md) {
+    @media (max-width: $bp-sm) {
       gap: 12px;
       padding: 12px 16px;
       height: 72px;
@@ -72,7 +70,7 @@ $screen-md: 768px;
     white-space: nowrap;
     flex-shrink: 0;
 
-    @media (max-width: $screen-md) {
+    @media (max-width: $bp-sm) {
       font-size: 1.5rem;
     }
   }
