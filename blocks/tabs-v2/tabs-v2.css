@@ -22,9 +22,9 @@
 }
 @media (max-width: 1024px) {
   .tabs-v2 .tabs-v2-nav {
-    flex-direction: row; /* Keep elements side-by-side */
+    flex-direction: row;
     justify-content: flex-start;
-    overflow: hidden; /* Prevent parent blowout */
+    overflow: hidden;
   }
 }
 .tabs-v2 {
@@ -38,17 +38,7 @@
 }
 @media (max-width: 1024px) {
   .tabs-v2 .tabs-v2-scroll-group {
-    overflow-x: auto; /* Enable touch scrolling */
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch; /* Butter-smooth iOS inertia scrolling */
-    padding-bottom: 4px; /* Small buffer to prevent browser clipping */
-    margin-left: 0;
-    flex-grow: 1;
-    -ms-overflow-style: none; /* IE/Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-  .tabs-v2 .tabs-v2-scroll-group::-webkit-scrollbar {
-    display: none; /* Hide scrollbars across browsers to look seamless */
+    display: none; /* Completely hides the 2nd+ row buttons on mobile view */
   }
 }
 .tabs-v2 {
@@ -76,6 +66,7 @@
   border: none;
   background: transparent;
   padding: 0;
+  margin-left: 0;
 }
 .tabs-v2 .tabs-v2-item.select-vehicle .tabs-v2-link:hover {
   background: transparent;
@@ -105,7 +96,7 @@
   margin-left: 10px;
   border: 1px solid var(--color-white);
   border-radius: 50px;
-  padding: 8px 36px 8px 24px; /* Space reserved for absolute arrow placement */
+  padding: 8px 36px 8px 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -116,7 +107,7 @@
 @media (max-width: 1024px) {
   .tabs-v2 .tabs-v2-link {
     font-size: 14px;
-    padding: 8px 32px 8px 20px; /* Snugger layout metrics */
+    padding: 8px 32px 8px 20px;
   }
 }
 .tabs-v2 .tabs-v2-link {
