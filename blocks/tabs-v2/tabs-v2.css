@@ -38,17 +38,7 @@
 }
 @media (max-width: 1024px) {
   .tabs-v2 .tabs-v2-scroll-group {
-    overflow-x: auto; /* Enable touch scrolling */
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch; /* Butter-smooth iOS inertia scrolling */
-    padding-bottom: 4px; /* Small buffer to prevent browser clipping */
-    margin-left: 0;
-    flex-grow: 1;
-    -ms-overflow-style: none; /* IE/Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-  .tabs-v2 .tabs-v2-scroll-group::-webkit-scrollbar {
-    display: none; /* Hide scrollbars across browsers to look seamless */
+    display: none; /* Hides all elements from the 2nd+ rows on mobile */
   }
 }
 .tabs-v2 {

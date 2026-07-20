@@ -1,17 +1,18 @@
- 
 @use '../../styles/tokens' as *;
- 
+
 .tabs-v2-container {
   background-color: var(--color-black);
   padding: 12px 32px;
+
   @media (max-width: $bp-md) {
     padding: 12px 16px; /* Slightly snugger padding on mobile screen edges */
   }
 }
- 
+
 .tabs-v2 {
   max-width: 1440px;
   margin: 0 auto;
+
   /* Flex Navigation Layout */
   .tabs-v2-nav {
     display: flex;
@@ -19,59 +20,57 @@
     justify-content: space-between;
     width: 100%;
     gap: 16px;
+
     @media (max-width: $bp-md) {
       flex-direction: row; /* Keep elements side-by-side */
       justify-content: flex-start;
       overflow: hidden; /* Prevent parent blowout */
     }
   }
+
   /* Scrollable Container for the Tabs */
   .tabs-v2-scroll-group {
     display: flex;
     align-items: center;
     gap: 16px;
     margin-left: auto; /* Pushes to the far-right on desktop */
+
     @media (max-width: $bp-md) {
-      overflow-x: auto; /* Enable touch scrolling */
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch; /* Butter-smooth iOS inertia scrolling */
-      padding-bottom: 4px; /* Small buffer to prevent browser clipping */
-      margin-left: 0;
-      flex-grow: 1;
-      -ms-overflow-style: none;  /* IE/Edge */
-      scrollbar-width: none;  /* Firefox */
-      &::-webkit-scrollbar {
-        display: none; /* Hide scrollbars across browsers to look seamless */
-      }
+      display: none; /* Hides all elements from the 2nd+ rows on mobile */
     }
   }
- 
+
   /* Individual Item Wrapper */
   .tabs-v2-item {
     display: inline-flex;
     align-items: center;
+
     /* --- HOVER EFFECT --- */
     &:not(.select-vehicle) {
       .tabs-v2-link:hover {
         background-color: var(--color-gray-dark);
+        
         .hover-arrow {
           opacity: 1;
           transform: translateX(0);
         }
       }
     }
+
     /* --- LEFT SIDE: "Select A Vehicle" Styling --- */
     &.select-vehicle {
       flex-shrink: 0; // Prevents text from wrapping on mobile
+
       .tabs-v2-link {
         border: none;
         background: transparent;
         padding: 0;
- 
+
         &:hover {
           background: transparent;
         }
       }
+
       .icon-plus {
         border: 1.5px solid var(--color-white);
         border-radius: 50%;
@@ -86,6 +85,7 @@
       }
     }
   }
+
   /* Base button properties */
   .tabs-v2-link {
     position: relative;
@@ -104,10 +104,12 @@
     transition: background-color 0.2s ease-in-out;
     cursor: pointer;
     white-space: nowrap;
+
     @media (max-width: $bp-md) {
       font-size: 14px;
       padding: 8px 32px 8px 20px; /* Snugger layout metrics */
     }
+
     /* Base style for hover arrow */
     .hover-arrow {
       position: absolute;
@@ -119,4 +121,3 @@
     }
   }
 }
- 
