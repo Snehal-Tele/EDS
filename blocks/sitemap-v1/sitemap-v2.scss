@@ -52,8 +52,8 @@
         text-decoration: underline;
         text-decoration-color: var(--color-gray-medium); /* Muted gray underline by default */
         text-decoration-thickness: 1px;
-        text-underline-offset: 3px;
-        font-weight: 400;
+        text-underline-offset: auto;
+        font-weight: 300;
         transition: text-decoration-color 0.2s ease, text-decoration-thickness 0.2s ease;
 
         &:hover {
