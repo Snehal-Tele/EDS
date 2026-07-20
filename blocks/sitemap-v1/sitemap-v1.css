@@ -1,9 +1,9 @@
-
 .sitemap-v1 {
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 24px;
     font-family: Arial, sans-serif;
+    border-top: 1px solid #e5e5e5; /* Adds the horizontal line above the block */
   }
   
   .sitemap-v1 .sitemap-v1-title {
@@ -42,13 +42,16 @@
     font-size: 16px;
     color: #000000;
     text-decoration: underline;
+    text-decoration-color: #8c8c8c; /* Muted gray underline by default */
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
     font-weight: 400;
-    transition: color 0.2s ease-in-out;
+    transition: text-decoration-color 0.2s ease, text-decoration-thickness 0.2s ease;
   }
   
   .sitemap-v1 .sitemap-v1-list li a:hover {
-    color: #333333;
-    text-decoration: none;
+    text-decoration-color: #000000; /* Underline becomes dark black on hover */
+    text-decoration-thickness: 1.5px;
   }
   
   /* Mobile responsive breakpoints */
