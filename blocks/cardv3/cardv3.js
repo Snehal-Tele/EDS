@@ -10,11 +10,11 @@ export default function decorate(block) {
     const contentCol = colAHasImage ? colB : colA;
    
     // Add modifier so CSS knows text side
-    block.classList.add(colAHasImage ? 'cardv2--text-right' : 'cardv2--text-left');
+    block.classList.add(colAHasImage ? 'cardv3--text-right' : 'cardv3--text-left');
    
     // ── Background image ─────────────────────────────────────
     const bgWrap = document.createElement('div');
-    bgWrap.className = 'cardv2-bg';
+    bgWrap.className = 'cardv3-bg';
    
     const picture = imageCol.querySelector('picture');
     if (picture) {
@@ -29,13 +29,13 @@ export default function decorate(block) {
    
     // ── Content overlay ───────────────────────────────────────
     const content = document.createElement('div');
-    content.className = 'cardv2-content';
+    content.className = 'cardv3-content';
    
     [...contentCol.children].forEach((el) => {
       // Heading tags
       if (/^H[1-6]$/.test(el.tagName)) {
         const heading = document.createElement(el.tagName.toLowerCase());
-        heading.className = 'cardv2-heading';
+        heading.className = 'cardv3-heading';
         heading.innerHTML = el.innerHTML;
         content.append(heading);
         return;
@@ -47,7 +47,7 @@ export default function decorate(block) {
         const isPdf = anchor.href?.toLowerCase().includes('.pdf');
         const a = document.createElement('a');
         a.href = anchor.href;
-        a.className = isPdf ? 'cardv2-link cardv2-pdf-link' : 'cardv2-link';
+        a.className = isPdf ? 'cardv3-link cardv3-pdf-link' : 'cardv3-link';
         a.innerHTML = anchor.innerHTML || anchor.textContent.trim();
         if (anchor.target) a.target = anchor.target;
         content.append(a);
@@ -57,7 +57,7 @@ export default function decorate(block) {
       // Plain paragraph
       if (el.textContent.trim()) {
         const p = document.createElement('p');
-        p.className = 'cardv2-text';
+        p.className = 'cardv3-text';
         p.textContent = el.textContent.trim();
         content.append(p);
       }
