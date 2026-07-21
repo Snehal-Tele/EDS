@@ -1,3 +1,4 @@
+@use '../../styles/tokens' as *;
 .table {
     display: block;
     width: 100%;
@@ -20,11 +21,11 @@
       border-collapse: collapse;
       font-size: var(--body-font-size-xs);
   
-      @media (width >= 600px) {
+      @media (width >= $container-width-sm) {
         font-size: var(--body-font-size-s);
       }
   
-      @media (width >= 900px) {
+      @media (width >= $container-width-md) {
         font-size: var(--body-font-size-m);
       }
   
