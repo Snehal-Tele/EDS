@@ -1,9 +1,4 @@
-// Variables (Feel free to map these to your global EDS theme variables)
-$color-white: var(--color-white);
-$color-black: var(--color-black);
-$link-color: var(--link-color);
-$link-hover-color: var(--link-hover-color);
- 
+@use '../../styles/tokens' as *;
 // Breakpoints
 $breakpoint-md: 768px;
 $breakpoint-sm: 480px;
@@ -15,9 +10,8 @@ $breakpoint-sm: 480px;
   padding: 0 24px;
   max-height: 560px;
  
-  @media (max-width: $breakpoint-md) {
+  @media (max-width: $bp-sm) {
     padding: 0;
-    margin-bottom: 10px;
   }
 }
  
@@ -29,7 +23,7 @@ $breakpoint-sm: 480px;
   display: flex;
   align-items: stretch;
  
-  @media (max-width: $breakpoint-md) {
+  @media (max-width: $bp-sm) {
     flex-direction: column;
     min-height: unset;
   }
@@ -40,7 +34,7 @@ $breakpoint-sm: 480px;
     inset: 0;
     z-index: 0;
  
-    @media (max-width: $breakpoint-md) {
+    @media (max-width: $bp-sm) {
       position: relative;
       height: 240px;
       inset: unset;
@@ -72,7 +66,7 @@ $breakpoint-sm: 480px;
     background: transparent;
     color: $color-white;
  
-    @media (max-width: $breakpoint-md) {
+    @media (max-width: $bp-sm) {
       box-sizing: border-box;
       width: 100%;
       padding: 24px 20px;
@@ -98,13 +92,11 @@ $breakpoint-sm: 480px;
     color: var(--color-white);
     line-height: 1.2;
  
-    @media (max-width: $breakpoint-md) {
+    @media (max-width: $bp-sm) {
       font-size: 20px;
     }
  
-    @media (max-width: $breakpoint-sm) {
-      font-size: 18px;
-    }
+    
   }
  
   &-text {
@@ -113,7 +105,7 @@ $breakpoint-sm: 480px;
     line-height: 1.65;
     color: var(--color-white);
  
-    @media (max-width: $breakpoint-md) {
+    @media (max-width: $bp-sm) {
       font-size: 13px;
     }
  
@@ -144,7 +136,7 @@ $breakpoint-sm: 480px;
     gap: 8px;
     font-size: 14px;
     font-weight: 600;
-    color: $link-color ;
+    color: var(var(--color-red-primary)) ;
     text-decoration: underline ;
  
     &::before {
@@ -159,7 +151,7 @@ $breakpoint-sm: 480px;
     }
  
     &:hover {
-      color: $link-hover-color ;
+      color: var(--color-red-dark) ;
     }
   }
 }
@@ -182,7 +174,7 @@ $breakpoint-sm: 480px;
 
 .link-red .cardv3-pdf-link,
 .link-red .cardv3-link {
-  color: #cc0000 ;
+  color: var(--color-red-primary) ;
 }
  
 .link-red .cardv3-pdf-link::before {
@@ -191,6 +183,6 @@ $breakpoint-sm: 480px;
  
 .link-red .cardv3-pdf-link:hover,
 .link-red .cardv3-link:hover {
-  color: #aa0000 ;
+  color: var(--color-red-dark) ;
 }
  

@@ -8,7 +8,6 @@
 @media (max-width: 768px) {
   .cardv3-wrapper {
     padding: 0;
-    margin-bottom: 10px;
   }
 }
 
@@ -59,7 +58,7 @@
   flex-direction: column;
   gap: 14px;
   background: transparent;
-  color: var(--color-white);
+  color: #ffffff;
 }
 @media (max-width: 768px) {
   .cardv3-content {
@@ -86,11 +85,6 @@
 @media (max-width: 768px) {
   .cardv3-heading {
     font-size: 20px;
-  }
-}
-@media (max-width: 480px) {
-  .cardv3-heading {
-    font-size: 18px;
   }
 }
 .cardv3-text {
@@ -124,7 +118,7 @@
   gap: 8px;
   font-size: 14px;
   font-weight: 600;
-  color: var(--link-color);
+  color: var(var(--color-red-primary));
   text-decoration: underline;
 }
 .cardv3-pdf-link::before {
@@ -138,7 +132,7 @@
   background-size: contain;
 }
 .cardv3-pdf-link:hover {
-  color: var(--link-hover-color);
+  color: var(--color-red-dark);
 }
 
 .link-yellow .cardv3-pdf-link,
@@ -157,7 +151,7 @@
 
 .link-red .cardv3-pdf-link,
 .link-red .cardv3-link {
-  color: #cc0000;
+  color: var(--color-red-primary);
 }
 
 .link-red .cardv3-pdf-link::before {
@@ -166,5 +160,5 @@
 
 .link-red .cardv3-pdf-link:hover,
 .link-red .cardv3-link:hover {
-  color: #aa0000;
+  color: var(--color-red-dark);
 }/*# sourceMappingURL=cardv3.css.map */
