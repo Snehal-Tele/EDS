@@ -1,5 +1,5 @@
 .cards-v1 {
-  background: #ffffff;
+  background: var(--color-white);
   padding: 40px 0;
   position: relative;
   overflow: visible;
