@@ -4,7 +4,7 @@
   margin: 0 auto;
   padding: 0px 24px;
   font-family: Arial, sans-serif;
-  border-top: 1px solid var(-color-gray-light); /* Adds the horizontal line above the block */
+  border-top: 1px solid var(--color-gray-light); /* Adds the horizontal line above the block */
 }
 .sitemap-v1 .sitemap-v1-title {
   font-size: 28px;
