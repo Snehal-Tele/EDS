@@ -8,6 +8,7 @@
 @media (max-width: 768px) {
   .cardv3-wrapper {
     padding: 0;
+    margin-bottom: 10px;
   }
 }
 
