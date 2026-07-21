@@ -8,7 +8,7 @@ export default function decorate(block) {
  
   // ── Image side ─────────────────────────────────────────────
   const mediaWrap = document.createElement('div');
-  mediaWrap.className = 'cards-media';
+  mediaWrap.className = 'cards-v1-media';
  
   const picture = imageCell?.querySelector('picture');
   if (picture) {
@@ -23,7 +23,7 @@ export default function decorate(block) {
  
   // ── Text side ──────────────────────────────────────────────
   const textWrap = document.createElement('div');
-  textWrap.className = 'cards-text';
+  textWrap.className = 'cards-v1-text';
  
   let headingEl = null;
   const lines = [...textCell.children].filter((el) => el.textContent.trim());
@@ -33,21 +33,21 @@ export default function decorate(block) {
  
     if (index === 0 && !link) {
       const heading = document.createElement('h2');
-      heading.className = 'cards-heading';
+      heading.className = 'cards-v1-heading';
       heading.textContent = el.textContent.trim();
       textWrap.append(heading);
       headingEl = heading;
  
       // Mobile inline divider — visible only on mobile via CSS
       const mobileDivider = document.createElement('div');
-      mobileDivider.className = 'cards-divider-mobile';
+      mobileDivider.className = 'cards-v1-divider-mobile';
       textWrap.append(mobileDivider);
       return;
     }
  
     if (link) {
       const cta = document.createElement('a');
-      cta.className = 'cards-cta';
+      cta.className = 'cards-v1-cta';
       cta.href = link.href;
       cta.textContent = link.textContent.trim();
       textWrap.append(cta);
@@ -55,20 +55,20 @@ export default function decorate(block) {
     }
  
     const desc = document.createElement('p');
-    desc.className = 'cards-description';
+    desc.className = 'cards-v1-description';
     desc.textContent = el.textContent.trim();
     textWrap.append(desc);
   });
  
   // ── Desktop full-width divider (block level) ───────────────
   const desktopDivider = document.createElement('div');
-  desktopDivider.className = 'cards-divider';
+  desktopDivider.className = 'cards-v1-divider';
  
   // ── Rebuild — image FIRST in DOM ───────────────────────────
   // Mobile  (flex-direction: column)      → image top, text bottom
   // Desktop (flex-direction: row-reverse) → text left, image right
   const inner = document.createElement('div');
-  inner.className = 'cards-inner';
+  inner.className = 'cards-v1-inner';
   inner.append(mediaWrap, textWrap); // image first
  
   block.textContent = '';
