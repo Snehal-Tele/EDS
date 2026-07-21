@@ -119,7 +119,7 @@
   font-size: 14px;
   font-weight: 600;
   color: var(var(--color-red-primary));
-  text-decoration: underline;
+  text-decoration: none;
 }
 .cardv3-pdf-link::before {
   content: "";
@@ -137,7 +137,7 @@
 
 .link-yellow .cardv3-pdf-link,
 .link-yellow .cardv3-link {
-  color: var(--color-yellow); /* Lexus-style gold */
+  color: var(--color-yellow-dark); /* Lexus-style gold */
 }
 
 .link-yellow .cardv3-pdf-link::before {
@@ -146,7 +146,7 @@
 
 .link-yellow .cardv3-pdf-link:hover,
 .link-yellow .cardv3-link:hover {
-  color: var(--color-yellow-dark);
+  text-decoration: none;
 }
 
 .link-red .cardv3-pdf-link,
@@ -160,5 +160,5 @@
 
 .link-red .cardv3-pdf-link:hover,
 .link-red .cardv3-link:hover {
-  color: var(--color-red-dark);
+  text-decoration: none;
 }/*# sourceMappingURL=cardv3.css.map */
