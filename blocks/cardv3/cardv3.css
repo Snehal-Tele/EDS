@@ -3,11 +3,11 @@
   margin: 0 auto;
   margin-bottom: 10px;
   padding: 0 24px;
-  max-height: 560px;
 }
 @media (max-width: 768px) {
   .cardv3-wrapper {
     padding: 0;
+    margin-bottom: 24px;
   }
 }
 
