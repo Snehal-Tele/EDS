@@ -75,7 +75,7 @@ $breakpoint-sm: 480px;
       box-sizing: border-box;
       width: 100%;
       padding: 24px 20px;
-      background: $color-black;
+      background: var(--color-black);
       margin: 0 !important;
     }
   }
@@ -94,7 +94,7 @@ $breakpoint-sm: 480px;
     margin: 0;
     font-size: 26px;
     font-weight: 800;
-    color: $color-white;
+    color: var(--color-white);
     line-height: 1.2;
 
     @media (max-width: $breakpoint-md) {
@@ -110,7 +110,7 @@ $breakpoint-sm: 480px;
     margin: 0;
     font-size: 14px;
     line-height: 1.65;
-    color: $color-white;
+    color: var(--color-white);
 
     @media (max-width: $breakpoint-md) {
       font-size: 13px;
@@ -119,7 +119,7 @@ $breakpoint-sm: 480px;
     // Secondary adjacent paragraph
     & + & {
       font-size: 12px;
-      color: $color-white;
+      color: var(--color-white);
     }
   }
 
@@ -128,11 +128,11 @@ $breakpoint-sm: 480px;
     display: inline-block;
     font-size: 14px;
     font-weight: 600;
-    color: $color-white;
+    color: var(--color-white);
     text-decoration: underline;
 
     &:hover {
-      color: $color-white;
+      color: var(--color-white);
     }
   }
 
