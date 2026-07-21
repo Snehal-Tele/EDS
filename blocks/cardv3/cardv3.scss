@@ -158,7 +158,7 @@
 
 .link-yellow .cardv3-pdf-link,
 .link-yellow .cardv3-link {
-  color: #c9a84c ; /* Lexus-style gold */
+  color: var(--color-yellow) ; /* Lexus-style gold */
 }
  
 .link-yellow .cardv3-pdf-link::before {
@@ -167,7 +167,7 @@
  
 .link-yellow .cardv3-pdf-link:hover,
 .link-yellow .cardv3-link:hover {
-  color: #a8863a ;
+  color: var(--color-yellow-dark) ;
 }
  
 
