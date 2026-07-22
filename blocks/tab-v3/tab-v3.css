@@ -101,7 +101,7 @@
   }
   .tab-v3 > div:not(:last-child)::after {
     height: 32px;
-    background: #d9d9d9;
+    background: #fff;
   }
   .tab-v3 > div > div {
     background: #fff; /* tab item background */
