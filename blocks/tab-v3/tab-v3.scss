@@ -4,7 +4,6 @@
   &,
   * {
     box-sizing: border-box;
-    max-height: 70px;
   }
 
   display: flex;
@@ -16,9 +15,6 @@
   border: none;
   z-index: 100;
   transition: box-shadow 0.2s ease;
-
-  /* Desktop: prevent horizontal scrollbar */
-  overflow: visible;
 
   &.is-fixed {
     position: fixed;
@@ -35,6 +31,7 @@
     flex: 0 0 auto;
     position: relative;
 
+    /* Vertical Divider */
     &:not(:last-child)::after {
       content: '';
       position: absolute;
@@ -86,23 +83,25 @@
     text-decoration: none;
     color: #202124;
     font-size: 24px;
-    font-weight: 400;
+    font-weight: 500;
     white-space: nowrap;
     -webkit-tap-highlight-color: transparent;
   }
 
-  /* ==========================
+  /* =====================================
      MOBILE
-     ========================== */
+     ===================================== */
   @media (max-width: $bp-tablet) {
     padding-left: 0;
     background: #fff;
 
     flex-wrap: nowrap;
-
-    /* Scroll ONLY tabs */
     overflow-x: auto;
     overflow-y: hidden;
+    white-space: nowrap;
+
+    width: 100%;
+    max-width: 100%;
 
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
@@ -112,6 +111,7 @@
     }
 
     > div {
+      flex: 0 0 auto;
       flex-shrink: 0;
 
       &:not(:last-child)::after {
@@ -127,8 +127,10 @@
     a,
     p {
       font-size: 18px;
+      color: #202124;
     }
 
+    /* Sticky Mobile */
     &.is-fixed {
       position: fixed;
       top: 0;
@@ -137,10 +139,19 @@
       width: 100%;
       background: #fff;
       box-shadow: 0 1px 4px rgb(0 0 0 / 10%);
-      z-index: 1000;
-
       overflow-x: auto;
       overflow-y: hidden;
+      z-index: 1000;
+    }
+
+    .tab-item.active {
+      background: #e6e6e6;
+
+      a,
+      p {
+        color: #b3261e;
+        font-weight: 700;
+      }
     }
   }
 }
@@ -156,10 +167,12 @@
 .tab-v3-wrapper {
   width: 100%;
   max-width: 100%;
+  overflow-x: hidden;
 }
 
-/* Prevent entire page horizontal scroll */
-html,
-body {
-  overflow-x: hidden;
+@media (max-width: $bp-tablet) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
 }
