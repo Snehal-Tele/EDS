@@ -1,11 +1,6 @@
 @use '../../styles/tokens' as *;
 
-/* Full-width container breakout for AEM / Edge Delivery Services */
-.tab-v3-container,
-.tab-v3-wrapper {
-  width: 100vw;
-  overflow: visible !important;
-}
+
 
 .tab-v3 {
   &,
