@@ -84,11 +84,12 @@
 @media (max-width: 768px) {
   .tab-v3 {
     padding-left: 0;
+    /* Entire tab bar white */
     background: #fff;
     flex-wrap: nowrap;
-    /* Scroll ONLY tabs */
     overflow-x: auto;
     overflow-y: hidden;
+    white-space: nowrap;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
@@ -96,18 +97,28 @@
     display: none;
   }
   .tab-v3 > div {
-    flex-shrink: 0;
+    flex: 0 0 auto;
   }
   .tab-v3 > div:not(:last-child)::after {
     height: 32px;
-    background: rgba(200, 200, 200, 0.8);
+    background: #d9d9d9;
   }
   .tab-v3 > div > div {
+    background: #fff; /* tab item background */
     padding: 16px 18px;
   }
   .tab-v3 a,
   .tab-v3 p {
     font-size: 18px;
+    color: #202124;
+  }
+  .tab-v3 .tab-item.active {
+    background: #e6e6e6;
+  }
+  .tab-v3 .tab-item.active a,
+  .tab-v3 .tab-item.active p {
+    color: #b3261e;
+    font-weight: 700;
   }
   .tab-v3.is-fixed {
     position: fixed;
@@ -115,11 +126,12 @@
     left: 0;
     right: 0;
     width: 100%;
+    /* Sticky bar also white */
     background: #fff;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
     overflow-x: auto;
     overflow-y: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
   }
 }
 

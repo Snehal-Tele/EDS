@@ -94,55 +94,71 @@
   /* ==========================
      MOBILE
      ========================== */
-  @media (max-width: $bp-tablet) {
-    padding-left: 0;
-    background: #fff;
-
-    flex-wrap: nowrap;
-
-    /* Scroll ONLY tabs */
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
-    > div {
-      flex-shrink: 0;
-
-      &:not(:last-child)::after {
-        height: 32px;
-        background: rgb(200 200 200 / 80%);
+     @media (max-width: $bp-tablet) {
+        padding-left: 0;
+      
+        /* Entire tab bar white */
+        background: #fff;
+      
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+      
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      
+        > div {
+          flex: 0 0 auto;
+      
+          &:not(:last-child)::after {
+            height: 32px;
+            background: #d9d9d9;
+          }
+      
+          > div {
+            background: #fff; /* tab item background */
+            padding: 16px 18px;
+          }
+        }
+      
+        a,
+        p {
+          font-size: 18px;
+          color: #202124;
+        }
+      
+        .tab-item.active {
+          background: #e6e6e6;
+      
+          a,
+          p {
+            color: #b3261e;
+            font-weight: 700;
+          }
+        }
+      
+        &.is-fixed {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          width: 100%;
+      
+          /* Sticky bar also white */
+          background: #fff;
+      
+          overflow-x: auto;
+          overflow-y: hidden;
+      
+          box-shadow: 0 1px 4px rgb(0 0 0 / 10%);
+          z-index: 1000;
+        }
       }
-
-      > div {
-        padding: 16px 18px;
-      }
-    }
-
-    a,
-    p {
-      font-size: 18px;
-    }
-
-    &.is-fixed {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      background: #fff;
-      box-shadow: 0 1px 4px rgb(0 0 0 / 10%);
-      z-index: 1000;
-
-      overflow-x: auto;
-      overflow-y: hidden;
-    }
-  }
 }
 
 .tab-v3-placeholder {
