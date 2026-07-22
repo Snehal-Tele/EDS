@@ -1,3 +1,12 @@
+/* Full-width container breakout for AEM / Edge Delivery Services */
+.tab-v3-container,
+.tab-v3-wrapper {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  overflow: visible !important;
+}
+
 .tab-v3,
 .tab-v3 * {
   box-sizing: border-box;
@@ -18,7 +27,7 @@
   top: 0;
   left: 0;
   right: 0;
-  width: 100%;
+  width: 100vw;
   z-index: 1000;
   background: #c5c5c5;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
@@ -33,18 +42,22 @@
        user-select: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, font-weight 0.2s ease;
+  /* Hover styling updated to light grey background and bold text */
 }
 .tab-v3 > div > div:hover {
-  background: transparent;
+  background: var(--color-gray-light, #e6e6e6);
 }
-.tab-v3 > div > div:hover a {
-  color: var(--color-link-column);
+.tab-v3 > div > div:hover a,
+.tab-v3 > div > div:hover p {
+  color: var(--color-link-column, #202124);
+  font-weight: 700;
 }
 .tab-v3 > div > div.active {
-  background: var(--color-gray-light);
+  background: var(--color-gray-light, #e6e6e6);
 }
-.tab-v3 > div > div.active a {
+.tab-v3 > div > div.active a,
+.tab-v3 > div > div.active p {
   color: #b3261e;
   font-weight: 700;
 }
@@ -66,6 +79,7 @@
 }
 @media (max-width: 768px) {
   .tab-v3 {
+    padding-left: 16px;
     /* Keep sticky tab identical to normal mobile tab */
   }
   .tab-v3.is-fixed {
@@ -76,10 +90,12 @@
   .tab-v3.is-fixed > div > div {
     background: transparent;
   }
-  .tab-v3.is-fixed > div > div.active {
+  .tab-v3.is-fixed > div > div:hover, .tab-v3.is-fixed > div > div.active {
     background: #e6e6e6;
   }
-  .tab-v3.is-fixed > div > div.active a {
+  .tab-v3.is-fixed > div > div:hover a,
+  .tab-v3.is-fixed > div > div:hover p, .tab-v3.is-fixed > div > div.active a,
+  .tab-v3.is-fixed > div > div.active p {
     color: #202124;
     font-weight: 700;
   }
@@ -87,10 +103,6 @@
   .tab-v3.is-fixed p {
     color: #a6b1d2;
   }
-}
-
-.tab-v3-wrapper {
-  overflow: visible !important;
 }
 
 .tab-v3-placeholder {
