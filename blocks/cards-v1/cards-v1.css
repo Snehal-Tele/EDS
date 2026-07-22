@@ -2,7 +2,8 @@
   background: var(--color-white);
   padding: 40px 0;
   position: relative;
-  overflow: visible;
+  /* Prevent 100vw divider elements from creating horizontal scrollbars */
+  overflow: hidden;
 }
 @media (max-width: 768px) {
   .cards-v1 {
@@ -109,9 +110,8 @@
 }
 .cards-v1-divider {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
+  left: 0;
+  width: 100%; /* Changed from 100vw to 100% to eliminate horizontal scrollbar */
   height: 1px;
   background-color: var(--color-gray-light);
   pointer-events: none;
@@ -137,4 +137,11 @@
   .cards-v1-description {
     font-size: 15px;
   }
+}
+.cards-v1-cta {
+  display: inline-block;
+  margin-top: 24px;
+  color: var(--color-black);
+  font-weight: 700;
+  text-decoration: underline;
 }/*# sourceMappingURL=cards-v1.css.map */
