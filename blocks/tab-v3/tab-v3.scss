@@ -16,12 +16,12 @@
   }
 
   display: flex;
-  justify-content: center; /* Center tabs across the screen */
+  padding-left: 62px;
+  flex-direction: row;
   align-items: center;
   width: 100%;
-  background: #e0e0e0; /* Matches the clean light grey bar in Image 2 */
-  border-top: 1px solid #dcdcdc;
-  border-bottom: 1px solid #dcdcdc;
+  background: #c5c5c5;
+  border: none;
   z-index: 100;
   transition: box-shadow 0.2s ease;
 
@@ -32,57 +32,39 @@
     right: 0;
     width: 100vw;
     z-index: 1000;
-    background: #e0e0e0;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background: #c5c5c5;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 12%);
   }
 
   > div {
     flex: 0 0 auto;
 
     > div {
-      position: relative;
-      padding: 16px 28px;
+      padding: 18px 22px;
       cursor: pointer;
       user-select: none;
       -webkit-user-select: none;
       -webkit-tap-highlight-color: transparent;
-      transition: background-color 0.2s ease;
-      border-right: 1px solid #c8c8c8; /* Vertical separators between items */
+      transition: background-color 0.2s ease, font-weight 0.2s ease;
 
-      &:first-child {
-        border-left: 1px solid #c8c8c8;
-      }
-
-      /* Hover state: subtle highlight & bold text */
+      /* Hover styling updated to light grey background and bold text */
       &:hover {
-        background: rgba(255, 255, 255, 0.4);
+        background:  #e6e6e6;
 
         a,
         p {
-          color: #111111;
+          color:  #202124;
           font-weight: 700;
         }
       }
 
-      /* Active tab state */
       &.active {
-        background: transparent;
+        background:  #e6e6e6;
 
         a,
         p {
-          color: #cc0000; /* Toyota Signature Red */
+          color: #b3261e;
           font-weight: 700;
-        }
-
-        /* Optional: Red accent line under active item */
-        &::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          height: 3px;
-          background-color: #cc0000;
         }
       }
     }
@@ -93,28 +75,43 @@
     margin: 0;
     padding: 0;
     text-decoration: none;
-    color: #4a4a4a; /* Softer text color matching original site */
-    font-size: 20px;
+    color: #202124;
+    font-size: 24px;
     font-weight: 500;
     white-space: nowrap;
     -webkit-tap-highlight-color: transparent;
-    transition: color 0.2s ease, font-weight 0.2s ease;
   }
 
   /* ==========================
-     MOBILE RESPONSIVENESS
+     MOBILE
      ========================== */
-  @media (max-width: 768px) {
-    justify-content: flex-start;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+  @media (max-width: $bp-tablet) {
+    padding-left: 16px;
 
-    > div > div {
-      padding: 12px 18px;
+    /* Keep sticky tab identical to normal mobile tab */
+    &.is-fixed {
+      background: #fff;
+      box-shadow: none;
+      border: none;
+
+      > div > div {
+        background: transparent;
+
+        &:hover,
+        &.active {
+          background: #e6e6e6;
+
+          a,
+          p {
+            color: #202124;
+            font-weight: 700;
+          }
+        }
+      }
 
       a,
       p {
-        font-size: 16px;
+        color: #a6b1d2;
       }
     }
   }
