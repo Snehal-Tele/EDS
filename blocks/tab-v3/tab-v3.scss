@@ -12,7 +12,7 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
-  background: var(--color-section-bg);
+  background: var(--color-gray-dark);
   border: none;
   z-index: 100;
   transition: box-shadow 0.2s ease;
@@ -24,7 +24,7 @@
     right: 0;
     width: 100%;
     z-index: 1000;
-    background: var(--color-section-bg);
+    background: #cfe2f3;;
     box-shadow: 0 1px 4px rgb(0 0 0 / 12%);
   }
 
@@ -51,8 +51,8 @@
         background: var(--color-gray-light);
 
         a {
-          color: var(--color-link-column);
-          font-weight: var(--font-weight-bold);
+          color: #b3261e;
+          font-weight: 700;
         }
       }
     }
@@ -88,7 +88,7 @@
 
           a {
             color: #202124;
-            font-weight: var(--font-weight-bold);
+            font-weight: 700;
           }
         }
       }
