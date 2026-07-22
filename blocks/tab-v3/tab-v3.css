@@ -26,7 +26,7 @@
 .tab-v3 > div {
   flex: 0 0 auto;
   position: relative;
-  /* Vertical divider */
+  /* Vertical Divider */
 }
 .tab-v3 > div:not(:last-child)::after {
   content: "";
@@ -87,9 +87,9 @@
     flex-wrap: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
+    white-space: nowrap;
     width: 100%;
     max-width: 100%;
-    white-space: nowrap;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
@@ -97,6 +97,7 @@
     display: none;
   }
   .tab-v3 > div {
+    flex: 0 0 auto;
     flex-shrink: 0;
   }
   .tab-v3 > div:not(:last-child)::after {
@@ -111,11 +112,20 @@
     font-size: 18px;
     color: #202124;
   }
+  .tab-v3 {
+    /* Sticky Mobile */
+  }
   .tab-v3.is-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     background: #fff;
-    box-shadow: none;
-    border: none;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+    overflow-y: hidden;
+    z-index: 1000;
   }
   .tab-v3 .tab-item.active {
     background: #e6e6e6;
@@ -127,7 +137,6 @@
   }
 }
 
-/* Placeholder for sticky state */
 .tab-v3-placeholder {
   display: none;
 }
@@ -135,7 +144,12 @@
   display: block;
 }
 
-/* Prevent entire page horizontal scrolling */
+.tab-v3-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 @media (max-width: 768px) {
   html,
   body {
