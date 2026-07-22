@@ -1,6 +1,7 @@
 .tab-v3,
 .tab-v3 * {
   box-sizing: border-box;
+  max-height: 70px;
 }
 .tab-v3 {
   display: flex;
