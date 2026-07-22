@@ -100,6 +100,7 @@
   }
   .tab-v3 > div:not(:last-child)::after {
     height: 32px;
+    background: rgba(200, 200, 200, 0.8);
   }
   .tab-v3 > div > div {
     padding: 16px 18px;
