@@ -4,10 +4,10 @@
 }
 .tab-v3 {
   display: flex;
-  padding-left: 62px;
   flex-direction: row;
   align-items: center;
   width: 100%;
+  padding-left: 62px;
   background: #c5c5c5;
   border: none;
   z-index: 100;
@@ -18,7 +18,7 @@
   top: 0;
   left: 0;
   right: 0;
-  width: 100vw;
+  width: 100%;
   z-index: 1000;
   background: #c5c5c5;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
@@ -56,14 +56,6 @@
   color: #202124;
   font-weight: 700;
 }
-.tab-v3 > div > div.active {
-  background: #e6e6e6;
-}
-.tab-v3 > div > div.active a,
-.tab-v3 > div > div.active p {
-  color: #b3261e;
-  font-weight: 700;
-}
 .tab-v3 .tab-item.active {
   background: #e6e6e6;
 }
@@ -83,35 +75,70 @@
   white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
 }
+.tab-v3 {
+  /* =====================================
+     MOBILE
+     ===================================== */
+}
 @media (max-width: 768px) {
   .tab-v3 {
-    padding-left: 16px;
+    padding-left: 0;
+    background: #fff;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tab-v3::-webkit-scrollbar {
+    display: none;
+  }
+  .tab-v3 > div {
+    flex-shrink: 0;
   }
   .tab-v3 > div:not(:last-child)::after {
     height: 32px;
+    background: rgba(200, 200, 200, 0.8);
+  }
+  .tab-v3 > div > div {
+    padding: 16px 18px;
+  }
+  .tab-v3 a,
+  .tab-v3 p {
+    font-size: 18px;
+    color: #202124;
   }
   .tab-v3.is-fixed {
+    width: 100%;
     background: #fff;
     box-shadow: none;
     border: none;
   }
-  .tab-v3.is-fixed a,
-  .tab-v3.is-fixed p {
-    color: #a6b1d2;
-  }
-  .tab-v3.is-fixed .tab-item.active {
+  .tab-v3 .tab-item.active {
     background: #e6e6e6;
   }
-  .tab-v3.is-fixed .tab-item.active a,
-  .tab-v3.is-fixed .tab-item.active p {
-    color: #202124;
+  .tab-v3 .tab-item.active a,
+  .tab-v3 .tab-item.active p {
+    color: #b3261e;
     font-weight: 700;
   }
 }
 
+/* Placeholder for sticky state */
 .tab-v3-placeholder {
   display: none;
 }
 .tab-v3-placeholder.is-active {
   display: block;
+}
+
+/* Prevent entire page horizontal scrolling */
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
 }/*# sourceMappingURL=tab-v3.css.map */

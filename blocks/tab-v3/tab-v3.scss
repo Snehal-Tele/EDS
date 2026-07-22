@@ -7,10 +7,10 @@
   }
 
   display: flex;
-  padding-left: 62px;
   flex-direction: row;
   align-items: center;
   width: 100%;
+  padding-left: 62px;
   background: #c5c5c5;
   border: none;
   z-index: 100;
@@ -21,7 +21,7 @@
     top: 0;
     left: 0;
     right: 0;
-    width: 100vw;
+    width: 100%;
     z-index: 1000;
     background: #c5c5c5;
     box-shadow: 0 1px 4px rgb(0 0 0 / 12%);
@@ -40,7 +40,7 @@
       width: 1px;
       height: 44px;
       transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.8);
+      background: rgb(255 255 255 / 80%);
       pointer-events: none;
     }
 
@@ -60,16 +60,6 @@
         a,
         p {
           color: #202124;
-          font-weight: 700;
-        }
-      }
-
-      &.active {
-        background: #e6e6e6;
-
-        a,
-        p {
-          color: #b3261e;
           font-weight: 700;
         }
       }
@@ -98,42 +88,80 @@
     -webkit-tap-highlight-color: transparent;
   }
 
+  /* =====================================
+     MOBILE
+     ===================================== */
   @media (max-width: $bp-tablet) {
-    padding-left: 16px;
+    padding-left: 0;
+    background: #fff;
+
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    width: 100%;
+    max-width: 100%;
+
+    white-space: nowrap;
+
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     > div {
+      flex-shrink: 0;
+
       &:not(:last-child)::after {
         height: 32px;
+        background: rgb(200 200 200 / 80%);
+      }
+
+      > div {
+        padding: 16px 18px;
       }
     }
 
+    a,
+    p {
+      font-size: 18px;
+      color: #202124;
+    }
+
     &.is-fixed {
+      width: 100%;
       background: #fff;
       box-shadow: none;
       border: none;
+    }
+
+    .tab-item.active {
+      background: #e6e6e6;
 
       a,
       p {
-        color: #a6b1d2;
-      }
-
-      .tab-item.active {
-        background: #e6e6e6;
-
-        a,
-        p {
-          color: #202124;
-          font-weight: 700;
-        }
+        color: #b3261e;
+        font-weight: 700;
       }
     }
   }
 }
 
+/* Placeholder for sticky state */
 .tab-v3-placeholder {
   display: none;
 
   &.is-active {
     display: block;
+  }
+}
+
+/* Prevent entire page horizontal scrolling */
+@media (max-width: $bp-tablet) {
+  html,
+  body {
+    overflow-x: hidden;
   }
 }
