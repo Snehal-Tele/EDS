@@ -4,6 +4,7 @@
   &,
   * {
     box-sizing: border-box;
+    max-height: 70px;
   }
 
   display: flex;
@@ -85,7 +86,7 @@
     text-decoration: none;
     color: #202124;
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 400;
     white-space: nowrap;
     -webkit-tap-highlight-color: transparent;
   }
