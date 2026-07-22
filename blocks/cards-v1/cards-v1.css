@@ -2,8 +2,7 @@
   background: var(--color-white);
   padding: 40px 0;
   position: relative;
-  /* Prevent 100vw divider elements from creating horizontal scrollbars */
-  overflow: hidden;
+  overflow-x: hidden;
 }
 @media (max-width: 768px) {
   .cards-v1 {
@@ -20,6 +19,7 @@
   gap: 48px;
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
 }
 @media (max-width: 1024px) {
   .cards-v1-inner {
@@ -32,6 +32,9 @@
     gap: 0;
     padding: 0 16px;
   }
+}
+.cards-v1-media, .cards-v1-text {
+  min-width: 0;
 }
 .cards-v1-media {
   flex: 1;
@@ -83,8 +86,8 @@
   margin: 0 0 16px;
   font-size: 32px;
   font-weight: 800;
-  color: var(--color-black);
   line-height: 1.15;
+  color: var(--color-black);
 }
 @media (max-width: 1024px) {
   .cards-v1-heading {
@@ -104,14 +107,14 @@
     display: block;
     width: 100%;
     height: 1px;
-    background-color: var(--color-gray-light);
-    margin: 0 0 20px;
+    background: var(--color-gray-light);
+    margin-bottom: 20px;
   }
 }
 .cards-v1-divider {
   position: absolute;
   left: 0;
-  width: 100%; /* Changed from 100vw to 100% to eliminate horizontal scrollbar */
+  width: 100%;
   height: 1px;
   background-color: var(--color-gray-light);
   pointer-events: none;
@@ -137,11 +140,4 @@
   .cards-v1-description {
     font-size: 15px;
   }
-}
-.cards-v1-cta {
-  display: inline-block;
-  margin-top: 24px;
-  color: var(--color-black);
-  font-weight: 700;
-  text-decoration: underline;
 }/*# sourceMappingURL=cards-v1.css.map */
