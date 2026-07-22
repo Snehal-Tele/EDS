@@ -1,0 +1,90 @@
+/* Tab-v3 Main Container */
+.tab-v3-wrapper {
+    width: 100%;
+    background-color: #d8d8d8; /* Light gray background matching the image */
+    padding: 0;
+    margin: 0;
+  }
+  
+  .tab-v3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .tab-v3 .tab-v3-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  
+  /* Individual Tab Item */
+  .tab-v3 .tab-v3-item {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  /* Pipe Separator between tabs */
+  .tab-v3 .tab-v3-item:not(:last-child)::after {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 20px;
+    background-color: #a0a0a0; /* Neutral gray separator line */
+    margin: 0 4px;
+  }
+  
+  /* Tab Buttons & Links */
+  .tab-v3 .tab-v3-btn {
+    display: inline-block;
+    padding: 14px 20px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333333;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, font-weight 0.1s ease;
+    line-height: 1.2;
+  }
+  
+  /* Hover State */
+  .tab-v3 .tab-v3-btn:hover {
+    color: #000000;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Active Tab State (Matching the "Philosophy" tab in image) */
+  .tab-v3 .tab-v3-btn.active,
+  .tab-v3 .tab-v3-btn[aria-selected="true"] {
+    font-weight: 700; /* Bold text */
+    color: #000000;
+    background-color: #ececec; /* Light active highlight background */
+  }
+  
+  /* Responsive view for mobile screens */
+  @media (max-width: 768px) {
+    .tab-v3 .tab-v3-list {
+      flex-direction: row;
+      overflow-x: auto;
+      justify-content: flex-start;
+      padding: 0 10px;
+      white-space: nowrap;
+    }
+  
+    .tab-v3 .tab-v3-btn {
+      padding: 12px 14px;
+      font-size: 14px;
+    }
+  }
