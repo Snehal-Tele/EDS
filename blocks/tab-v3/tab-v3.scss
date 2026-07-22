@@ -1,7 +1,5 @@
 @use '../../styles/tokens' as *;
 
-
-
 .tab-v3 {
   &,
   * {
@@ -31,6 +29,20 @@
 
   > div {
     flex: 0 0 auto;
+    position: relative;
+
+    /* Vertical divider */
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 1px;
+      height: 44px;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.8);
+      pointer-events: none;
+    }
 
     > div {
       padding: 18px 22px;
@@ -38,21 +50,22 @@
       user-select: none;
       -webkit-user-select: none;
       -webkit-tap-highlight-color: transparent;
-      transition: background-color 0.2s ease, font-weight 0.2s ease;
+      transition:
+        background-color 0.2s ease,
+        font-weight 0.2s ease;
 
-      /* Hover styling updated to light grey background and bold text */
       &:hover {
-        background:  #e6e6e6;
+        background: #e6e6e6;
 
         a,
         p {
-          color:  #202124;
+          color: #202124;
           font-weight: 700;
         }
       }
 
       &.active {
-        background:  #e6e6e6;
+        background: #e6e6e6;
 
         a,
         p {
@@ -60,6 +73,16 @@
           font-weight: 700;
         }
       }
+    }
+  }
+
+  .tab-item.active {
+    background: #e6e6e6;
+
+    a,
+    p {
+      color: #b3261e;
+      font-weight: 700;
     }
   }
 
@@ -75,36 +98,33 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  /* ==========================
-     MOBILE
-     ========================== */
   @media (max-width: $bp-tablet) {
     padding-left: 16px;
 
-    /* Keep sticky tab identical to normal mobile tab */
+    > div {
+      &:not(:last-child)::after {
+        height: 32px;
+      }
+    }
+
     &.is-fixed {
       background: #fff;
       box-shadow: none;
       border: none;
 
-      > div > div {
-        background: transparent;
-
-        &:hover,
-        &.active {
-          background: #e6e6e6;
-
-          a,
-          p {
-            color: #202124;
-            font-weight: 700;
-          }
-        }
-      }
-
       a,
       p {
         color: #a6b1d2;
+      }
+
+      .tab-item.active {
+        background: #e6e6e6;
+
+        a,
+        p {
+          color: #202124;
+          font-weight: 700;
+        }
       }
     }
   }

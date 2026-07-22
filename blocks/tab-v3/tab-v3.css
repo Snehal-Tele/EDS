@@ -25,6 +25,19 @@
 }
 .tab-v3 > div {
   flex: 0 0 auto;
+  position: relative;
+  /* Vertical divider */
+}
+.tab-v3 > div:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 1px;
+  height: 44px;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  pointer-events: none;
 }
 .tab-v3 > div > div {
   padding: 18px 22px;
@@ -34,7 +47,6 @@
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
   transition: background-color 0.2s ease, font-weight 0.2s ease;
-  /* Hover styling updated to light grey background and bold text */
 }
 .tab-v3 > div > div:hover {
   background: #e6e6e6;
@@ -52,6 +64,14 @@
   color: #b3261e;
   font-weight: 700;
 }
+.tab-v3 .tab-item.active {
+  background: #e6e6e6;
+}
+.tab-v3 .tab-item.active a,
+.tab-v3 .tab-item.active p {
+  color: #b3261e;
+  font-weight: 700;
+}
 .tab-v3 a,
 .tab-v3 p {
   margin: 0;
@@ -63,36 +83,29 @@
   white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
 }
-.tab-v3 {
-  /* ==========================
-     MOBILE
-     ========================== */
-}
 @media (max-width: 768px) {
   .tab-v3 {
     padding-left: 16px;
-    /* Keep sticky tab identical to normal mobile tab */
+  }
+  .tab-v3 > div:not(:last-child)::after {
+    height: 32px;
   }
   .tab-v3.is-fixed {
     background: #fff;
     box-shadow: none;
     border: none;
   }
-  .tab-v3.is-fixed > div > div {
-    background: transparent;
-  }
-  .tab-v3.is-fixed > div > div:hover, .tab-v3.is-fixed > div > div.active {
-    background: #e6e6e6;
-  }
-  .tab-v3.is-fixed > div > div:hover a,
-  .tab-v3.is-fixed > div > div:hover p, .tab-v3.is-fixed > div > div.active a,
-  .tab-v3.is-fixed > div > div.active p {
-    color: #202124;
-    font-weight: 700;
-  }
   .tab-v3.is-fixed a,
   .tab-v3.is-fixed p {
     color: #a6b1d2;
+  }
+  .tab-v3.is-fixed .tab-item.active {
+    background: #e6e6e6;
+  }
+  .tab-v3.is-fixed .tab-item.active a,
+  .tab-v3.is-fixed .tab-item.active p {
+    color: #202124;
+    font-weight: 700;
   }
 }
 

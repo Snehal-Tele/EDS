@@ -2,29 +2,38 @@ export default function decorate(block) {
   const links = [...block.querySelectorAll('a')];
   const isInEditor = window.self !== window.top;
 
-  // Ensure full-width container class wrapper handles viewport width properly
   if (block.parentElement) {
     block.parentElement.classList.add('tab-v3-wrapper');
   }
 
   links.forEach((link) => {
     const wrapper = link.closest(':scope > div, div');
-    if (wrapper) wrapper.classList.add('tab-item');
+
+    if (wrapper) {
+      wrapper.classList.add('tab-item');
+    }
 
     link.addEventListener('click', (e) => {
       e.preventDefault();
 
       const targetId = link.getAttribute('href')?.replace('#', '');
-      const target = targetId ? document.getElementById(targetId) : null;
+      const target = targetId
+        ? document.getElementById(targetId)
+        : null;
 
-      if (!target) return;
+      if (!target) {
+        return;
+      }
 
       const offset = block.classList.contains('is-fixed')
         ? block.offsetHeight
         : 0;
 
       window.scrollTo({
-        top: target.getBoundingClientRect().top + window.scrollY - offset,
+        top:
+          target.getBoundingClientRect().top +
+          window.scrollY -
+          offset,
         behavior: 'smooth',
       });
     });
@@ -33,7 +42,9 @@ export default function decorate(block) {
   const sections = links
     .map((link) => ({
       wrapper: link.closest('.tab-item'),
-      section: document.getElementById(link.getAttribute('href')?.replace('#', '')),
+      section: document.getElementById(
+        link.getAttribute('href')?.replace('#', ''),
+      ),
     }))
     .filter((item) => item.section);
 
@@ -45,7 +56,10 @@ export default function decorate(block) {
     if (wrapper) {
       wrapper.classList.add('active');
 
-      if (window.innerWidth <= 768 && wrapper.parentElement) {
+      if (
+        window.innerWidth <= 768 &&
+        wrapper.parentElement
+      ) {
         requestAnimationFrame(() => {
           wrapper.parentElement.scrollIntoView({
             behavior: 'auto',
@@ -58,8 +72,10 @@ export default function decorate(block) {
   }
 
   function updateActiveTab() {
-    const scrollPos = window.scrollY + block.offsetHeight + 20;
-    let current = sections[0];
+    const scrollPos =
+      window.scrollY + block.offsetHeight + 20;
+
+    let current = null;
 
     sections.forEach((item) => {
       if (item.section.offsetTop <= scrollPos) {
@@ -74,31 +90,40 @@ export default function decorate(block) {
       current = sections[sections.length - 1];
     }
 
-    if (current) {
-      setActive(current.wrapper);
-    }
+    setActive(current ? current.wrapper : null);
   }
 
   if (isInEditor) {
-    updateActiveTab();
     return;
   }
 
-  // Placeholder creation for scroll spacing
   const placeholder = document.createElement('div');
   placeholder.className = 'tab-v3-placeholder';
-  block.parentNode.insertBefore(placeholder, block);
+
+  block.parentNode.insertBefore(
+    placeholder,
+    block,
+  );
 
   let start = 0;
   let end = Number.MAX_SAFE_INTEGER;
 
   function calculateBounds() {
-    start = block.getBoundingClientRect().top + window.scrollY;
-    const lastSection = sections[sections.length - 1]?.section;
+    start =
+      block.getBoundingClientRect().top +
+      window.scrollY;
+
+    const lastSection =
+      sections[sections.length - 1]?.section;
 
     if (lastSection) {
-      const rect = lastSection.getBoundingClientRect();
-      end = rect.bottom + window.scrollY - block.offsetHeight;
+      const rect =
+        lastSection.getBoundingClientRect();
+
+      end =
+        rect.bottom +
+        window.scrollY -
+        block.offsetHeight;
     }
 
     updateSticky();
@@ -107,7 +132,10 @@ export default function decorate(block) {
   function updateSticky() {
     const h = block.offsetHeight;
 
-    if (window.scrollY >= start && window.scrollY <= end) {
+    if (
+      window.scrollY >= start &&
+      window.scrollY < end
+    ) {
       block.classList.add('is-fixed');
       placeholder.classList.add('is-active');
       placeholder.style.height = `${h}px`;
@@ -135,7 +163,9 @@ export default function decorate(block) {
     onScroll();
   });
 
-  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('scroll', onScroll, {
+    passive: true,
+  });
 
   setTimeout(() => {
     calculateBounds();
