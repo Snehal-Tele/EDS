@@ -1,90 +1,101 @@
-/* Tab-v3 Main Container */
-.tab-v3-wrapper {
-  width: 100%;
-  background-color: #d8d8d8; /* Light gray background matching the image */
-  padding: 0;
-  margin: 0;
+.tabs-v1,
+.tabs-v1 * {
+  box-sizing: border-box;
 }
-
-.tab-v3 {
+.tabs-v1 {
   display: flex;
-  justify-content: center;
+  padding-left: 62px;
+  flex-direction: row;
   align-items: center;
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.tab-v3 .tab-v3-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
-/* Individual Tab Item */
-.tab-v3 .tab-v3-item {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-/* Pipe Separator between tabs */
-.tab-v3 .tab-v3-item:not(:last-child)::after {
-  content: "";
-  display: inline-block;
-  width: 1px;
-  height: 20px;
-  background-color: #a0a0a0; /* Neutral gray separator line */
-  margin: 0 4px;
-}
-
-/* Tab Buttons & Links */
-.tab-v3 .tab-v3-btn {
-  display: inline-block;
-  padding: 14px 20px;
-  font-family: inherit;
-  font-size: 16px;
-  font-weight: 400;
-  color: #333333;
-  text-decoration: none;
-  background: transparent;
+  background: var(--color-section-bg);
   border: none;
+  z-index: 100;
+  transition: box-shadow 0.2s ease;
+}
+.tabs-v1.is-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  background: var(--color-section-bg);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+.tabs-v1 > div {
+  flex: 0 0 auto;
+}
+.tabs-v1 > div > div {
+  padding: 18px 22px;
   cursor: pointer;
-  transition: background-color 0.2s ease, font-weight 0.1s ease;
-  line-height: 1.2;
+  -moz-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.2s ease;
 }
-
-/* Hover State */
-.tab-v3 .tab-v3-btn:hover {
-  color: #000000;
-  background-color: rgba(0, 0, 0, 0.05);
+.tabs-v1 > div > div:hover {
+  background: transparent;
 }
-
-/* Active Tab State (Matching the "Philosophy" tab in image) */
-.tab-v3 .tab-v3-btn.active,
-.tab-v3 .tab-v3-btn[aria-selected="true"] {
-  font-weight: 700; /* Bold text */
-  color: #000000;
-  background-color: #ececec; /* Light active highlight background */
+.tabs-v1 > div > div:hover a {
+  color: var(--color-link-column);
 }
-
-/* Responsive view for mobile screens */
+.tabs-v1 > div > div.active {
+  background: var(--color-gray-light);
+}
+.tabs-v1 > div > div.active a {
+  color: var(--color-link-column);
+  font-weight: var(--font-weight-bold);
+}
+.tabs-v1 a,
+.tabs-v1 p {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: #202124;
+  font-size: 24px;
+  font-weight: 500;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+.tabs-v1 {
+  /* ==========================
+     MOBILE
+     ========================== */
+}
 @media (max-width: 768px) {
-  .tab-v3 .tab-v3-list {
-    flex-direction: row;
-    overflow-x: auto;
-    justify-content: flex-start;
-    padding: 0 10px;
-    white-space: nowrap;
+  .tabs-v1 {
+    /* Keep sticky tab identical to normal mobile tab */
   }
-
-  .tab-v3 .tab-v3-btn {
-    padding: 12px 14px;
-    font-size: 14px;
+  .tabs-v1.is-fixed {
+    background: #fff;
+    box-shadow: none;
+    border: none;
+  }
+  .tabs-v1.is-fixed > div > div {
+    background: transparent;
+  }
+  .tabs-v1.is-fixed > div > div.active {
+    background: #e6e6e6;
+  }
+  .tabs-v1.is-fixed > div > div.active a {
+    color: #202124;
+    font-weight: var(--font-weight-bold);
+  }
+  .tabs-v1.is-fixed a,
+  .tabs-v1.is-fixed p {
+    color: #a6b1d2;
   }
 }
+
+.tabs-v1-wrapper {
+  overflow: visible !important;
+}
+
+.tabs-v1-placeholder {
+  display: none;
+}
+.tabs-v1-placeholder.is-active {
+  display: block;
+}/*# sourceMappingURL=tab-v3.css.map */

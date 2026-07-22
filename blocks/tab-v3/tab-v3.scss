@@ -1,0 +1,114 @@
+
+@use '../../styles/tokens' as *;
+
+.tabs-v1 {
+  &,
+  * {
+    box-sizing: border-box;
+  }
+
+  display: flex;
+  padding-left: 62px;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  background: var(--color-section-bg);
+  border: none;
+  z-index: 100;
+  transition: box-shadow 0.2s ease;
+
+  &.is-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    background: var(--color-section-bg);
+    box-shadow: 0 1px 4px rgb(0 0 0 / 12%);
+  }
+
+  > div {
+    flex: 0 0 auto;
+
+    > div {
+      padding: 18px 22px;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background: transparent;
+
+        a {
+          color: var(--color-link-column);
+        }
+      }
+
+      &.active {
+        background: var(--color-gray-light);
+
+        a {
+          color: var(--color-link-column);
+          font-weight: var(--font-weight-bold);
+        }
+      }
+    }
+  }
+
+  a,
+  p {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color: #202124;
+    font-size: 24px;
+    font-weight: 500;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* ==========================
+     MOBILE
+     ========================== */
+     @media (max-width: $bp-tablet) {
+    /* Keep sticky tab identical to normal mobile tab */
+    &.is-fixed {
+      background: #fff;
+      box-shadow: none;
+      border: none;
+
+      > div > div {
+        background: transparent;
+
+        &.active {
+          background: #e6e6e6;
+
+          a {
+            color: #202124;
+            font-weight: var(--font-weight-bold);
+          }
+        }
+      }
+
+      a,
+      p {
+        color: #a6b1d2;
+      }
+    }
+  }
+}
+
+.tabs-v1-wrapper {
+  overflow: visible !important;
+}
+
+.tabs-v1-placeholder {
+  display: none;
+
+  &.is-active {
+    display: block;
+  }
+}
