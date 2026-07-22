@@ -1,9 +1,6 @@
 .tab-v3,
 .tab-v3 * {
   box-sizing: border-box;
-  max-height: 70px;
-  padding-left: 0px;
-  margin-left: 0px;
 }
 .tab-v3 {
   display: flex;
