@@ -84,7 +84,7 @@ export default function decorate(block) {
  
   // Placeholder
   const placeholder = document.createElement('div');
-  placeholder.className = 'tabs-v1-placeholder';
+  placeholder.className = 'tab-v3-placeholder';
   block.parentNode.insertBefore(placeholder, block);
  
   let start = 0;

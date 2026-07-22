@@ -1,7 +1,7 @@
 
 @use '../../styles/tokens' as *;
 
-.tabs-v1 {
+.tab-v3 {
   &,
   * {
     box-sizing: border-box;
@@ -101,11 +101,11 @@
   }
 }
 
-.tabs-v1-wrapper {
+.tab-v3-wrapper {
   overflow: visible !important;
 }
 
-.tabs-v1-placeholder {
+.tab-v3-placeholder {
   display: none;
 
   &.is-active {

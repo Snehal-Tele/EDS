@@ -1,8 +1,8 @@
-.tabs-v1,
-.tabs-v1 * {
+.tab-v3,
+.tab-v3 * {
   box-sizing: border-box;
 }
-.tabs-v1 {
+.tab-v3 {
   display: flex;
   padding-left: 62px;
   flex-direction: row;
@@ -13,7 +13,7 @@
   z-index: 100;
   transition: box-shadow 0.2s ease;
 }
-.tabs-v1.is-fixed {
+.tab-v3.is-fixed {
   position: fixed;
   top: 0;
   left: 0;
@@ -23,10 +23,10 @@
   background: var(--color-section-bg);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
 }
-.tabs-v1 > div {
+.tab-v3 > div {
   flex: 0 0 auto;
 }
-.tabs-v1 > div > div {
+.tab-v3 > div > div {
   padding: 18px 22px;
   cursor: pointer;
   -moz-user-select: none;
@@ -35,21 +35,21 @@
   -webkit-tap-highlight-color: transparent;
   transition: background-color 0.2s ease;
 }
-.tabs-v1 > div > div:hover {
+.tab-v3 > div > div:hover {
   background: transparent;
 }
-.tabs-v1 > div > div:hover a {
+.tab-v3 > div > div:hover a {
   color: var(--color-link-column);
 }
-.tabs-v1 > div > div.active {
+.tab-v3 > div > div.active {
   background: var(--color-gray-light);
 }
-.tabs-v1 > div > div.active a {
+.tab-v3 > div > div.active a {
   color: var(--color-link-column);
   font-weight: var(--font-weight-bold);
 }
-.tabs-v1 a,
-.tabs-v1 p {
+.tab-v3 a,
+.tab-v3 p {
   margin: 0;
   padding: 0;
   text-decoration: none;
@@ -59,43 +59,43 @@
   white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
 }
-.tabs-v1 {
+.tab-v3 {
   /* ==========================
      MOBILE
      ========================== */
 }
 @media (max-width: 768px) {
-  .tabs-v1 {
+  .tab-v3 {
     /* Keep sticky tab identical to normal mobile tab */
   }
-  .tabs-v1.is-fixed {
+  .tab-v3.is-fixed {
     background: #fff;
     box-shadow: none;
     border: none;
   }
-  .tabs-v1.is-fixed > div > div {
+  .tab-v3.is-fixed > div > div {
     background: transparent;
   }
-  .tabs-v1.is-fixed > div > div.active {
+  .tab-v3.is-fixed > div > div.active {
     background: #e6e6e6;
   }
-  .tabs-v1.is-fixed > div > div.active a {
+  .tab-v3.is-fixed > div > div.active a {
     color: #202124;
     font-weight: var(--font-weight-bold);
   }
-  .tabs-v1.is-fixed a,
-  .tabs-v1.is-fixed p {
+  .tab-v3.is-fixed a,
+  .tab-v3.is-fixed p {
     color: #a6b1d2;
   }
 }
 
-.tabs-v1-wrapper {
+.tab-v3-wrapper {
   overflow: visible !important;
 }
 
-.tabs-v1-placeholder {
+.tab-v3-placeholder {
   display: none;
 }
-.tabs-v1-placeholder.is-active {
+.tab-v3-placeholder.is-active {
   display: block;
 }/*# sourceMappingURL=tab-v3.css.map */
