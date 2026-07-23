@@ -12,7 +12,7 @@
   border: none;
   z-index: 100;
   transition: box-shadow 0.2s ease;
-  /* Desktop: prevent horizontal scrollbar */
+  /* Desktop */
   overflow: visible;
 }
 .tab-v3.is-fixed {
@@ -84,27 +84,28 @@
 @media (max-width: 768px) {
   .tab-v3 {
     padding-left: 0;
-    /* Entire tab bar white */
     background-color: var(--color-white);
     flex-wrap: nowrap;
+    white-space: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
-    white-space: nowrap;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    scroll-behavior: smooth;
   }
   .tab-v3::-webkit-scrollbar {
     display: none;
   }
   .tab-v3 > div {
     flex: 0 0 auto;
+    flex-shrink: 0;
   }
   .tab-v3 > div:not(:last-child)::after {
     height: 32px;
     background-color: var(--color-white);
   }
   .tab-v3 > div > div {
-    background-color: var(--color-white); /* tab item background */
+    background-color: var(--color-white);
     padding: 16px 18px;
   }
   .tab-v3 a,
@@ -127,10 +128,15 @@
     left: 0;
     right: 0;
     width: 100%;
-    /* Sticky bar also white */
     background-color: var(--color-white);
     overflow-x: auto;
     overflow-y: hidden;
+    scrollbar-width: none;
+  }
+  .tab-v3.is-fixed::-webkit-scrollbar {
+    display: none;
+  }
+  .tab-v3.is-fixed {
     box-shadow: none;
     z-index: 1000;
   }
@@ -146,10 +152,6 @@
 .tab-v3-wrapper {
   width: 100%;
   max-width: 100%;
-}
-
-/* Prevent entire page horizontal scroll */
-html,
-body {
   overflow-x: hidden;
+  position: relative;
 }/*# sourceMappingURL=tab-v3.css.map */

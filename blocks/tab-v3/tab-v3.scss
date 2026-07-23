@@ -4,7 +4,6 @@
   &,
   * {
     box-sizing: border-box;
-  
   }
 
   display: flex;
@@ -17,7 +16,7 @@
   z-index: 100;
   transition: box-shadow 0.2s ease;
 
-  /* Desktop: prevent horizontal scrollbar */
+  /* Desktop */
   overflow: visible;
 
   &.is-fixed {
@@ -94,72 +93,78 @@
   /* ==========================
      MOBILE
      ========================== */
-     @media (max-width: $bp-tablet) {
-        padding-left: 0;
-      
-        /* Entire tab bar white */
+  @media (max-width: $bp-tablet) {
+    padding-left: 0;
+    background-color: var(--color-white);
+
+    flex-wrap: nowrap;
+    white-space: nowrap;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    > div {
+      flex: 0 0 auto;
+      flex-shrink: 0;
+
+      &:not(:last-child)::after {
+        height: 32px;
         background-color: var(--color-white);
-      
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        overflow-y: hidden;
-        white-space: nowrap;
-      
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      
-        &::-webkit-scrollbar {
-          display: none;
-        }
-      
-        > div {
-          flex: 0 0 auto;
-      
-          &:not(:last-child)::after {
-            height: 32px;
-            background-color: var(--color-white);
-          }
-      
-          > div {
-            background-color: var(--color-white); /* tab item background */
-            padding: 16px 18px;
-          }
-        }
-      
-        a,
-        p {
-          font-size: 18px;
-          color: var(--color-black);
-        }
-      
-        .tab-item.active {
-          background-color: var(--color-white);
-      
-          a,
-          p {
-            color: var(--color-red-primary);
-            font-weight: 700;
-            background-color: var(--color-white);
-          }
-        }
-      
-        &.is-fixed {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          width: 100%;
-      
-          /* Sticky bar also white */
-          background-color: var(--color-white);
-      
-          overflow-x: auto;
-          overflow-y: hidden;
-      
-          box-shadow: none;
-          z-index: 1000;
-        }
       }
+
+      > div {
+        background-color: var(--color-white);
+        padding: 16px 18px;
+      }
+    }
+
+    a,
+    p {
+      font-size: 18px;
+      color: var(--color-black);
+    }
+
+    .tab-item.active {
+      background-color: var(--color-white);
+
+      a,
+      p {
+        color: var(--color-red-primary);
+        font-weight: 700;
+        background-color: var(--color-white);
+      }
+    }
+
+    &.is-fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+
+      background-color: var(--color-white);
+
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      box-shadow: none;
+      z-index: 1000;
+    }
+  }
 }
 
 .tab-v3-placeholder {
@@ -173,10 +178,6 @@
 .tab-v3-wrapper {
   width: 100%;
   max-width: 100%;
-}
-
-/* Prevent entire page horizontal scroll */
-html,
-body {
   overflow-x: hidden;
+  position: relative;
 }
