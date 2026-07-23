@@ -37,6 +37,9 @@
   --text-color: #000000;
   --link-color: #e10a1d;
   --link-hover-color: #b00716;
+  --color-tab-bg: #c5c5c5;
+  --color-tab-bg-mob: #e6e6e6;
+  --color-tab-bg-hover: rgba(255, 255, 255, 0.8);
   /* fonts */
   --body-font-family: "Toyota Type", roboto, roboto-fallback, "Arial", sans-serif;
   --heading-font-family: "Toyota Type", roboto-condensed, roboto-condensed-fallback, "Arial", sans-serif;

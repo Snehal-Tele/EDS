@@ -12,7 +12,7 @@
   align-items: center;
   width: 100%;
   padding-left: 62px;
-  background: #c5c5c5;
+  background: var(--color-tab-bg);
   border: none;
   z-index: 100;
   transition: box-shadow 0.2s ease;
@@ -27,8 +27,8 @@
     right: 0;
     width: 100%;
     z-index: 1000;
-    background: #c5c5c5;
-    box-shadow: 0 1px 4px rgb(0 0 0 / 12%);
+    background: var(--color-tab-bg);
+    box-shadow: 0 1px 4px var(--color-black);
   }
 
   > div {
@@ -43,7 +43,7 @@
       width: 1px;
       height: 44px;
       transform: translateY(-50%);
-      background: rgb(255 255 255 / 80%);
+      background: var(--color-tab-bg-hover);
       pointer-events: none;
     }
 
@@ -58,7 +58,7 @@
         font-weight 0.2s ease-in-out;
 
       &:hover {
-        background: #e6e6e6;
+        background: var(--color-tab-bg-mob);
 
         a,
         p {
@@ -70,7 +70,7 @@
   }
 
   .tab-item.active {
-    background: #e6e6e6;
+    background: var(--color-tab-bg-mob);
 
     a,
     p {
@@ -156,7 +156,7 @@
           overflow-x: auto;
           overflow-y: hidden;
       
-          box-shadow: 0 1px 4px rgb(0 0 0 / 10%);
+          box-shadow: 0 1px 4px var(--color-black);
           z-index: 1000;
         }
       }
