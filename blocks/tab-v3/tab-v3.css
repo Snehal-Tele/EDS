@@ -85,7 +85,7 @@
   .tab-v3 {
     padding-left: 0;
     /* Entire tab bar white */
-    background: #fff;
+    background-color: #fff;
     flex-wrap: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
@@ -101,10 +101,10 @@
   }
   .tab-v3 > div:not(:last-child)::after {
     height: 32px;
-    background: #fff;
+    background-color: #fff;
   }
   .tab-v3 > div > div {
-    background: #fff; /* tab item background */
+    background-color: #fff; /* tab item background */
     padding: 16px 18px;
   }
   .tab-v3 a,
@@ -113,7 +113,7 @@
     color: #202124;
   }
   .tab-v3 .tab-item.active {
-    background: #e6e6e6;
+    background-color: #fff;
   }
   .tab-v3 .tab-item.active a,
   .tab-v3 .tab-item.active p {
@@ -128,7 +128,7 @@
     right: 0;
     width: 100%;
     /* Sticky bar also white */
-    background: #fff;
+    background-color: #fff;
     overflow-x: auto;
     overflow-y: hidden;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);

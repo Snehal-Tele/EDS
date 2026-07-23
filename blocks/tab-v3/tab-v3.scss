@@ -98,7 +98,7 @@
         padding-left: 0;
       
         /* Entire tab bar white */
-        background: #fff;
+        background-color: #fff;
       
         flex-wrap: nowrap;
         overflow-x: auto;
@@ -117,11 +117,11 @@
       
           &:not(:last-child)::after {
             height: 32px;
-            background: #fff;
+            background-color: #fff;
           }
       
           > div {
-            background: #fff; /* tab item background */
+            background-color: #fff; /* tab item background */
             padding: 16px 18px;
           }
         }
@@ -133,7 +133,7 @@
         }
       
         .tab-item.active {
-          background: #e6e6e6;
+          background-color: #fff;
       
           a,
           p {
@@ -151,7 +151,7 @@
           width: 100%;
       
           /* Sticky bar also white */
-          background: #fff;
+          background-color: #fff;
       
           overflow-x: auto;
           overflow-y: hidden;
