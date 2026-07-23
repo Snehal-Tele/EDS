@@ -106,7 +106,7 @@
 }
  
 .nav-dropdown-trigger {
-&[aria-expanded='true'] {
+  &[aria-expanded='true'] {
     background: var(--color-black);
     color: var(--color-white) !important;
     border-color: var(--color-black);
@@ -389,135 +389,151 @@
      living inside the dropdown list). display:contents keeps both
      elements in the DOM/accessibility tree, it just stops nav-actions
      itself from being a layout box. */
-  .nav-actions {
-    display: contents;
+  nav.nav-brand .nav-actions {
+    display: contents !important;
   }
  
   /* Search: always-visible icon in the top bar, no label, no input */
-  .nav-search {
-    margin-left: auto;
-    order: 2;
+  nav.nav-brand .nav-search {
+    margin-left: auto !important;
+    order: 2 !important;
   }
  
-  .nav-search-toggle span {
-    display: none; /* hide the "Search" text label, icon only */
+  nav.nav-brand .nav-search-toggle span {
+    display: none !important; /* hide the "Search" text label, icon only */
   }
  
-  .nav-search-toggle {
-    padding: 6px;
+  nav.nav-brand .nav-search-toggle {
+    padding: 6px !important;
   }
  
-  .nav-search.nav-search-open .nav-search-input {
-    display: none; /* keep this purely a static icon on mobile */
+  nav.nav-brand .nav-search.nav-search-open .nav-search-input {
+    display: none !important; /* keep this purely a static icon on mobile */
   }
  
   /* Login: hidden from the top bar; only shown as a list row once
      the menu is open (styled below under .nav-open) */
-  .nav-login {
-    display: none;
+  nav.nav-brand .nav-login {
+    display: none !important;
   }
  
   /* Hamburger becomes a black circular button; lines turn white so
-     they read as an "X" against the black fill, matching the
-     reference screenshot */
-  .nav-hamburger {
-    order: 3;
-    width: 40px;
-    height: 40px;
-    align-items: center;
-    border-radius: 999px;
+     they read as an "X" against the black fill */
+  nav.nav-brand .nav-hamburger {
+    order: 3 !important;
+    width: 40px !important;
+    height: 40px !important;
+    align-items: center !important;
+    border-radius: 999px !important;
     transition: background-color 0.15s ease;
+  }
  
-    &[aria-expanded='true'] {
-      background: var(--color-black);
-    }
+  nav.nav-brand .nav-hamburger[aria-expanded='true'] {
+    background: var(--color-black, #000) !important;
+  }
  
-    &[aria-expanded='true'] span {
-      background: var(--color-white);
-    }
+  nav.nav-brand .nav-hamburger[aria-expanded='true'] span {
+    background: var(--color-white, #fff) !important;
   }
  
   /* Guidelines caret reads as a right-facing chevron when collapsed
      (indicating "expand"), rotating down when opened */
-  .nav-section-has-mega .nav-dropdown-trigger .nav-caret {
-    transform: rotate(90deg);
+  nav.nav-brand .nav-section-has-mega .nav-dropdown-trigger .nav-caret {
+    transform: rotate(90deg) !important;
   }
  
-  .nav-section-has-mega .nav-dropdown-trigger[aria-expanded='true'] .nav-caret {
-    transform: rotate(180deg);
+  nav.nav-brand .nav-section-has-mega .nav-dropdown-trigger[aria-expanded='true'] .nav-caret {
+    transform: rotate(180deg) !important;
   }
 }
  
-.nav-open {
+nav.nav-brand.nav-open {
   @media (width <= $bp-sm) {
+    /* Defensive reset in case a global stylesheet is applying
+       default <ul>/<li> browser styles after ours loads */
+    ul.nav-sections,
+    ul.nav-sections li {
+      list-style: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+ 
     /* Menu list: full-width rows with dividers instead of pill links */
-    .nav-sections {
-      top: 64px;
-      padding: 0;
-      box-shadow: none;
+    ul.nav-sections {
+      display: flex !important;
+      flex-direction: column !important;
+      position: fixed !important;
+      top: 64px !important;
+      left: 0 !important;
+      width: 100% !important;
+      background: var(--color-white, #fff) !important;
+      box-shadow: none !important;
       border-top: 1px solid #eaeaea;
     }
  
-    .nav-section {
-      width: 100%;
+    li.nav-section {
+      width: 100% !important;
       border-bottom: 1px solid #eaeaea;
     }
  
     .nav-link,
     .nav-dropdown-trigger {
-      width: 100%;
-      justify-content: space-between;
-      margin: 0;
-      padding: 18px 24px;
-      border-radius: 0;
-      border: none;
-      font-weight: 700;
- 
-      &:hover {
-        background: transparent;
-        border-color: transparent;
-      }
+      display: flex !important;
+      width: 100% !important;
+      justify-content: space-between !important;
+      margin: 0 !important;
+      padding: 18px 24px !important;
+      border-radius: 0 !important;
+      border: none !important;
+      font-weight: 700 !important;
+      background: transparent !important;
     }
  
-    /* First two items ("Who We Are", "Our Brand") render in blue,
-       matching the reference screenshot */
-    .nav-section:nth-child(1) .nav-link,
-    .nav-section:nth-child(2) .nav-link {
+    .nav-link:hover,
+    .nav-dropdown-trigger:hover {
+      background: transparent !important;
+      border-color: transparent !important;
+    }
+ 
+    /* First two items ("Who We Are", "Our Brand") render in blue */
+    li.nav-section:nth-child(1) .nav-link,
+    li.nav-section:nth-child(2) .nav-link {
       color: var(--color-blue, #1b56c4) !important;
     }
  
     /* Last item in the list is assumed to be "Support + FAQs" —
        adjust this selector if your authored content differs */
-    .nav-section:last-child .nav-link {
+    li.nav-section:last-child .nav-link {
       color: var(--color-orange, #ff6d3c) !important;
-      font-weight: 500;
+      font-weight: 500 !important;
     }
  
     .nav-mega {
-      padding: 0 24px;
+      padding: 0 24px !important;
     }
  
     /* Login row: appears directly below the sections list, styled
-       as a plain full-width row (not a pill) in the reference teal */
+       as a plain full-width row (not a pill) in teal */
     .nav-login {
-      display: flex;
-      position: fixed;
-      left: 0;
-      width: 100%;
-      top: calc(64px + (var(--mobile-nav-item-count, 5) * 57px));
-      justify-content: space-between;
-      padding: 18px 24px;
-      border: none;
-      border-radius: 0;
+      display: flex !important;
+      position: fixed !important;
+      left: 0 !important;
+      width: 100% !important;
+      top: calc(64px + (var(--mobile-nav-item-count, 5) * 57px)) !important;
+      justify-content: space-between !important;
+      padding: 18px 24px !important;
+      margin: 0 !important;
+      border: none !important;
+      border-radius: 0 !important;
       border-top: 1px solid #eaeaea;
-      background: var(--color-white);
+      background: var(--color-white, #fff) !important;
       color: var(--color-teal, #17a67c) !important;
-      font-weight: 700;
+      font-weight: 700 !important;
+    }
  
-      &:hover {
-        background: var(--color-white);
-        color: var(--color-teal, #17a67c) !important;
-      }
+    .nav-login:hover {
+      background: var(--color-white, #fff) !important;
+      color: var(--color-teal, #17a67c) !important;
     }
   }
 }
