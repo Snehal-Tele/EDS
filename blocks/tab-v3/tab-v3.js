@@ -56,14 +56,15 @@ export default function decorate(block) {
     if (wrapper) {
       wrapper.classList.add('active');
 
-      if (window.innerWidth <= 768) {
+      if (
+        window.innerWidth <= 768 &&
+        wrapper.parentElement
+      ) {
         requestAnimationFrame(() => {
-          block.scrollTo({
-            left:
-              wrapper.offsetLeft -
-              block.clientWidth / 2 +
-              wrapper.clientWidth / 2,
-            behavior: 'smooth',
+          wrapper.parentElement.scrollIntoView({
+            behavior: 'auto',
+            inline: 'nearest',
+            block: 'nearest',
           });
         });
       }
