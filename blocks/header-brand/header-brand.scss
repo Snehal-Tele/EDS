@@ -1,12 +1,12 @@
 @use '../../styles/tokens' as *;
-
+ 
 /* ---------- Header Brand Wrapper ---------- */
 .header-brand-wrapper {
   position: sticky;
   top: 0;
   z-index: 200;
   background: var(--color-white);
-
+ 
   // Nested global target rules for consistency
   .nav-link,
   .nav-dropdown-trigger {
@@ -26,11 +26,11 @@
     cursor: pointer;
     white-space: nowrap;
     transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-
+ 
     &:visited {
       color: var(--color-black) !important;
     }
-
+ 
     &:hover {
       background: var(--color-white);
       color: var(--color-black) !important;
@@ -38,13 +38,13 @@
     }
   }
 }
-
+ 
 .header-brand.block {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 32px;
 }
-
+ 
 /* ---------- Nav Shell ---------- */
 .nav-brand {
   display: flex;
@@ -53,7 +53,7 @@
   gap: 32px;
   font-family: 'Helvetica Neue', Arial, sans-serif;
 }
-
+ 
 /* ---------- Logo ---------- */
 .nav-logo {
   display: flex;
@@ -62,28 +62,28 @@
   text-decoration: none;
   color: var(--color-black);
   flex-shrink: 0;
-
+ 
   picture {
     display: flex;
     width: 104px;
     height: 44px;
     align-items: center;
     justify-content: center;
-
+ 
     img {
       width: 104px;
       height: 44px;
       object-fit: contain;
     }
   }
-
+ 
   &-text {
     font-size: 20px;
     font-weight: 800;
     letter-spacing: 0.5px;
   }
 }
-
+ 
 /* ---------- Sections & Actions Links ---------- */
 .nav-sections {
   display: flex;
@@ -93,34 +93,34 @@
   margin: 0;
   padding: 0;
   flex: 1;
-
+ 
   @media (width <= $bp-sm) {
     display: none;
   }
 }
-
+ 
 .nav-caret {
   font-size: 10px;
   transform: rotate(180deg);
   transition: transform 0.2s ease;
 }
-
+ 
 .nav-dropdown-trigger {
-  &[aria-expanded='true'] {
+&[aria-expanded='true'] {
     background: var(--color-black);
     color: var(--color-white) !important;
     border-color: var(--color-black);
-
+ 
     .nav-caret {
       transform: rotate(0deg);
     }
-
+ 
     + .nav-mega {
       display: block;
     }
   }
 }
-
+ 
 /* ---------- Mega Menu ---------- */
 .nav-mega {
   display: none;
@@ -137,7 +137,7 @@
   margin-top: 8px;
   box-shadow: 0 16px 32px rgb(0 0 0 / 8%);
   z-index: 190;
-
+ 
   @media (width <= $bp-sm) {
     position: static;
     transform: none;
@@ -151,22 +151,22 @@
     margin-top: 0;
   }
 }
-
+ 
 .nav-mega-inner {
   padding: 32px;
   display: grid;
   grid-template-columns: repeat(4, minmax(140px, 1fr));
   gap: 24px;
-
+ 
   @media (width <= $bp-sm) {
     grid-template-columns: 1fr;
     padding: 24px;
   }
 }
-
+ 
 .nav-mega-col {
   min-width: 0;
-
+ 
   &-title {
     display: flex;
     align-items: center;
@@ -177,16 +177,16 @@
     text-decoration: none !important;
     margin: 0 0 14px;
     white-space: nowrap;
-
+ 
     &:visited {
       color: var(--color-black) !important;
     }
   }
-
+ 
   &-title-link {
     margin: 0;
   }
-
+ 
   &-list {
     list-style: none;
     margin: 0;
@@ -194,50 +194,50 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-
+ 
     li a {
       text-decoration: none !important;
       font-size: 15px;
-
+ 
       &:visited {
         text-decoration: none !important;
         font-size: 15px;
       }
-
+ 
       &:hover {
         text-decoration: underline !important;
       }
     }
   }
-
+ 
   &-subhead {
     font-weight: 700;
     color: var(--color-black);
     margin-top: 8px;
   }
 }
-
+ 
 .nav-chevron {
   font-size: 15px;
 }
-
+ 
 /* ---------- Actions: Search + Login ---------- */
 .nav-actions {
   display: flex;
   align-items: center;
   gap: 16px;
   flex-shrink: 0;
-
+ 
   @media (width <= $bp-sm) {
     display: none;
   }
 }
-
+ 
 .nav-search {
   position: relative;
   display: flex;
   align-items: center;
-
+ 
   &-toggle {
     display: flex;
     align-items: center;
@@ -251,16 +251,16 @@
     cursor: pointer;
     padding: 8px;
     transition: border-color 0.15s ease;
-
+ 
     &:hover {
       border-color: var(--color-black);
     }
   }
-
+ 
   &-icon {
     flex-shrink: 0;
   }
-
+ 
   &-input {
     width: 0;
     opacity: 0;
@@ -274,14 +274,14 @@
     margin-right: 8px;
     background: transparent;
   }
-
+ 
   &.nav-search-open .nav-search-input {
     width: 220px;
     opacity: 1;
     padding: 6px 4px;
   }
 }
-
+ 
 .nav-login {
   display: inline-flex;
   align-items: center;
@@ -294,18 +294,18 @@
   color: var(--color-black) !important;
   text-decoration: none !important;
   transition: background-color 0.15s ease, color 0.15s ease;
-
+ 
   &:visited {
     color: var(--color-black) !important;
     text-decoration: none !important;
   }
-
+ 
   &:hover {
     background: var(--color-black);
     color: var(--color-white) !important;
   }
 }
-
+ 
 /* ---------- Hamburger (Mobile) ---------- */
 .nav-hamburger {
   display: none;
@@ -318,30 +318,30 @@
   border: none;
   cursor: pointer;
   margin-left: auto;
-
+ 
   @media (width <= $bp-sm) {
     display: flex;
   }
-
+ 
   span {
     display: block;
     height: 2px;
     width: 100%;
     background: var(--color-black);
     transition: transform 0.2s ease, opacity 0.2s ease;
-
+ 
     &:nth-child(1) {
       @at-root .nav-hamburger[aria-expanded='true'] & {
         transform: translateY(7px) rotate(45deg);
       }
     }
-
+ 
     &:nth-child(2) {
       @at-root .nav-hamburger[aria-expanded='true'] & {
         opacity: 0;
       }
     }
-
+ 
     &:nth-child(3) {
       @at-root .nav-hamburger[aria-expanded='true'] & {
         transform: translateY(-7px) rotate(-45deg);
@@ -349,7 +349,7 @@
     }
   }
 }
-
+ 
 /* ---------- Responsive Mobile Open State overrides ---------- */
 .nav-open {
   .nav-sections,
@@ -367,10 +367,157 @@
       box-shadow: 0 16px 32px rgb(0 0 0 / 8%);
     }
   }
-
+ 
   .nav-actions {
     @media (width <= $bp-sm) {
       top: calc(72px + 320px);
+    }
+  }
+}
+ 
+/* ===================================================================
+   MOBILE-ONLY UPDATES
+   Everything above this line is unchanged from the original file.
+   The rules below only ever fire at "width <= $bp-sm" (or target
+   mobile-specific states like [aria-expanded]/.nav-open), so desktop
+   is completely unaffected. No JS changes were needed for any of this.
+=================================================================== */
+ 
+@media (width <= $bp-sm) {
+  /* Let search + login escape the .nav-actions box so each can be
+     positioned independently (icon pinned top-right vs. login row
+     living inside the dropdown list). display:contents keeps both
+     elements in the DOM/accessibility tree, it just stops nav-actions
+     itself from being a layout box. */
+  .nav-actions {
+    display: contents;
+  }
+ 
+  /* Search: always-visible icon in the top bar, no label, no input */
+  .nav-search {
+    margin-left: auto;
+    order: 2;
+  }
+ 
+  .nav-search-toggle span {
+    display: none; /* hide the "Search" text label, icon only */
+  }
+ 
+  .nav-search-toggle {
+    padding: 6px;
+  }
+ 
+  .nav-search.nav-search-open .nav-search-input {
+    display: none; /* keep this purely a static icon on mobile */
+  }
+ 
+  /* Login: hidden from the top bar; only shown as a list row once
+     the menu is open (styled below under .nav-open) */
+  .nav-login {
+    display: none;
+  }
+ 
+  /* Hamburger becomes a black circular button; lines turn white so
+     they read as an "X" against the black fill, matching the
+     reference screenshot */
+  .nav-hamburger {
+    order: 3;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    border-radius: 999px;
+    transition: background-color 0.15s ease;
+ 
+    &[aria-expanded='true'] {
+      background: var(--color-black);
+    }
+ 
+    &[aria-expanded='true'] span {
+      background: var(--color-white);
+    }
+  }
+ 
+  /* Guidelines caret reads as a right-facing chevron when collapsed
+     (indicating "expand"), rotating down when opened */
+  .nav-section-has-mega .nav-dropdown-trigger .nav-caret {
+    transform: rotate(90deg);
+  }
+ 
+  .nav-section-has-mega .nav-dropdown-trigger[aria-expanded='true'] .nav-caret {
+    transform: rotate(180deg);
+  }
+}
+ 
+.nav-open {
+  @media (width <= $bp-sm) {
+    /* Menu list: full-width rows with dividers instead of pill links */
+    .nav-sections {
+      top: 64px;
+      padding: 0;
+      box-shadow: none;
+      border-top: 1px solid #eaeaea;
+    }
+ 
+    .nav-section {
+      width: 100%;
+      border-bottom: 1px solid #eaeaea;
+    }
+ 
+    .nav-link,
+    .nav-dropdown-trigger {
+      width: 100%;
+      justify-content: space-between;
+      margin: 0;
+      padding: 18px 24px;
+      border-radius: 0;
+      border: none;
+      font-weight: 700;
+ 
+      &:hover {
+        background: transparent;
+        border-color: transparent;
+      }
+    }
+ 
+    /* First two items ("Who We Are", "Our Brand") render in blue,
+       matching the reference screenshot */
+    .nav-section:nth-child(1) .nav-link,
+    .nav-section:nth-child(2) .nav-link {
+      color: var(--color-blue, #1b56c4) !important;
+    }
+ 
+    /* Last item in the list is assumed to be "Support + FAQs" —
+       adjust this selector if your authored content differs */
+    .nav-section:last-child .nav-link {
+      color: var(--color-orange, #ff6d3c) !important;
+      font-weight: 500;
+    }
+ 
+    .nav-mega {
+      padding: 0 24px;
+    }
+ 
+    /* Login row: appears directly below the sections list, styled
+       as a plain full-width row (not a pill) in the reference teal */
+    .nav-login {
+      display: flex;
+      position: fixed;
+      left: 0;
+      width: 100%;
+      top: calc(64px + (var(--mobile-nav-item-count, 5) * 57px));
+      justify-content: space-between;
+      padding: 18px 24px;
+      border: none;
+      border-radius: 0;
+      border-top: 1px solid #eaeaea;
+      background: var(--color-white);
+      color: var(--color-teal, #17a67c) !important;
+      font-weight: 700;
+ 
+      &:hover {
+        background: var(--color-white);
+        color: var(--color-teal, #17a67c) !important;
+      }
     }
   }
 }
