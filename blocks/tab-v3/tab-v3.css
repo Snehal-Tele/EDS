@@ -62,7 +62,7 @@
 }
 .tab-v3 .tab-item.active a,
 .tab-v3 .tab-item.active p {
-  color: var(--color-red-hover);
+  color: var(--color-red-dark);
   font-weight: 700;
 }
 .tab-v3 a,
