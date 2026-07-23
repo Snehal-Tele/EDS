@@ -54,8 +54,8 @@
       -webkit-user-select: none;
       -webkit-tap-highlight-color: transparent;
       transition:
-        background-color 0.2s ease,
-        font-weight 0.2s ease;
+        background-color 0.2s ease-in-out,
+        font-weight 0.2s ease-in-out;
 
       &:hover {
         background: #e6e6e6;
@@ -74,7 +74,7 @@
 
     a,
     p {
-      color: #b3261e;
+      color: var(--color-red-hover);
       font-weight: 700;
     }
   }
@@ -98,7 +98,7 @@
         padding-left: 0;
       
         /* Entire tab bar white */
-        background-color: #fff;
+        background-color: var(--color-white);
       
         flex-wrap: nowrap;
         overflow-x: auto;
@@ -117,11 +117,11 @@
       
           &:not(:last-child)::after {
             height: 32px;
-            background-color: #fff;
+            background-color: var(--color-white);
           }
       
           > div {
-            background-color: #fff; /* tab item background */
+            background-color: var(--color-white); /* tab item background */
             padding: 16px 18px;
           }
         }
@@ -133,13 +133,13 @@
         }
       
         .tab-item.active {
-          background-color: #fff;
+          background-color: var(--color-white);
       
           a,
           p {
             color: #b3261e;
             font-weight: 700;
-            background-color: #fff;
+            background-color: var(--color-white);
           }
         }
       
@@ -151,7 +151,7 @@
           width: 100%;
       
           /* Sticky bar also white */
-          background-color: #fff;
+          background-color: var(--color-white);
       
           overflow-x: auto;
           overflow-y: hidden;

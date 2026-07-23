@@ -47,7 +47,7 @@
        user-select: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
-  transition: background-color 0.2s ease, font-weight 0.2s ease;
+  transition: background-color 0.2s ease-in-out, font-weight 0.2s ease-in-out;
 }
 .tab-v3 > div > div:hover {
   background: #e6e6e6;
@@ -62,7 +62,7 @@
 }
 .tab-v3 .tab-item.active a,
 .tab-v3 .tab-item.active p {
-  color: #b3261e;
+  color: var(--color-red-hover);
   font-weight: 700;
 }
 .tab-v3 a,
@@ -85,7 +85,7 @@
   .tab-v3 {
     padding-left: 0;
     /* Entire tab bar white */
-    background-color: #fff;
+    background-color: var(--color-white);
     flex-wrap: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
@@ -101,10 +101,10 @@
   }
   .tab-v3 > div:not(:last-child)::after {
     height: 32px;
-    background-color: #fff;
+    background-color: var(--color-white);
   }
   .tab-v3 > div > div {
-    background-color: #fff; /* tab item background */
+    background-color: var(--color-white); /* tab item background */
     padding: 16px 18px;
   }
   .tab-v3 a,
@@ -113,13 +113,13 @@
     color: #202124;
   }
   .tab-v3 .tab-item.active {
-    background-color: #fff;
+    background-color: var(--color-white);
   }
   .tab-v3 .tab-item.active a,
   .tab-v3 .tab-item.active p {
     color: #b3261e;
     font-weight: 700;
-    background-color: #fff;
+    background-color: var(--color-white);
   }
   .tab-v3.is-fixed {
     position: fixed;
@@ -128,7 +128,7 @@
     right: 0;
     width: 100%;
     /* Sticky bar also white */
-    background-color: #fff;
+    background-color: var(--color-white);
     overflow-x: auto;
     overflow-y: hidden;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
