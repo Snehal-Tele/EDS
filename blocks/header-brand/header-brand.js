@@ -23,6 +23,7 @@ function buildMegaColumn(li) {
   const { label, href } = getLabelAndHref(li);
  
   if (!nestedList) {
+    // Simple single-link column (e.g. "Overview")
     const a = document.createElement('a');
     a.className = 'nav-mega-col-title nav-mega-col-title-link';
     a.href = href;
@@ -31,6 +32,7 @@ function buildMegaColumn(li) {
     return col;
   }
  
+  // Column with a heading + list of links
   const heading = document.createElement('a');
   heading.className = 'nav-mega-col-title';
   heading.href = href;
@@ -45,6 +47,7 @@ function buildMegaColumn(li) {
     const { label: itemLabel, href: itemHref } = getLabelAndHref(item);
  
     if (subList) {
+      // Bold sub-heading (e.g. "Sonic") followed by its own links
       const subHeading = document.createElement('li');
       subHeading.className = 'nav-mega-col-subhead';
       subHeading.textContent = itemLabel;
@@ -131,6 +134,7 @@ export default async function decorate(block) {
   nav.className = 'nav-brand';
   nav.setAttribute('aria-label', 'Brand site header');
  
+  // --- Row 0: brand / logo ---
   const brandRow = rows[0];
   if (brandRow) {
     const brandWrap = document.createElement('a');
@@ -153,6 +157,7 @@ export default async function decorate(block) {
     nav.append(brandWrap);
   }
  
+  // --- Middle: nav sections list ---
   const sections = document.createElement('ul');
   sections.className = 'nav-sections';
  
@@ -164,8 +169,14 @@ export default async function decorate(block) {
  
     const label = firstCellText.toLowerCase();
  
-    if (label === 'search') continue;
-    if (label === 'log in') continue;
+    if (label === 'search') {
+      // handled after the list, appended to nav directly
+      continue;
+    }
+ 
+    if (label === 'log in') {
+      continue;
+    }
  
     const li = document.createElement('li');
     li.className = 'nav-section';
@@ -174,6 +185,7 @@ export default async function decorate(block) {
     const firstLink = cells[0].querySelector('a');
  
     if (nestedList) {
+      // Dropdown / mega-menu item (e.g. "Guidelines")
       const trigger = document.createElement('button');
       trigger.type = 'button';
       trigger.className = 'nav-dropdown-trigger';
@@ -200,6 +212,7 @@ export default async function decorate(block) {
   }
   nav.append(sections);
  
+  // --- Search + Log In (right side actions) ---
   const actions = document.createElement('div');
   actions.className = 'nav-actions';
   actions.append(buildSearch());
@@ -214,6 +227,7 @@ export default async function decorate(block) {
  
   nav.append(actions);
  
+  // Mobile hamburger toggle
   const hamburger = document.createElement('button');
   hamburger.type = 'button';
   hamburger.className = 'nav-hamburger';
@@ -227,6 +241,7 @@ export default async function decorate(block) {
   });
   nav.append(hamburger);
  
+  // Close dropdowns on outside click / escape
   document.addEventListener('click', (e) => {
     if (!nav.contains(e.target)) closeAllDropdowns(nav);
   });
