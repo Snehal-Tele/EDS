@@ -62,7 +62,7 @@
 
         a,
         p {
-          color: #202124;
+          color: var(--color-black);
           font-weight: 700;
         }
       }
@@ -84,7 +84,7 @@
     margin: 0;
     padding: 0;
     text-decoration: none;
-    color: #202124;
+    color: var(--color-black);
     font-size: 24px;
     font-weight: 400;
     white-space: nowrap;
@@ -129,7 +129,7 @@
         a,
         p {
           font-size: 18px;
-          color: #202124;
+          color: var(--color-black);
         }
       
         .tab-item.active {
@@ -137,7 +137,7 @@
       
           a,
           p {
-            color: #b3261e;
+            color: var(--color-red-primary);
             font-weight: 700;
             background-color: var(--color-white);
           }

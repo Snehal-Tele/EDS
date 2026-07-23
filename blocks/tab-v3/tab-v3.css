@@ -54,7 +54,7 @@
 }
 .tab-v3 > div > div:hover a,
 .tab-v3 > div > div:hover p {
-  color: #202124;
+  color: var(--color-black);
   font-weight: 700;
 }
 .tab-v3 .tab-item.active {
@@ -70,7 +70,7 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
-  color: #202124;
+  color: var(--color-black);
   font-size: 24px;
   font-weight: 400;
   white-space: nowrap;
@@ -110,14 +110,14 @@
   .tab-v3 a,
   .tab-v3 p {
     font-size: 18px;
-    color: #202124;
+    color: var(--color-black);
   }
   .tab-v3 .tab-item.active {
     background-color: var(--color-white);
   }
   .tab-v3 .tab-item.active a,
   .tab-v3 .tab-item.active p {
-    color: #b3261e;
+    color: var(--color-red-primary);
     font-weight: 700;
     background-color: var(--color-white);
   }
