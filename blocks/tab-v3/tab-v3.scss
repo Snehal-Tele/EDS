@@ -24,7 +24,6 @@
     top: 0;
     left: 0;
     width: 100%;
-    max-width: 100vw;
     z-index: 1000;
     background: var(--color-tab-bg);
     box-shadow: none;
@@ -105,6 +104,10 @@
     overflow-x: auto;
     overflow-y: hidden;
 
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
 
@@ -145,10 +148,10 @@
     }
 
     &.is-fixed {
-      position: fixed;
+      position: sticky;
       top: 0;
-      left: 0;
-      width: 100vw;
+
+      width: 100%;
       max-width: 100vw;
 
       background-color: var(--color-white);
