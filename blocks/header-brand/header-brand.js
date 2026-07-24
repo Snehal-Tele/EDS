@@ -85,7 +85,7 @@ function buildSearch() {
   btn.setAttribute('aria-expanded', 'false');
   btn.setAttribute('aria-label', 'Search');
   btn.innerHTML = `
-    <svg class="nav-search-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+    <svg class="nav-search-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
       <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
       <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
@@ -159,13 +159,13 @@ export default async function decorate(block) {
 
     const label = firstCellText.toLowerCase();
 
-    // Skip utility items from middle navigation
+    // Skip utility items from center navigation bar
     if (label === 'search' || label === 'log in') continue;
 
     const nestedList = cells[1]?.querySelector('ul');
     const firstLink = cells[0].querySelector('a');
 
-    // Build Desktop Node
+    // Build Desktop Section Node
     const li = document.createElement('li');
     li.className = 'nav-section';
 
@@ -174,7 +174,15 @@ export default async function decorate(block) {
       trigger.type = 'button';
       trigger.className = 'nav-dropdown-trigger';
       trigger.setAttribute('aria-expanded', 'false');
-      trigger.innerHTML = `${firstCellText} <span class="nav-caret" aria-hidden="true">&#8250;</span>`;
+      // SVG chevron arrow matching the original Toyota site
+      trigger.innerHTML = `
+        ${firstCellText}
+        <span class="nav-caret" aria-hidden="true">
+          <svg viewBox="0 0 12 8">
+            <path d="M1 1l5 5 5-5" />
+          </svg>
+        </span>
+      `;
 
       trigger.addEventListener('click', () => {
         const expanded = trigger.getAttribute('aria-expanded') === 'true';
@@ -192,7 +200,7 @@ export default async function decorate(block) {
     }
     sections.append(li);
 
-    // Build Mobile Drawer Item
+    // Build Mobile Item Node
     const mLi = document.createElement('li');
     if (nestedList) {
       const mBtn = document.createElement('button');
@@ -208,7 +216,7 @@ export default async function decorate(block) {
     mobileList.append(mLi);
   }
 
-  // Append 'Log In' at the end of mobile menu
+  // Mobile Log In Link
   const loginRow = rows.find((r) => r.children[0]?.textContent.trim().toLowerCase() === 'log in');
   const loginLink = loginRow?.querySelector('a');
   const mLoginLi = document.createElement('li');
@@ -226,14 +234,14 @@ export default async function decorate(block) {
   actions.className = 'nav-actions';
   actions.append(buildSearch());
 
-  // Desktop Login Button
+  // Desktop Login Pill Button
   const loginBtn = document.createElement('a');
   loginBtn.className = 'nav-login';
   loginBtn.href = loginLink ? loginLink.href : '#';
   loginBtn.textContent = 'Log In';
   actions.append(loginBtn);
 
-  // Mobile Hamburger Toggle Button
+  // Mobile Hamburger Menu Button
   const hamburger = document.createElement('button');
   hamburger.type = 'button';
   hamburger.className = 'nav-hamburger';
@@ -248,7 +256,6 @@ export default async function decorate(block) {
     <div class="icon-close">&#10005;</div>
   `;
 
-  // Toggle Mobile Menu and Toggle Page Scroll Lock
   const toggleMobileMenu = () => {
     const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
     hamburger.setAttribute('aria-expanded', String(!isExpanded));
@@ -264,7 +271,7 @@ export default async function decorate(block) {
   nav.append(drawer);
   nav.append(overlay);
 
-  // Event Listeners
+  // Global Event Handlers
   document.addEventListener('click', (e) => {
     if (!nav.contains(e.target)) closeAllDropdowns(nav);
   });

@@ -1,6 +1,6 @@
 @use '../../styles/tokens' as *;
 
-/* ---------- Body Scroll Lock ---------- */
+/* ---------- Body Scroll Lock (Mobile) ---------- */
 body.nav-menu-open {
   overflow: hidden !important;
   touch-action: none;
@@ -11,15 +11,21 @@ body.nav-menu-open {
   position: sticky;
   top: 0;
   z-index: 200;
-  background: var(--color-white, #fff);
+  background: var(--color-white, #ffffff);
   border-bottom: 1px solid #e5e5e5;
+  transition: box-shadow 0.25s ease;
+
+  /* Subtle small shadow on block hover */
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  }
 }
 
 .header-brand.block {
-  max-width: 1400px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 32px;
-  background: var(--color-white, #fff);
+  background: var(--color-white, #ffffff);
 
   @media (max-width: 991px) {
     padding: 0 16px;
@@ -32,7 +38,7 @@ body.nav-menu-open {
   align-items: center;
   justify-content: space-between;
   min-height: 72px;
-  gap: 24px;
+  gap: 32px;
   font-family: 'Helvetica Neue', Arial, sans-serif;
   position: relative;
 
@@ -48,7 +54,7 @@ body.nav-menu-open {
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  color: var(--color-black, #000);
+  color: var(--color-black, #000000);
   flex-shrink: 0;
 
   picture {
@@ -78,7 +84,7 @@ body.nav-menu-open {
 .nav-sections {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 36px; // Exact spacing matching original site
   list-style: none;
   margin: 0;
   padding: 0;
@@ -94,35 +100,52 @@ body.nav-menu-open {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 8px 16px;
+    padding: 8px 20px;
     border-radius: 999px;
     font-size: 15px;
     font-weight: 700;
-    color: var(--color-black, #000) !important;
+    color: var(--color-black, #000000) !important;
     text-decoration: none !important;
     background: transparent;
     border: 1px solid transparent;
     cursor: pointer;
     white-space: nowrap;
-    transition: all 0.15s ease;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
 
+    /* On hover: white background with black border */
     &:hover {
-      background: #f4f4f4;
+      background: #ffffff;
+      border-color: #000000;
     }
   }
 }
 
+/* Guidelines Chevron Indicator */
 .nav-caret {
-  font-size: 10px;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 10px;
   margin-left: 2px;
-  transition: transform 0.2s ease;
+  transition: transform 0.25s ease;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
 }
 
+/* Expanded Dropdown State */
 .nav-dropdown-trigger {
   &[aria-expanded='true'] {
-    background: #000;
-    color: #fff !important;
+    background: #ffffff;
+    border-color: #000000;
 
     .nav-caret {
       transform: rotate(180deg);
@@ -168,7 +191,7 @@ body.nav-menu-open {
     gap: 6px;
     font-size: 15px;
     font-weight: 700;
-    color: #000;
+    color: #000000;
     text-decoration: none;
     margin: 0 0 14px;
     white-space: nowrap;
@@ -185,7 +208,7 @@ body.nav-menu-open {
     li a {
       text-decoration: none;
       font-size: 14px;
-      color: #333;
+      color: #333333;
 
       &:hover {
         text-decoration: underline;
@@ -194,11 +217,11 @@ body.nav-menu-open {
   }
 }
 
-/* ---------- Right Actions (Search & Hamburg / Login) ---------- */
+/* ---------- Right Actions ---------- */
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
   flex-shrink: 0;
 
   @media (max-width: 991px) {
@@ -206,7 +229,7 @@ body.nav-menu-open {
   }
 }
 
-/* Search Container */
+/* Search Action Button */
 .nav-search {
   position: relative;
   display: flex;
@@ -215,24 +238,27 @@ body.nav-menu-open {
   &-toggle {
     display: flex;
     align-items: center;
-    gap: 6px;
-    background: none;
-    border: none;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid transparent;
     cursor: pointer;
-    padding: 8px;
+    padding: 8px 18px;
     font-size: 15px;
     font-weight: 700;
-    color: var(--color-black, #000);
+    color: var(--color-black, #000000);
     border-radius: 999px;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
 
     .search-text {
       @media (max-width: 991px) {
-        display: none; // Hides text on mobile, shows only icon
+        display: none;
       }
     }
 
+    /* On hover: white background with black border */
     &:hover {
-      background: #f4f4f4;
+      background: #ffffff;
+      border-color: #000000;
     }
   }
 
@@ -241,13 +267,13 @@ body.nav-menu-open {
     opacity: 0;
     padding: 0;
     border: none;
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid #000000;
     font-size: 14px;
     transition: width 0.25s ease, opacity 0.2s ease, padding 0.25s ease;
     position: absolute;
     right: 100%;
     margin-right: 8px;
-    background: #fff;
+    background: #ffffff;
   }
 
   &.nav-search-open .nav-search-input {
@@ -257,23 +283,24 @@ body.nav-menu-open {
   }
 }
 
-/* Desktop Log In Button */
+/* Log In Pill Button */
 .nav-login {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 8px 22px;
-  border: 1px solid var(--color-black, #000);
+  border: 1px solid var(--color-black, #000000);
   border-radius: 999px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
-  color: var(--color-black, #000) !important;
+  color: var(--color-black, #000000) !important;
   text-decoration: none !important;
+  background: #ffffff;
   transition: all 0.15s ease;
 
   &:hover {
-    background: #000;
-    color: #fff !important;
+    background: #000000;
+    color: #ffffff !important;
   }
 
   @media (max-width: 991px) {
@@ -281,7 +308,7 @@ body.nav-menu-open {
   }
 }
 
-/* Mobile Hamburger Toggle */
+/* ---------- Mobile Controls ---------- */
 .nav-hamburger {
   display: none;
   align-items: center;
@@ -309,7 +336,7 @@ body.nav-menu-open {
       display: block;
       height: 2px;
       width: 100%;
-      background: #000;
+      background: #000000;
       border-radius: 1px;
     }
   }
@@ -320,14 +347,13 @@ body.nav-menu-open {
     justify-content: center;
     width: 36px;
     height: 36px;
-    background: #000;
-    color: #fff;
+    background: #000000;
+    color: #ffffff;
     border-radius: 50%;
     font-size: 18px;
   }
 }
 
-/* ---------- Mobile Drawer Navigation ---------- */
 .nav-mobile-overlay {
   display: none;
 }
