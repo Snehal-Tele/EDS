@@ -235,8 +235,7 @@ export default async function decorate(block) {
 
       li.append(trigger, buildMegaMenu(nestedList));
     } else {
-      const a = document.createElement('a');
-      a.className = 'nav-link';
+      const a = document.className = 'nav-link';
       a.href = firstLink ? firstLink.href : '#';
       a.textContent = firstCellText;
       li.append(a);
@@ -277,7 +276,7 @@ export default async function decorate(block) {
     rootList.append(mLi);
   }
 
-  // Support + FAQs and Log In mobile links
+  // Log In mobile link
   const loginRow = rows.find((r) => r.children[0]?.textContent.trim().toLowerCase() === 'log in');
   const loginLink = loginRow?.querySelector('a');
 
@@ -290,7 +289,7 @@ export default async function decorate(block) {
 
   nav.append(sections);
 
-  // Right Side Actions (Search, Log In, Mobile Hamburger/Close toggle)
+  // Right Side Actions
   const actions = document.createElement('div');
   actions.className = 'nav-actions';
   actions.append(buildSearch());
@@ -315,9 +314,19 @@ export default async function decorate(block) {
 
   const toggleMobileMenu = () => {
     const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+    
+    // Dynamically measure the header wrapper bottom position
+    const wrapper = block.closest('.header-brand-wrapper') || block;
+    const rect = wrapper.getBoundingClientRect();
+    const topOffset = Math.max(rect.bottom, 0);
+
+    drawer.style.setProperty('--mobile-nav-top', `${topOffset}px`);
+    overlay.style.setProperty('--mobile-nav-top', `${topOffset}px`);
+
     hamburger.setAttribute('aria-expanded', String(!isExpanded));
     nav.classList.toggle('nav-open', !isExpanded);
     document.body.classList.toggle('nav-menu-open', !isExpanded);
+
     if (isExpanded) {
       drawer.classList.remove('sub-open');
     }
