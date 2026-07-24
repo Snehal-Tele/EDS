@@ -1,9 +1,8 @@
 @use '../../styles/tokens' as *;
 
-
 body.nav-menu-open {
-  overflow: hidden ;
-  height: 100vh ;
+  overflow: hidden;
+  height: 100vh;
   touch-action: none;
 }
 
@@ -35,7 +34,7 @@ body.nav-menu-open {
   position: relative;
   font-family: 'Helvetica Neue', Arial, sans-serif;
 
-  @media (max-width: $bp-sm ) {
+  @media (max-width: $bp-sm) {
     min-height: 60px;
   }
 }
@@ -262,7 +261,7 @@ body.nav-menu-open {
   font-size: 15px;
   font-weight: 700;
   color: var(--color-black) !important;
-  text-decoration: none ;
+  text-decoration: none;
 
   @media (max-width: 991px) { display: none; }
 }
@@ -317,7 +316,8 @@ body.nav-menu-open {
     left: 0;
     width: 100vw;
     height: calc(100vh - var(--mobile-nav-top, 60px));
-    background: var(--color-black);
+    /* Fixed: Changed solid black to semi-transparent overlay to match design */
+    background: rgba(0, 0, 0, 0.4);
     z-index: 180;
     opacity: 0;
     visibility: hidden;
@@ -375,7 +375,7 @@ body.nav-menu-open {
       display: flex;
       align-items: center;
       padding: 16px 20px;
-      border-bottom: 1px solid var(--color-white);
+      border-bottom: 1px solid var(--color-tab-bg-mob);
 
       .mobile-back-btn {
         background: none;
@@ -405,7 +405,7 @@ body.nav-menu-open {
       padding: 0;
 
       li {
-        border-bottom: 1px solid var(--color-off-white);
+        border-bottom: 1px solid var(--color-tab-bg-mob);
 
         a, button {
           display: flex;

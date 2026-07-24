@@ -312,7 +312,8 @@ body.nav-menu-open {
     left: 0;
     width: 100vw;
     height: calc(100vh - var(--mobile-nav-top, 60px));
-    background: var(--color-black);
+    /* Fixed: Changed solid black to semi-transparent overlay to match design */
+    background: rgba(0, 0, 0, 0.4);
     z-index: 180;
     opacity: 0;
     visibility: hidden;
@@ -364,7 +365,7 @@ body.nav-menu-open {
     display: flex;
     align-items: center;
     padding: 16px 20px;
-    border-bottom: 1px solid var(--color-white);
+    border-bottom: 1px solid var(--color-tab-bg-mob);
   }
   .nav-drawer .mobile-sub-header .mobile-back-btn {
     background: none;
@@ -391,7 +392,7 @@ body.nav-menu-open {
     padding: 0;
   }
   .nav-drawer .mobile-menu-list li {
-    border-bottom: 1px solid var(--color-off-white);
+    border-bottom: 1px solid var(--color-tab-bg-mob);
   }
   .nav-drawer .mobile-menu-list li a, .nav-drawer .mobile-menu-list li button {
     display: flex;
