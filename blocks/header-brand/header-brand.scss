@@ -6,6 +6,13 @@ body.nav-menu-open {
   touch-action: none;
 }
 
+/* Click Blink Animation */
+@keyframes buttonBlink {
+  0% { opacity: 1; }
+  30% { opacity: 0.15; }
+  100% { opacity: 1; }
+}
+
 /* Header Container */
 .header-brand-wrapper {
   position: sticky;
@@ -100,13 +107,18 @@ body.nav-menu-open {
     border: 1px solid transparent;
     cursor: pointer;
     white-space: nowrap;
-    transition: all 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+    /* Blink Class */
+    &.blink-effect {
+      animation: buttonBlink 0.25s ease-in-out;
+    }
 
     &:hover {
       border-color: var(--color-black);
     }
 
-    /* Active State for Direct Links */
+    /* Active State for Links */
     &.active {
       background: var(--color-black) !important;
       color: var(--color-white) !important;
@@ -130,7 +142,7 @@ body.nav-menu-open {
   }
 }
 
-/* Active State for Dropdown Trigger Button */
+/* Active State for Expanded Dropdown Trigger */
 .nav-dropdown-trigger[aria-expanded='true'] {
   background: var(--color-black) !important;
   color: var(--color-white) !important;
@@ -279,7 +291,7 @@ body.nav-menu-open {
   @media (max-width: 991px) { display: none; }
 }
 
-/* Backdrop Overlay - Anchored right below the header bar */
+/* Backdrop Overlay - Anchored directly under header */
 .nav-mobile-overlay {
   display: block;
   position: fixed;
@@ -300,7 +312,7 @@ body.nav-menu-open {
   }
 }
 
-/* Active overlay state */
+/* Overlay Trigger */
 .nav-dropdown-open .nav-mobile-overlay,
 .nav-open .nav-mobile-overlay {
   opacity: 1;

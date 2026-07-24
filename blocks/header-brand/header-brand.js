@@ -102,6 +102,21 @@ function clearAllActiveStates(nav) {
   nav.classList.remove('nav-dropdown-open');
 }
 
+// Trigger click blink animation helper
+function triggerBlink(element) {
+  element.classList.remove('blink-effect');
+  void element.offsetWidth; // Force CSS reflow
+  element.classList.add('blink-effect');
+
+  element.addEventListener(
+    'animationend',
+    () => {
+      element.classList.remove('blink-effect');
+    },
+    { once: true }
+  );
+}
+
 function buildSearch() {
   const wrapper = document.createElement('div');
   wrapper.className = 'nav-search';
@@ -160,7 +175,7 @@ export default async function decorate(block) {
   const sections = document.createElement('ul');
   sections.className = 'nav-sections';
 
-  // --- Mobile Drawer Shell (2 Panels for Drill-down) ---
+  // --- Mobile Drawer Shell ---
   const drawer = document.createElement('div');
   drawer.className = 'nav-drawer';
 
@@ -233,8 +248,11 @@ export default async function decorate(block) {
 
       trigger.addEventListener('click', (e) => {
         e.stopPropagation();
+        triggerBlink(trigger);
+
         const expanded = trigger.getAttribute('aria-expanded') === 'true';
         clearAllActiveStates(nav);
+
         if (!expanded) {
           trigger.setAttribute('aria-expanded', 'true');
           nav.classList.add('nav-dropdown-open');
@@ -249,6 +267,7 @@ export default async function decorate(block) {
       a.textContent = firstCellText;
 
       a.addEventListener('click', () => {
+        triggerBlink(a);
         clearAllActiveStates(nav);
         a.classList.add('active');
       });
