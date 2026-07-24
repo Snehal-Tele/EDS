@@ -69,11 +69,11 @@ body.nav-menu-open {
 .nav-sections {
   display: flex;
   align-items: center;
-  justify-content: space-evenly; /* Spacing items evenly across available middle area */
+  justify-content: space-evenly;
   list-style: none;
-  margin: 0 32px; /* Controlled offset from Logo (left) and Search/Login (right) */
+  margin: 0 32px;
   padding: 0;
-  flex: 1; /* Takes up all available space between logo and actions */
+  flex: 1;
 }
 @media (max-width: 768px) {
   .nav-sections {
@@ -90,9 +90,9 @@ body.nav-menu-open {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 18px; /* Clean inner pill padding */
+  padding: 8px 18px;
   border-radius: 999px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--color-black) !important;
   text-decoration: none !important;
@@ -135,7 +135,7 @@ body.nav-menu-open {
   display: block;
 }
 
-/* Desktop Mega Menu */
+/* Desktop Mega Menu - Clean flat appearance (No Box Shadow) */
 .nav-mega {
   display: none;
   position: absolute;
@@ -146,7 +146,7 @@ body.nav-menu-open {
   background: var(--color-white);
   border-radius: 0 0 16px 16px;
   margin-top: 0;
-  box-shadow: 0 16px 30px var(--color-black);
+  box-shadow: none; /* Shadow removed to match original site */
   z-index: 190;
   border: 1px solid var(--color-tab-bg-mob);
   border-top: none;
@@ -312,7 +312,6 @@ body.nav-menu-open {
     left: 0;
     width: 100vw;
     height: calc(100vh - var(--mobile-nav-top, 60px));
-    /* Fixed: Changed solid black to semi-transparent overlay to match design */
     background: rgba(0, 0, 0, 0.4);
     z-index: 180;
     opacity: 0;
