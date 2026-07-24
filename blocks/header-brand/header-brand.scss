@@ -137,11 +137,11 @@ body.nav-menu-open {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 100%; /* Sticks directly below the header bar */
+  top: 100%;
   width: min(900px, 92vw);
   background: #ffffff;
-  border-radius: 0 0 16px 16px; /* Flat top, rounded bottom corners */
-  margin-top: 0; /* Flush attachment with header */
+  border-radius: 0 0 16px 16px;
+  margin-top: 0;
   box-shadow: 0 16px 30px rgba(0, 0, 0, 0.1);
   z-index: 190;
   border: 1px solid #e5e5e5;
@@ -176,7 +176,7 @@ body.nav-menu-open {
     gap: 8px;
     font-size: 16px;
     font-weight: 700;
-    color: #000000 !important; /* Force title text to black */
+    color: #000000 !important;
     text-decoration: none;
     margin-bottom: 12px;
 
@@ -187,7 +187,7 @@ body.nav-menu-open {
 
       svg {
         fill: none;
-        stroke: #000000 !important; /* Black chevron stroke */
+        stroke: #000000 !important;
         stroke-width: 2.5;
       }
     }
@@ -205,7 +205,7 @@ body.nav-menu-open {
       text-decoration: none;
       font-size: 14px;
       font-weight: 400;
-      color: #000000 !important; /* Force sub-links to black */
+      color: #000000 !important;
       transition: opacity 0.2s ease;
 
       &:hover {
@@ -322,7 +322,7 @@ body.nav-menu-open {
   .nav-drawer {
     display: block;
     position: fixed;
-    top: var(--mobile-nav-top, 60px);
+    top: var(--mobile-nav-top, 60px); /* Positions drawer strictly under header */
     right: 0;
     width: 68%;
     height: calc(100vh - var(--mobile-nav-top, 60px));
@@ -330,7 +330,7 @@ body.nav-menu-open {
     z-index: 195;
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
-    overflow: hidden; /* Disables internal scroll */
+    overflow: hidden;
 
     .mobile-panels {
       position: relative;

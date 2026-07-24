@@ -277,7 +277,7 @@ export default async function decorate(block) {
     rootList.append(mLi);
   }
 
-  // Support + FAQs and Log In mobile links
+  // Log In mobile link
   const loginRow = rows.find((r) => r.children[0]?.textContent.trim().toLowerCase() === 'log in');
   const loginLink = loginRow?.querySelector('a');
 
@@ -290,7 +290,7 @@ export default async function decorate(block) {
 
   nav.append(sections);
 
-  // Right Side Actions (Search, Log In, Mobile Hamburger/Close toggle)
+  // Right Side Actions
   const actions = document.createElement('div');
   actions.className = 'nav-actions';
   actions.append(buildSearch());
@@ -313,11 +313,26 @@ export default async function decorate(block) {
     <div class="icon-close">&#10005;</div>
   `;
 
+  // Dynamic positioning function
+  const updateMobileDrawerPosition = () => {
+    // Calculates bottom pixel position of the header container
+    const headerWrapper = block.closest('header') || block.closest('.header-brand-wrapper') || nav;
+    const rect = headerWrapper.getBoundingClientRect();
+    const topOffset = Math.max(rect.bottom, 0);
+
+    drawer.style.setProperty('--mobile-nav-top', `${topOffset}px`);
+    overlay.style.setProperty('--mobile-nav-top', `${topOffset}px`);
+  };
+
   const toggleMobileMenu = () => {
     const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+    
+    updateMobileDrawerPosition();
+
     hamburger.setAttribute('aria-expanded', String(!isExpanded));
     nav.classList.toggle('nav-open', !isExpanded);
     document.body.classList.toggle('nav-menu-open', !isExpanded);
+
     if (isExpanded) {
       drawer.classList.remove('sub-open');
     }
@@ -325,6 +340,12 @@ export default async function decorate(block) {
 
   hamburger.addEventListener('click', toggleMobileMenu);
   overlay.addEventListener('click', toggleMobileMenu);
+
+  window.addEventListener('resize', () => {
+    if (nav.classList.contains('nav-open')) {
+      updateMobileDrawerPosition();
+    }
+  });
 
   actions.append(hamburger);
   nav.append(actions);
