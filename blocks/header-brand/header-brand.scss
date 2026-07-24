@@ -2,8 +2,8 @@
 
 /* Lock body scroll completely when mobile menu is open */
 body.nav-menu-open {
-  overflow: hidden ;
-  height: 100vh ;
+  overflow: hidden !important;
+  height: 100vh !important;
   touch-action: none;
 }
 
@@ -95,8 +95,8 @@ body.nav-menu-open {
     border-radius: 999px;
     font-size: 15px;
     font-weight: 700;
-    color: #000000 ;
-    text-decoration: none ;
+    color: #000000 !important;
+    text-decoration: none !important;
     background: transparent;
     border: 1px solid transparent;
     cursor: pointer;
@@ -125,8 +125,8 @@ body.nav-menu-open {
 }
 
 .nav-dropdown-trigger[aria-expanded='true'] {
-  background: #000000 ;
-  color: #ffffff t;
+  background: #000000 !important;
+  color: #ffffff !important;
 
   .nav-caret {
     transform: rotate(180deg);
@@ -181,7 +181,7 @@ body.nav-menu-open {
     gap: 8px;
     font-size: 16px;
     font-weight: 700;
-    color: #000000 ;
+    color: #000000 !important;
     text-decoration: none;
     margin-bottom: 12px;
 
@@ -192,7 +192,7 @@ body.nav-menu-open {
 
       svg {
         fill: none;
-        stroke: #000000 ;
+        stroke: #000000 !important;
         stroke-width: 2.5;
       }
     }
