@@ -3,41 +3,15 @@
   position: sticky;
   top: 0;
   z-index: 200;
-  background: var(--color-white);
-}
-.header-brand-wrapper .nav-link,
-.header-brand-wrapper .nav-dropdown-trigger {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 18px;
-  border-radius: 999px;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--color-black) !important;
-  text-decoration: none !important;
-  background: transparent;
-  border: 1px solid transparent;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-}
-.header-brand-wrapper .nav-link:visited,
-.header-brand-wrapper .nav-dropdown-trigger:visited {
-  color: var(--color-black) !important;
-}
-.header-brand-wrapper .nav-link:hover,
-.header-brand-wrapper .nav-dropdown-trigger:hover {
-  background: var(--color-white);
-  color: var(--color-black);
-  border-color: var(--color-black);
+  background: var(--color-white, #fff);
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .header-brand.block {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 24px;
-  background: var(--color-white);
+  padding: 0 32px;
+  background: var(--color-white, #fff);
 }
 
 /* ---------- Nav Shell ---------- */
@@ -46,7 +20,7 @@
   align-items: center;
   justify-content: space-between;
   min-height: 72px;
-  gap: 24px;
+  gap: 32px;
   font-family: "Helvetica Neue", Arial, sans-serif;
   position: relative;
 }
@@ -57,17 +31,15 @@
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  color: var(--color-black);
+  color: var(--color-black, #000);
   flex-shrink: 0;
 }
 .nav-logo picture {
   display: flex;
-  width: auto;
-  height: 36px;
   align-items: center;
 }
 .nav-logo picture img {
-  width: auto;
+  width: 104px;
   height: 32px;
   -o-object-fit: contain;
      object-fit: contain;
@@ -78,7 +50,7 @@
   letter-spacing: 0.5px;
 }
 
-/* ---------- Sections & Action Links (Desktop Default) ---------- */
+/* ---------- Desktop Navigation Links ---------- */
 .nav-sections {
   display: flex;
   align-items: center;
@@ -86,32 +58,55 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  flex: 1;
+  justify-content: center;
 }
-@media (width <= 768px) {
+@media (max-width: 991px) {
   .nav-sections {
     display: none;
   }
 }
+.nav-sections .nav-link,
+.nav-sections .nav-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-black, #000) !important;
+  text-decoration: none !important;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+.nav-sections .nav-link:hover,
+.nav-sections .nav-dropdown-trigger:hover {
+  background: #f4f4f4;
+}
 
 .nav-caret {
   font-size: 10px;
-  transform: rotate(180deg);
+  display: inline-block;
+  margin-left: 2px;
   transition: transform 0.2s ease;
 }
 
 .nav-dropdown-trigger[aria-expanded=true] {
-  background: var(--color-black);
-  color: var(--color-white) !important;
-  border-color: var(--color-black);
+  background: #000;
+  color: #fff !important;
 }
 .nav-dropdown-trigger[aria-expanded=true] .nav-caret {
-  transform: rotate(0deg);
+  transform: rotate(180deg);
 }
 .nav-dropdown-trigger[aria-expanded=true] + .nav-mega {
   display: block;
 }
 
-/* ---------- Mega Menu (Desktop) ---------- */
+/* ---------- Desktop Mega Menu Dropdown ---------- */
 .nav-mega {
   display: none;
   position: absolute;
@@ -120,12 +115,12 @@
   top: 100%;
   width: -moz-max-content;
   width: max-content;
-  min-width: 640px;
+  min-width: 680px;
   max-width: 960px;
-  background: var(--color-white);
+  background: #ffffff;
   border: 1px solid #e5e5e5;
   border-radius: 12px;
-  margin-top: 8px;
+  margin-top: 12px;
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
   z-index: 190;
 }
@@ -144,9 +139,9 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
-  color: var(--color-black);
+  color: #000;
   text-decoration: none;
   margin: 0 0 14px;
   white-space: nowrap;
@@ -157,30 +152,26 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 .nav-mega-col-list li a {
   text-decoration: none;
-  font-size: 15px;
-  color: var(--color-black);
+  font-size: 14px;
+  color: #333;
 }
 .nav-mega-col-list li a:hover {
   text-decoration: underline;
 }
 
-/* ---------- Desktop Actions ---------- */
+/* ---------- Actions (Search & Login Button) ---------- */
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
   flex-shrink: 0;
 }
-@media (width <= 768px) {
-  .nav-actions {
-    margin-left: auto;
-  }
-}
 
+/* Search Box */
 .nav-search {
   position: relative;
   display: flex;
@@ -189,18 +180,25 @@
 .nav-search-toggle {
   display: flex;
   align-items: center;
+  gap: 6px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px;
-  color: var(--color-black);
+  padding: 6px 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-black, #000);
+  border-radius: 999px;
+}
+.nav-search-toggle:hover {
+  background: #f4f4f4;
 }
 .nav-search-input {
   width: 0;
   opacity: 0;
   padding: 0;
   border: none;
-  border-bottom: 2px solid var(--color-black);
+  border-bottom: 2px solid #000;
   font-size: 14px;
   transition: width 0.25s ease, opacity 0.2s ease, padding 0.25s ease;
   position: absolute;
@@ -214,25 +212,31 @@
   padding: 6px 4px;
 }
 
+/* Log In Pill Button */
 .nav-login {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 24px;
-  border: 1px solid var(--color-black);
+  padding: 8px 22px;
+  border: 1px solid var(--color-black, #000);
   border-radius: 999px;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--color-black);
-  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-black, #000) !important;
+  text-decoration: none !important;
+  transition: all 0.15s ease;
 }
-@media (width <= 768px) {
+.nav-login:hover {
+  background: #000;
+  color: #fff !important;
+}
+@media (max-width: 991px) {
   .nav-login {
     display: none;
   }
 }
 
-/* ---------- Hamburger & Mobile Actions Header ---------- */
+/* ---------- Mobile Drawer Navigation ---------- */
 .nav-hamburger {
   display: none;
   align-items: center;
@@ -242,11 +246,9 @@
   background: none;
   border: none;
   cursor: pointer;
-  border-radius: 50%;
-  padding: 0;
   z-index: 210;
 }
-@media (width <= 768px) {
+@media (max-width: 991px) {
   .nav-hamburger {
     display: flex;
   }
@@ -261,7 +263,7 @@
   display: block;
   height: 2px;
   width: 100%;
-  background: var(--color-black);
+  background: #000;
 }
 .nav-hamburger .icon-close {
   display: none;
@@ -273,15 +275,19 @@
   color: #fff;
   border-radius: 50%;
   font-size: 18px;
-  font-weight: 400;
 }
 
-/* ---------- Mobile Drawer Navigation Overlay ---------- */
 .nav-mobile-overlay {
   display: none;
 }
-@media (width <= 768px) {
+
+.nav-drawer {
+  display: none;
+}
+
+@media (max-width: 991px) {
   .nav-mobile-overlay {
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
@@ -293,15 +299,13 @@
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
   }
-}
-
-@media (width <= 768px) {
   .nav-drawer {
+    display: block;
     position: fixed;
     top: 72px;
     right: 0;
     width: 75%;
-    max-width: 360px;
+    max-width: 340px;
     height: calc(100vh - 72px);
     background: #ffffff;
     z-index: 195;
@@ -324,7 +328,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 18px 24px;
+    padding: 16px 24px;
     font-size: 15px;
     font-weight: 700;
     color: #000000 !important;
@@ -339,20 +343,17 @@
     font-size: 16px;
     font-weight: 400;
   }
-}
-
-/* Open Mobile Menu State */
-.nav-open .nav-hamburger .icon-menu {
-  display: none;
-}
-.nav-open .nav-hamburger .icon-close {
-  display: flex;
-}
-.nav-open .nav-mobile-overlay {
-  display: block;
-  opacity: 1;
-  visibility: visible;
-}
-.nav-open .nav-drawer {
-  transform: translateX(0);
+  .nav-open .nav-hamburger .icon-menu {
+    display: none;
+  }
+  .nav-open .nav-hamburger .icon-close {
+    display: flex;
+  }
+  .nav-open .nav-mobile-overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+  .nav-open .nav-drawer {
+    transform: translateX(0);
+  }
 }/*# sourceMappingURL=header-brand.css.map */

@@ -15,7 +15,7 @@ function getLabelAndHref(li) {
   return { label: '', href: '#' };
 }
 
-/** Build desktop Mega Menu Column */
+/** Build Mega Menu Column */
 function buildMegaColumn(li) {
   const col = document.createElement('div');
   col.className = 'nav-mega-col';
@@ -85,16 +85,17 @@ function buildSearch() {
   btn.setAttribute('aria-expanded', 'false');
   btn.setAttribute('aria-label', 'Search');
   btn.innerHTML = `
-    <svg class="nav-search-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+    <svg class="nav-search-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
       <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
       <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
+    <span>Search</span>
   `;
 
   const input = document.createElement('input');
   input.type = 'search';
   input.className = 'nav-search-input';
-  input.placeholder = 'Search';
+  input.placeholder = 'Search brand.toyota.com';
 
   btn.addEventListener('click', () => {
     const expanded = btn.getAttribute('aria-expanded') === 'true';
@@ -113,7 +114,6 @@ export default async function decorate(block) {
   nav.className = 'nav-brand';
   nav.setAttribute('aria-label', 'Brand site header');
 
-  // Background overlay for mobile drawer
   const overlay = document.createElement('div');
   overlay.className = 'nav-mobile-overlay';
 
@@ -141,11 +141,11 @@ export default async function decorate(block) {
     nav.append(brandWrap);
   }
 
-  // --- Desktop Navigation Sections ---
+  // --- Desktop Navigation Bar ---
   const sections = document.createElement('ul');
   sections.className = 'nav-sections';
 
-  // --- Mobile Side Drawer Container ---
+  // --- Mobile Drawer Menu ---
   const drawer = document.createElement('div');
   drawer.className = 'nav-drawer';
   const mobileList = document.createElement('ul');
@@ -159,12 +159,13 @@ export default async function decorate(block) {
 
     const label = firstCellText.toLowerCase();
 
-    if (label === 'search') continue;
+    // Skip utility items from standard section rendering
+    if (label === 'search' || label === 'log in') continue;
 
     const nestedList = cells[1]?.querySelector('ul');
     const firstLink = cells[0].querySelector('a');
 
-    // Desktop Nav Node
+    // Build Desktop Node
     const li = document.createElement('li');
     li.className = 'nav-section';
 
@@ -173,7 +174,7 @@ export default async function decorate(block) {
       trigger.type = 'button';
       trigger.className = 'nav-dropdown-trigger';
       trigger.setAttribute('aria-expanded', 'false');
-      trigger.innerHTML = `${firstCellText} <span class="nav-caret" aria-hidden="true">&#94;</span>`;
+      trigger.innerHTML = `${firstCellText} <span class="nav-caret" aria-hidden="true">&#8250;</span>`;
 
       trigger.addEventListener('click', () => {
         const expanded = trigger.getAttribute('aria-expanded') === 'true';
@@ -191,7 +192,7 @@ export default async function decorate(block) {
     }
     sections.append(li);
 
-    // Mobile Drawer Item Construction
+    // Build Mobile Drawer Item
     const mLi = document.createElement('li');
     if (nestedList) {
       const mBtn = document.createElement('button');
@@ -207,24 +208,32 @@ export default async function decorate(block) {
     mobileList.append(mLi);
   }
 
+  // Append 'Log In' at the end of the mobile list
+  const loginRow = rows.find((r) => r.children[0]?.textContent.trim().toLowerCase() === 'log in');
+  const loginLink = loginRow?.querySelector('a');
+  const mLoginLi = document.createElement('li');
+  const mLoginA = document.createElement('a');
+  mLoginA.href = loginLink ? loginLink.href : '#';
+  mLoginA.textContent = 'Log In';
+  mLoginLi.append(mLoginA);
+  mobileList.append(mLoginLi);
+
   drawer.append(mobileList);
   nav.append(sections);
 
-  // --- Actions (Search + Hamburger) ---
+  // --- Right-Side Desktop Actions ---
   const actions = document.createElement('div');
   actions.className = 'nav-actions';
   actions.append(buildSearch());
 
   // Desktop Login Button
-  const loginRow = rows.find((r) => r.children[0]?.textContent.trim().toLowerCase() === 'log in');
-  const loginLink = loginRow?.querySelector('a');
   const loginBtn = document.createElement('a');
   loginBtn.className = 'nav-login';
   loginBtn.href = loginLink ? loginLink.href : '#';
   loginBtn.textContent = 'Log In';
   actions.append(loginBtn);
 
-  // Mobile Hamburger Toggle Button
+  // Mobile Hamburger Toggle
   const hamburger = document.createElement('button');
   hamburger.type = 'button';
   hamburger.className = 'nav-hamburger';
@@ -253,7 +262,7 @@ export default async function decorate(block) {
   nav.append(drawer);
   nav.append(overlay);
 
-  // Keyboard and outside click handlers
+  // Event Listeners for Dropdowns & Mobile
   document.addEventListener('click', (e) => {
     if (!nav.contains(e.target)) closeAllDropdowns(nav);
   });
