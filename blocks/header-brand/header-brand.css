@@ -206,12 +206,12 @@ body.nav-menu-open {
   text-decoration: none;
   font-size: 14px;
   font-weight: 400;
-  color: #000000;
+  color: #000000 !important;
   transition: opacity 0.2s ease;
 }
 .nav-mega-group-list li a:hover {
   opacity: 0.6;
-  color: #000000;
+  color: #000000 !important;
 }
 
 /* Header Actions */
@@ -253,8 +253,8 @@ body.nav-menu-open {
   border-radius: 999px;
   font-size: 15px;
   font-weight: 700;
-  color: #000000;
-  text-decoration: none;
+  color: #000000 !important;
+  text-decoration: none !important;
 }
 @media (max-width: 991px) {
   .nav-login {
