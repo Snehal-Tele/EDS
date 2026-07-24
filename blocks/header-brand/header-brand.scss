@@ -6,11 +6,11 @@ body.nav-menu-open {
   touch-action: none;
 }
 
-/* Header Container - Lifted above the overlay so the block stays 100% clear */
+/* Header Outer Wrapper */
 .header-brand-wrapper {
   position: sticky;
   top: 0;
-  z-index: 200; /* Higher than full-screen overlay (180) */
+  z-index: 200;
   background: var(--color-white);
   border-bottom: 1px solid var(--color-tab-bg-mob);
 }
@@ -147,7 +147,7 @@ body.nav-menu-open {
   border-radius: 0 0 16px 16px;
   margin-top: 0;
   box-shadow: none;
-  z-index: 190; /* Sits above overlay (180), below sticky header container (200) */
+  z-index: 190; /* Placed above the overlay (180) */
   border: 1px solid var(--color-tab-bg-mob);
   border-top: none;
 }
@@ -266,23 +266,28 @@ body.nav-menu-open {
   @media (max-width: 991px) { display: none; }
 }
 
-/* Full-Screen Dark Transparent Overlay (Covers whole page, behind the header block) */
+/* Backdrop Overlay - STARTS strictly below header bar */
 .nav-mobile-overlay {
   display: block;
   position: fixed;
-  top: 0;
+  top: 100%; /* Anchor to the exact bottom of header nav */
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  right: 0;
+  bottom: -100vh; /* Stretch all the way down to cover the entire body */
   background: rgba(0, 0, 0, 0.45);
-  z-index: 180; /* Behind header block (200) & mega dropdown (190) */
+  z-index: 180; /* Under .nav-mega (190) and header elements */
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  @media (max-width: $bp-sm) {
+    top: var(--mobile-nav-top, 60px);
+    bottom: 0;
+  }
 }
 
-/* Trigger overlay visibility on dropdown or mobile menu open */
+/* Activate dim overlay when desktop dropdown opens */
 .nav-dropdown-open .nav-mobile-overlay,
 .nav-open .nav-mobile-overlay {
   opacity: 1;
