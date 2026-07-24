@@ -2,20 +2,26 @@ function isDecorativeRow(cellText) {
   return cellText === '';
 }
 
-function getLabelAndHref(li) {
-  const directLink = li.querySelector(':scope > a, :scope > p > a, :scope > strong > a, :scope > div > a');
-  if (directLink) {
-    return { label: directLink.textContent.trim(), href: directLink.href };
+function getLabelAndHref(element) {
+  const link = element.querySelector(':scope > a, :scope > p > a, :scope > strong > a, :scope > div > a');
+  if (link) {
+    return { label: link.textContent.trim(), href: link.href };
   }
-  for (const node of li.childNodes) {
-    if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'UL') continue;
-    const text = node.textContent?.trim();
-    if (text) return { label: text, href: '#' };
-  }
-  return { label: '', href: '#' };
+  
+  // Text content fallback (excluding child <ul>)
+  let text = '';
+  element.childNodes.forEach((node) => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      text += node.textContent;
+    } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'UL') {
+      text += node.textContent;
+    }
+  });
+  
+  return { label: text.trim(), href: '#' };
 }
 
-/** Right Chevron Arrow SVG (>) for Group Title */
+/** Chevron Right Arrow SVG (>) */
 function getRightChevronSVG() {
   return `
     <span class="right-chevron" aria-hidden="true">
@@ -26,7 +32,7 @@ function getRightChevronSVG() {
   `;
 }
 
-/** Build Single Group Section (Title + Sub-List) */
+/** Parses individual category group (Heading > + Sub-items) */
 function buildMegaGroup(li) {
   const group = document.createElement('div');
   group.className = 'nav-mega-group';
@@ -60,32 +66,31 @@ function buildMegaGroup(li) {
   return group;
 }
 
-/** Build Mega Menu Column (Can hold 1 or multiple groups) */
-function buildMegaColumn(sourceLi) {
-  const col = document.createElement('div');
-  col.className = 'nav-mega-col';
-
-  // Check if column contains multiple sub-groups (e.g. Dynamic & Sonic in column 3)
-  const nestedUl = sourceLi.querySelector(':scope > ul');
-  if (nestedUl) {
-    [...nestedUl.children].forEach((subLi) => {
-      col.append(buildMegaGroup(subLi));
-    });
-  } else {
-    col.append(buildMegaGroup(sourceLi));
-  }
-
-  return col;
-}
-
+/** Builds Mega Menu Columns from second cell nested UL */
 function buildMegaMenu(sourceList) {
   const mega = document.createElement('div');
   mega.className = 'nav-mega';
+  
   const inner = document.createElement('div');
   inner.className = 'nav-mega-inner';
 
   [...sourceList.children].forEach((topLi) => {
-    inner.append(buildMegaColumn(topLi));
+    const col = document.createElement('div');
+    col.className = 'nav-mega-col';
+
+    const hasSubCategories = topLi.querySelector(':scope > ul');
+    const { label } = getLabelAndHref(topLi);
+
+    // If item doesn't have child list directly, check if it contains stacked sub-groups
+    if (hasSubCategories && !label) {
+      [...hasSubCategories.children].forEach((subLi) => {
+        col.append(buildMegaGroup(subLi));
+      });
+    } else {
+      col.append(buildMegaGroup(topLi));
+    }
+
+    inner.append(col);
   });
 
   mega.append(inner);
@@ -108,7 +113,7 @@ function buildSearch() {
   btn.setAttribute('aria-expanded', 'false');
   btn.setAttribute('aria-label', 'Search');
   btn.innerHTML = `
-    <svg class="nav-search-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+    <svg class="nav-search-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
       <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
       <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
@@ -182,7 +187,6 @@ export default async function decorate(block) {
 
     const label = firstCellText.toLowerCase();
 
-    // Skip utility items from center bar
     if (label === 'search' || label === 'log in') continue;
 
     const nestedList = cells[1]?.querySelector('ul');
@@ -222,7 +226,7 @@ export default async function decorate(block) {
     }
     sections.append(li);
 
-    // Build Mobile Item
+    // Build Mobile Drawer Link
     const mLi = document.createElement('li');
     if (nestedList) {
       const mBtn = document.createElement('button');
@@ -256,14 +260,14 @@ export default async function decorate(block) {
   actions.className = 'nav-actions';
   actions.append(buildSearch());
 
-  // Desktop Login Button
+  // Desktop Login Pill
   const loginBtn = document.createElement('a');
   loginBtn.className = 'nav-login';
   loginBtn.href = loginLink ? loginLink.href : '#';
   loginBtn.textContent = 'Log In';
   actions.append(loginBtn);
 
-  // Mobile Hamburger Menu Button
+  // Mobile Hamburger Toggle Button
   const hamburger = document.createElement('button');
   hamburger.type = 'button';
   hamburger.className = 'nav-hamburger';
@@ -293,7 +297,7 @@ export default async function decorate(block) {
   nav.append(drawer);
   nav.append(overlay);
 
-  // Global Click and Escape Handlers
+  // Event Listeners
   document.addEventListener('click', (e) => {
     if (!nav.contains(e.target)) closeAllDropdowns(nav);
   });

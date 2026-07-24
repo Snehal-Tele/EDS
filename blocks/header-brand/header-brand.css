@@ -1,4 +1,4 @@
-/* ---------- Body Scroll Lock (Mobile) ---------- */
+/* ---------- Body Scroll Lock ---------- */
 body.nav-menu-open {
   overflow: hidden !important;
   touch-action: none;
@@ -116,7 +116,7 @@ body.nav-menu-open {
   border-color: #000000;
 }
 
-/* Guidelines Chevron Indicator (Up/Down Arrow) */
+/* Caret Icon */
 .nav-caret {
   display: inline-flex;
   align-items: center;
@@ -136,7 +136,7 @@ body.nav-menu-open {
   stroke-linejoin: round;
 }
 
-/* Active Dropdown Trigger (Solid Black Pill with White Text) */
+/* Active Open Dropdown Pill State */
 .nav-dropdown-trigger[aria-expanded=true] {
   background: #000000 !important;
   border-color: #000000 !important;
@@ -159,23 +159,23 @@ body.nav-menu-open {
   left: 50%;
   transform: translateX(-50%);
   top: 100%;
-  width: min(920px, 90vw);
+  width: min(900px, 92vw);
   background: #ffffff;
   border-radius: 16px;
   margin-top: 16px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
   z-index: 190;
   border: 1px solid #f0f0f0;
 }
 
 .nav-mega-inner {
-  padding: 36px 20px;
+  padding: 36px 12px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
 }
 
-/* Column Container & Vertical Divider Lines */
+/* Column Divider Borders */
 .nav-mega-col {
   padding: 0 28px;
   border-right: 1px solid #ececec;
@@ -187,7 +187,7 @@ body.nav-menu-open {
   border-right: none;
 }
 
-/* Column Group Section */
+/* Category Group */
 .nav-mega-group {
   display: flex;
   flex-direction: column;
@@ -205,8 +205,8 @@ body.nav-menu-open {
 .nav-mega-group-title .right-chevron {
   display: inline-flex;
   align-items: center;
-  width: 8px;
-  height: 12px;
+  width: 7px;
+  height: 11px;
 }
 .nav-mega-group-title .right-chevron svg {
   width: 100%;
@@ -232,7 +232,7 @@ body.nav-menu-open {
   text-decoration: none;
   font-size: 14px;
   font-weight: 400;
-  color: #555555;
+  color: #666666;
   transition: color 0.15s ease;
 }
 .nav-mega-group-list li a:hover {
@@ -252,7 +252,7 @@ body.nav-menu-open {
   }
 }
 
-/* Search Action Button */
+/* Search Box */
 .nav-search {
   position: relative;
   display: flex;
@@ -300,7 +300,7 @@ body.nav-menu-open {
   padding: 6px 4px;
 }
 
-/* Log In Pill Button */
+/* Desktop Log In Button */
 .nav-login {
   display: inline-flex;
   align-items: center;
