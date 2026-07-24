@@ -137,30 +137,33 @@ body.nav-menu-open {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 100%;
+  top: 100%; /* Sticks directly below the header bar */
   width: min(900px, 92vw);
   background: #ffffff;
-  border-radius: 16px;
-  margin-top: 16px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  border-radius: 0 0 16px 16px; /* Flat top, rounded bottom corners */
+  margin-top: 0; /* Flush attachment with header */
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.1);
   z-index: 190;
-  border: 1px solid #f0f0f0;
+  border: 1px solid #e5e5e5;
+  border-top: none;
 }
 
 .nav-mega-inner {
-  padding: 36px 12px;
+  padding: 32px 12px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
 
 .nav-mega-col {
-  padding: 0 28px;
+  padding: 0 24px;
   border-right: 1px solid #ececec;
   display: flex;
   flex-direction: column;
   gap: 28px;
 
-  &:last-child { border-right: none; }
+  &:last-child {
+    border-right: none;
+  }
 }
 
 .nav-mega-group {
@@ -173,14 +176,20 @@ body.nav-menu-open {
     gap: 8px;
     font-size: 16px;
     font-weight: 700;
-    color: #000000;
+    color: #000000 !important; /* Force title text to black */
     text-decoration: none;
     margin-bottom: 12px;
 
     .right-chevron {
       width: 7px;
       height: 11px;
-      svg { fill: none; stroke: #000000; stroke-width: 2.5; }
+      display: inline-flex;
+
+      svg {
+        fill: none;
+        stroke: #000000 !important; /* Black chevron stroke */
+        stroke-width: 2.5;
+      }
     }
   }
 
@@ -190,13 +199,19 @@ body.nav-menu-open {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 
     li a {
       text-decoration: none;
       font-size: 14px;
-      color: #666666;
-      &:hover { color: #000000; }
+      font-weight: 400;
+      color: #000000 !important; /* Force sub-links to black */
+      transition: opacity 0.2s ease;
+
+      &:hover {
+        opacity: 0.6;
+        color: #000000 !important;
+      }
     }
   }
 }
@@ -293,10 +308,10 @@ body.nav-menu-open {
   .nav-mobile-overlay {
     display: block;
     position: fixed;
-    top: 0;
+    top: var(--mobile-nav-top, 60px);
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - var(--mobile-nav-top, 60px));
     background: rgba(0, 0, 0, 0.4);
     z-index: 180;
     opacity: 0;
@@ -307,15 +322,15 @@ body.nav-menu-open {
   .nav-drawer {
     display: block;
     position: fixed;
-    top: 60px;
+    top: var(--mobile-nav-top, 60px);
     right: 0;
     width: 68%;
-    height: calc(100vh - 60px);
+    height: calc(100vh - var(--mobile-nav-top, 60px));
     background: #ffffff;
     z-index: 195;
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
-    overflow: hidden; /* Non-scrollable as requested */
+    overflow: hidden; /* Disables internal scroll */
 
     .mobile-panels {
       position: relative;
