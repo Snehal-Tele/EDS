@@ -96,6 +96,7 @@ function closeAllDropdowns(nav) {
   nav.querySelectorAll('.nav-dropdown-trigger[aria-expanded="true"]').forEach((btn) => {
     btn.setAttribute('aria-expanded', 'false');
   });
+  nav.classList.remove('nav-dropdown-open');
 }
 
 function buildSearch() {
@@ -108,9 +109,9 @@ function buildSearch() {
   btn.setAttribute('aria-expanded', 'false');
   btn.setAttribute('aria-label', 'Search');
   btn.innerHTML = `
-    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
       <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
-      <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="20" y1="20" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
     <span class="search-text">Search</span>
   `;
@@ -227,10 +228,14 @@ export default async function decorate(block) {
         </span>
       `;
 
-      trigger.addEventListener('click', () => {
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
         const expanded = trigger.getAttribute('aria-expanded') === 'true';
         closeAllDropdowns(nav);
-        trigger.setAttribute('aria-expanded', String(!expanded));
+        if (!expanded) {
+          trigger.setAttribute('aria-expanded', 'true');
+          nav.classList.add('nav-dropdown-open');
+        }
       });
 
       li.append(trigger, buildMegaMenu(nestedList));
@@ -308,14 +313,14 @@ export default async function decorate(block) {
   hamburger.setAttribute('aria-expanded', 'false');
   hamburger.innerHTML = `
     <div class="icon-menu">
-      <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+      <svg viewBox="0 0 24 24" width="20" height="20">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
     </div>
     <div class="icon-close">&#10005;</div>
   `;
 
-  // Dynamic positioning function
   const updateMobileDrawerPosition = () => {
-    // Calculates bottom pixel position of the header container
     const headerWrapper = block.closest('header') || block.closest('.header-brand-wrapper') || nav;
     const rect = headerWrapper.getBoundingClientRect();
     const topOffset = Math.max(rect.bottom, 0);
@@ -339,7 +344,10 @@ export default async function decorate(block) {
   };
 
   hamburger.addEventListener('click', toggleMobileMenu);
-  overlay.addEventListener('click', toggleMobileMenu);
+  overlay.addEventListener('click', () => {
+    closeAllDropdowns(nav);
+    if (nav.classList.contains('nav-open')) toggleMobileMenu();
+  });
 
   window.addEventListener('resize', () => {
     if (nav.classList.contains('nav-open')) {

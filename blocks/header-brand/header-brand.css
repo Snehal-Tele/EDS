@@ -135,7 +135,7 @@ body.nav-menu-open {
   display: block;
 }
 
-/* Desktop Mega Menu - Clean flat appearance (No Box Shadow) */
+/* Desktop Mega Menu */
 .nav-mega {
   display: none;
   position: absolute;
@@ -146,7 +146,7 @@ body.nav-menu-open {
   background: var(--color-white);
   border-radius: 0 0 16px 16px;
   margin-top: 0;
-  box-shadow: none; /* Shadow removed to match original site */
+  box-shadow: none;
   z-index: 190;
   border: 1px solid var(--color-tab-bg-mob);
   border-top: none;
@@ -261,6 +261,30 @@ body.nav-menu-open {
   }
 }
 
+/* Global Overlay (Used for both Desktop Dropdown & Mobile Menu) */
+.nav-mobile-overlay {
+  display: block;
+  position: fixed;
+  top: var(--mobile-nav-top, 72px);
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 180;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Activate overlay on Desktop Dropdown or Mobile Drawer open */
+.nav-dropdown-open .nav-mobile-overlay,
+.nav-open .nav-mobile-overlay {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
 /* ---------- Mobile Menu & Drill-down Drawer ---------- */
 .nav-hamburger {
   display: none;
@@ -296,28 +320,11 @@ body.nav-menu-open {
   }
 }
 
-.nav-mobile-overlay {
-  display: none;
-}
-
 .nav-drawer {
   display: none;
 }
 
 @media (max-width: 768px) {
-  .nav-mobile-overlay {
-    display: block;
-    position: fixed;
-    top: var(--mobile-nav-top, 60px);
-    left: 0;
-    width: 100vw;
-    height: calc(100vh - var(--mobile-nav-top, 60px));
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 180;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease;
-  }
   .nav-drawer {
     display: block;
     position: fixed;
@@ -418,10 +425,6 @@ body.nav-menu-open {
   }
   .nav-open .nav-hamburger .icon-close {
     display: flex;
-  }
-  .nav-open .nav-mobile-overlay {
-    opacity: 1;
-    visibility: visible;
   }
   .nav-open .nav-drawer {
     transform: translateX(0);
