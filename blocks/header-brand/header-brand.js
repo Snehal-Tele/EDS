@@ -15,43 +15,66 @@ function getLabelAndHref(li) {
   return { label: '', href: '#' };
 }
 
-/** Build Mega Menu Column */
-function buildMegaColumn(li) {
-  const col = document.createElement('div');
-  col.className = 'nav-mega-col';
+/** Right Chevron Arrow SVG (>) for Group Title */
+function getRightChevronSVG() {
+  return `
+    <span class="right-chevron" aria-hidden="true">
+      <svg viewBox="0 0 8 12">
+        <path d="M1 1l5 5-5 5" />
+      </svg>
+    </span>
+  `;
+}
+
+/** Build Single Group Section (Title + Sub-List) */
+function buildMegaGroup(li) {
+  const group = document.createElement('div');
+  group.className = 'nav-mega-group';
 
   const nestedList = li.querySelector(':scope > ul');
   const { label, href } = getLabelAndHref(li);
 
-  if (!nestedList) {
-    const a = document.createElement('a');
-    a.className = 'nav-mega-col-title nav-mega-col-title-link';
-    a.href = href;
-    a.textContent = label;
-    col.append(a);
-    return col;
+  const title = document.createElement('a');
+  title.className = 'nav-mega-group-title';
+  title.href = href;
+  title.innerHTML = `<span>${label}</span>${getRightChevronSVG()}`;
+  group.append(title);
+
+  if (nestedList) {
+    const list = document.createElement('ul');
+    list.className = 'nav-mega-group-list';
+
+    [...nestedList.children].forEach((item) => {
+      const { label: itemLabel, href: itemHref } = getLabelAndHref(item);
+      const liItem = document.createElement('li');
+      const aItem = document.createElement('a');
+      aItem.href = itemHref;
+      aItem.textContent = itemLabel;
+      liItem.append(aItem);
+      list.append(liItem);
+    });
+
+    group.append(list);
   }
 
-  const heading = document.createElement('a');
-  heading.className = 'nav-mega-col-title';
-  heading.href = href;
-  heading.textContent = label;
-  col.append(heading);
+  return group;
+}
 
-  const list = document.createElement('ul');
-  list.className = 'nav-mega-col-list';
+/** Build Mega Menu Column (Can hold 1 or multiple groups) */
+function buildMegaColumn(sourceLi) {
+  const col = document.createElement('div');
+  col.className = 'nav-mega-col';
 
-  [...nestedList.children].forEach((item) => {
-    const { label: itemLabel, href: itemHref } = getLabelAndHref(item);
-    const liItem = document.createElement('li');
-    const aItem = document.createElement('a');
-    aItem.href = itemHref;
-    aItem.textContent = itemLabel;
-    liItem.append(aItem);
-    list.append(liItem);
-  });
+  // Check if column contains multiple sub-groups (e.g. Dynamic & Sonic in column 3)
+  const nestedUl = sourceLi.querySelector(':scope > ul');
+  if (nestedUl) {
+    [...nestedUl.children].forEach((subLi) => {
+      col.append(buildMegaGroup(subLi));
+    });
+  } else {
+    col.append(buildMegaGroup(sourceLi));
+  }
 
-  col.append(list);
   return col;
 }
 
@@ -159,13 +182,13 @@ export default async function decorate(block) {
 
     const label = firstCellText.toLowerCase();
 
-    // Skip utility items from center navigation bar
+    // Skip utility items from center bar
     if (label === 'search' || label === 'log in') continue;
 
     const nestedList = cells[1]?.querySelector('ul');
     const firstLink = cells[0].querySelector('a');
 
-    // Build Desktop Section Node
+    // Build Desktop Section
     const li = document.createElement('li');
     li.className = 'nav-section';
 
@@ -174,7 +197,6 @@ export default async function decorate(block) {
       trigger.type = 'button';
       trigger.className = 'nav-dropdown-trigger';
       trigger.setAttribute('aria-expanded', 'false');
-      // SVG chevron arrow matching the original Toyota site
       trigger.innerHTML = `
         ${firstCellText}
         <span class="nav-caret" aria-hidden="true">
@@ -200,7 +222,7 @@ export default async function decorate(block) {
     }
     sections.append(li);
 
-    // Build Mobile Item Node
+    // Build Mobile Item
     const mLi = document.createElement('li');
     if (nestedList) {
       const mBtn = document.createElement('button');
@@ -234,7 +256,7 @@ export default async function decorate(block) {
   actions.className = 'nav-actions';
   actions.append(buildSearch());
 
-  // Desktop Login Pill Button
+  // Desktop Login Button
   const loginBtn = document.createElement('a');
   loginBtn.className = 'nav-login';
   loginBtn.href = loginLink ? loginLink.href : '#';
@@ -271,7 +293,7 @@ export default async function decorate(block) {
   nav.append(drawer);
   nav.append(overlay);
 
-  // Global Event Handlers
+  // Global Click and Escape Handlers
   document.addEventListener('click', (e) => {
     if (!nav.contains(e.target)) closeAllDropdowns(nav);
   });
