@@ -16,7 +16,7 @@ body.nav-menu-open {
     opacity: 1;
   }
 }
-/* Header Container */
+/* Header Outer Container */
 .header-brand-wrapper {
   position: sticky;
   top: 0;
@@ -164,7 +164,7 @@ body.nav-menu-open {
   display: block;
 }
 
-/* Desktop Mega Menu */
+/* Desktop Mega Menu Dropdown */
 .nav-mega {
   display: none;
   position: absolute;
@@ -175,10 +175,11 @@ body.nav-menu-open {
   background: var(--color-white);
   border-radius: 0 0 16px 16px;
   margin-top: 0;
-  box-shadow: none;
   z-index: 190;
   border: 1px solid var(--color-tab-bg-mob);
   border-top: none;
+  /* Floating shadow matching Toyota brand site */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
 }
 
 .nav-mega-inner {
@@ -290,16 +291,16 @@ body.nav-menu-open {
   }
 }
 
-/* Backdrop Overlay - Anchored directly under header */
+/* Backdrop Overlay - Covers everything BELOW the header bar */
 .nav-mobile-overlay {
   display: block;
   position: fixed;
-  top: 100%;
+  top: 100%; /* Anchor directly under header navigation */
   left: 0;
-  right: 0;
-  bottom: -100vh;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: 180;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45); /* Dark transparent dimming */
+  z-index: 180; /* Behind mega menu (190) and header bar (200) */
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -308,11 +309,11 @@ body.nav-menu-open {
 @media (max-width: 768px) {
   .nav-mobile-overlay {
     top: var(--mobile-nav-top, 60px);
-    bottom: 0;
+    height: calc(100vh - var(--mobile-nav-top, 60px));
   }
 }
 
-/* Overlay Trigger */
+/* Active Overlay Trigger */
 .nav-dropdown-open .nav-mobile-overlay,
 .nav-open .nav-mobile-overlay {
   opacity: 1;
