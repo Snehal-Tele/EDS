@@ -1,7 +1,6 @@
-/* Lock body scroll completely when mobile menu is open */
 body.nav-menu-open {
-  overflow: hidden !important;
-  height: 100vh !important;
+  overflow: hidden;
+  height: 100vh;
   touch-action: none;
 }
 
@@ -46,7 +45,7 @@ body.nav-menu-open {
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  color: #000000;
+  color: var(--color-black);
   flex-shrink: 0;
 }
 .nav-logo picture img {
@@ -95,7 +94,7 @@ body.nav-menu-open {
   border-radius: 999px;
   font-size: 15px;
   font-weight: 700;
-  color: #000000 !important;
+  color: var(--color-black) !important;
   text-decoration: none !important;
   background: transparent;
   border: 1px solid transparent;
@@ -105,7 +104,7 @@ body.nav-menu-open {
 }
 .nav-sections .nav-link:hover,
 .nav-sections .nav-dropdown-trigger:hover {
-  border-color: #000000;
+  border-color: var(--color-black);
 }
 
 .nav-caret {
@@ -123,7 +122,7 @@ body.nav-menu-open {
 }
 
 .nav-dropdown-trigger[aria-expanded=true] {
-  background: #000000 !important;
+  background: var(--color-black) !important;
   color: #ffffff !important;
 }
 .nav-dropdown-trigger[aria-expanded=true] .nav-caret {
@@ -180,7 +179,7 @@ body.nav-menu-open {
   gap: 8px;
   font-size: 16px;
   font-weight: 700;
-  color: #000000 !important;
+  color: var(--color-black) !important;
   text-decoration: none;
   margin-bottom: 12px;
 }
@@ -191,7 +190,7 @@ body.nav-menu-open {
 }
 .nav-mega-group-title .right-chevron svg {
   fill: none;
-  stroke: #000000 !important;
+  stroke: var(--color-black) !important;
   stroke-width: 2.5;
 }
 .nav-mega-group-list {
@@ -206,12 +205,12 @@ body.nav-menu-open {
   text-decoration: none;
   font-size: 14px;
   font-weight: 400;
-  color: #000000 !important;
+  color: var(--color-black) !important;
   transition: opacity 0.2s ease;
 }
 .nav-mega-group-list li a:hover {
   opacity: 0.6;
-  color: #000000 !important;
+  color: var(--color-black) !important;
 }
 
 /* Header Actions */
@@ -235,7 +234,7 @@ body.nav-menu-open {
   cursor: pointer;
   font-size: 15px;
   font-weight: 700;
-  color: #000000;
+  color: var(--color-black);
 }
 @media (max-width: 991px) {
   .nav-search-toggle .search-text {
@@ -249,12 +248,12 @@ body.nav-menu-open {
 .nav-login {
   display: inline-flex;
   padding: 8px 22px;
-  border: 1px solid #000000;
+  border: 1px solid var(--color-black);
   border-radius: 999px;
   font-size: 15px;
   font-weight: 700;
-  color: #000000 !important;
-  text-decoration: none !important;
+  color: var(--color-black) !important;
+  text-decoration: none;
 }
 @media (max-width: 991px) {
   .nav-login {
@@ -281,7 +280,7 @@ body.nav-menu-open {
     height: 20px;
   }
   .nav-hamburger .icon-menu svg {
-    fill: #000000;
+    fill: var(--color-black);
   }
   .nav-hamburger .icon-close {
     display: none;
@@ -289,7 +288,7 @@ body.nav-menu-open {
     justify-content: center;
     width: 38px;
     height: 28px;
-    background: #000000;
+    background: var(--color-black);
     color: #ffffff;
     border-radius: 999px;
     font-size: 14px;
@@ -375,7 +374,7 @@ body.nav-menu-open {
     cursor: pointer;
     display: flex;
     align-items: center;
-    color: #000000;
+    color: var(--color-black);
   }
   .nav-drawer .mobile-sub-header .mobile-sub-title {
     flex: 1;
@@ -402,7 +401,7 @@ body.nav-menu-open {
     padding: 18px 20px;
     font-size: 14px;
     font-weight: 700;
-    color: #000000 !important;
+    color: var(--color-black) !important;
     text-decoration: none !important;
     background: transparent;
     border: none;
@@ -412,7 +411,7 @@ body.nav-menu-open {
   .nav-drawer .mobile-menu-list li a .mobile-chevron, .nav-drawer .mobile-menu-list li button .mobile-chevron {
     font-size: 16px;
     font-weight: 400;
-    color: #000000;
+    color: var(--color-black);
   }
   .nav-open .nav-hamburger .icon-menu {
     display: none;
