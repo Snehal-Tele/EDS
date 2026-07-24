@@ -66,19 +66,24 @@ body.nav-menu-open {
   }
 }
 
-/* Desktop Navigation */
+/* Desktop Navigation - Evenly Spaced */
 .nav-sections {
   display: flex;
   align-items: center;
-  gap: 36px;
+  justify-content: space-evenly; /* Spacing items evenly across available middle area */
   list-style: none;
-  margin: 0;
+  margin: 0 32px; /* Controlled offset from Logo (left) and Search/Login (right) */
   padding: 0;
-  flex: 1;
-  justify-content: center;
+  flex: 1; /* Takes up all available space between logo and actions */
 
   @media (max-width: 991px) {
     display: none;
+  }
+
+  .nav-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .nav-link,
@@ -86,7 +91,7 @@ body.nav-menu-open {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 22px;
+    padding: 8px 18px; /* Clean inner pill padding */
     border-radius: 999px;
     font-size: 15px;
     font-weight: 700;
@@ -220,7 +225,7 @@ body.nav-menu-open {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
   flex-shrink: 0;
 }
 
@@ -322,7 +327,7 @@ body.nav-menu-open {
   .nav-drawer {
     display: block;
     position: fixed;
-    top: var(--mobile-nav-top, 60px); /* Positions drawer strictly under header */
+    top: var(--mobile-nav-top, 60px);
     right: 0;
     width: 68%;
     height: calc(100vh - var(--mobile-nav-top, 60px));
