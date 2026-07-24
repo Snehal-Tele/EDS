@@ -6,11 +6,11 @@ body.nav-menu-open {
   touch-action: none;
 }
 
-/* Header Container */
+/* Header Container - Keeps header white & sitting ON TOP of the dim overlay */
 .header-brand-wrapper {
   position: sticky;
   top: 0;
-  z-index: 200;
+  z-index: 200; /* Higher than overlay (180) */
   background: var(--color-white);
   border-bottom: 1px solid var(--color-tab-bg-mob);
 }
@@ -65,7 +65,7 @@ body.nav-menu-open {
   }
 }
 
-/* Desktop Navigation - Evenly Spaced */
+/* Desktop Navigation */
 .nav-sections {
   display: flex;
   align-items: center;
@@ -147,7 +147,7 @@ body.nav-menu-open {
   border-radius: 0 0 16px 16px;
   margin-top: 0;
   box-shadow: none;
-  z-index: 190;
+  z-index: 190; /* Below Header (200), Above Backdrop Overlay (180) */
   border: 1px solid var(--color-tab-bg-mob);
   border-top: none;
 }
@@ -266,23 +266,23 @@ body.nav-menu-open {
   @media (max-width: 991px) { display: none; }
 }
 
-/* Global Overlay (Used for both Desktop Dropdown & Mobile Menu) */
+/* Global Overlay - Covers screen below header only */
 .nav-mobile-overlay {
   display: block;
   position: fixed;
-  top: var(--mobile-nav-top, 72px);
+  top: 100%; /* Positioned strictly below header height */
   left: 0;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.45);
-  z-index: 180;
+  z-index: 180; /* Lower than header (200) and mega menu (190) */
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-/* Activate overlay on Desktop Dropdown or Mobile Drawer open */
+/* Activate dim overlay on Dropdown or Mobile Drawer open */
 .nav-dropdown-open .nav-mobile-overlay,
 .nav-open .nav-mobile-overlay {
   opacity: 1;
@@ -290,7 +290,7 @@ body.nav-menu-open {
   pointer-events: auto;
 }
 
-/* ---------- Mobile Menu & Drill-down Drawer ---------- */
+/* ---------- Mobile Drawer ---------- */
 .nav-hamburger {
   display: none;
 
@@ -366,7 +366,6 @@ body.nav-menu-open {
       }
     }
 
-    /* Drill-down Sub-panel Open State */
     &.sub-open {
       .panel-root {
         transform: translateX(-100%);
