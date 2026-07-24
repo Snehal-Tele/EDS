@@ -133,7 +133,30 @@
   stroke-width: 2.5;
 }
 .header-brand.block {
-  /* Active State for Expanded Dropdown Trigger */
+  /* Desktop Mega Menu Dropdown (With Slide Effect) */
+}
+.header-brand.block .nav-mega {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: min(900px, 92vw);
+  background: var(--color-white);
+  border-radius: 0 0 16px 16px;
+  margin-top: 0;
+  z-index: 210;
+  border: 1px solid var(--color-tab-bg-mob);
+  border-top: none;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  /* Initial Collapsed State */
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -10px);
+  transition: max-height 0.35s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.25s ease, transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.35s ease;
+}
+.header-brand.block {
+  /* Expanded Trigger State (Slide Down) */
 }
 .header-brand.block .nav-dropdown-trigger[aria-expanded=true] {
   background: var(--color-black) !important;
@@ -147,25 +170,10 @@
   stroke: var(--color-white);
 }
 .header-brand.block .nav-dropdown-trigger[aria-expanded=true] + .nav-mega {
-  display: block;
-}
-.header-brand.block {
-  /* Desktop Mega Menu Dropdown */
-}
-.header-brand.block .nav-mega {
-  display: none;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 100%;
-  width: min(900px, 92vw);
-  background: var(--color-white);
-  border-radius: 0 0 16px 16px;
-  margin-top: 0;
-  z-index: 210; /* Above header block and gray overlay */
-  border: 1px solid var(--color-tab-bg-mob);
-  border-top: none;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  max-height: 600px; /* High enough value to fit menu content */
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
 }
 .header-brand.block .nav-mega-inner {
   padding: 32px 12px;
@@ -273,7 +281,7 @@
   }
 }
 .header-brand.block {
-  /* Full Page Backdrop Overlay - Placed at z-index 180 (Behind Header Block & Dropdown) */
+  /* Full Page Backdrop Overlay */
 }
 .header-brand.block .nav-mobile-overlay {
   display: block;
@@ -284,8 +292,8 @@
   bottom: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.45); /* Transparent dark gray overlay */
-  z-index: 180; /* Sits below .header-brand.block (200) and .nav-mega (210) */
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 180;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
