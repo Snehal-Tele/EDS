@@ -12,17 +12,17 @@ body.nav-menu-open {
   position: sticky;
   top: 0;
   z-index: 200;
-  background: var(--color-white, #ffffff);
-  border-bottom: 1px solid #e5e5e5;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-tab-bg-mob);
 }
 
 .header-brand.block {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 32px;
-  background: var(--color-white, #ffffff);
+  background: var(--color-white);
 
-  @media (max-width: 991px) {
+  @media (max-width: $bp-sm) {
     padding: 0 16px;
   }
 }
@@ -35,7 +35,7 @@ body.nav-menu-open {
   position: relative;
   font-family: 'Helvetica Neue', Arial, sans-serif;
 
-  @media (max-width: 991px) {
+  @media (max-width: $bp-sm ) {
     min-height: 60px;
   }
 }
@@ -54,7 +54,7 @@ body.nav-menu-open {
     height: 32px;
     object-fit: contain;
 
-    @media (max-width: 991px) {
+    @media (max-width: $bp-sm) {
       width: 90px;
       height: 28px;
     }
@@ -76,7 +76,7 @@ body.nav-menu-open {
   padding: 0;
   flex: 1; /* Takes up all available space between logo and actions */
 
-  @media (max-width: 991px) {
+  @media (max-width: $bp-sm) {
     display: none;
   }
 
@@ -126,11 +126,11 @@ body.nav-menu-open {
 
 .nav-dropdown-trigger[aria-expanded='true'] {
   background: var(--color-black) !important;
-  color: #ffffff !important;
+  color: var(--color-white) !important;
 
   .nav-caret {
     transform: rotate(180deg);
-    svg { stroke: #ffffff; }
+    svg { stroke: var(--color-white); }
   }
 
   + .nav-mega { display: block; }
@@ -144,12 +144,12 @@ body.nav-menu-open {
   transform: translateX(-50%);
   top: 100%;
   width: min(900px, 92vw);
-  background: #ffffff;
+  background: var(--color-white);
   border-radius: 0 0 16px 16px;
   margin-top: 0;
-  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 16px 30px var(--color-black);
   z-index: 190;
-  border: 1px solid #e5e5e5;
+  border: 1px solid var(--color-tab-bg-mob);
   border-top: none;
 }
 
@@ -161,7 +161,7 @@ body.nav-menu-open {
 
 .nav-mega-col {
   padding: 0 24px;
-  border-right: 1px solid #ececec;
+  border-right: 1px solid var(--color-tab-bg-mob);
   display: flex;
   flex-direction: column;
   gap: 28px;
@@ -245,7 +245,7 @@ body.nav-menu-open {
     color: var(--color-black);
 
     .search-text {
-      @media (max-width: 991px) { display: none; }
+      @media (max-width: $bp-sm) { display: none; }
     }
   }
 
@@ -271,7 +271,7 @@ body.nav-menu-open {
 .nav-hamburger {
   display: none;
 
-  @media (max-width: 991px) {
+  @media (max-width: $bp-sm) {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -293,7 +293,7 @@ body.nav-menu-open {
       width: 38px;
       height: 28px;
       background: var(--color-black);
-      color: #ffffff;
+      color: var(--color-white);
       border-radius: 999px;
       font-size: 14px;
       font-weight: 700;
@@ -309,7 +309,7 @@ body.nav-menu-open {
   display: none;
 }
 
-@media (max-width: 991px) {
+@media (max-width: $bp-sm) {
   .nav-mobile-overlay {
     display: block;
     position: fixed;
@@ -317,7 +317,7 @@ body.nav-menu-open {
     left: 0;
     width: 100vw;
     height: calc(100vh - var(--mobile-nav-top, 60px));
-    background: rgba(0, 0, 0, 0.4);
+    background: var(--color-black);
     z-index: 180;
     opacity: 0;
     visibility: hidden;
@@ -331,7 +331,7 @@ body.nav-menu-open {
     right: 0;
     width: 68%;
     height: calc(100vh - var(--mobile-nav-top, 60px));
-    background: #ffffff;
+    background: var(--color-white);
     z-index: 195;
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
@@ -349,7 +349,7 @@ body.nav-menu-open {
       left: 0;
       width: 100%;
       height: 100%;
-      background: #ffffff;
+      background: var(--color-white);
       transition: transform 0.3s ease-in-out;
 
       &.panel-root {
@@ -375,7 +375,7 @@ body.nav-menu-open {
       display: flex;
       align-items: center;
       padding: 16px 20px;
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: 1px solid var(--color-white);
 
       .mobile-back-btn {
         background: none;
@@ -405,7 +405,7 @@ body.nav-menu-open {
       padding: 0;
 
       li {
-        border-bottom: 1px solid #f0f0f0;
+        border-bottom: 1px solid var(--color-off-white);
 
         a, button {
           display: flex;
