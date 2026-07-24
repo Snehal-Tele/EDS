@@ -8,7 +8,6 @@ function getLabelAndHref(element) {
     return { label: link.textContent.trim(), href: link.href };
   }
   
-  // Text content fallback (excluding child <ul>)
   let text = '';
   element.childNodes.forEach((node) => {
     if (node.nodeType === Node.TEXT_NODE) {
@@ -21,7 +20,6 @@ function getLabelAndHref(element) {
   return { label: text.trim(), href: '#' };
 }
 
-/** Chevron Right Arrow SVG (>) */
 function getRightChevronSVG() {
   return `
     <span class="right-chevron" aria-hidden="true">
@@ -32,7 +30,6 @@ function getRightChevronSVG() {
   `;
 }
 
-/** Parses individual category group (Heading > + Sub-items) */
 function buildMegaGroup(li) {
   const group = document.createElement('div');
   group.className = 'nav-mega-group';
@@ -66,7 +63,6 @@ function buildMegaGroup(li) {
   return group;
 }
 
-/** Builds Mega Menu Columns from second cell nested UL */
 function buildMegaMenu(sourceList) {
   const mega = document.createElement('div');
   mega.className = 'nav-mega';
@@ -81,7 +77,6 @@ function buildMegaMenu(sourceList) {
     const hasSubCategories = topLi.querySelector(':scope > ul');
     const { label } = getLabelAndHref(topLi);
 
-    // If item doesn't have child list directly, check if it contains stacked sub-groups
     if (hasSubCategories && !label) {
       [...hasSubCategories.children].forEach((subLi) => {
         col.append(buildMegaGroup(subLi));
@@ -113,26 +108,14 @@ function buildSearch() {
   btn.setAttribute('aria-expanded', 'false');
   btn.setAttribute('aria-label', 'Search');
   btn.innerHTML = `
-    <svg class="nav-search-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
       <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
       <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
     <span class="search-text">Search</span>
   `;
 
-  const input = document.createElement('input');
-  input.type = 'search';
-  input.className = 'nav-search-input';
-  input.placeholder = 'Search brand.toyota.com';
-
-  btn.addEventListener('click', () => {
-    const expanded = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', String(!expanded));
-    wrapper.classList.toggle('nav-search-open', !expanded);
-    if (!expanded) input.focus();
-  });
-
-  wrapper.append(btn, input);
+  wrapper.append(btn);
   return wrapper;
 }
 
@@ -173,12 +156,47 @@ export default async function decorate(block) {
   const sections = document.createElement('ul');
   sections.className = 'nav-sections';
 
-  // --- Mobile Drawer Menu ---
+  // --- Mobile Drawer Shell (2 Panels for Drill-down) ---
   const drawer = document.createElement('div');
   drawer.className = 'nav-drawer';
-  const mobileList = document.createElement('ul');
-  mobileList.className = 'mobile-menu-list';
 
+  const panels = document.createElement('div');
+  panels.className = 'mobile-panels';
+
+  const rootPanel = document.createElement('div');
+  rootPanel.className = 'mobile-panel panel-root';
+  const rootList = document.createElement('ul');
+  rootList.className = 'mobile-menu-list';
+  rootPanel.append(rootList);
+
+  const subPanel = document.createElement('div');
+  subPanel.className = 'mobile-panel panel-sub';
+  
+  const subHeader = document.createElement('div');
+  subHeader.className = 'mobile-sub-header';
+
+  const backBtn = document.createElement('button');
+  backBtn.type = 'button';
+  backBtn.className = 'mobile-back-btn';
+  backBtn.innerHTML = '&#8249;';
+
+  const subTitle = document.createElement('span');
+  subTitle.className = 'mobile-sub-title';
+
+  subHeader.append(backBtn, subTitle);
+  
+  const subList = document.createElement('ul');
+  subList.className = 'mobile-menu-list';
+  subPanel.append(subHeader, subList);
+
+  backBtn.addEventListener('click', () => {
+    drawer.classList.remove('sub-open');
+  });
+
+  panels.append(rootPanel, subPanel);
+  drawer.append(panels);
+
+  // Parse items from table
   for (let i = 1; i < rows.length; i += 1) {
     const row = rows[i];
     const cells = [...row.children];
@@ -186,13 +204,12 @@ export default async function decorate(block) {
     if (isDecorativeRow(firstCellText)) continue;
 
     const label = firstCellText.toLowerCase();
-
     if (label === 'search' || label === 'log in') continue;
 
     const nestedList = cells[1]?.querySelector('ul');
     const firstLink = cells[0].querySelector('a');
 
-    // Build Desktop Section
+    // Desktop
     const li = document.createElement('li');
     li.className = 'nav-section';
 
@@ -226,12 +243,30 @@ export default async function decorate(block) {
     }
     sections.append(li);
 
-    // Build Mobile Drawer Link
+    // Mobile
     const mLi = document.createElement('li');
     if (nestedList) {
       const mBtn = document.createElement('button');
       mBtn.type = 'button';
       mBtn.innerHTML = `<span>${firstCellText}</span><span class="mobile-chevron">&#8250;</span>`;
+      
+      mBtn.addEventListener('click', () => {
+        subTitle.textContent = firstCellText;
+        subList.innerHTML = '';
+
+        [...nestedList.children].forEach((topLi) => {
+          const { label: subLabel, href: subHref } = getLabelAndHref(topLi);
+          const sLi = document.createElement('li');
+          const sA = document.createElement('a');
+          sA.href = subHref;
+          sA.textContent = subLabel;
+          sLi.append(sA);
+          subList.append(sLi);
+        });
+
+        drawer.classList.add('sub-open');
+      });
+
       mLi.append(mBtn);
     } else {
       const mA = document.createElement('a');
@@ -239,35 +274,33 @@ export default async function decorate(block) {
       mA.textContent = firstCellText;
       mLi.append(mA);
     }
-    mobileList.append(mLi);
+    rootList.append(mLi);
   }
 
-  // Mobile Log In Link
+  // Support + FAQs and Log In mobile links
   const loginRow = rows.find((r) => r.children[0]?.textContent.trim().toLowerCase() === 'log in');
   const loginLink = loginRow?.querySelector('a');
+
   const mLoginLi = document.createElement('li');
   const mLoginA = document.createElement('a');
   mLoginA.href = loginLink ? loginLink.href : '#';
   mLoginA.textContent = 'Log In';
   mLoginLi.append(mLoginA);
-  mobileList.append(mLoginLi);
+  rootList.append(mLoginLi);
 
-  drawer.append(mobileList);
   nav.append(sections);
 
-  // --- Right-Side Actions ---
+  // Right Side Actions (Search, Log In, Mobile Hamburger/Close toggle)
   const actions = document.createElement('div');
   actions.className = 'nav-actions';
   actions.append(buildSearch());
 
-  // Desktop Login Pill
   const loginBtn = document.createElement('a');
   loginBtn.className = 'nav-login';
   loginBtn.href = loginLink ? loginLink.href : '#';
   loginBtn.textContent = 'Log In';
   actions.append(loginBtn);
 
-  // Mobile Hamburger Toggle Button
   const hamburger = document.createElement('button');
   hamburger.type = 'button';
   hamburger.className = 'nav-hamburger';
@@ -275,9 +308,7 @@ export default async function decorate(block) {
   hamburger.setAttribute('aria-expanded', 'false');
   hamburger.innerHTML = `
     <div class="icon-menu">
-      <span></span>
-      <span></span>
-      <span></span>
+      <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
     </div>
     <div class="icon-close">&#10005;</div>
   `;
@@ -287,6 +318,9 @@ export default async function decorate(block) {
     hamburger.setAttribute('aria-expanded', String(!isExpanded));
     nav.classList.toggle('nav-open', !isExpanded);
     document.body.classList.toggle('nav-menu-open', !isExpanded);
+    if (isExpanded) {
+      drawer.classList.remove('sub-open');
+    }
   };
 
   hamburger.addEventListener('click', toggleMobileMenu);
@@ -297,7 +331,6 @@ export default async function decorate(block) {
   nav.append(drawer);
   nav.append(overlay);
 
-  // Event Listeners
   document.addEventListener('click', (e) => {
     if (!nav.contains(e.target)) closeAllDropdowns(nav);
   });

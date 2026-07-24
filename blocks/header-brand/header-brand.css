@@ -1,20 +1,17 @@
-/* ---------- Body Scroll Lock ---------- */
+/* Lock body scroll completely when mobile menu is open */
 body.nav-menu-open {
   overflow: hidden !important;
+  height: 100vh !important;
   touch-action: none;
 }
 
-/* ---------- Header Brand Wrapper ---------- */
+/* Header Container */
 .header-brand-wrapper {
   position: sticky;
   top: 0;
   z-index: 200;
   background: var(--color-white, #ffffff);
   border-bottom: 1px solid #e5e5e5;
-  transition: box-shadow 0.25s ease;
-}
-.header-brand-wrapper:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
 }
 
 .header-brand.block {
@@ -29,35 +26,28 @@ body.nav-menu-open {
   }
 }
 
-/* ---------- Nav Shell ---------- */
 .nav-brand {
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-height: 72px;
-  gap: 32px;
-  font-family: "Helvetica Neue", Arial, sans-serif;
   position: relative;
+  font-family: "Helvetica Neue", Arial, sans-serif;
 }
 @media (max-width: 991px) {
   .nav-brand {
     min-height: 60px;
-    gap: 12px;
   }
 }
 
-/* ---------- Logo ---------- */
+/* Logo */
 .nav-logo {
   display: flex;
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  color: var(--color-black, #000000);
+  color: #000000;
   flex-shrink: 0;
-}
-.nav-logo picture {
-  display: flex;
-  align-items: center;
 }
 .nav-logo picture img {
   width: 104px;
@@ -74,10 +64,9 @@ body.nav-menu-open {
 .nav-logo-text {
   font-size: 20px;
   font-weight: 800;
-  letter-spacing: 0.5px;
 }
 
-/* ---------- Desktop Navigation Links ---------- */
+/* Desktop Navigation */
 .nav-sections {
   display: flex;
   align-items: center;
@@ -102,7 +91,7 @@ body.nav-menu-open {
   border-radius: 999px;
   font-size: 15px;
   font-weight: 700;
-  color: var(--color-black, #000000) !important;
+  color: #000000 !important;
   text-decoration: none !important;
   background: transparent;
   border: 1px solid transparent;
@@ -112,18 +101,13 @@ body.nav-menu-open {
 }
 .nav-sections .nav-link:hover,
 .nav-sections .nav-dropdown-trigger:hover {
-  background: #ffffff;
   border-color: #000000;
 }
 
-/* Caret Icon */
 .nav-caret {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
   width: 10px;
   height: 10px;
-  margin-left: 2px;
   transition: transform 0.25s ease;
 }
 .nav-caret svg {
@@ -132,14 +116,10 @@ body.nav-menu-open {
   fill: none;
   stroke: currentColor;
   stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
 }
 
-/* Active Open Dropdown Pill State */
 .nav-dropdown-trigger[aria-expanded=true] {
   background: #000000 !important;
-  border-color: #000000 !important;
   color: #ffffff !important;
 }
 .nav-dropdown-trigger[aria-expanded=true] .nav-caret {
@@ -152,7 +132,7 @@ body.nav-menu-open {
   display: block;
 }
 
-/* ---------- Desktop Mega Menu Dropdown ---------- */
+/* Desktop Mega Menu */
 .nav-mega {
   display: none;
   position: absolute;
@@ -172,10 +152,8 @@ body.nav-menu-open {
   padding: 36px 12px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
 }
 
-/* Column Divider Borders */
 .nav-mega-col {
   padding: 0 28px;
   border-right: 1px solid #ececec;
@@ -187,7 +165,6 @@ body.nav-menu-open {
   border-right: none;
 }
 
-/* Category Group */
 .nav-mega-group {
   display: flex;
   flex-direction: column;
@@ -203,27 +180,18 @@ body.nav-menu-open {
   margin-bottom: 12px;
 }
 .nav-mega-group-title .right-chevron {
-  display: inline-flex;
-  align-items: center;
   width: 7px;
   height: 11px;
 }
 .nav-mega-group-title .right-chevron svg {
-  width: 100%;
-  height: 100%;
   fill: none;
   stroke: #000000;
   stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.nav-mega-group-title:hover {
-  text-decoration: underline;
 }
 .nav-mega-group-list {
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -231,30 +199,21 @@ body.nav-menu-open {
 .nav-mega-group-list li a {
   text-decoration: none;
   font-size: 14px;
-  font-weight: 400;
   color: #666666;
-  transition: color 0.15s ease;
 }
 .nav-mega-group-list li a:hover {
   color: #000000;
 }
 
-/* ---------- Right Actions ---------- */
+/* Header Actions */
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
   flex-shrink: 0;
 }
-@media (max-width: 991px) {
-  .nav-actions {
-    gap: 8px;
-  }
-}
 
-/* Search Box */
 .nav-search {
-  position: relative;
   display: flex;
   align-items: center;
 }
@@ -263,61 +222,30 @@ body.nav-menu-open {
   align-items: center;
   gap: 8px;
   background: transparent;
-  border: 1px solid transparent;
+  border: none;
   cursor: pointer;
-  padding: 8px 18px;
   font-size: 15px;
   font-weight: 700;
-  color: var(--color-black, #000000);
-  border-radius: 999px;
-  transition: all 0.2s ease;
+  color: #000000;
 }
 @media (max-width: 991px) {
   .nav-search-toggle .search-text {
     display: none;
   }
 }
-.nav-search-toggle:hover {
-  background: #ffffff;
-  border-color: #000000;
-}
 .nav-search-input {
-  width: 0;
-  opacity: 0;
-  padding: 0;
-  border: none;
-  border-bottom: 2px solid #000000;
-  font-size: 14px;
-  transition: width 0.25s ease, opacity 0.2s ease, padding 0.25s ease;
-  position: absolute;
-  right: 100%;
-  margin-right: 8px;
-  background: #ffffff;
-}
-.nav-search.nav-search-open .nav-search-input {
-  width: 180px;
-  opacity: 1;
-  padding: 6px 4px;
+  display: none;
 }
 
-/* Desktop Log In Button */
 .nav-login {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
   padding: 8px 22px;
-  border: 1px solid var(--color-black, #000000);
+  border: 1px solid #000000;
   border-radius: 999px;
   font-size: 15px;
   font-weight: 700;
-  color: var(--color-black, #000000) !important;
+  color: #000000 !important;
   text-decoration: none !important;
-  background: #ffffff;
-  transition: all 0.2s ease;
-}
-.nav-login:hover {
-  background: #000000;
-  color: #ffffff !important;
 }
 @media (max-width: 991px) {
   .nav-login {
@@ -325,48 +253,39 @@ body.nav-menu-open {
   }
 }
 
-/* ---------- Mobile Drawer Navigation ---------- */
+/* ---------- Mobile Menu & Drill-down Drawer ---------- */
 .nav-hamburger {
   display: none;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 210;
-  padding: 0;
 }
 @media (max-width: 991px) {
   .nav-hamburger {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 220;
   }
-}
-.nav-hamburger .icon-menu {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 22px;
-  height: 16px;
-}
-.nav-hamburger .icon-menu span {
-  display: block;
-  height: 2px;
-  width: 100%;
-  background: #000000;
-  border-radius: 1px;
-}
-.nav-hamburger .icon-close {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: #000000;
-  color: #ffffff;
-  border-radius: 50%;
-  font-size: 18px;
+  .nav-hamburger .icon-menu {
+    width: 20px;
+    height: 20px;
+  }
+  .nav-hamburger .icon-menu svg {
+    fill: #000000;
+  }
+  .nav-hamburger .icon-close {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 28px;
+    background: #000000;
+    color: #ffffff;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+  }
 }
 
 .nav-mobile-overlay {
@@ -389,22 +308,74 @@ body.nav-menu-open {
     z-index: 180;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.3s ease;
   }
   .nav-drawer {
     display: block;
     position: fixed;
     top: 60px;
     right: 0;
-    width: 75%;
-    max-width: 320px;
+    width: 68%;
     height: calc(100vh - 60px);
     background: #ffffff;
     z-index: 195;
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
-    overflow-y: auto;
-    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* Non-scrollable as requested */
+  }
+  .nav-drawer .mobile-panels {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .nav-drawer .mobile-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    transition: transform 0.3s ease-in-out;
+  }
+  .nav-drawer .mobile-panel.panel-root {
+    transform: translateX(0);
+  }
+  .nav-drawer .mobile-panel.panel-sub {
+    transform: translateX(100%);
+  }
+  .nav-drawer {
+    /* Drill-down Sub-panel Open State */
+  }
+  .nav-drawer.sub-open .panel-root {
+    transform: translateX(-100%);
+  }
+  .nav-drawer.sub-open .panel-sub {
+    transform: translateX(0);
+  }
+  .nav-drawer .mobile-sub-header {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .nav-drawer .mobile-sub-header .mobile-back-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: #000000;
+  }
+  .nav-drawer .mobile-sub-header .mobile-sub-title {
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-right: 16px;
   }
   .nav-drawer .mobile-menu-list {
     list-style: none;
@@ -412,16 +383,15 @@ body.nav-menu-open {
     padding: 0;
   }
   .nav-drawer .mobile-menu-list li {
-    border-bottom: 1px solid #eeeeee;
+    border-bottom: 1px solid #f0f0f0;
   }
-  .nav-drawer .mobile-menu-list li a,
-  .nav-drawer .mobile-menu-list li button {
+  .nav-drawer .mobile-menu-list li a, .nav-drawer .mobile-menu-list li button {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 16px 20px;
-    font-size: 15px;
+    padding: 18px 20px;
+    font-size: 14px;
     font-weight: 700;
     color: #000000 !important;
     text-decoration: none !important;
@@ -430,10 +400,10 @@ body.nav-menu-open {
     text-align: left;
     cursor: pointer;
   }
-  .nav-drawer .mobile-menu-list li a .mobile-chevron,
-  .nav-drawer .mobile-menu-list li button .mobile-chevron {
+  .nav-drawer .mobile-menu-list li a .mobile-chevron, .nav-drawer .mobile-menu-list li button .mobile-chevron {
     font-size: 16px;
     font-weight: 400;
+    color: #000000;
   }
   .nav-open .nav-hamburger .icon-menu {
     display: none;
