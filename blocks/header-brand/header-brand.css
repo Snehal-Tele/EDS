@@ -1,3 +1,9 @@
+/* ---------- Body Scroll Lock ---------- */
+body.nav-menu-open {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
 /* ---------- Header Brand Wrapper ---------- */
 .header-brand-wrapper {
   position: sticky;
@@ -13,6 +19,11 @@
   padding: 0 32px;
   background: var(--color-white, #fff);
 }
+@media (max-width: 991px) {
+  .header-brand.block {
+    padding: 0 16px;
+  }
+}
 
 /* ---------- Nav Shell ---------- */
 .nav-brand {
@@ -20,9 +31,15 @@
   align-items: center;
   justify-content: space-between;
   min-height: 72px;
-  gap: 32px;
+  gap: 24px;
   font-family: "Helvetica Neue", Arial, sans-serif;
   position: relative;
+}
+@media (max-width: 991px) {
+  .nav-brand {
+    min-height: 60px;
+    gap: 12px;
+  }
 }
 
 /* ---------- Logo ---------- */
@@ -43,6 +60,12 @@
   height: 32px;
   -o-object-fit: contain;
      object-fit: contain;
+}
+@media (max-width: 991px) {
+  .nav-logo picture img {
+    width: 90px;
+    height: 28px;
+  }
 }
 .nav-logo-text {
   font-size: 20px;
@@ -163,15 +186,20 @@
   text-decoration: underline;
 }
 
-/* ---------- Actions (Search & Login Button) ---------- */
+/* ---------- Right Actions (Search & Hamburg / Login) ---------- */
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
   flex-shrink: 0;
 }
+@media (max-width: 991px) {
+  .nav-actions {
+    gap: 8px;
+  }
+}
 
-/* Search Box */
+/* Search Container */
 .nav-search {
   position: relative;
   display: flex;
@@ -184,11 +212,16 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 6px 12px;
+  padding: 8px;
   font-size: 15px;
   font-weight: 700;
   color: var(--color-black, #000);
   border-radius: 999px;
+}
+@media (max-width: 991px) {
+  .nav-search-toggle .search-text {
+    display: none;
+  }
 }
 .nav-search-toggle:hover {
   background: #f4f4f4;
@@ -204,15 +237,15 @@
   position: absolute;
   right: 100%;
   margin-right: 8px;
-  background: transparent;
+  background: #fff;
 }
 .nav-search.nav-search-open .nav-search-input {
-  width: 200px;
+  width: 180px;
   opacity: 1;
   padding: 6px 4px;
 }
 
-/* Log In Pill Button */
+/* Desktop Log In Button */
 .nav-login {
   display: inline-flex;
   align-items: center;
@@ -236,7 +269,7 @@
   }
 }
 
-/* ---------- Mobile Drawer Navigation ---------- */
+/* Mobile Hamburger Toggle */
 .nav-hamburger {
   display: none;
   align-items: center;
@@ -247,6 +280,7 @@
   border: none;
   cursor: pointer;
   z-index: 210;
+  padding: 0;
 }
 @media (max-width: 991px) {
   .nav-hamburger {
@@ -256,14 +290,16 @@
 .nav-hamburger .icon-menu {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  width: 20px;
+  justify-content: space-between;
+  width: 22px;
+  height: 16px;
 }
 .nav-hamburger .icon-menu span {
   display: block;
   height: 2px;
   width: 100%;
   background: #000;
+  border-radius: 1px;
 }
 .nav-hamburger .icon-close {
   display: none;
@@ -277,6 +313,7 @@
   font-size: 18px;
 }
 
+/* ---------- Mobile Drawer Navigation ---------- */
 .nav-mobile-overlay {
   display: none;
 }
@@ -302,11 +339,11 @@
   .nav-drawer {
     display: block;
     position: fixed;
-    top: 72px;
+    top: 60px;
     right: 0;
     width: 75%;
-    max-width: 340px;
-    height: calc(100vh - 72px);
+    max-width: 320px;
+    height: calc(100vh - 60px);
     background: #ffffff;
     z-index: 195;
     transform: translateX(100%);
@@ -328,7 +365,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 16px 24px;
+    padding: 16px 20px;
     font-size: 15px;
     font-weight: 700;
     color: #000000 !important;

@@ -85,11 +85,11 @@ function buildSearch() {
   btn.setAttribute('aria-expanded', 'false');
   btn.setAttribute('aria-label', 'Search');
   btn.innerHTML = `
-    <svg class="nav-search-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+    <svg class="nav-search-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
       <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
       <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
-    <span>Search</span>
+    <span class="search-text">Search</span>
   `;
 
   const input = document.createElement('input');
@@ -159,7 +159,7 @@ export default async function decorate(block) {
 
     const label = firstCellText.toLowerCase();
 
-    // Skip utility items from standard section rendering
+    // Skip utility items from middle navigation
     if (label === 'search' || label === 'log in') continue;
 
     const nestedList = cells[1]?.querySelector('ul');
@@ -208,7 +208,7 @@ export default async function decorate(block) {
     mobileList.append(mLi);
   }
 
-  // Append 'Log In' at the end of the mobile list
+  // Append 'Log In' at the end of mobile menu
   const loginRow = rows.find((r) => r.children[0]?.textContent.trim().toLowerCase() === 'log in');
   const loginLink = loginRow?.querySelector('a');
   const mLoginLi = document.createElement('li');
@@ -221,7 +221,7 @@ export default async function decorate(block) {
   drawer.append(mobileList);
   nav.append(sections);
 
-  // --- Right-Side Desktop Actions ---
+  // --- Right-Side Actions ---
   const actions = document.createElement('div');
   actions.className = 'nav-actions';
   actions.append(buildSearch());
@@ -233,7 +233,7 @@ export default async function decorate(block) {
   loginBtn.textContent = 'Log In';
   actions.append(loginBtn);
 
-  // Mobile Hamburger Toggle
+  // Mobile Hamburger Toggle Button
   const hamburger = document.createElement('button');
   hamburger.type = 'button';
   hamburger.className = 'nav-hamburger';
@@ -248,10 +248,12 @@ export default async function decorate(block) {
     <div class="icon-close">&#10005;</div>
   `;
 
+  // Toggle Mobile Menu and Toggle Page Scroll Lock
   const toggleMobileMenu = () => {
     const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
     hamburger.setAttribute('aria-expanded', String(!isExpanded));
     nav.classList.toggle('nav-open', !isExpanded);
+    document.body.classList.toggle('nav-menu-open', !isExpanded);
   };
 
   hamburger.addEventListener('click', toggleMobileMenu);
@@ -262,7 +264,7 @@ export default async function decorate(block) {
   nav.append(drawer);
   nav.append(overlay);
 
-  // Event Listeners for Dropdowns & Mobile
+  // Event Listeners
   document.addEventListener('click', (e) => {
     if (!nav.contains(e.target)) closeAllDropdowns(nav);
   });
