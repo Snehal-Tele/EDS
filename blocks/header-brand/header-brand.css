@@ -4,7 +4,7 @@ body.nav-menu-open {
   touch-action: none;
 }
 
-/* Header Outer Wrapper */
+/* Header Container */
 .header-brand-wrapper {
   position: sticky;
   top: 0;
@@ -106,6 +106,16 @@ body.nav-menu-open {
 .nav-sections .nav-dropdown-trigger:hover {
   border-color: var(--color-black);
 }
+.nav-sections .nav-link,
+.nav-sections .nav-dropdown-trigger {
+  /* Active State for Direct Links */
+}
+.nav-sections .nav-link.active,
+.nav-sections .nav-dropdown-trigger.active {
+  background: var(--color-black) !important;
+  color: var(--color-white) !important;
+  border-color: var(--color-black) !important;
+}
 
 .nav-caret {
   display: inline-flex;
@@ -121,9 +131,11 @@ body.nav-menu-open {
   stroke-width: 2.5;
 }
 
+/* Active State for Dropdown Trigger Button */
 .nav-dropdown-trigger[aria-expanded=true] {
   background: var(--color-black) !important;
   color: var(--color-white) !important;
+  border-color: var(--color-black) !important;
 }
 .nav-dropdown-trigger[aria-expanded=true] .nav-caret {
   transform: rotate(180deg);
@@ -147,7 +159,7 @@ body.nav-menu-open {
   border-radius: 0 0 16px 16px;
   margin-top: 0;
   box-shadow: none;
-  z-index: 190; /* Placed above the overlay (180) */
+  z-index: 190;
   border: 1px solid var(--color-tab-bg-mob);
   border-top: none;
 }
@@ -261,16 +273,16 @@ body.nav-menu-open {
   }
 }
 
-/* Backdrop Overlay - STARTS strictly below header bar */
+/* Backdrop Overlay - Anchored right below the header bar */
 .nav-mobile-overlay {
   display: block;
   position: fixed;
-  top: 100%; /* Anchor to the exact bottom of header nav */
+  top: 100%;
   left: 0;
   right: 0;
-  bottom: -100vh; /* Stretch all the way down to cover the entire body */
+  bottom: -100vh;
   background: rgba(0, 0, 0, 0.45);
-  z-index: 180; /* Under .nav-mega (190) and header elements */
+  z-index: 180;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -283,7 +295,7 @@ body.nav-menu-open {
   }
 }
 
-/* Activate dim overlay when desktop dropdown opens */
+/* Active overlay state */
 .nav-dropdown-open .nav-mobile-overlay,
 .nav-open .nav-mobile-overlay {
   opacity: 1;
