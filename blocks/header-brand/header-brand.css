@@ -14,7 +14,7 @@
   position: sticky;
   top: 0;
   z-index: 200;
-  max-width: 1440px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 32px;
   background: var(--color-white);
@@ -30,6 +30,8 @@
   justify-content: space-between;
   min-height: 72px;
   position: relative;
+  max-width: 1440px;
+  margin: 0 auto;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
 @media (max-width: 768px) {
@@ -131,7 +133,7 @@
   stroke-width: 2.5;
 }
 .header-brand.block {
-  /* Dropdown Active Trigger */
+  /* Active State for Expanded Dropdown Trigger */
 }
 .header-brand.block .nav-dropdown-trigger[aria-expanded=true] {
   background: var(--color-black) !important;
@@ -160,7 +162,7 @@
   background: var(--color-white);
   border-radius: 0 0 16px 16px;
   margin-top: 0;
-  z-index: 210;
+  z-index: 210; /* Floats above header and backdrop */
   border: 1px solid var(--color-tab-bg-mob);
   border-top: none;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
@@ -271,19 +273,17 @@
   }
 }
 .header-brand.block {
-  /* Backdrop Overlay scoped within block using aria-expanded or active class on overlay */
+  /* Backdrop Overlay - Fullscreen transparent dark overlay */
 }
 .header-brand.block .nav-mobile-overlay {
   display: block;
   position: fixed;
-  top: 100%;
+  top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.35);
-  z-index: 180;
+  background: rgba(0, 0, 0, 0.45); /* Darkened transparent overlay */
+  z-index: 180; /* Below header (200) & dropdown (210) */
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -293,12 +293,6 @@
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-}
-@media (max-width: 768px) {
-  .header-brand.block .nav-mobile-overlay {
-    top: var(--mobile-nav-top, 60px);
-    height: calc(100vh - var(--mobile-nav-top, 60px));
-  }
 }
 .header-brand.block {
   /* ---------- Mobile Drawer ---------- */
