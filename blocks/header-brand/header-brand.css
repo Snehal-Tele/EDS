@@ -10,14 +10,25 @@
     opacity: 1;
   }
 }
+/* Ensure the parent block wrapper in EDS doesn't constrain the header */
+.header-brand-wrapper {
+  width: 100%;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
 .header-brand.block {
   position: sticky;
   top: 0;
-  z-index: 200; /* Keeps Toyota Header ABOVE the dark overlay */
-  max-width: 100%;
+  left: 0;
+  width: 100vw; /* Forces full viewport width */
+  max-width: 100vw; /* Overrides default AEM EDS max-width caps */
   margin: 0 auto;
   padding: 0 32px;
-  background-color: var(--color-white) !important; /* Pure solid white header */
+  background-color: var(--color-white) !important;
+  z-index: 200; /* Stays above the overlay */
+  box-sizing: border-box;
 }
 @media (max-width: 768px) {
   .header-brand.block {
@@ -30,7 +41,8 @@
   justify-content: space-between;
   min-height: 72px;
   position: relative;
-  max-width: 1440px;
+  width: 100%;
+  max-width: 1440px; /* Keeps inner contents structured & readable */
   margin: 0 auto;
   background-color: var(--color-white);
   font-family: "Helvetica Neue", Arial, sans-serif;
@@ -150,7 +162,7 @@
   background: var(--color-white);
   border-radius: 0 0 16px 16px;
   margin-top: 0;
-  z-index: 210; /* Sitting on top of header and backdrop */
+  z-index: 210;
   border: 1px solid var(--color-tab-bg-mob, #e5e5e5);
   border-top: none;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
@@ -235,7 +247,7 @@
 .header-brand.block .nav-mega-group-list li a {
   text-decoration: none;
   font-size: 15px;
-  /* Thin font weight rendering */
+  /* Thin font rendering */
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -246,7 +258,7 @@
   text-decoration: underline;
 }
 .header-brand.block {
-  /* Transparent Grey Overlay - Covers FULL viewport behind .header-brand */
+  /* Full Screen Transparent Grey Overlay */
 }
 .header-brand.block .nav-mobile-overlay {
   display: block;
@@ -255,8 +267,8 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.45); /* Dark grey transparent tint */
-  z-index: -1; /* Rendered BEHIND .header-brand solid background */
+  background: rgba(0, 0, 0, 0.45);
+  z-index: -1;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -266,9 +278,6 @@
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-}
-.header-brand.block .nav-mobile-overlay {
-  /* Disable overlay on mobile */
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-mobile-overlay {
@@ -381,7 +390,7 @@
   }
 }
 .header-brand.block {
-  /* Mobile Side Drawer (Instant Open, No Slide Animation) */
+  /* Mobile Side Drawer */
 }
 .header-brand.block .nav-drawer {
   display: none;
