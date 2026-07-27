@@ -111,15 +111,16 @@
     .nav-dropdown-trigger {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 18px;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 24px;
       border-radius: 999px;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 700;
       color: var(--color-black) !important;
       text-decoration: none !important;
       background: transparent;
-      border: 1px solid transparent;
+      border: 1px solid var(--color-black);
       cursor: pointer;
       white-space: nowrap;
       transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
@@ -129,21 +130,29 @@
       }
 
       &:hover {
-        border-color: var(--color-black);
+        background: rgba(0, 0, 0, 0.04);
       }
 
       &.active {
         background: var(--color-black) !important;
         color: var(--color-white) !important;
         border-color: var(--color-black) !important;
+
+        .nav-caret svg {
+          stroke: var(--color-white);
+        }
       }
     }
   }
 
+  /* Caret Icon Styling (Arrow aligned cleanly inside pill button) */
   .nav-caret {
     display: inline-flex;
-    width: 10px;
-    height: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 12px;
+    height: 12px;
+    margin-left: 2px;
     transition: transform 0.25s ease;
 
     svg {
@@ -151,7 +160,10 @@
       height: 100%;
       fill: none;
       stroke: currentColor;
-      stroke-width: 2.5;
+      stroke-width: 2.8px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      display: block;
     }
   }
 
@@ -303,10 +315,10 @@
     }
   }
 
-  /* Right Side Actions - Horizontal Alignment */
+  /* Right Side Actions */
   .nav-actions {
     display: flex;
-    align-items: center;  /* Aligns search and hamburger on same horizontal axis */
+    align-items: center;  
     gap: 24px;
     flex-shrink: 0;
     margin-right: 32px;
@@ -339,7 +351,6 @@
         height: 24px;
         display: block;
 
-        /* Larger, bolder, inverted search icon on mobile */
         @media (max-width: $bp-sm) {
           width: 28px;
           height: 28px;
@@ -398,7 +409,6 @@
         align-items: center;
         justify-content: center;
 
-        /* Larger hamburger 3-line icon on mobile */
         svg {
           width: 28px;
           height: 24px;
