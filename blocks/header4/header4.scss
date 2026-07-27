@@ -1,4 +1,3 @@
-
 @use '../../styles/tokens' as *;
 
 /* Click Blink Animation Keyframes */
@@ -8,10 +7,10 @@
   100% { opacity: 1; }
 }
 
-.header4.block {
+.header-brand.block {
   position: sticky;
   top: 0;
-  z-index: 200; /* Stays above the gray overlay */
+  z-index: 200;
   max-width: 100%;
   margin: 0 auto;
   padding: 0 32px;
@@ -130,33 +129,7 @@
     }
   }
 
-  /* Desktop Mega Menu Dropdown (With Slide Effect) */
-  .nav-mega {
-    position: absolute;
-    left: 50%;
-    top: 100%;
-    width: min(900px, 92vw);
-    background: var(--color-white);
-    border-radius: 0 0 16px 16px;
-    margin-top: 0;
-    z-index: 210;
-    border: 1px solid var(--color-tab-bg-mob);
-    border-top: none;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-    overflow: hidden;
-
-    /* Initial Collapsed State */
-    max-height: 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: translate(-50%, -10px);
-    transition: max-height 0.35s cubic-bezier(0.25, 1, 0.5, 1),
-                opacity 0.25s ease,
-                transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
-                visibility 0.35s ease;
-  }
-
-  /* Expanded Trigger State (Slide Down) */
+  /* Active State for Expanded Dropdown Trigger */
   .nav-dropdown-trigger[aria-expanded='true'] {
     background: var(--color-black) !important;
     color: var(--color-white) !important;
@@ -170,11 +143,25 @@
     }
 
     + .nav-mega {
-      max-height: 600px; /* High enough value to fit menu content */
-      opacity: 1;
-      visibility: visible;
-      transform: translate(-50%, 0);
+      display: block;
     }
+  }
+
+  /* Desktop Mega Menu Dropdown */
+  .nav-mega {
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 100%;
+    width: min(900px, 92vw);
+    background: var(--color-white);
+    border-radius: 0 0 16px 16px;
+    margin-top: 0;
+    z-index: 210; /* Floats above header and backdrop */
+    border: 1px solid var(--color-tab-bg-mob);
+    border-top: none;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
   }
 
   .nav-mega-inner {
@@ -291,18 +278,16 @@
     @media (max-width: 991px) { display: none; }
   }
 
-  /* Full Page Backdrop Overlay */
+  /* Backdrop Overlay - Fullscreen transparent dark overlay */
   .nav-mobile-overlay {
     display: block;
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.45);
-    z-index: 180;
+    background: rgba(0, 0, 0, 0.45); /* Darkened transparent overlay */
+    z-index: 180; /* Below header (200) & dropdown (210) */
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
