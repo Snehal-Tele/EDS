@@ -234,8 +234,7 @@
 .header-brand.block .nav-mega-group-list li a {
   text-decoration: none;
   font-size: 14px;
-  font-weight: 400;
-  opacity: 0.6;
+  font-weight: 300;
   color: var(--color-black) !important;
 }
 .header-brand.block .nav-mega-group-list li a:hover {
