@@ -133,7 +133,7 @@
   stroke-width: 2.5;
 }
 .header-brand.block {
-  /* Desktop Mega Menu Dropdown */
+  /* Desktop Mega Menu Dropdown (Sliding Transition) */
 }
 .header-brand.block .nav-mega {
   position: absolute;
@@ -144,7 +144,7 @@
   border-radius: 0 0 16px 16px;
   margin-top: 0;
   z-index: 210;
-  border: 1px solid var(--color-tab-bg-mob);
+  border: 1px solid var(--color-tab-bg-mob, #e5e5e5);
   border-top: none;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
   overflow: hidden;
@@ -178,7 +178,7 @@
 }
 .header-brand.block .nav-mega-col {
   padding: 0 24px;
-  border-right: 1px solid var(--color-tab-bg-mob);
+  border-right: 1px solid var(--color-tab-bg-mob, #e5e5e5);
   display: flex;
   flex-direction: column;
   gap: 28px;
@@ -230,13 +230,18 @@
   color: var(--color-black) !important;
 }
 .header-brand.block {
-  /* Header Actions */
+  /* Header Actions (Right-aligned Search & Hamburger) */
 }
 .header-brand.block .nav-actions {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
   flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .header-brand.block .nav-actions {
+    gap: 16px;
+  }
 }
 .header-brand.block .nav-search {
   display: flex;
@@ -245,17 +250,25 @@
 .header-brand.block .nav-search-toggle {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
   background: transparent;
   border: none;
+  padding: 0;
   cursor: pointer;
+  color: var(--color-black);
+}
+.header-brand.block .nav-search-toggle svg {
+  width: 22px;
+  height: 22px;
+}
+.header-brand.block .nav-search-toggle .search-text {
   font-size: 15px;
   font-weight: 700;
-  color: var(--color-black);
+  margin-left: 8px;
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-search-toggle .search-text {
-    display: none;
+    display: none; /* Hide label on mobile view to match reference */
   }
 }
 .header-brand.block .nav-search-input {
@@ -301,7 +314,7 @@
   pointer-events: auto;
 }
 .header-brand.block {
-  /* ---------- Mobile Navigation ---------- */
+  /* Mobile Hamburger Icon */
 }
 .header-brand.block .nav-hamburger {
   display: none;
@@ -311,8 +324,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: none;
+    background: transparent;
     border: none;
+    padding: 0;
     cursor: pointer;
     z-index: 220;
   }
@@ -320,11 +334,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
   .header-brand.block .nav-hamburger .icon-menu svg {
-    fill: var(--color-black);
+    width: 22px;
+    height: 22px;
+  }
+  .header-brand.block .nav-hamburger {
+    /* Oval close button when menu is open */
   }
   .header-brand.block .nav-hamburger .icon-close {
     display: none;
@@ -338,6 +356,9 @@
     font-size: 14px;
     font-weight: 700;
   }
+}
+.header-brand.block {
+  /* Mobile Full Screen Drawer */
 }
 .header-brand.block .nav-drawer {
   display: none;
@@ -386,13 +407,13 @@
     display: flex;
     align-items: center;
     padding: 16px 20px;
-    border-bottom: 1px solid var(--color-tab-bg-mob);
+    border-bottom: 1px solid var(--color-tab-bg-mob, #e5e5e5);
   }
   .header-brand.block .nav-drawer .mobile-sub-header .mobile-back-btn {
     background: none;
     border: none;
     padding: 0;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -405,7 +426,7 @@
     font-weight: 800;
     letter-spacing: 1px;
     text-transform: uppercase;
-    margin-right: 16px;
+    margin-right: 20px;
   }
   .header-brand.block .nav-drawer .mobile-menu-list {
     list-style: none;
@@ -420,7 +441,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 22px 24px;
+    padding: 20px 24px;
     font-size: 16px;
     font-weight: 700;
     color: var(--color-black) !important;
@@ -436,7 +457,7 @@
     color: var(--color-black);
   }
   .header-brand.block {
-    /* Target block when .nav-open is toggled via JS */
+    /* Active open menu state toggled on .header-brand.block */
   }
   .header-brand.block.nav-open .nav-hamburger .icon-menu {
     display: none !important;
