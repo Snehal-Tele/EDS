@@ -10,7 +10,7 @@
 .header-brand.block {
   position: sticky;
   top: 0;
-  z-index: 200;
+  z-index: 200; /* Stays above the gray overlay */
   max-width: 100%;
   margin: 0 auto;
   padding: 0 32px;
@@ -129,7 +129,7 @@
     }
   }
 
-  /* Desktop Mega Menu Dropdown */
+  /* Desktop Mega Menu Dropdown (With Slide Effect) */
   .nav-mega {
     position: absolute;
     left: 50%;
@@ -144,6 +144,7 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
     overflow: hidden;
 
+    /* Initial Collapsed State */
     max-height: 0;
     opacity: 0;
     visibility: hidden;
@@ -154,6 +155,7 @@
                 visibility 0.35s ease;
   }
 
+  /* Expanded Trigger State (Slide Down) */
   .nav-dropdown-trigger[aria-expanded='true'] {
     background: var(--color-black) !important;
     color: var(--color-white) !important;
@@ -167,7 +169,7 @@
     }
 
     + .nav-mega {
-      max-height: 600px;
+      max-height: 600px; /* High enough value to fit menu content */
       opacity: 1;
       visibility: visible;
       transform: translate(-50%, 0);
@@ -313,7 +315,7 @@
     }
   }
 
-  /* ---------- Mobile Full-Screen Navigation Drawer ---------- */
+  /* ---------- Mobile Drawer ---------- */
   .nav-hamburger {
     display: none;
 
@@ -356,14 +358,14 @@
       display: block;
       position: fixed;
       top: var(--mobile-nav-top, 60px);
-      left: 0;
-      width: 100vw; /* Full screen width */
-      height: calc(100vh - var(--mobile-nav-top, 60px)); /* Full remaining height */
+      right: 0;
+      width: 68%;
+      height: calc(100vh - var(--mobile-nav-top, 60px));
       background: var(--color-white);
       z-index: 195;
       transform: translateX(100%);
       transition: transform 0.3s ease-in-out;
-      overflow-y: auto;
+      overflow: hidden;
 
       .mobile-panels {
         position: relative;
@@ -432,15 +434,15 @@
         padding: 0;
 
         li {
-          border-bottom: 1px solid var(--color-tab-bg-mob, #e5e5e5);
+          border-bottom: 1px solid var(--color-tab-bg-mob);
 
           a, button {
             display: flex;
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            padding: 22px 24px;
-            font-size: 16px;
+            padding: 18px 20px;
+            font-size: 14px;
             font-weight: 700;
             color: var(--color-black) !important;
             text-decoration: none !important;
@@ -450,24 +452,12 @@
             cursor: pointer;
 
             .mobile-chevron {
-              font-size: 18px;
+              font-size: 16px;
               font-weight: 400;
               color: var(--color-black);
             }
           }
         }
-      }
-    }
-
-    /* Active open drawer state */
-    &.nav-open {
-      .nav-hamburger {
-        .icon-menu { display: none; }
-        .icon-close { display: flex; }
-      }
-
-      .nav-drawer {
-        transform: translateX(0);
       }
     }
   }
