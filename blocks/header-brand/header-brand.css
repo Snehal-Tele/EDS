@@ -13,7 +13,8 @@
 .header-brand.block {
   position: sticky;
   top: 0;
-  z-index: 200; /* Keeps the entire Toyota block ABOVE the grey overlay */
+  z-index: 200;
+  isolation: isolate; /* Creates clean stacking context so children stay behind/above correctly */
   max-width: 100%;
   margin: 0 auto;
   padding: 0 32px;
@@ -149,7 +150,7 @@
   background: var(--color-white);
   border-radius: 0 0 16px 16px;
   margin-top: 0;
-  z-index: 210; /* Above overlay and nav bar */
+  z-index: 210;
   border: 1px solid var(--color-tab-bg-mob, #e5e5e5);
   border-top: none;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
@@ -234,7 +235,7 @@
 .header-brand.block .nav-mega-group-list li a {
   text-decoration: none;
   font-size: 15px;
-  /* Thin font weight rendering */
+  /* Thin font rendering */
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -245,17 +246,20 @@
   text-decoration: underline;
 }
 .header-brand.block {
-  /* Full Screen Transparent Grey Overlay */
+  /* Overlay that dims EVERYTHING OUTSIDE header-brand */
 }
 .header-brand.block .nav-mobile-overlay {
   display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.45); /* Transparent dark grey tint */
-  z-index: 180; /* Dims top header and page content, but stays BEHIND .header-brand (200) */
+  background: rgba(0, 0, 0, 0.45);
+  /* Massive box shadow extending UPWARD to dim the top header while keeping header-brand clean white */
+  box-shadow: 0 -100vh 0 100vh rgba(0, 0, 0, 0.45);
+  z-index: -1; /* Placed BEHIND header-brand background */
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -267,7 +271,7 @@
   pointer-events: auto;
 }
 .header-brand.block .nav-mobile-overlay {
-  /* Keep overlay completely disabled on mobile viewports */
+  /* Disable overlay on mobile */
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-mobile-overlay {
