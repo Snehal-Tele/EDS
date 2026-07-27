@@ -257,16 +257,16 @@
     }
   }
 
-  /* Transparent Grey Overlay - Positioned strictly BELOW the header bar */
+  /* Transparent Grey Overlay - Positioned BELOW both headers */
   .nav-mobile-overlay {
     display: block;
     position: fixed;
-    top: 72px; /* Starts right below the 72px desktop header bar */
+    top: 100%; /* Starts right below the bottom edge of header-brand */
     left: 0;
     width: 100vw;
-    height: calc(100vh - 72px);
+    height: 100vh;
     background: rgba(0, 0, 0, 0.45); /* Transparent dark grey tint */
-    z-index: 180; /* Below header (z-index: 200) and mega menu (z-index: 210) */
+    z-index: 180; /* Behind header-brand (200) and mega menu (210) */
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
