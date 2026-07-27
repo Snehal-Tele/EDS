@@ -44,7 +44,7 @@
     }
   }
 
-  /* Logo - Added specific margin-left to create distance from the left edge */
+  /* Logo - Left margin distance */
   .nav-logo {
     display: flex;
     align-items: center;
@@ -52,7 +52,7 @@
     text-decoration: none;
     color: var(--color-black);
     flex-shrink: 0;
-    margin-left: 32px; /* Creates distance between the left edge of block and the image */
+    margin-left: 32px;
 
     @media (max-width: $bp-sm) {
       margin-left: 16px;
@@ -304,7 +304,7 @@
     align-items: center;
     gap: 24px;
     flex-shrink: 0;
-    margin-right: 32px; /* Matching distance from the right edge */
+    margin-right: 32px;
 
     @media (max-width: $bp-sm) {
       gap: 22px;
@@ -330,6 +330,11 @@
       svg {
         width: 24px;
         height: 24px;
+
+        /* Inverted Search Icon on Mobile View */
+        @media (max-width: $bp-sm) {
+          transform: scaleX(-1);
+        }
       }
 
       .search-text {

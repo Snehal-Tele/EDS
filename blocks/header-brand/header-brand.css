@@ -48,7 +48,7 @@
   }
 }
 .header-brand.block {
-  /* Logo - Added specific margin-left to create distance from the left edge */
+  /* Logo - Left margin distance */
 }
 .header-brand.block .nav-logo {
   display: flex;
@@ -57,7 +57,7 @@
   text-decoration: none;
   color: var(--color-black);
   flex-shrink: 0;
-  margin-left: 32px; /* Creates distance between the left edge of block and the image */
+  margin-left: 32px;
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-logo {
@@ -293,7 +293,7 @@
   align-items: center;
   gap: 24px;
   flex-shrink: 0;
-  margin-right: 32px; /* Matching distance from the right edge */
+  margin-right: 32px;
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-actions {
@@ -321,6 +321,12 @@
 .header-brand.block .nav-search-toggle svg {
   width: 24px;
   height: 24px;
+  /* Inverted Search Icon on Mobile View */
+}
+@media (max-width: 768px) {
+  .header-brand.block .nav-search-toggle svg {
+    transform: scaleX(-1);
+  }
 }
 .header-brand.block .nav-search-toggle .search-text {
   font-size: 15px;
