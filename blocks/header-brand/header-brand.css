@@ -32,7 +32,7 @@
 }
 .header-brand.block .nav-brand {
   display: flex;
-  align-items: center; /* Perfect vertical alignment across logo & actions */
+  align-items: center; /* Vertical alignment across logo & actions */
   justify-content: space-between;
   min-height: 72px;
   position: relative;
@@ -44,8 +44,8 @@
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-brand {
-    min-height: 56px;
-    padding: 8px 0;
+    min-height: 60px;
+    padding: 10px 0;
   }
 }
 .header-brand.block {
@@ -78,7 +78,7 @@
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-logo picture img {
-    width: 120px;
+    width: 124px;
     height: 32px;
   }
 }
@@ -296,13 +296,13 @@
 .header-brand.block .nav-actions {
   display: flex;
   align-items: center; /* Aligns search and hamburger on same horizontal axis */
-  gap: 20px;
+  gap: 24px;
   flex-shrink: 0;
   margin-right: 32px;
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-actions {
-    gap: 16px;
+    gap: 18px;
     margin-right: 16px;
   }
 }
@@ -326,13 +326,16 @@
   line-height: 1;
 }
 .header-brand.block .nav-search-toggle svg {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   display: block;
-  /* Inverted Search Icon on Mobile View */
+  /* Larger, bolder, inverted search icon on mobile */
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-search-toggle svg {
+    width: 28px;
+    height: 28px;
+    stroke-width: 2.5px;
     transform: scaleX(-1);
   }
 }
@@ -365,7 +368,7 @@
   }
 }
 .header-brand.block {
-  /* Mobile Hamburger Button - Horizontal Alignment */
+  /* Mobile Hamburger Button */
 }
 .header-brand.block .nav-hamburger {
   display: none;
@@ -387,15 +390,16 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    /* Larger hamburger 3-line icon on mobile */
   }
   .header-brand.block .nav-hamburger .icon-menu svg {
-    width: 22px;
-    height: 20px;
+    width: 28px;
+    height: 24px;
     display: block;
     fill: none;
     stroke: var(--color-black);
-    stroke-linecap: square;
-    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-width: 2.5px;
   }
   .header-brand.block .nav-hamburger .icon-close {
     display: none;

@@ -29,7 +29,7 @@
 
   .nav-brand {
     display: flex;
-    align-items: center;    /* Perfect vertical alignment across logo & actions */
+    align-items: center;    /* Vertical alignment across logo & actions */
     justify-content: space-between;
     min-height: 72px;
     position: relative;
@@ -40,8 +40,8 @@
     font-family: 'Helvetica Neue', Arial, sans-serif;
 
     @media (max-width: $bp-sm) {
-      min-height: 56px;
-      padding: 8px 0;
+      min-height: 60px;
+      padding: 10px 0;
     }
   }
 
@@ -70,7 +70,7 @@
         display: block;
 
         @media (max-width: $bp-sm) {
-          width: 120px;
+          width: 124px;
           height: 32px;
         }
       }
@@ -307,12 +307,12 @@
   .nav-actions {
     display: flex;
     align-items: center;  /* Aligns search and hamburger on same horizontal axis */
-    gap: 20px;
+    gap: 24px;
     flex-shrink: 0;
     margin-right: 32px;
 
     @media (max-width: $bp-sm) {
-      gap: 16px;
+      gap: 18px;
       margin-right: 16px;
     }
   }
@@ -335,12 +335,15 @@
       line-height: 1;
 
       svg {
-        width: 22px;
-        height: 22px;
+        width: 24px;
+        height: 24px;
         display: block;
 
-        /* Inverted Search Icon on Mobile View */
+        /* Larger, bolder, inverted search icon on mobile */
         @media (max-width: $bp-sm) {
+          width: 28px;
+          height: 28px;
+          stroke-width: 2.5px;
           transform: scaleX(-1);
         }
       }
@@ -374,7 +377,7 @@
     @media (max-width: 991px) { display: none; }
   }
 
-  /* Mobile Hamburger Button - Horizontal Alignment */
+  /* Mobile Hamburger Button */
   .nav-hamburger {
     display: none;
 
@@ -395,14 +398,15 @@
         align-items: center;
         justify-content: center;
 
+        /* Larger hamburger 3-line icon on mobile */
         svg {
-          width: 22px;
-          height: 20px;
+          width: 28px;
+          height: 24px;
           display: block;
           fill: none;
           stroke: var(--color-black);
-          stroke-linecap: square;
-          stroke-width: 2;
+          stroke-linecap: round;
+          stroke-width: 2.5px;
         }
       }
 
