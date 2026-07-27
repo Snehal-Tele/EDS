@@ -10,7 +10,7 @@
 .header-brand.block {
   position: sticky;
   top: 0;
-  z-index: 200; /* Stays above the overlay */
+  z-index: 200; /* Keeps the entire Toyota block ABOVE the grey overlay */
   max-width: 100%;
   margin: 0 auto;
   padding: 0 32px;
@@ -143,7 +143,7 @@
     background: var(--color-white);
     border-radius: 0 0 16px 16px;
     margin-top: 0;
-    z-index: 210;
+    z-index: 210; /* Above overlay and nav bar */
     border: 1px solid var(--color-tab-bg-mob, #e5e5e5);
     border-top: none;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
@@ -242,7 +242,7 @@
         text-decoration: none;
         font-size: 15px;
 
-        /* Thin font rendering */
+        /* Thin font weight rendering */
         font-weight: 300;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -257,16 +257,16 @@
     }
   }
 
-  /* Transparent Grey Overlay - Positioned BELOW both headers */
+  /* Full Screen Transparent Grey Overlay */
   .nav-mobile-overlay {
     display: block;
     position: fixed;
-    top: 100%; /* Starts right below the bottom edge of header-brand */
+    top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.45); /* Transparent dark grey tint */
-    z-index: 180; /* Behind header-brand (200) and mega menu (210) */
+    z-index: 180; /* Dims top header and page content, but stays BEHIND .header-brand (200) */
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -279,7 +279,7 @@
       pointer-events: auto;
     }
 
-    /* Keep overlay completely disabled on mobile */
+    /* Keep overlay completely disabled on mobile viewports */
     @media (max-width: $bp-sm) {
       display: none !important;
     }
