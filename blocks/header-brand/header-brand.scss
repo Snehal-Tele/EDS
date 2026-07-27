@@ -16,6 +16,7 @@
   padding: 0 32px;
   background: var(--color-white);
 
+  /* Exact Mobile Side Distance */
   @media (max-width: $bp-sm) {
     padding: 0 16px;
   }
@@ -30,16 +31,17 @@
     margin: 0 auto;
     font-family: 'Helvetica Neue', Arial, sans-serif;
 
+    /* Mobile Header Height */
     @media (max-width: $bp-sm) {
-      min-height: 60px;
+      min-height: 52px;
     }
   }
 
-  /* Logo */
+  /* Logo Sizing & Alignment */
   .nav-logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     text-decoration: none;
     color: var(--color-black);
     flex-shrink: 0;
@@ -50,14 +52,18 @@
       object-fit: contain;
 
       @media (max-width: $bp-sm) {
-        width: 90px;
-        height: 28px;
+        width: 108px;
+        height: 24px;
       }
     }
 
     &-text {
       font-size: 20px;
       font-weight: 800;
+
+      @media (max-width: $bp-sm) {
+        font-size: 16px;
+      }
     }
   }
 
@@ -129,7 +135,7 @@
     }
   }
 
-  /* Desktop Mega Menu Dropdown (Sliding Transition) */
+  /* Desktop Mega Menu Dropdown */
   .nav-mega {
     position: absolute;
     left: 50%;
@@ -242,18 +248,19 @@
     }
   }
 
-  /* Header Actions (Right-aligned Search & Hamburger) */
+  /* Right Side Header Actions (Search & Hamburger) */
   .nav-actions {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 24px;
     flex-shrink: 0;
 
     @media (max-width: $bp-sm) {
-      gap: 16px;
+      gap: 20px; /* Exact distance between search and menu icon */
     }
   }
 
+  /* Search Icon */
   .nav-search {
     display: flex;
     align-items: center;
@@ -271,6 +278,11 @@
       svg {
         width: 22px;
         height: 22px;
+
+        @media (max-width: $bp-sm) {
+          width: 20px;
+          height: 20px;
+        }
       }
 
       .search-text {
@@ -279,7 +291,7 @@
         margin-left: 8px;
 
         @media (max-width: $bp-sm) {
-          display: none; /* Hide label on mobile view to match reference */
+          display: none; /* Hide 'Search' text on mobile */
         }
       }
     }
@@ -302,7 +314,7 @@
     @media (max-width: 991px) { display: none; }
   }
 
-  /* Full Page Backdrop Overlay */
+  /* Overlay */
   .nav-mobile-overlay {
     display: block;
     position: fixed;
@@ -327,7 +339,7 @@
     }
   }
 
-  /* Mobile Hamburger Icon */
+  /* Hamburger Menu Button (Three Horizontal Lines) */
   .nav-hamburger {
     display: none;
 
@@ -345,16 +357,17 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 24px;
-        height: 24px;
 
         svg {
           width: 22px;
-          height: 22px;
+          height: 18px;
+          fill: none;
+          stroke: var(--color-black);
+          stroke-width: 2;
+          stroke-linecap: round;
         }
       }
 
-      /* Oval close button when menu is open */
       .icon-close {
         display: none;
         align-items: center;
@@ -370,7 +383,7 @@
     }
   }
 
-  /* Mobile Full Screen Drawer */
+  /* Full Page Mobile Navigation Drawer */
   .nav-drawer {
     display: none;
   }
@@ -379,10 +392,10 @@
     .nav-drawer {
       display: block;
       position: fixed;
-      top: var(--mobile-nav-top, 60px);
+      top: var(--mobile-nav-top, 52px);
       left: 0;
       width: 100vw;
-      height: calc(100vh - var(--mobile-nav-top, 60px));
+      height: calc(100vh - var(--mobile-nav-top, 52px));
       background: var(--color-white);
       z-index: 195;
       transform: translateX(100%);
@@ -463,7 +476,7 @@
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            padding: 20px 24px;
+            padding: 18px 20px;
             font-size: 16px;
             font-weight: 700;
             color: var(--color-black) !important;
@@ -483,7 +496,7 @@
       }
     }
 
-    /* Active open menu state toggled on .header-brand.block */
+    /* Open Navigation State */
     &.nav-open {
       .nav-hamburger {
         .icon-menu { display: none !important; }
