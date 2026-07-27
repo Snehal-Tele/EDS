@@ -10,12 +10,11 @@
 .header-brand.block {
   position: sticky;
   top: 0;
-  z-index: 200;
-  isolation: isolate; /* Creates clean stacking context so children stay behind/above correctly */
+  z-index: 200; /* Stays above the overlay */
   max-width: 100%;
   margin: 0 auto;
   padding: 0 32px;
-  background: var(--color-white);
+  background-color: var(--color-white) !important; /* Solid white background */
 
   @media (max-width: $bp-sm) {
     padding: 0 20px;
@@ -29,6 +28,7 @@
     position: relative;
     max-width: 1440px;
     margin: 0 auto;
+    background-color: var(--color-white);
     font-family: 'Helvetica Neue', Arial, sans-serif;
 
     @media (max-width: $bp-sm) {
@@ -243,7 +243,7 @@
         text-decoration: none;
         font-size: 15px;
 
-        /* Thin font rendering */
+        /* Thin font weight rendering */
         font-weight: 300;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -258,19 +258,16 @@
     }
   }
 
-  /* Overlay that dims EVERYTHING OUTSIDE header-brand */
+  /* Transparent Grey Overlay - Strictly below header-brand */
   .nav-mobile-overlay {
     display: block;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
+    position: fixed;
+    top: 100%; /* Starts exactly at the bottom edge of header-brand */
+    left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.45);
-    /* Massive box shadow extending UPWARD to dim the top header while keeping header-brand clean white */
-    box-shadow: 0 -100vh 0 100vh rgba(0, 0, 0, 0.45);
-    z-index: -1; /* Placed BEHIND header-brand background */
+    background: rgba(0, 0, 0, 0.45); /* Grey transparent backdrop */
+    z-index: 180;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -283,7 +280,7 @@
       pointer-events: auto;
     }
 
-    /* Disable overlay on mobile */
+    /* Keep overlay completely disabled on mobile viewports */
     @media (max-width: $bp-sm) {
       display: none !important;
     }
