@@ -16,7 +16,6 @@
   padding: 0 32px;
   background: var(--color-white);
 
-  /* Precise Mobile Header Edges & Padding */
   @media (max-width: $bp-sm) {
     padding: 0 20px;
   }
@@ -31,13 +30,12 @@
     margin: 0 auto;
     font-family: 'Helvetica Neue', Arial, sans-serif;
 
-    /* Toyota Mobile Header Height */
     @media (max-width: $bp-sm) {
       min-height: 64px;
     }
   }
 
-  /* Toyota Logo Sizing & Alignment */
+  /* Logo */
   .nav-logo {
     display: flex;
     align-items: center;
@@ -249,7 +247,7 @@
     }
   }
 
-  /* Right Side Header Actions (Search & Hamburger) */
+  /* Right Side Header Actions */
   .nav-actions {
     display: flex;
     align-items: center;
@@ -257,11 +255,11 @@
     flex-shrink: 0;
 
     @media (max-width: $bp-sm) {
-      gap: 22px; /* Spacing between Search and Hamburger */
+      gap: 22px;
     }
   }
 
-  /* Search Icon Styling */
+  /* Search Icon */
   .nav-search {
     display: flex;
     align-items: center;
@@ -279,11 +277,6 @@
       svg {
         width: 24px;
         height: 24px;
-
-        @media (max-width: $bp-sm) {
-          width: 24px;
-          height: 24px;
-        }
       }
 
       .search-text {
@@ -315,32 +308,12 @@
     @media (max-width: 991px) { display: none; }
   }
 
-  /* Overlay */
+  /* Disabled Shadow Overlay Completely */
   .nav-mobile-overlay {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.45);
-    z-index: 180;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-
-    &.is-active,
-    &[aria-hidden='false'] {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    }
+    display: none !important;
   }
 
-  /* Hamburger Menu Button (Three Bold Horizontal Lines) */
+  /* Hamburger Menu Button */
   .nav-hamburger {
     display: none;
 
@@ -383,14 +356,14 @@
     }
   }
 
-  /* Full Page Mobile Navigation Drawer */
+  /* Mobile Navigation Drawer (No Slide Effect) */
   .nav-drawer {
     display: none;
   }
 
   @media (max-width: $bp-sm) {
     .nav-drawer {
-      display: block;
+      display: none; /* Instant show/hide via nav-open class */
       position: fixed;
       top: var(--mobile-nav-top, 64px);
       left: 0;
@@ -398,9 +371,9 @@
       height: calc(100vh - var(--mobile-nav-top, 64px));
       background: var(--color-white);
       z-index: 195;
-      transform: translateX(100%);
-      transition: transform 0.3s ease-in-out;
       overflow-y: auto;
+      transform: none !important; /* Disables slide */
+      transition: none !important; /* Disables animation */
 
       .mobile-panels {
         position: relative;
@@ -415,23 +388,23 @@
         width: 100%;
         height: 100%;
         background: var(--color-white);
-        transition: transform 0.3s ease-in-out;
+        display: none; /* Hide non-active subpanels instantly */
 
         &.panel-root {
-          transform: translateX(0);
+          display: block;
         }
 
         &.panel-sub {
-          transform: translateX(100%);
+          display: none;
         }
       }
 
       &.sub-open {
         .panel-root {
-          transform: translateX(-100%);
+          display: none;
         }
         .panel-sub {
-          transform: translateX(0);
+          display: block;
         }
       }
 
@@ -496,7 +469,7 @@
       }
     }
 
-    /* Open Navigation State */
+    /* Toggled Open State */
     &.nav-open {
       .nav-hamburger {
         .icon-menu { display: none !important; }
@@ -504,7 +477,7 @@
       }
 
       .nav-drawer {
-        transform: translateX(0) !important;
+        display: block !important; /* Instantly pops up when opened */
       }
     }
   }

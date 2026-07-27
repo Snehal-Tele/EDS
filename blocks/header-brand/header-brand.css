@@ -18,7 +18,6 @@
   margin: 0 auto;
   padding: 0 32px;
   background: var(--color-white);
-  /* Precise Mobile Header Edges & Padding */
 }
 @media (max-width: 768px) {
   .header-brand.block {
@@ -34,7 +33,6 @@
   max-width: 1440px;
   margin: 0 auto;
   font-family: "Helvetica Neue", Arial, sans-serif;
-  /* Toyota Mobile Header Height */
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-brand {
@@ -42,7 +40,7 @@
   }
 }
 .header-brand.block {
-  /* Toyota Logo Sizing & Alignment */
+  /* Logo */
 }
 .header-brand.block .nav-logo {
   display: flex;
@@ -238,7 +236,7 @@
   color: var(--color-black) !important;
 }
 .header-brand.block {
-  /* Right Side Header Actions (Search & Hamburger) */
+  /* Right Side Header Actions */
 }
 .header-brand.block .nav-actions {
   display: flex;
@@ -248,11 +246,11 @@
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-actions {
-    gap: 22px; /* Spacing between Search and Hamburger */
+    gap: 22px;
   }
 }
 .header-brand.block {
-  /* Search Icon Styling */
+  /* Search Icon */
 }
 .header-brand.block .nav-search {
   display: flex;
@@ -271,12 +269,6 @@
 .header-brand.block .nav-search-toggle svg {
   width: 24px;
   height: 24px;
-}
-@media (max-width: 768px) {
-  .header-brand.block .nav-search-toggle svg {
-    width: 24px;
-    height: 24px;
-  }
 }
 .header-brand.block .nav-search-toggle .search-text {
   font-size: 15px;
@@ -307,31 +299,13 @@
   }
 }
 .header-brand.block {
-  /* Overlay */
+  /* Disabled Shadow Overlay Completely */
 }
 .header-brand.block .nav-mobile-overlay {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: 180;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-.header-brand.block .nav-mobile-overlay.is-active, .header-brand.block .nav-mobile-overlay[aria-hidden=false] {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
+  display: none !important;
 }
 .header-brand.block {
-  /* Hamburger Menu Button (Three Bold Horizontal Lines) */
+  /* Hamburger Menu Button */
 }
 .header-brand.block .nav-hamburger {
   display: none;
@@ -373,14 +347,14 @@
   }
 }
 .header-brand.block {
-  /* Full Page Mobile Navigation Drawer */
+  /* Mobile Navigation Drawer (No Slide Effect) */
 }
 .header-brand.block .nav-drawer {
   display: none;
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-drawer {
-    display: block;
+    display: none; /* Instant show/hide via nav-open class */
     position: fixed;
     top: var(--mobile-nav-top, 64px);
     left: 0;
@@ -388,9 +362,9 @@
     height: calc(100vh - var(--mobile-nav-top, 64px));
     background: var(--color-white);
     z-index: 195;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
     overflow-y: auto;
+    transform: none !important; /* Disables slide */
+    transition: none !important; /* Disables animation */
   }
   .header-brand.block .nav-drawer .mobile-panels {
     position: relative;
@@ -404,19 +378,19 @@
     width: 100%;
     height: 100%;
     background: var(--color-white);
-    transition: transform 0.3s ease-in-out;
+    display: none; /* Hide non-active subpanels instantly */
   }
   .header-brand.block .nav-drawer .mobile-panel.panel-root {
-    transform: translateX(0);
+    display: block;
   }
   .header-brand.block .nav-drawer .mobile-panel.panel-sub {
-    transform: translateX(100%);
+    display: none;
   }
   .header-brand.block .nav-drawer.sub-open .panel-root {
-    transform: translateX(-100%);
+    display: none;
   }
   .header-brand.block .nav-drawer.sub-open .panel-sub {
-    transform: translateX(0);
+    display: block;
   }
   .header-brand.block .nav-drawer .mobile-sub-header {
     display: flex;
@@ -472,7 +446,7 @@
     color: var(--color-black);
   }
   .header-brand.block {
-    /* Open Navigation State */
+    /* Toggled Open State */
   }
   .header-brand.block.nav-open .nav-hamburger .icon-menu {
     display: none !important;
@@ -481,6 +455,6 @@
     display: flex !important;
   }
   .header-brand.block.nav-open .nav-drawer {
-    transform: translateX(0) !important;
+    display: block !important; /* Instantly pops up when opened */
   }
 }/*# sourceMappingURL=header-brand.css.map */
