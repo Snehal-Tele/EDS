@@ -13,7 +13,7 @@
 .header-brand.block {
   position: sticky;
   top: 0;
-  z-index: 200;
+  z-index: 200; /* Stays above the overlay */
   max-width: 100%;
   margin: 0 auto;
   padding: 0 32px;
@@ -73,7 +73,7 @@
   }
 }
 .header-brand.block {
-  /* Desktop Navigation */
+  /* Desktop Navigation Links */
 }
 .header-brand.block .nav-sections {
   display: flex;
@@ -193,7 +193,7 @@
   border-right: none;
 }
 .header-brand.block {
-  /* Mega Menu Groups & Links */
+  /* Dropdown Links & Hover Styles */
 }
 .header-brand.block .nav-mega-group {
   display: flex;
@@ -233,7 +233,7 @@
 }
 .header-brand.block .nav-mega-group-list li a {
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15px;
   /* Thin font rendering */
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
@@ -245,17 +245,17 @@
   text-decoration: underline;
 }
 .header-brand.block {
-  /* Transparent Grey Overlay Behind Dropdown */
+  /* Transparent Grey Overlay - Positioned strictly BELOW the header bar */
 }
 .header-brand.block .nav-mobile-overlay {
   display: block;
   position: fixed;
-  top: 0;
+  top: 72px; /* Starts right below the 72px desktop header bar */
   left: 0;
   width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.45); /* Dark transparent grey tint */
-  z-index: 180;
+  height: calc(100vh - 72px);
+  background: rgba(0, 0, 0, 0.45); /* Transparent dark grey tint */
+  z-index: 180; /* Below header (z-index: 200) and mega menu (z-index: 210) */
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -267,7 +267,7 @@
   pointer-events: auto;
 }
 .header-brand.block .nav-mobile-overlay {
-  /* Keep overlay disabled on mobile per your previous requirement */
+  /* Keep overlay completely disabled on mobile */
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-mobile-overlay {
@@ -275,7 +275,7 @@
   }
 }
 .header-brand.block {
-  /* Right Side Header Actions */
+  /* Right Side Actions */
 }
 .header-brand.block .nav-actions {
   display: flex;
@@ -289,7 +289,7 @@
   }
 }
 .header-brand.block {
-  /* Search Icon */
+  /* Search Button */
 }
 .header-brand.block .nav-search {
   display: flex;
@@ -338,7 +338,7 @@
   }
 }
 .header-brand.block {
-  /* Hamburger Menu Button */
+  /* Mobile Hamburger Button */
 }
 .header-brand.block .nav-hamburger {
   display: none;
@@ -380,7 +380,7 @@
   }
 }
 .header-brand.block {
-  /* Mobile Navigation Drawer (No Slide Effect) */
+  /* Mobile Side Drawer (Instant Open, No Slide Animation) */
 }
 .header-brand.block .nav-drawer {
   display: none;

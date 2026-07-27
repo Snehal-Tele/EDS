@@ -10,7 +10,7 @@
 .header-brand.block {
   position: sticky;
   top: 0;
-  z-index: 200;
+  z-index: 200; /* Stays above the overlay */
   max-width: 100%;
   margin: 0 auto;
   padding: 0 32px;
@@ -66,7 +66,7 @@
     }
   }
 
-  /* Desktop Navigation */
+  /* Desktop Navigation Links */
   .nav-sections {
     display: flex;
     align-items: center;
@@ -197,7 +197,7 @@
     }
   }
 
-  /* Mega Menu Groups & Links */
+  /* Dropdown Links & Hover Styles */
   .nav-mega-group {
     display: flex;
     flex-direction: column;
@@ -240,7 +240,7 @@
 
       li a {
         text-decoration: none;
-        font-size: 14px;
+        font-size: 15px;
 
         /* Thin font rendering */
         font-weight: 300;
@@ -257,16 +257,16 @@
     }
   }
 
-  /* Transparent Grey Overlay Behind Dropdown */
+  /* Transparent Grey Overlay - Positioned strictly BELOW the header bar */
   .nav-mobile-overlay {
     display: block;
     position: fixed;
-    top: 0;
+    top: 72px; /* Starts right below the 72px desktop header bar */
     left: 0;
     width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.45); /* Dark transparent grey tint */
-    z-index: 180;
+    height: calc(100vh - 72px);
+    background: rgba(0, 0, 0, 0.45); /* Transparent dark grey tint */
+    z-index: 180; /* Below header (z-index: 200) and mega menu (z-index: 210) */
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -279,13 +279,13 @@
       pointer-events: auto;
     }
 
-    /* Keep overlay disabled on mobile per your previous requirement */
+    /* Keep overlay completely disabled on mobile */
     @media (max-width: $bp-sm) {
       display: none !important;
     }
   }
 
-  /* Right Side Header Actions */
+  /* Right Side Actions */
   .nav-actions {
     display: flex;
     align-items: center;
@@ -297,7 +297,7 @@
     }
   }
 
-  /* Search Icon */
+  /* Search Button */
   .nav-search {
     display: flex;
     align-items: center;
@@ -346,7 +346,7 @@
     @media (max-width: 991px) { display: none; }
   }
 
-  /* Hamburger Menu Button */
+  /* Mobile Hamburger Button */
   .nav-hamburger {
     display: none;
 
@@ -389,7 +389,7 @@
     }
   }
 
-  /* Mobile Navigation Drawer (No Slide Effect) */
+  /* Mobile Side Drawer (Instant Open, No Slide Animation) */
   .nav-drawer {
     display: none;
   }
