@@ -13,7 +13,7 @@
 .header-brand.block {
   position: sticky;
   top: 0;
-  z-index: 200; /* Stays above the gray overlay */
+  z-index: 200;
   max-width: 100%;
   margin: 0 auto;
   padding: 0 32px;
@@ -39,6 +39,9 @@
     min-height: 60px;
   }
 }
+.header-brand.block {
+  /* Logo */
+}
 .header-brand.block .nav-logo {
   display: flex;
   align-items: center;
@@ -63,7 +66,9 @@
   font-size: 20px;
   font-weight: 800;
 }
-
+.header-brand.block {
+  /* Desktop Navigation */
+}
 .header-brand.block .nav-sections {
   display: flex;
   align-items: center;
@@ -127,7 +132,9 @@
   stroke: currentColor;
   stroke-width: 2.5;
 }
-
+.header-brand.block {
+  /* Desktop Mega Menu Dropdown */
+}
 .header-brand.block .nav-mega {
   position: absolute;
   left: 50%;
@@ -141,14 +148,12 @@
   border-top: none;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
   overflow: hidden;
-  /* Initial Collapsed State */
   max-height: 0;
   opacity: 0;
   visibility: hidden;
   transform: translate(-50%, -10px);
   transition: max-height 0.35s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.25s ease, transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.35s ease;
 }
-
 .header-brand.block .nav-dropdown-trigger[aria-expanded=true] {
   background: var(--color-black) !important;
   color: var(--color-white) !important;
@@ -161,7 +166,7 @@
   stroke: var(--color-white);
 }
 .header-brand.block .nav-dropdown-trigger[aria-expanded=true] + .nav-mega {
-  max-height: 600px; /* High enough value to fit menu content */
+  max-height: 600px;
   opacity: 1;
   visibility: visible;
   transform: translate(-50%, 0);
@@ -224,6 +229,9 @@
   opacity: 0.6;
   color: var(--color-black) !important;
 }
+.header-brand.block {
+  /* Header Actions */
+}
 .header-brand.block .nav-actions {
   display: flex;
   align-items: center;
@@ -268,7 +276,9 @@
     display: none;
   }
 }
-
+.header-brand.block {
+  /* Full Page Backdrop Overlay */
+}
 .header-brand.block .nav-mobile-overlay {
   display: block;
   position: fixed;
@@ -290,7 +300,9 @@
   visibility: visible;
   pointer-events: auto;
 }
-
+.header-brand.block {
+  /* ---------- Mobile Full-Screen Navigation Drawer ---------- */
+}
 .header-brand.block .nav-hamburger {
   display: none;
 }
@@ -332,14 +344,14 @@
     display: block;
     position: fixed;
     top: var(--mobile-nav-top, 60px);
-    right: 0;
-    width: 68%;
-    height: calc(100vh - var(--mobile-nav-top, 60px));
+    left: 0;
+    width: 100vw; /* Full screen width */
+    height: calc(100vh - var(--mobile-nav-top, 60px)); /* Full remaining height */
     background: var(--color-white);
     z-index: 195;
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
-    overflow: hidden;
+    overflow-y: auto;
   }
   .header-brand.block .nav-drawer .mobile-panels {
     position: relative;
@@ -398,15 +410,15 @@
     padding: 0;
   }
   .header-brand.block .nav-drawer .mobile-menu-list li {
-    border-bottom: 1px solid var(--color-tab-bg-mob);
+    border-bottom: 1px solid var(--color-tab-bg-mob, #e5e5e5);
   }
   .header-brand.block .nav-drawer .mobile-menu-list li a, .header-brand.block .nav-drawer .mobile-menu-list li button {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 18px 20px;
-    font-size: 14px;
+    padding: 22px 24px;
+    font-size: 16px;
     font-weight: 700;
     color: var(--color-black) !important;
     text-decoration: none !important;
@@ -416,8 +428,20 @@
     cursor: pointer;
   }
   .header-brand.block .nav-drawer .mobile-menu-list li a .mobile-chevron, .header-brand.block .nav-drawer .mobile-menu-list li button .mobile-chevron {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
     color: var(--color-black);
+  }
+  .header-brand.block {
+    /* Active open drawer state */
+  }
+  .header-brand.block.nav-open .nav-hamburger .icon-menu {
+    display: none;
+  }
+  .header-brand.block.nav-open .nav-hamburger .icon-close {
+    display: flex;
+  }
+  .header-brand.block.nav-open .nav-drawer {
+    transform: translateX(0);
   }
 }/*# sourceMappingURL=header-brand.css.map */
