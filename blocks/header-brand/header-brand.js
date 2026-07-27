@@ -1,144 +1,4 @@
-function isDecorativeRow(cellText) {
-  return cellText === '';
-}
-
-function getLabelAndHref(element) {
-  const link = element.querySelector(':scope > a, :scope > p > a, :scope > strong > a, :scope > div > a');
-  if (link) {
-    return { label: link.textContent.trim(), href: link.href };
-  }
-  
-  let text = '';
-  element.childNodes.forEach((node) => {
-    if (node.nodeType === Node.TEXT_NODE) {
-      text += node.textContent;
-    } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'UL') {
-      text += node.textContent;
-    }
-  });
-  
-  return { label: text.trim(), href: '#' };
-}
-
-function getRightChevronSVG() {
-  return `
-    <span class="right-chevron" aria-hidden="true">
-      <svg viewBox="0 0 8 12">
-        <path d="M1 1l5 5-5 5" />
-      </svg>
-    </span>
-  `;
-}
-
-function buildMegaGroup(li) {
-  const group = document.createElement('div');
-  group.className = 'nav-mega-group';
-
-  const nestedList = li.querySelector(':scope > ul');
-  const { label, href } = getLabelAndHref(li);
-
-  const title = document.createElement('a');
-  title.className = 'nav-mega-group-title';
-  title.href = href;
-  title.innerHTML = `<span>${label}</span>${getRightChevronSVG()}`;
-  group.append(title);
-
-  if (nestedList) {
-    const list = document.createElement('ul');
-    list.className = 'nav-mega-group-list';
-
-    [...nestedList.children].forEach((item) => {
-      const { label: itemLabel, href: itemHref } = getLabelAndHref(item);
-      const liItem = document.createElement('li');
-      const aItem = document.createElement('a');
-      aItem.href = itemHref;
-      aItem.textContent = itemLabel;
-      liItem.append(aItem);
-      list.append(liItem);
-    });
-
-    group.append(list);
-  }
-
-  return group;
-}
-
-function buildMegaMenu(sourceList) {
-  const mega = document.createElement('div');
-  mega.className = 'nav-mega';
-  
-  const inner = document.createElement('div');
-  inner.className = 'nav-mega-inner';
-
-  [...sourceList.children].forEach((topLi) => {
-    const col = document.createElement('div');
-    col.className = 'nav-mega-col';
-
-    const hasSubCategories = topLi.querySelector(':scope > ul');
-    const { label } = getLabelAndHref(topLi);
-
-    if (hasSubCategories && !label) {
-      [...hasSubCategories.children].forEach((subLi) => {
-        col.append(buildMegaGroup(subLi));
-      });
-    } else {
-      col.append(buildMegaGroup(topLi));
-    }
-
-    inner.append(col);
-  });
-
-  mega.append(inner);
-  return mega;
-}
-
-function clearAllActiveStates(nav) {
-  nav.querySelectorAll('.nav-dropdown-trigger[aria-expanded="true"]').forEach((btn) => {
-    btn.setAttribute('aria-expanded', 'false');
-  });
-  nav.querySelectorAll('.nav-link.active').forEach((link) => {
-    link.classList.remove('active');
-  });
-  nav.classList.remove('nav-dropdown-open');
-}
-
-// Trigger click blink animation helper
-function triggerBlink(element) {
-  element.classList.remove('blink-effect');
-  void element.offsetWidth; // Force CSS reflow
-  element.classList.add('blink-effect');
-
-  element.addEventListener(
-    'animationend',
-    () => {
-      element.classList.remove('blink-effect');
-    },
-    { once: true }
-  );
-}
-
-function buildSearch() {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'nav-search';
-
-  const btn = document.createElement('button');
-  btn.type = 'button';
-  btn.className = 'nav-search-toggle';
-  btn.setAttribute('aria-expanded', 'false');
-  btn.setAttribute('aria-label', 'Search');
-  btn.innerHTML = `
-    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-      <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
-      <line x1="20" y1="20" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-    <span class="search-text">Search</span>
-  `;
-
-  wrapper.append(btn);
-  return wrapper;
-}
-
-export default async function decorate(block) {
+export default function decorate(block) {
   const rows = [...block.children];
   const nav = document.createElement('nav');
   nav.className = 'nav-brand';
@@ -146,6 +6,7 @@ export default async function decorate(block) {
 
   const overlay = document.createElement('div');
   overlay.className = 'nav-mobile-overlay';
+  overlay.setAttribute('aria-hidden', 'true');
 
   // --- Row 0: Logo ---
   const brandRow = rows[0];
@@ -215,6 +76,153 @@ export default async function decorate(block) {
   panels.append(rootPanel, subPanel);
   drawer.append(panels);
 
+  // Helper functions for parsing content
+  function isDecorativeRow(cellText) {
+    return cellText === '';
+  }
+
+  function getLabelAndHref(element) {
+    const link = element.querySelector(':scope > a, :scope > p > a, :scope > strong > a, :scope > div > a');
+    if (link) {
+      return { label: link.textContent.trim(), href: link.href };
+    }
+    
+    let text = '';
+    element.childNodes.forEach((node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        text += node.textContent;
+      } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'UL') {
+        text += node.textContent;
+      }
+    });
+    
+    return { label: text.trim(), href: '#' };
+  }
+
+  function getRightChevronSVG() {
+    return `
+      <span class="right-chevron" aria-hidden="true">
+        <svg viewBox="0 0 8 12">
+          <path d="M1 1l5 5-5 5" />
+        </svg>
+      </span>
+    `;
+  }
+
+  function buildMegaGroup(li) {
+    const group = document.createElement('div');
+    group.className = 'nav-mega-group';
+
+    const nestedList = li.querySelector(':scope > ul');
+    const { label, href } = getLabelAndHref(li);
+
+    const title = document.createElement('a');
+    title.className = 'nav-mega-group-title';
+    title.href = href;
+    title.innerHTML = `<span>${label}</span>${getRightChevronSVG()}`;
+    group.append(title);
+
+    if (nestedList) {
+      const list = document.createElement('ul');
+      list.className = 'nav-mega-group-list';
+
+      [...nestedList.children].forEach((item) => {
+        const { label: itemLabel, href: itemHref } = getLabelAndHref(item);
+        const liItem = document.createElement('li');
+        const aItem = document.createElement('a');
+        aItem.href = itemHref;
+        aItem.textContent = itemLabel;
+        liItem.append(aItem);
+        list.append(liItem);
+      });
+
+      group.append(list);
+    }
+
+    return group;
+  }
+
+  function buildMegaMenu(sourceList) {
+    const mega = document.createElement('div');
+    mega.className = 'nav-mega';
+    
+    const inner = document.createElement('div');
+    inner.className = 'nav-mega-inner';
+
+    [...sourceList.children].forEach((topLi) => {
+      const col = document.createElement('div');
+      col.className = 'nav-mega-col';
+
+      const hasSubCategories = topLi.querySelector(':scope > ul');
+      const { label } = getLabelAndHref(topLi);
+
+      if (hasSubCategories && !label) {
+        [...hasSubCategories.children].forEach((subLi) => {
+          col.append(buildMegaGroup(subLi));
+        });
+      } else {
+        col.append(buildMegaGroup(topLi));
+      }
+
+      inner.append(col);
+    });
+
+    mega.append(inner);
+    return mega;
+  }
+
+  function clearAllActiveStates() {
+    nav.querySelectorAll('.nav-dropdown-trigger[aria-expanded="true"]').forEach((btn) => {
+      btn.setAttribute('aria-expanded', 'false');
+    });
+    nav.querySelectorAll('.nav-link.active').forEach((link) => {
+      link.classList.remove('active');
+    });
+    block.classList.remove('nav-open');
+    drawer.classList.remove('sub-open');
+    if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
+    if (overlay) {
+      overlay.classList.remove('is-active');
+      overlay.setAttribute('aria-hidden', 'true');
+    }
+    document.body.classList.remove('nav-menu-open');
+  }
+
+  function triggerBlink(element) {
+    element.classList.remove('blink-effect');
+    void element.offsetWidth; 
+    element.classList.add('blink-effect');
+
+    element.addEventListener(
+      'animationend',
+      () => {
+        element.classList.remove('blink-effect');
+      },
+      { once: true }
+    );
+  }
+
+  function buildSearch() {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'nav-search';
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'nav-search-toggle';
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'Search');
+    btn.innerHTML = `
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+        <line x1="20" y1="20" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span class="search-text">Search</span>
+    `;
+
+    wrapper.append(btn);
+    return wrapper;
+  }
+
   // Parse items from table
   for (let i = 1; i < rows.length; i += 1) {
     const row = rows[i];
@@ -251,11 +259,14 @@ export default async function decorate(block) {
         triggerBlink(trigger);
 
         const expanded = trigger.getAttribute('aria-expanded') === 'true';
-        clearAllActiveStates(nav);
+        clearAllActiveStates();
 
         if (!expanded) {
           trigger.setAttribute('aria-expanded', 'true');
-          nav.classList.add('nav-dropdown-open');
+          if (overlay) {
+            overlay.classList.add('is-active');
+            overlay.setAttribute('aria-hidden', 'false');
+          }
         }
       });
 
@@ -268,7 +279,7 @@ export default async function decorate(block) {
 
       a.addEventListener('click', () => {
         triggerBlink(a);
-        clearAllActiveStates(nav);
+        clearAllActiveStates();
         a.classList.add('active');
       });
 
@@ -349,36 +360,40 @@ export default async function decorate(block) {
   `;
 
   const updateMobileDrawerPosition = () => {
-    const headerWrapper = block.closest('header') || block.closest('.header-brand-wrapper') || nav;
+    const headerWrapper = block.closest('header') || block.closest('.header-brand-wrapper') || block;
     const rect = headerWrapper.getBoundingClientRect();
     const topOffset = Math.max(rect.bottom, 0);
 
     drawer.style.setProperty('--mobile-nav-top', `${topOffset}px`);
-    overlay.style.setProperty('--mobile-nav-top', `${topOffset}px`);
   };
 
   const toggleMobileMenu = () => {
     const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
     
     updateMobileDrawerPosition();
+    clearAllActiveStates(); // Reset desktop states if open
 
-    hamburger.setAttribute('aria-expanded', String(!isExpanded));
-    nav.classList.toggle('nav-open', !isExpanded);
-    document.body.classList.toggle('nav-menu-open', !isExpanded);
+    const willBeOpen = !isExpanded;
+    hamburger.setAttribute('aria-expanded', String(willBeOpen));
+    
+    // Toggle state directly on the root component block to match SCSS
+    block.classList.toggle('nav-open', willBeOpen);
+    document.body.classList.toggle('nav-menu-open', willBeOpen);
 
-    if (isExpanded) {
-      drawer.classList.remove('sub-open');
+    if (overlay) {
+      overlay.classList.toggle('is-active', willBeOpen);
+      overlay.setAttribute('aria-hidden', String(!willBeOpen));
     }
   };
 
   hamburger.addEventListener('click', toggleMobileMenu);
+
   overlay.addEventListener('click', () => {
-    clearAllActiveStates(nav);
-    if (nav.classList.contains('nav-open')) toggleMobileMenu();
+    clearAllActiveStates();
   });
 
   window.addEventListener('resize', () => {
-    if (nav.classList.contains('nav-open')) {
+    if (block.classList.contains('nav-open')) {
       updateMobileDrawerPosition();
     }
   });
@@ -389,12 +404,14 @@ export default async function decorate(block) {
   nav.append(overlay);
 
   document.addEventListener('click', (e) => {
-    if (!nav.contains(e.target)) clearAllActiveStates(nav);
+    if (!block.contains(e.target)) {
+      clearAllActiveStates();
+    }
   });
+
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      clearAllActiveStates(nav);
-      if (nav.classList.contains('nav-open')) toggleMobileMenu();
+      clearAllActiveStates();
     }
   });
 
