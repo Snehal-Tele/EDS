@@ -204,14 +204,14 @@
   align-items: center;
   gap: 8px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-black) !important;
   text-decoration: none;
   margin-bottom: 12px;
 }
 .header-brand.block .nav-mega-group-title:hover {
   color: var(--color-black) !important;
-  text-decoration: underline; /* Underline on hover without color change */
+  text-decoration: underline;
 }
 .header-brand.block .nav-mega-group-title .right-chevron {
   width: 7px;
@@ -234,12 +234,45 @@
 .header-brand.block .nav-mega-group-list li a {
   text-decoration: none;
   font-size: 14px;
+  /* Thin font rendering */
   font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   color: var(--color-black) !important;
 }
 .header-brand.block .nav-mega-group-list li a:hover {
   color: var(--color-black) !important;
-  text-decoration: underline; /* Underline on hover without opacity/color change */
+  text-decoration: underline;
+}
+.header-brand.block {
+  /* Transparent Grey Overlay Behind Dropdown */
+}
+.header-brand.block .nav-mobile-overlay {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45); /* Dark transparent grey tint */
+  z-index: 180;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+.header-brand.block .nav-mobile-overlay.is-active, .header-brand.block .nav-mobile-overlay[aria-hidden=false] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.header-brand.block .nav-mobile-overlay {
+  /* Keep overlay disabled on mobile per your previous requirement */
+}
+@media (max-width: 768px) {
+  .header-brand.block .nav-mobile-overlay {
+    display: none !important;
+  }
 }
 .header-brand.block {
   /* Right Side Header Actions */
@@ -303,12 +336,6 @@
   .header-brand.block .nav-login {
     display: none;
   }
-}
-.header-brand.block {
-  /* Shadow Overlay Removed */
-}
-.header-brand.block .nav-mobile-overlay {
-  display: none !important;
 }
 .header-brand.block {
   /* Hamburger Menu Button */

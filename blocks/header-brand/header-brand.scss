@@ -207,14 +207,14 @@
       align-items: center;
       gap: 8px;
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--color-black) !important;
       text-decoration: none;
       margin-bottom: 12px;
 
       &:hover {
         color: var(--color-black) !important;
-        text-decoration: underline; /* Underline on hover without color change */
+        text-decoration: underline;
       }
 
       .right-chevron {
@@ -241,15 +241,47 @@
       li a {
         text-decoration: none;
         font-size: 14px;
+
+        /* Thin font rendering */
         font-weight: 300;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
 
         color: var(--color-black) !important;
 
         &:hover {
           color: var(--color-black) !important;
-          text-decoration: underline; /* Underline on hover without opacity/color change */
+          text-decoration: underline;
         }
       }
+    }
+  }
+
+  /* Transparent Grey Overlay Behind Dropdown */
+  .nav-mobile-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.45); /* Dark transparent grey tint */
+    z-index: 180;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+
+    &.is-active,
+    &[aria-hidden='false'] {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /* Keep overlay disabled on mobile per your previous requirement */
+    @media (max-width: $bp-sm) {
+      display: none !important;
     }
   }
 
@@ -312,11 +344,6 @@
     text-decoration: none;
 
     @media (max-width: 991px) { display: none; }
-  }
-
-  /* Shadow Overlay Removed */
-  .nav-mobile-overlay {
-    display: none !important;
   }
 
   /* Hamburger Menu Button */
