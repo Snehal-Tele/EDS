@@ -192,6 +192,9 @@
 .header-brand.block .nav-mega-col:last-child {
   border-right: none;
 }
+.header-brand.block {
+  /* Mega Menu Groups & Links */
+}
 .header-brand.block .nav-mega-group {
   display: flex;
   flex-direction: column;
@@ -205,6 +208,10 @@
   color: var(--color-black) !important;
   text-decoration: none;
   margin-bottom: 12px;
+}
+.header-brand.block .nav-mega-group-title:hover {
+  color: var(--color-black) !important;
+  text-decoration: underline; /* Underline on hover without color change */
 }
 .header-brand.block .nav-mega-group-title .right-chevron {
   width: 7px;
@@ -229,11 +236,10 @@
   font-size: 14px;
   font-weight: 400;
   color: var(--color-black) !important;
-  transition: opacity 0.2s ease;
 }
 .header-brand.block .nav-mega-group-list li a:hover {
-  opacity: 0.6;
   color: var(--color-black) !important;
+  text-decoration: underline; /* Underline on hover without opacity/color change */
 }
 .header-brand.block {
   /* Right Side Header Actions */
@@ -299,7 +305,7 @@
   }
 }
 .header-brand.block {
-  /* Disabled Shadow Overlay Completely */
+  /* Shadow Overlay Removed */
 }
 .header-brand.block .nav-mobile-overlay {
   display: none !important;
@@ -354,7 +360,7 @@
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-drawer {
-    display: none; /* Instant show/hide via nav-open class */
+    display: none;
     position: fixed;
     top: var(--mobile-nav-top, 64px);
     left: 0;
@@ -363,8 +369,8 @@
     background: var(--color-white);
     z-index: 195;
     overflow-y: auto;
-    transform: none !important; /* Disables slide */
-    transition: none !important; /* Disables animation */
+    transform: none !important;
+    transition: none !important;
   }
   .header-brand.block .nav-drawer .mobile-panels {
     position: relative;
@@ -378,7 +384,7 @@
     width: 100%;
     height: 100%;
     background: var(--color-white);
-    display: none; /* Hide non-active subpanels instantly */
+    display: none;
   }
   .header-brand.block .nav-drawer .mobile-panel.panel-root {
     display: block;
@@ -446,7 +452,7 @@
     color: var(--color-black);
   }
   .header-brand.block {
-    /* Toggled Open State */
+    /* Open Navigation State */
   }
   .header-brand.block.nav-open .nav-hamburger .icon-menu {
     display: none !important;
@@ -455,6 +461,6 @@
     display: flex !important;
   }
   .header-brand.block.nav-open .nav-drawer {
-    display: block !important; /* Instantly pops up when opened */
+    display: block !important;
   }
 }/*# sourceMappingURL=header-brand.css.map */
