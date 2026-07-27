@@ -18,7 +18,6 @@
   margin: 0 auto;
   padding: 0 32px;
   background: var(--color-white);
-  /* Exact Mobile Side Distance */
 }
 @media (max-width: 768px) {
   .header-brand.block {
@@ -34,20 +33,19 @@
   max-width: 1440px;
   margin: 0 auto;
   font-family: "Helvetica Neue", Arial, sans-serif;
-  /* Mobile Header Height */
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-brand {
-    min-height: 52px;
+    min-height: 60px;
   }
 }
 .header-brand.block {
-  /* Logo Sizing & Alignment */
+  /* Logo */
 }
 .header-brand.block .nav-logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   text-decoration: none;
   color: var(--color-black);
   flex-shrink: 0;
@@ -60,18 +58,13 @@
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-logo picture img {
-    width: 108px;
-    height: 24px;
+    width: 90px;
+    height: 28px;
   }
 }
 .header-brand.block .nav-logo-text {
   font-size: 20px;
   font-weight: 800;
-}
-@media (max-width: 768px) {
-  .header-brand.block .nav-logo-text {
-    font-size: 16px;
-  }
 }
 .header-brand.block {
   /* Desktop Navigation */
@@ -140,7 +133,7 @@
   stroke-width: 2.5;
 }
 .header-brand.block {
-  /* Desktop Mega Menu Dropdown */
+  /* Desktop Mega Menu Dropdown (Sliding Transition) */
 }
 .header-brand.block .nav-mega {
   position: absolute;
@@ -237,21 +230,18 @@
   color: var(--color-black) !important;
 }
 .header-brand.block {
-  /* Right Side Header Actions (Search & Hamburger) */
+  /* Header Actions (Right-aligned Search & Hamburger) */
 }
 .header-brand.block .nav-actions {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
   flex-shrink: 0;
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-actions {
-    gap: 20px; /* Exact distance between search and menu icon */
+    gap: 16px;
   }
-}
-.header-brand.block {
-  /* Search Icon */
 }
 .header-brand.block .nav-search {
   display: flex;
@@ -271,12 +261,6 @@
   width: 22px;
   height: 22px;
 }
-@media (max-width: 768px) {
-  .header-brand.block .nav-search-toggle svg {
-    width: 20px;
-    height: 20px;
-  }
-}
 .header-brand.block .nav-search-toggle .search-text {
   font-size: 15px;
   font-weight: 700;
@@ -284,7 +268,7 @@
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-search-toggle .search-text {
-    display: none; /* Hide 'Search' text on mobile */
+    display: none; /* Hide label on mobile view to match reference */
   }
 }
 .header-brand.block .nav-search-input {
@@ -306,7 +290,7 @@
   }
 }
 .header-brand.block {
-  /* Overlay */
+  /* Full Page Backdrop Overlay */
 }
 .header-brand.block .nav-mobile-overlay {
   display: block;
@@ -330,7 +314,7 @@
   pointer-events: auto;
 }
 .header-brand.block {
-  /* Hamburger Menu Button (Three Horizontal Lines) */
+  /* Mobile Hamburger Icon */
 }
 .header-brand.block .nav-hamburger {
   display: none;
@@ -350,14 +334,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 24px;
+    height: 24px;
   }
   .header-brand.block .nav-hamburger .icon-menu svg {
     width: 22px;
-    height: 18px;
-    fill: none;
-    stroke: var(--color-black);
-    stroke-width: 2;
-    stroke-linecap: round;
+    height: 22px;
+  }
+  .header-brand.block .nav-hamburger {
+    /* Oval close button when menu is open */
   }
   .header-brand.block .nav-hamburger .icon-close {
     display: none;
@@ -373,7 +358,7 @@
   }
 }
 .header-brand.block {
-  /* Full Page Mobile Navigation Drawer */
+  /* Mobile Full Screen Drawer */
 }
 .header-brand.block .nav-drawer {
   display: none;
@@ -382,10 +367,10 @@
   .header-brand.block .nav-drawer {
     display: block;
     position: fixed;
-    top: var(--mobile-nav-top, 52px);
+    top: var(--mobile-nav-top, 60px);
     left: 0;
     width: 100vw;
-    height: calc(100vh - var(--mobile-nav-top, 52px));
+    height: calc(100vh - var(--mobile-nav-top, 60px));
     background: var(--color-white);
     z-index: 195;
     transform: translateX(100%);
@@ -456,7 +441,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 18px 20px;
+    padding: 20px 24px;
     font-size: 16px;
     font-weight: 700;
     color: var(--color-black) !important;
@@ -472,7 +457,7 @@
     color: var(--color-black);
   }
   .header-brand.block {
-    /* Open Navigation State */
+    /* Active open menu state toggled on .header-brand.block */
   }
   .header-brand.block.nav-open .nav-hamburger .icon-menu {
     display: none !important;
