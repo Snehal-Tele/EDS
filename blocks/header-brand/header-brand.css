@@ -22,18 +22,13 @@
   position: sticky;
   top: 0;
   left: 0;
-  width: 100vw; /* Forces full viewport width */
+  width: 100vw; /* Full viewport width */
   max-width: 100vw; /* Overrides default AEM EDS max-width caps */
   margin: 0 auto;
-  padding: 0 48px; /* Generous side padding so content doesn't touch screen edges */
+  padding: 0; /* No padding on the outer block container */
   background-color: var(--color-white) !important;
   z-index: 200; /* Stays above the overlay */
   box-sizing: border-box;
-}
-@media (max-width: 768px) {
-  .header-brand.block {
-    padding: 0 20px;
-  }
 }
 .header-brand.block .nav-brand {
   display: flex;
@@ -42,7 +37,7 @@
   min-height: 72px;
   position: relative;
   width: 100%;
-  max-width: 100%; /* Pushes logo/actions toward outer padded bounds */
+  max-width: 100%;
   margin: 0 auto;
   background-color: var(--color-white);
   font-family: "Helvetica Neue", Arial, sans-serif;
@@ -53,7 +48,7 @@
   }
 }
 .header-brand.block {
-  /* Logo */
+  /* Logo - Added specific margin-left to create distance from the left edge */
 }
 .header-brand.block .nav-logo {
   display: flex;
@@ -62,6 +57,12 @@
   text-decoration: none;
   color: var(--color-black);
   flex-shrink: 0;
+  margin-left: 32px; /* Creates distance between the left edge of block and the image */
+}
+@media (max-width: 768px) {
+  .header-brand.block .nav-logo {
+    margin-left: 16px;
+  }
 }
 .header-brand.block .nav-logo picture img {
   width: 120px;
@@ -292,10 +293,12 @@
   align-items: center;
   gap: 24px;
   flex-shrink: 0;
+  margin-right: 32px; /* Matching distance from the right edge */
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-actions {
     gap: 22px;
+    margin-right: 16px;
   }
 }
 .header-brand.block {
