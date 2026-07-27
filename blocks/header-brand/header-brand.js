@@ -51,7 +51,7 @@ export default function decorate(block) {
 
   const subPanel = document.createElement('div');
   subPanel.className = 'mobile-panel panel-sub';
-  
+
   const subHeader = document.createElement('div');
   subHeader.className = 'mobile-sub-header';
 
@@ -64,7 +64,7 @@ export default function decorate(block) {
   subTitle.className = 'mobile-sub-title';
 
   subHeader.append(backBtn, subTitle);
-  
+
   const subList = document.createElement('ul');
   subList.className = 'mobile-menu-list';
   subPanel.append(subHeader, subList);
@@ -76,7 +76,6 @@ export default function decorate(block) {
   panels.append(rootPanel, subPanel);
   drawer.append(panels);
 
-  // Helper functions for parsing content
   function isDecorativeRow(cellText) {
     return cellText === '';
   }
@@ -86,7 +85,7 @@ export default function decorate(block) {
     if (link) {
       return { label: link.textContent.trim(), href: link.href };
     }
-    
+
     let text = '';
     element.childNodes.forEach((node) => {
       if (node.nodeType === Node.TEXT_NODE) {
@@ -95,7 +94,7 @@ export default function decorate(block) {
         text += node.textContent;
       }
     });
-    
+
     return { label: text.trim(), href: '#' };
   }
 
@@ -145,7 +144,7 @@ export default function decorate(block) {
   function buildMegaMenu(sourceList) {
     const mega = document.createElement('div');
     mega.className = 'nav-mega';
-    
+
     const inner = document.createElement('div');
     inner.className = 'nav-mega-inner';
 
@@ -190,7 +189,7 @@ export default function decorate(block) {
 
   function triggerBlink(element) {
     element.classList.remove('blink-effect');
-    void element.offsetWidth; 
+    void element.offsetWidth;
     element.classList.add('blink-effect');
 
     element.addEventListener(
@@ -212,9 +211,9 @@ export default function decorate(block) {
     btn.setAttribute('aria-expanded', 'false');
     btn.setAttribute('aria-label', 'Search');
     btn.innerHTML = `
-      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-        <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
-        <line x1="20" y1="20" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+        <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.6"/>
+        <line x1="15.5" y1="15.5" x2="21" y2="21" stroke="currentColor" stroke-width="2.6" stroke-linecap="square"/>
       </svg>
       <span class="search-text">Search</span>
     `;
@@ -293,7 +292,7 @@ export default function decorate(block) {
       const mBtn = document.createElement('button');
       mBtn.type = 'button';
       mBtn.innerHTML = `<span>${firstCellText}</span><span class="mobile-chevron">&#8250;</span>`;
-      
+
       mBtn.addEventListener('click', () => {
         subTitle.textContent = firstCellText;
         subList.innerHTML = '';
@@ -352,8 +351,8 @@ export default function decorate(block) {
   hamburger.setAttribute('aria-expanded', 'false');
   hamburger.innerHTML = `
     <div class="icon-menu">
-      <svg viewBox="0 0 24 24" width="20" height="20">
-        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <svg viewBox="0 0 24 24" width="28" height="24">
+        <path d="M2 5h20M2 12h20M2 19h20" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/>
       </svg>
     </div>
     <div class="icon-close">&#10005;</div>
@@ -369,14 +368,13 @@ export default function decorate(block) {
 
   const toggleMobileMenu = () => {
     const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-    
+
     updateMobileDrawerPosition();
-    clearAllActiveStates(); // Reset desktop states if open
+    clearAllActiveStates();
 
     const willBeOpen = !isExpanded;
     hamburger.setAttribute('aria-expanded', String(willBeOpen));
-    
-    // Toggle state directly on the root component block to match SCSS
+
     block.classList.toggle('nav-open', willBeOpen);
     document.body.classList.toggle('nav-menu-open', willBeOpen);
 

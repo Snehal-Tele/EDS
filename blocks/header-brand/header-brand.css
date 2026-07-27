@@ -18,11 +18,11 @@
   margin: 0 auto;
   padding: 0 32px;
   background: var(--color-white);
-  /* Reduced Right Side Padding on Mobile View */
+  /* Precise Mobile Header Edges & Padding */
 }
 @media (max-width: 768px) {
   .header-brand.block {
-    padding: 0 8px 0 16px;
+    padding: 0 20px;
   }
 }
 .header-brand.block .nav-brand {
@@ -34,34 +34,34 @@
   max-width: 1440px;
   margin: 0 auto;
   font-family: "Helvetica Neue", Arial, sans-serif;
-  /* Mobile Header Height */
+  /* Toyota Mobile Header Height */
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-brand {
-    min-height: 52px;
+    min-height: 64px;
   }
 }
 .header-brand.block {
-  /* Logo Sizing & Alignment */
+  /* Toyota Logo Sizing & Alignment */
 }
 .header-brand.block .nav-logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   text-decoration: none;
   color: var(--color-black);
   flex-shrink: 0;
 }
 .header-brand.block .nav-logo picture img {
-  width: 104px;
-  height: 32px;
+  width: 120px;
+  height: 36px;
   -o-object-fit: contain;
      object-fit: contain;
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-logo picture img {
-    width: 108px;
-    height: 24px;
+    width: 132px;
+    height: 32px;
   }
 }
 .header-brand.block .nav-logo-text {
@@ -70,7 +70,8 @@
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-logo-text {
-    font-size: 16px;
+    font-size: 18px;
+    letter-spacing: -0.2px;
   }
 }
 .header-brand.block {
@@ -247,12 +248,11 @@
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-actions {
-    gap: 14px; /* Reduced gap between search and menu */
-    margin-right: -4px; /* Tight alignment to right edge */
+    gap: 22px; /* Spacing between Search and Hamburger */
   }
 }
 .header-brand.block {
-  /* Search Icon */
+  /* Search Icon Styling */
 }
 .header-brand.block .nav-search {
   display: flex;
@@ -269,13 +269,13 @@
   color: var(--color-black);
 }
 .header-brand.block .nav-search-toggle svg {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-search-toggle svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
 }
 .header-brand.block .nav-search-toggle .search-text {
@@ -285,7 +285,7 @@
 }
 @media (max-width: 768px) {
   .header-brand.block .nav-search-toggle .search-text {
-    display: none; /* Hide 'Search' text on mobile */
+    display: none;
   }
 }
 .header-brand.block .nav-search-input {
@@ -331,7 +331,7 @@
   pointer-events: auto;
 }
 .header-brand.block {
-  /* Hamburger Menu Button (Three Horizontal Lines) */
+  /* Hamburger Menu Button (Three Bold Horizontal Lines) */
 }
 .header-brand.block .nav-hamburger {
   display: none;
@@ -343,7 +343,7 @@
     justify-content: center;
     background: transparent;
     border: none;
-    padding: 4px; /* Compact touch area */
+    padding: 0;
     cursor: pointer;
     z-index: 220;
   }
@@ -353,12 +353,11 @@
     justify-content: center;
   }
   .header-brand.block .nav-hamburger .icon-menu svg {
-    width: 22px;
-    height: 18px;
+    width: 26px;
+    height: 22px;
     fill: none;
     stroke: var(--color-black);
-    stroke-width: 2;
-    stroke-linecap: round;
+    stroke-linecap: square;
   }
   .header-brand.block .nav-hamburger .icon-close {
     display: none;
@@ -383,10 +382,10 @@
   .header-brand.block .nav-drawer {
     display: block;
     position: fixed;
-    top: var(--mobile-nav-top, 52px);
+    top: var(--mobile-nav-top, 64px);
     left: 0;
     width: 100vw;
-    height: calc(100vh - var(--mobile-nav-top, 52px));
+    height: calc(100vh - var(--mobile-nav-top, 64px));
     background: var(--color-white);
     z-index: 195;
     transform: translateX(100%);

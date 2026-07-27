@@ -16,9 +16,9 @@
   padding: 0 32px;
   background: var(--color-white);
 
-  /* Reduced Right Side Padding on Mobile View */
+  /* Precise Mobile Header Edges & Padding */
   @media (max-width: $bp-sm) {
-    padding: 0 8px 0 16px;
+    padding: 0 20px;
   }
 
   .nav-brand {
@@ -31,29 +31,29 @@
     margin: 0 auto;
     font-family: 'Helvetica Neue', Arial, sans-serif;
 
-    /* Mobile Header Height */
+    /* Toyota Mobile Header Height */
     @media (max-width: $bp-sm) {
-      min-height: 52px;
+      min-height: 64px;
     }
   }
 
-  /* Logo Sizing & Alignment */
+  /* Toyota Logo Sizing & Alignment */
   .nav-logo {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     text-decoration: none;
     color: var(--color-black);
     flex-shrink: 0;
 
     picture img {
-      width: 104px;
-      height: 32px;
+      width: 120px;
+      height: 36px;
       object-fit: contain;
 
       @media (max-width: $bp-sm) {
-        width: 108px;
-        height: 24px;
+        width: 132px;
+        height: 32px;
       }
     }
 
@@ -62,7 +62,8 @@
       font-weight: 800;
 
       @media (max-width: $bp-sm) {
-        font-size: 16px;
+        font-size: 18px;
+        letter-spacing: -0.2px;
       }
     }
   }
@@ -256,12 +257,11 @@
     flex-shrink: 0;
 
     @media (max-width: $bp-sm) {
-      gap: 14px; /* Reduced gap between search and menu */
-      margin-right: -4px; /* Tight alignment to right edge */
+      gap: 22px; /* Spacing between Search and Hamburger */
     }
   }
 
-  /* Search Icon */
+  /* Search Icon Styling */
   .nav-search {
     display: flex;
     align-items: center;
@@ -277,12 +277,12 @@
       color: var(--color-black);
 
       svg {
-        width: 22px;
-        height: 22px;
+        width: 24px;
+        height: 24px;
 
         @media (max-width: $bp-sm) {
-          width: 20px;
-          height: 20px;
+          width: 24px;
+          height: 24px;
         }
       }
 
@@ -292,7 +292,7 @@
         margin-left: 8px;
 
         @media (max-width: $bp-sm) {
-          display: none; /* Hide 'Search' text on mobile */
+          display: none;
         }
       }
     }
@@ -340,7 +340,7 @@
     }
   }
 
-  /* Hamburger Menu Button (Three Horizontal Lines) */
+  /* Hamburger Menu Button (Three Bold Horizontal Lines) */
   .nav-hamburger {
     display: none;
 
@@ -350,7 +350,7 @@
       justify-content: center;
       background: transparent;
       border: none;
-      padding: 4px; /* Compact touch area */
+      padding: 0;
       cursor: pointer;
       z-index: 220;
 
@@ -360,12 +360,11 @@
         justify-content: center;
 
         svg {
-          width: 22px;
-          height: 18px;
+          width: 26px;
+          height: 22px;
           fill: none;
           stroke: var(--color-black);
-          stroke-width: 2;
-          stroke-linecap: round;
+          stroke-linecap: square;
         }
       }
 
@@ -393,10 +392,10 @@
     .nav-drawer {
       display: block;
       position: fixed;
-      top: var(--mobile-nav-top, 52px);
+      top: var(--mobile-nav-top, 64px);
       left: 0;
       width: 100vw;
-      height: calc(100vh - var(--mobile-nav-top, 52px));
+      height: calc(100vh - var(--mobile-nav-top, 64px));
       background: var(--color-white);
       z-index: 195;
       transform: translateX(100%);
