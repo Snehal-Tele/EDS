@@ -120,14 +120,9 @@
       margin-top: auto;
       color: var(--color-link-column);
       font-size: var(--heading-font-size-s-desktop);
-    //  font-weight: var(--font-weight-bold);
       letter-spacing: 0.5px;
       text-decoration: none;
       text-transform: uppercase;
-
-      &:hover {
-      //  text-decoration: underline;
-      }
     }
   }
 
@@ -279,7 +274,7 @@
   /* Columns Standard */
   .columns-standard {
     max-width: 1054px;
-    margin: 0 auto; 
+    margin: 0 auto;
     padding: 0 35px;
 
     @media (width = #{$bp-tablet}) {
