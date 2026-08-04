@@ -1,6 +1,8 @@
 import { getBlockConfig } from '../../scripts/utils/block-config.js';
 
-function decorateColumnsCardGrid(contentRows) {
+function decorateColumnsCardGrid(block, contentRows) {
+  block.classList.add('columns-card-grid');
+
   contentRows.forEach((row) => {
     [...row.children].forEach((col) => {
       // Tag column containing an image
@@ -20,6 +22,8 @@ function decorateColumnsCardGrid(contentRows) {
 }
 
 function decorateColumnsWithPopup(block, contentRows) {
+  block.classList.add('columns-with-popup');
+
   const cardsWrapper = document.createElement('div');
   cardsWrapper.classList.add('cards-wrapper');
 
@@ -112,6 +116,8 @@ function decorateColumnsWithPopup(block, contentRows) {
 }
 
 function decorateColumnsStandard(block) {
+  block.classList.add('columns-standard');
+
   const BLOCK = 'columns-standard';
 
   function addElementClass(el, element) {
@@ -191,5 +197,5 @@ export default function decorate(block) {
   }
 
   // Default: Columns Card Grid
-  decorateColumnsCardGrid(contentRows);
+  decorateColumnsCardGrid(block, contentRows);
 }
