@@ -1,0 +1,456 @@
+@use '../../styles/tokens' as *;
+
+/* -------------------------------------------------------------------------
+   1. Section Modifier Styles
+   ------------------------------------------------------------------------- */
+.section.light-blue {
+  padding: 60px 0;
+  background-color: var(--color-blue-light);
+
+  h2 {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 32px;
+    color: var(--color-black-light);
+    font-size: 33px;
+    font-weight: var(--font-weight-bold);
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: -50vw;
+      z-index: 5;
+      width: 150vw;
+      border-bottom: 2px solid var(--color-white);
+
+      @media (width >= #{$bp-tablet}) {
+        bottom: -24px;
+        left: -52.5vw;
+      }
+    }
+  }
+}
+
+@media (width < #{$bp-tablet}) {
+  .section.light-blue {
+    h2 {
+      font-size: 33px;
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------
+   2. Container Specific Modifiers (Outside main wrapper)
+   ------------------------------------------------------------------------- */
+.columns-standard-container:has(.columns-standard) {
+  padding: var(--space-xl) 0;
+}
+
+/* -------------------------------------------------------------------------
+   3. Block Styles (.dynamic-columns-wrapper)
+   ------------------------------------------------------------------------- */
+.dynamic-columns-wrapper {
+
+  /* Columns Card Grid */
+  .columns-card-grid {
+    &,
+    * {
+      box-sizing: border-box;
+    }
+
+    > div {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: var(--space-xl);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--heading-font-size-s) var(--space-m) 60px;
+
+      > div {
+        display: flex;
+        flex: 1 1 300px;
+        flex-direction: column;
+      }
+
+      @media (width < #{$bp-tablet}) {
+        flex-direction: column;
+        gap: var(--space-l);
+      }
+    }
+
+    picture,
+    img {
+      display: block;
+      width: 100%;
+      margin-bottom: var(--heading-font-size-s);
+      object-fit: cover;
+    }
+
+    h3,
+    strong {
+      margin: 0 0 var(--space-xs);
+      color: var(--color-black-light);
+      font-size: var(--heading-font-size-s-desktop);
+      font-weight: var(--font-weight-bold);
+    }
+
+    p {
+      margin: 0 0 var(--space-s);
+      color: var(--color-text-black);
+      font-size: 24px;
+      line-height: 1.5;
+    }
+
+    a {
+      margin-top: auto;
+      color: var(--color-red-darker);
+      font-size: var(--heading-font-size-s-desktop);
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+  }
+
+  .columns-card-grid-cta {
+    a {
+      margin-top: auto;
+      color: var(--color-link-column);
+      font-size: var(--heading-font-size-s-desktop);
+    //  font-weight: var(--font-weight-bold);
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      text-transform: uppercase;
+
+      &:hover {
+      //  text-decoration: underline;
+      }
+    }
+  }
+
+  @media (width < #{$bp-tablet}) {
+    .columns-card-grid {
+      h3,
+      strong,
+      p {
+        font-size: 24px;
+      }
+
+      a {
+        font-size: var(--heading-font-size-m);
+      }
+    }
+  }
+
+  /* Columns With Popup */
+  .columns-with-popup {
+    background-color: var(--color-grey-bg);
+
+    .cards-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding: 56px 18px;
+      max-width: 1168px;
+      margin: 0 auto;
+    }
+
+    .plan-card {
+      background: var(--color-white);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow:
+        0 1px 2px var(--color-border-right),
+        0 2px 8px var(--color-border-right);
+    }
+
+    .image-wrapper {
+      position: relative;
+    }
+
+    picture,
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    img {
+      height: 208px;
+      object-fit: cover;
+    }
+
+    .info-btn {
+      position: absolute;
+      right: 16px;
+      bottom: 10px;
+      background: var(--color-black);
+      color: var(--color-white);
+      border: 1px solid var(--color-white);
+      border-radius: 100px;
+      cursor: pointer;
+      padding: 5px 8px;
+      font-size: 10px;
+      line-height: 1;
+      transition: 0.2s ease;
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      padding: 32px 32px 24px;
+      height: 100%;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 32px;
+    }
+
+    .description {
+      flex-grow: 1;
+      font-size: 16px;
+      line-height: 28px;
+    }
+
+    .price {
+      bottom: 24px;
+      font-size: 16px;
+
+      p {
+        font-size: 16px;
+        margin: 0;
+      }
+
+      strong {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 32px;
+      }
+
+      span {
+        font-size: 22px;
+      }
+    }
+
+    @media (min-width: $bp-tablet) {
+      .cards-wrapper {
+        padding: 80px 48px;
+      }
+    }
+
+    @media (min-width: $bp-desktop) {
+      .cards-wrapper {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+        padding: 56px 36px;
+      }
+
+      .card-content {
+        padding: 24px;
+      }
+
+      h3 {
+        font-size: 24px;
+      }
+
+      .description {
+        font-size: 16px;
+      }
+
+      .price {
+        p {
+          font-size: 16px;
+        }
+
+        strong {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+
+  /* Columns Standard */
+  .columns-standard {
+    max-width: 1054px;
+    margin: 0 auto; 
+    padding: 0 35px;
+
+    @media (width = #{$bp-tablet}) {
+      padding: 0 64px;
+    }
+
+    @media (width >= #{$bp-desktop}) {
+      padding: 0;
+    }
+
+    & > div {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 52px;
+
+      @media (width >= #{$bp-desktop}) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+    }
+
+    &__card {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    &__image {
+      margin: 0;
+      order: -1;
+    }
+
+    &__picture {
+      display: block;
+    }
+
+    &__img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    &__title {
+      margin: 0;
+      color: $color-text;
+      font-family: #{$font-heading};
+      font-weight: $font-weight-bold;
+      font-size: 24px;
+      line-height: 36px;
+      letter-spacing: 1px;
+    }
+
+    &__text {
+      margin: 0;
+      color: $color-text;
+      font-family: #{$font-body};
+      font-weight: var(--font-weight-book);
+      font-size: 24px;
+      line-height: 36px;
+    }
+
+    &__cta {
+      margin: 0;
+
+      a:any-link {
+        color: var(--color-red-darker);
+        font-size: 24px;
+        line-height: 36px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+          color: var(--color-red-darker);
+          text-decoration: none;
+
+          &::after {
+            height: 2px;
+            background: var(--color-red-primary);
+            transform: translateY(3px);
+          }
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------
+   4. Global Elements (Attached directly to body)
+   ------------------------------------------------------------------------- */
+.columns-with-popup-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    .popup-inner {
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  .popup-inner {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%) translateY(120px);
+    max-width: 900px;
+    width: min(1160px, calc(100% - 50px));
+    background-color: var(--color-popup-black);
+    color: var(--color-white);
+    border-radius: 8px 8px 0 0;
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    min-height: 100px;
+    transition: transform 0.3s ease;
+  }
+
+  .popup-message {
+    font-size: 10px !important;
+    line-height: 15px;
+  }
+
+  .popup-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 28px;
+    background: var(--color-white);
+    color: var(--color-black);
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  @media (min-width: $bp-tablet) {
+    .popup-inner {
+      min-height: 58px;
+      max-height: 180px;
+    }
+  }
+
+  @media (min-width: $bp-desktop) {
+    .popup-inner {
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      width: auto;
+      max-width: 845px;
+      margin: 0 auto;
+      transform: translateY(120px);
+      padding: 20px 25px 20px 30px;
+    }
+
+    &.show .popup-inner {
+      transform: translateY(0);
+      bottom: 0;
+    }
+  }
+}
