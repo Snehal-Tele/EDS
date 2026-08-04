@@ -44,7 +44,7 @@
 /* -------------------------------------------------------------------------
    2. Container Specific Modifiers (Outside main wrapper)
    ------------------------------------------------------------------------- */
-.columns-v3-container:has(.columns-v3) {
+.columns-standard-container:has(.columns-standard) {
   padding: var(--space-xl) 0;
 }
 
@@ -53,8 +53,8 @@
    ------------------------------------------------------------------------- */
 .dynamic-columns-wrapper {
 
-  /* Columns V1 */
-  .columns-v1 {
+  /* Columns Card Grid */
+  .columns-card-grid {
     &,
     * {
       box-sizing: border-box;
@@ -115,24 +115,24 @@
     }
   }
 
-  .columns-v1-cta {
+  .columns-card-grid-cta {
     a {
       margin-top: auto;
       color: var(--color-link-column);
       font-size: var(--heading-font-size-s-desktop);
-      font-weight: var(--font-weight-bold);
+    //  font-weight: var(--font-weight-bold);
       letter-spacing: 0.5px;
       text-decoration: none;
       text-transform: uppercase;
 
       &:hover {
-        text-decoration: underline;
+      //  text-decoration: underline;
       }
     }
   }
 
   @media (width < #{$bp-tablet}) {
-    .columns-v1 {
+    .columns-card-grid {
       h3,
       strong,
       p {
@@ -145,8 +145,8 @@
     }
   }
 
-  /* Columns V2 */
-  .dynamic-columns-v2 {
+  /* Columns With Popup */
+  .columns-with-popup {
     background-color: var(--color-grey-bg);
 
     .cards-wrapper {
@@ -276,10 +276,10 @@
     }
   }
 
-  /* Columns V3 */
-  .columns-v3 {
+  /* Columns Standard */
+  .columns-standard {
     max-width: 1054px;
-    margin: 0 auto;
+    margin: 0 auto; 
     padding: 0 35px;
 
     @media (width = #{$bp-tablet}) {
@@ -372,7 +372,7 @@
 /* -------------------------------------------------------------------------
    4. Global Elements (Attached directly to body)
    ------------------------------------------------------------------------- */
-.dynamic-columns-v2-popup {
+.columns-with-popup-popup {
   position: fixed;
   inset: 0;
   z-index: 1000;
