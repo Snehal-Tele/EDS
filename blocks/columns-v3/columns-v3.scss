@@ -1,0 +1,94 @@
+@use '../../styles/tokens' as *;
+
+.columns-v3-container:has(.columns-v3) {
+    padding: var(--space-xl) 0;
+}
+
+.columns-v3 {
+    max-width: 1054px;
+    margin: 0 auto;
+    padding: 0 35px;
+    @media (width = #{$bp-tablet}) {
+        padding: 0 64px;
+    }
+    @media (width >= #{$bp-desktop}) {
+        padding: 0;
+    }
+
+    & > div {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 52px;
+
+        @media (width >= #{$bp-desktop}) {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+    }
+
+    &__card {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    &__image {
+        margin: 0;
+        order: -1;
+    }
+
+    &__picture {
+        display: block;
+    }
+
+    &__img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    &__title {
+        margin: 0;
+        color: $color-text;
+        font-family: #{$font-heading};
+        font-weight: $font-weight-bold;
+        font-size: 24px;
+        line-height: 36px;
+        letter-spacing: 1px;
+    }
+
+    &__text {
+        margin: 0;
+        color: $color-text;
+        font-family: #{$font-body};
+        font-weight: var(--font-weight-book);
+        font-size: 24px;
+        line-height: 36px;
+    }
+
+    &__cta {
+        margin: 0;
+        a:any-link {
+            color: var(--color-red-darker);
+            font-size: 24px;
+            line-height: 36px;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+            text-decoration: none;
+
+            &:hover,
+            &:focus {
+                color: var(--color-red-darker);
+                text-decoration: none;
+
+                &::after {
+                    height: 2px;
+                    background: var(--color-red-primary);
+                    transform: translateY(3px);
+                }
+            }
+        }
+    }
+    
+}

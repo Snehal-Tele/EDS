@@ -1,0 +1,103 @@
+.columns-v3-container:has(.columns-v3) {
+  padding: var(--space-xl) 0;
+}
+
+.columns-v3 {
+  max-width: 1054px;
+  margin: 0 auto;
+  padding: 0 35px;
+}
+@media (width = 768px) {
+  .columns-v3 {
+    padding: 0 64px;
+  }
+}
+@media (width >= 1024px) {
+  .columns-v3 {
+    padding: 0;
+  }
+}
+.columns-v3 > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 52px;
+}
+@media (width >= 1024px) {
+  .columns-v3 > div {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+.columns-v3__card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.columns-v3__image {
+  margin: 0;
+  order: -1;
+}
+.columns-v3__picture {
+  display: block;
+}
+.columns-v3__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.columns-v3__title {
+  margin: 0;
+  color: #000000;
+  font-family: "Toyota Type", roboto-condensed, roboto-condensed-fallback, "Arial", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: 1px;
+}
+.columns-v3__text {
+  margin: 0;
+  color: #000000;
+  font-family: "Toyota Type", roboto, roboto-fallback, "Arial", sans-serif;
+  font-weight: var(--font-weight-book);
+  font-size: 24px;
+  line-height: 36px;
+}
+.columns-v3__cta {
+  margin: 0;
+}
+.columns-v3__cta a:-moz-any-link {
+  color: var(--color-red-darker);
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.columns-v3__cta a:any-link {
+  color: var(--color-red-darker);
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.columns-v3__cta a:-moz-any-link:hover, .columns-v3__cta a:-moz-any-link:focus {
+  color: var(--color-red-darker);
+  text-decoration: none;
+}
+.columns-v3__cta a:any-link:hover, .columns-v3__cta a:any-link:focus {
+  color: var(--color-red-darker);
+  text-decoration: none;
+}
+.columns-v3__cta a:-moz-any-link:hover::after, .columns-v3__cta a:-moz-any-link:focus::after {
+  height: 2px;
+  background: var(--color-red-primary);
+  transform: translateY(3px);
+}
+.columns-v3__cta a:any-link:hover::after, .columns-v3__cta a:any-link:focus::after {
+  height: 2px;
+  background: var(--color-red-primary);
+  transform: translateY(3px);
+}/*# sourceMappingURL=columns-v3.css.map */

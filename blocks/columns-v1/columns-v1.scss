@@ -1,0 +1,139 @@
+@use '../../styles/tokens' as *;
+
+.columns-v1 {
+  &,
+  * {
+    box-sizing: border-box;
+  }
+
+  > div {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--space-xl);
+        max-width: 1200px;
+        margin: 0 auto;
+        padding:
+        var(--heading-font-size-s)
+        var(--space-m)
+        60px;
+
+    > div {
+      display: flex;
+      flex: 1 1 300px;
+      flex-direction: column;
+    }
+
+    @media (width < #{$bp-tablet}) {
+      flex-direction: column;
+      gap: var(--space-l);
+    }
+  }
+
+  picture,
+  img {
+    display: block;
+    width: 100%;
+    margin-bottom: var(--heading-font-size-s);
+    object-fit: cover;
+  }
+
+  h3,
+  strong {
+    margin: 0 0 var(--space-xs);
+    color: var(--color-black-light);
+    font-size: var(--heading-font-size-s-desktop);
+    font-weight: var(--font-weight-bold);
+  }
+
+  p {
+    margin: 0 0 var(--space-s);
+    color: var(--color-text-black);
+    font-size: 24px;
+    line-height: 1.5;
+  }
+
+  a {
+    margin-top: auto;
+
+    color: var(--color-red-darker);
+
+    font-size: var(--heading-font-size-s-desktop);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+}
+
+.columns-v1-cta {
+  a {
+    margin-top: auto;
+
+    color: var(--color-link-column);
+
+    font-size: var(--heading-font-size-s-desktop);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.section {
+  &.light-blue {
+    padding: 60px 0;
+    background-color: var(--color-blue-light);
+
+    h2 {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 32px;
+      color: var(--color-black-light);
+      font-size: 33px;
+      font-weight: var(--font-weight-bold);
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -20px;
+        left: -50vw;
+        z-index: 5;
+        width: 150vw;
+        border-bottom: 2px solid var(--color-white);
+
+        @media (width >= #{$bp-tablet}) {
+          bottom: -24px;
+        left: -52.5vw;
+          
+        }
+      }
+    }
+  }
+}
+
+@media (width < #{$bp-tablet}) {
+  .columns-v1 {
+    h3,
+    strong {
+      font-size: 24px;
+    }
+    p {
+      font-size: 24px;
+    }
+    a {
+      font-size: var(--heading-font-size-m);
+    }
+  }
+
+  .section.light-blue {
+    h2 {
+      font-size: 33px;
+    }
+  }
+}
