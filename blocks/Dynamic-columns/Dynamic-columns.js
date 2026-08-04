@@ -1,6 +1,6 @@
 import { getBlockConfig } from '../../scripts/utils/block-config.js';
 
-function decorateColumnV1(contentRows) {
+function decorateColumnsCardGrid(contentRows) {
   contentRows.forEach((row) => {
     [...row.children].forEach((col) => {
       // Tag column containing an image
@@ -13,13 +13,13 @@ function decorateColumnV1(contentRows) {
       const paragraphs = col.querySelectorAll('p');
       const lastPara = paragraphs[paragraphs.length - 1];
       if (lastPara && lastPara.querySelector('a')) {
-        lastPara.classList.add('columns-cta');
+        lastPara.classList.add('columns-card-grid-cta');
       }
     });
   });
 }
 
-function decorateColumnV2(block, contentRows) {
+function decorateColumnsWithPopup(block, contentRows) {
   const cardsWrapper = document.createElement('div');
   cardsWrapper.classList.add('cards-wrapper');
 
@@ -75,11 +75,11 @@ function decorateColumnV2(block, contentRows) {
   block.append(cardsWrapper);
 
   // Setup Popup (Singleton Pattern attached to body)
-  let popup = document.querySelector('.dynamic-columns-v2-popup');
+  let popup = document.querySelector('.columns-with-popup-popup');
 
   if (!popup) {
     popup = document.createElement('div');
-    popup.className = 'dynamic-columns-v2-popup';
+    popup.className = 'columns-with-popup-popup';
 
     popup.innerHTML = `
       <div class="popup-inner">
@@ -111,8 +111,8 @@ function decorateColumnV2(block, contentRows) {
   });
 }
 
-function decorateColumnV3(block) {
-  const BLOCK = 'columns-v3';
+function decorateColumnsStandard(block) {
+  const BLOCK = 'columns-standard';
 
   function addElementClass(el, element) {
     if (el) {
@@ -160,7 +160,7 @@ function decorateColumnV3(block) {
 }
 
 export default function decorate(block) {
-  // 1. Extract Config (Brand, Class Name)
+  // 1. Extract Config (Brand, Class Name) — this also removes those rows from the DOM
   const { brand, className } = getBlockConfig(block);
 
   if (brand === 'toyota') {
@@ -170,32 +170,26 @@ export default function decorate(block) {
     console.log('Lexus block');
   }
 
-  // 2. Remove configuration rows from DOM before rendering layout
-  const configRowsCount = (brand ? 1 : 0) + (className ? 1 : 0);
-  const rows = [...block.children];
-
-  rows.slice(0, configRowsCount).forEach((row) => row.remove());
-  const contentRows = rows.slice(configRowsCount);
+  // 2. Remaining children are all content rows (config rows already removed above)
+  const contentRows = [...block.children];
 
   // 3. Variant Check & Dispatch
   if (
-    block.classList.contains('columns-v3') ||
-    className === 'columns-v3'
+    block.classList.contains('columns-standard') ||
+    className === 'columns-standard'
   ) {
-    decorateColumnV3(block);
+    decorateColumnsStandard(block);
     return;
   }
 
   if (
-    block.classList.contains('dynamic-columns-v2') ||
-    block.classList.contains('dynamic-column-v2') ||
-    className === 'dynamic-columns-v2' ||
-    className === 'dynamic-column-v2'
+    block.classList.contains('columns-with-popup') ||
+    className === 'columns-with-popup'
   ) {
-    decorateColumnV2(block, contentRows);
+    decorateColumnsWithPopup(block, contentRows);
     return;
   }
 
-  // Default: Columns V1
-  decorateColumnV1(contentRows);
+  // Default: Columns Card Grid
+  decorateColumnsCardGrid(contentRows);
 }
