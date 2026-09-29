@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "permissions": {
+    "allow": [
+      "Read",
+      "Bash(npm run lint)",
+      "Bash(npm run lint:fix)",
+      "Bash(npm run lint:js)",
+      "Bash(npm run lint:css)",
+      "Bash(npm run build:css)",
+      "Bash(npx gulp *)",
+      "Bash(npx sass *)",
+      "Bash(npx eslint *)",
+      "Bash(npx stylelint *)",
+      "Bash(npx -y @adobe/aem-cli up *)",
+      "Bash(aem up *)",
+      "Bash(curl http://localhost:3000/*)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git show *)",
+      "Bash(git branch *)",
+      "Bash(git ls-files *)",
+      "Bash(gh repo view *)",
+      "Bash(gh pr checks *)",
+      "Bash(gh pr view *)"
+    ],
+    "deny": [
+      "Edit(scripts/aem.js)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/after-block-edit.mjs",
+            "timeout": 120,
+            "statusMessage": "Compiling SCSS / running eslint --fix"
+          }
+        ]
+      }
+    ]
+  }
+}

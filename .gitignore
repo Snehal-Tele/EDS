@@ -8,6 +8,9 @@ helix-importer-ui
 *.bak
 .idea
 
+# Personal Claude Code overrides (team config lives in .claude/settings.json)
+.claude/settings.local.json
+
 # Ensure these files are tracked
 !CLAUDE.md
 !AGENTS.md

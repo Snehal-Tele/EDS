@@ -1,0 +1,16 @@
+name = "claude-gateway"
+main = "worker.js"
+compatibility_date = "2026-09-01"
+
+# The Anthropic SDK needs a few Node built-ins (streams, buffer) on Workers.
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Browsers that may call this gateway. The first entry is used as the fallback
+# Access-Control-Allow-Origin. Replace the branch preview host as needed and add
+# your production domain once it is live.
+ALLOWED_ORIGINS = "https://main--EDS--Snehal-Tele.aem.live,https://main--EDS--Snehal-Tele.aem.page,https://da.live,http://localhost:3000"
+
+# ANTHROPIC_API_KEY is deliberately NOT here — it is a secret:
+#   wrangler secret put ANTHROPIC_API_KEY
+# Never add it to [vars]; anything in this file is committed to git.

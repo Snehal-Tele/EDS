@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Claude agent</title>
+    <!-- Replace the host with your deployed Worker (see proxy/claude-gateway/README.md) -->
+    <meta name="claude-gateway" content="https://claude-gateway.yourorg.workers.dev"/>
+    <link rel="stylesheet" href="/blocks/tools/claude-agent/claude-agent.css"/>
+    <script src="/blocks/tools/claude-agent/claude-agent.js" type="module"></script>
+  </head>
+  <body>
+    <main class="agent">
+      <div class="agent__log" id="chat-log" role="log" aria-live="polite" aria-label="Conversation"></div>
+      <form class="agent__composer" id="composer">
+        <label class="agent__label" for="prompt-input">Ask Claude</label>
+        <textarea
+          class="agent__input"
+          id="prompt-input"
+          rows="3"
+          placeholder="Ask Claude to draft or restructure page content…"
+        ></textarea>
+        <div class="agent__actions">
+          <button class="agent__send" type="submit" id="send-btn">Send</button>
+          <button class="agent__close" type="button" id="close-btn">Close</button>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>

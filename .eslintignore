@@ -1,2 +1,5 @@
 helix-importer-ui
 *.min.js
+
+# separate Cloudflare Worker project with its own toolchain and package.json
+proxy

@@ -1,0 +1,40 @@
+<div>
+  <h1>Chat block test page</h1>
+  <p>Static test content for the <code>chat</code> block. Serve it with:</p>
+  <p><code>npx -y @adobe/aem-cli up --no-open --forward-browser-logs --html-folder drafts</code></p>
+  <p>then open <a href="http://localhost:3000/drafts/chat">http://localhost:3000/drafts/chat</a>
+    — the dev server mounts the folder under <code>/drafts</code>.</p>
+  <p>The block needs a gateway URL to work. Either uncomment
+    <code>&lt;meta name="claude-gateway"&gt;</code> in <code>head.html</code> and point it at
+    <code>http://localhost:8787</code> with the Worker running locally, or expect
+    the block to render in its "not configured yet" state.</p>
+</div>
+<div>
+  <div class="chat">
+    <div>
+      <div>heading</div>
+      <div>Ask about this site</div>
+    </div>
+    <div>
+      <div>intro</div>
+      <div>Answers are AI generated and may be inaccurate.</div>
+    </div>
+    <div>
+      <div>placeholder</div>
+      <div>What would you like to know?</div>
+    </div>
+    <div>
+      <div>greeting</div>
+      <div>Hi! Ask me anything about this site.</div>
+    </div>
+  </div>
+</div>
+<div>
+  <h2>Minimal case — no configuration rows</h2>
+  <p>The same block with an empty body, to confirm the defaults render.</p>
+  <div class="chat">
+    <div>
+      <div></div>
+    </div>
+  </div>
+</div>

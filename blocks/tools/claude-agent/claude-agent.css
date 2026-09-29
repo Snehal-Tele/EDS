@@ -1,0 +1,166 @@
+/*
+ * Claude agent DA plugin.
+ *
+ * Standalone stylesheet: this page is loaded in an iframe inside da.live, not
+ * as part of the site, so it cannot use the project's design tokens from
+ * styles/styles.scss. Values are intentionally self-contained.
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Adobe Clean", -apple-system, "Segoe UI", roboto, sans-serif;
+  font-size: 14px;
+  color: #2c2c2c;
+  background: #fff;
+}
+
+.agent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100vh;
+  padding: 12px;
+}
+
+.agent__log {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px;
+}
+
+.agent__turn {
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: #f5f5f5;
+}
+
+.agent__turn--user {
+  background: #eef4ff;
+}
+
+.agent__who {
+  margin: 0 0 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #6e6e6e;
+}
+
+.agent__text {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  line-height: 1.5;
+}
+
+.agent__text.is-streaming::after {
+  content: "▍";
+  animation: agent-blink 1s steps(2, start) infinite;
+}
+
+.agent__text.is-error {
+  color: #b00716;
+}
+
+@keyframes agent-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agent__text.is-streaming::after {
+    animation: none;
+  }
+}
+
+.agent__insert {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.agent__composer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.agent__label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #6e6e6e;
+}
+
+.agent__input {
+  width: 100%;
+  padding: 8px;
+  font: inherit;
+  color: inherit;
+  border: 1px solid #b3b3b3;
+  border-radius: 6px;
+  resize: vertical;
+}
+
+.agent__input:focus-visible {
+  outline: 2px solid #007aff;
+  outline-offset: 1px;
+}
+
+.agent__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.agent__send,
+.agent__close,
+.agent__insert-btn,
+.agent__copy-btn {
+  padding: 6px 14px;
+  font: inherit;
+  border-radius: 16px;
+  border: 1px solid #2c2c2c;
+  background: #fff;
+  cursor: pointer;
+}
+
+.agent__send {
+  color: #fff;
+  background: #2c2c2c;
+}
+
+.agent__send:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.agent__insert-btn,
+.agent__copy-btn {
+  font-size: 12px;
+  padding: 4px 12px;
+}
+
+.agent__insert-btn:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.agent__send:focus-visible,
+.agent__close:focus-visible,
+.agent__insert-btn:focus-visible,
+.agent__copy-btn:focus-visible {
+  outline: 2px solid #007aff;
+  outline-offset: 2px;
+}

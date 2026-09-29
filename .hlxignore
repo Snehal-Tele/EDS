@@ -5,3 +5,9 @@ LICENSE
 package.json
 package-lock.json
 test/*
+
+# server-side gateway: deployed to Cloudflare, must never be served by EDS
+proxy/*
+
+# static block test content, served only via `aem up --html-folder drafts`
+drafts/*
