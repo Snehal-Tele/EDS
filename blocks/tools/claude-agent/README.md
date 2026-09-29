@@ -16,9 +16,13 @@ insert the result into the document they have open.
 
 Registration does **not** happen in this repository — there is no repo-side
 config file for it. DA discovers plugins through the **apps sheet in your DA
-site config**, which you edit in DA itself.
+site config**, edited in DA at:
 
-Add a row with these columns:
+```
+https://da.live/config#/Snehal-Tele/EDS/
+```
+
+Add a row to the `apps` sheet with these columns:
 
 | Column | Value |
 |---|---|
@@ -28,9 +32,20 @@ Add a row with these columns:
 | `ref` | `main` |
 | `image` | optional icon URL |
 
-DA rewrites that path into an obfuscated app URL
-(`https://da.live/app/Snehal-Tele/EDS/blocks/tools/claude-agent`) — that is
-expected, not a misconfiguration.
+Once the row exists, a card appears at
+`https://da.live/apps#/Snehal-Tele/EDS`.
+
+DA rewrites the codebase path into an app URL by dropping only the `.html`
+extension, so the filename is kept:
+
+```
+https://main--EDS--Snehal-Tele.aem.live/blocks/tools/claude-agent/claude-agent.html
+                    ↓
+https://da.live/app/Snehal-Tele/EDS/blocks/tools/claude-agent/claude-agent
+```
+
+That obfuscated URL is expected, not a misconfiguration — and it works
+**without** an apps-sheet row, which makes it the quickest way to test.
 
 > **Note on location.** The DA convention is a **root-level `tools/`**
 > directory, so the usual path would be `/tools/claude-agent/…`. This project
